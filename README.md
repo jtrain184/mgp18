@@ -1,2 +1,2 @@
 # mgp18
-A Mario Party like game using MonoGame Framework
+A game inspired by Mario Party using the MonoGame Framework.
