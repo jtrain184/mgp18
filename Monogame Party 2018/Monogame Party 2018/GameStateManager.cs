@@ -17,6 +17,7 @@ namespace Monogame_Party_2018 {
     // List of states, we will loop over these:
     List<State> states = new List<State>();
     List<State> statesToUpdate = new List<State>();
+    List<State> statesDrawable = new List<State>();
 
     SpriteBatch spriteBatch;
     SpriteFont font;

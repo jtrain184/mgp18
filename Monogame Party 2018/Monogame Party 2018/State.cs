@@ -10,11 +10,29 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018 {
 
+
+  enum depth {
+    DEP_SPLASH_SCREEN = 50,
+    DEP_MAIN_MENU = 100,
+    DEP_BOARD = 300,
+    DEP_BOARD_UI = 400,
+    DEP_DICE = 500,
+    DEP_MINIGAME_INSTRUCTIONS = 600,
+    DEP_MINIGAME = 700,
+    DEP_PAUSE = 900
+  }
+
+
+
   public abstract class State {
 
-    public bool active;
-    public bool visible;
-    public int depth;
+    State parent;
+    List<State> children;
+
+    public bool active; // whether or not step function is run
+    public bool visible; // whether or not draw function is run
+    public int depth; // allows 'layering' of states for drawing
+    public bool listenInput; // Listen for keyboard input?
 
     // VIRTUAL Update function
     public virtual void Update(GameTime gameTime) {
