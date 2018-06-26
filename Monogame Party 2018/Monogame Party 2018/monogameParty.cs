@@ -7,12 +7,12 @@ namespace Monogame_Party_2018
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class monogameParty : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
-        public Game1()
+        public monogameParty()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
