@@ -31,11 +31,21 @@ namespace Monogame_Party_2018 {
 
     public bool active; // whether or not step function is run
     public bool visible; // whether or not draw function is run
-    public int depth; // allows 'layering' of states for drawing
-    public bool listenInput; // Listen for keyboard input?
+    public bool topLayer; // Listen for keyboard input?
+    public int player;
+
+    // CONSTRUCTOR:
+    public State (int playerIndex, bool active, bool visible) {
+      this.player = playerIndex;
+      this.active = active;
+      this.visible = visible;
+    }
+
 
     // VIRTUAL Update function
-    public virtual void Update(GameTime gameTime) {
+    public virtual void Update(GameTime gameTime, KeyboardState ks) {
+
+
 
     }
 

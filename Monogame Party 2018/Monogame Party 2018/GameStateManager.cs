@@ -17,7 +17,6 @@ namespace Monogame_Party_2018 {
     // List of states, we will loop over these:
     List<State> states = new List<State>();
     List<State> statesToUpdate = new List<State>();
-    List<State> statesDrawable = new List<State>();
 
     SpriteBatch spriteBatch;
     SpriteFont font;
@@ -52,15 +51,21 @@ namespace Monogame_Party_2018 {
 
 
       // Loop through all states and update:
+      bool inputSent = false;
       while (statesToUpdate.Count > 0) {
 
         // pop topmost state:
         State s = statesToUpdate[statesToUpdate.Count - 1];
         statesToUpdate.RemoveAt(statesToUpdate.Count - 1);
 
+        if (!inputSent) {
+          s.topLayer = true;
+          inputSent = true;
+        }
+
         // Update:
         if (s.active) {
-          s.Update(gameTime);
+          s.Update(gameTime, input);
         }
         
       } // end while
