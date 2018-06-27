@@ -67,6 +67,11 @@ namespace Monogame_Party_2018 {
         if (s.active) {
           s.Update(gameTime, input);
         }
+
+        // State is flagged for deletion, remove it now:
+        if (s.flagForDeletion) {
+          RemoveState(s);
+        }
         
       } // end while
     } // end UPDATE

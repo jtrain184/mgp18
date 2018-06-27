@@ -42,6 +42,7 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entity.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="monogameParty.cs" />
     <Compile Include="Program.cs" />
