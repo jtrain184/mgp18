@@ -11,7 +11,7 @@ namespace Monogame_Party_2018
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
         public monogameParty()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -49,7 +49,7 @@ namespace Monogame_Party_2018
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            // !- TODO: Unload any non ContentManager content here
         }
 
         /// <summary>

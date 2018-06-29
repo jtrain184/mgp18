@@ -20,6 +20,7 @@ namespace Monogame_Party_2018 {
 
     SpriteBatch spriteBatch;
     SpriteFont font;
+
     Texture2D blankTexture;
 
     KeyboardState input;
@@ -50,7 +51,7 @@ namespace Monogame_Party_2018 {
         statesToUpdate.Add(s);
 
 
-      // Loop through all states and update:
+      // Loop through all states and update them!:
       bool inputSent = false;
       while (statesToUpdate.Count > 0) {
 
@@ -58,12 +59,13 @@ namespace Monogame_Party_2018 {
         State s = statesToUpdate[statesToUpdate.Count - 1];
         statesToUpdate.RemoveAt(statesToUpdate.Count - 1);
 
+        // First (topmost) state is the 'toplayer'. Send ONLY it the input:
         if (!inputSent) {
           s.topLayer = true;
           inputSent = true;
         }
 
-        // Update:
+        // UPDATE:
         if (s.active) {
           s.Update(gameTime, input);
         }
