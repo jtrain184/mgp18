@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,6 @@ namespace Monogame_Party_2018 {
 
     // List of states, we will loop over these:
     List<State> states = new List<State>();
-    List<State> statesToUpdate = new List<State>();
 
     SpriteBatch spriteBatch;
     SpriteFont font;
@@ -44,29 +44,21 @@ namespace Monogame_Party_2018 {
       // Read keyboard:
       input = Keyboard.GetState();
 
-      // Make a copy of the current state list to avoid confusion
-      // if one state removes other states, etc...
-      statesToUpdate.Clear();
-      foreach (State s in states)
-        statesToUpdate.Add(s);
-
-
       // Loop through all states and update them!:
       bool inputSent = false;
-      while (statesToUpdate.Count > 0) {
-
+      var num = states.Count - 1;
+      while (num > 0) {
         // pop topmost state:
-        State s = statesToUpdate[statesToUpdate.Count - 1];
-        statesToUpdate.RemoveAt(statesToUpdate.Count - 1);
+        State s = states[num];
 
         // First (topmost) state is the 'toplayer'. Send ONLY it the input:
         if (!inputSent) {
-          s.topLayer = true;
+          s.isTopLayer = true;
           inputSent = true;
         }
 
         // UPDATE:
-        if (s.active) {
+        if (s.active && !s.flagForDeletion) {
           s.Update(gameTime, input);
         }
 
@@ -74,7 +66,7 @@ namespace Monogame_Party_2018 {
         if (s.flagForDeletion) {
           RemoveState(s);
         }
-        
+        --num;
       } // end while
     } // end UPDATE
 
@@ -99,7 +91,7 @@ namespace Monogame_Party_2018 {
     // TODO
     public void RemoveState(State state) {
       states.Remove(state);
-      statesToUpdate.Remove(state);
+      states.Remove(state);
     }
 
 

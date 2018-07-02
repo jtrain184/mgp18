@@ -13,7 +13,7 @@ namespace Monogame_Party_2018
         [STAThread]
         static void Main()
         {
-            using (var game = new monogameParty())
+            using (var game = new MonogameParty())
                 game.Run();
         }
     }

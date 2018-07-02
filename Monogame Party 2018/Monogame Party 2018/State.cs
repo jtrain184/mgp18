@@ -17,7 +17,7 @@ namespace Monogame_Party_2018 {
 
     public bool active; // whether or not step function is run
     public bool visible; // whether or not draw function is run
-    public bool topLayer; // Listen for keyboard input?
+    public bool isTopLayer; // Listen for keyboard input?
     public int player;
     public bool flagForDeletion; // at end of Update, delete me (sent to manager)
 
@@ -25,7 +25,7 @@ namespace Monogame_Party_2018 {
     List<Entity> eList = new List<Entity>();
 
     // CONSTRUCTOR:
-    public State (State parent, int playerIndex, bool active, bool visible) {
+    public State(State parent, int playerIndex, bool active, bool visible) {
       this.parent = parent;
       this.player = playerIndex;
       this.active = active;
