@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Input;
 namespace Monogame_Party_2018 {
 
   class Entity {
-
+        //testing VS github ext
     // data
     public int x;
     public int y;
