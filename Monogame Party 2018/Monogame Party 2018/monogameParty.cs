@@ -6,7 +6,7 @@ namespace Monogame_Party_2018 {
   /// <summary>
   /// This is the main type for your game.
   /// </summary>
-  public class MonogameParty : `Game {
+  public class MonogameParty : Game {
     GraphicsDeviceManager graphics;
     SpriteBatch spriteBatch;
 
