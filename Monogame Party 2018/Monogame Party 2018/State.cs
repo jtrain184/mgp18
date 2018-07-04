@@ -12,24 +12,29 @@ namespace Monogame_Party_2018 {
 
   public abstract class State {
 
-    State parent;
-    State child;
+    GameStateManager manager;
 
     public bool active; // whether or not step function is run
     public bool visible; // whether or not draw function is run
     public bool isTopLayer; // Listen for keyboard input?
     public int player;
     public bool flagForDeletion; // at end of Update, delete me (sent to manager)
+    public EntityCounter ec;
 
     // List of all Entity objects related to this State
-    List<Entity> eList = new List<Entity>();
+    public List<Entity> eList = new List<Entity>();
 
     // CONSTRUCTOR:
-    public State(State parent, int playerIndex, bool active, bool visible) {
-      this.parent = parent;
+    public State(GameStateManager creator, int playerIndex, EntityCounter eCounter) {
+
+      this.manager = creator;
       this.player = playerIndex;
-      this.active = active;
-      this.visible = visible;
+      this.ec = eCounter;
+
+      // Default values:
+      this.active = true;
+      this.visible = true;
+      this.isTopLayer = false;
       this.flagForDeletion = false;
     }
 
@@ -37,5 +42,16 @@ namespace Monogame_Party_2018 {
     public virtual void Update(GameTime gameTime, KeyboardState ks) { }
     public virtual void Draw(GameTime gameTime) { }
 
+
+    // Add a new Entity to the State:
+    public void addEntity(Entity e) { eList.Add(e); }
+
+    // Remove Entity from the State:
+    public void removeEntity(Entity e) { eList.Remove(e); }
+
+
   } // end State class
+
+
+
 }

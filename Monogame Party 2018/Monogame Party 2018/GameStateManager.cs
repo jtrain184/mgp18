@@ -12,72 +12,66 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018 {
 
+  // This is where all the global constants will go
+  public static class Constants {
+    public const int SCREEN_WIDTH = 800;
+    public const int SCREEN_HEIGHT = 600;
+
+    public const int SCREEN_CENTER_X = SCREEN_WIDTH / 2;
+    public const int SCREEN_CENTER_Y = SCREEN_HEIGHT / 2;
+  }
+
+
+
+
   public class GameStateManager {
 
-
     // List of states, we will loop over these:
-    List<State> states = new List<State>();
+    public List<State> states = new List<State>();
 
-    SpriteBatch spriteBatch;
-    SpriteFont font;
-
-    Texture2D blankTexture;
-
+    // Shared by all:
     KeyboardState input;
+    Texture2D blankTexture;
+    public SpriteBatch SpriteBatch;
+    public SpriteFont Font;
+    public EntityCounter eCounter = new EntityCounter(); // used to give each entity a unique number
 
-
-
-    // Default spritebatch shared by all the states
-    public SpriteBatch SpriteBatch {
-      get { return spriteBatch; }
-    }
-
-    // font shared by all the states:
-    public SpriteFont Font {
-      get { return font; }
-    }
-
-
+    // Update
     public void Update(GameTime gameTime) {
 
-      // TODO
-      // Read keyboard:
       input = Keyboard.GetState();
-
-      // Loop through all states and update them!:
       bool inputSent = false;
       var num = states.Count - 1;
+
+      // Loop through all states and update them!:
       while (num > 0) {
-        // pop topmost state:
+
+        // Start with topmost state:
         State s = states[num];
 
         // First (topmost) state is the 'toplayer'. Send ONLY it the input:
         if (!inputSent) {
           s.isTopLayer = true;
           inputSent = true;
-        }
+        } else { s.isTopLayer = false; } // all other layers false (updates last frame if changed)
 
-        // UPDATE:
-        if (s.active && !s.flagForDeletion) {
-          s.Update(gameTime, input);
-        }
+        // Only update if State is 'active' and not flagged for deletion:
+        if (s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
 
         // State is flagged for deletion, remove it now:
-        if (s.flagForDeletion) {
-          RemoveState(s);
-        }
+        if (s.flagForDeletion) { RemoveState(s); }
         --num;
       } // end while
     } // end UPDATE
 
 
     public void Draw(GameTime gameTime) {
+
+      // Start at bottom of state list, draw bottom up
       foreach (State s in states) {
 
         // If visible, draw:
-        if (s.visible) {
-          s.Draw(gameTime);
-        }
+        if (s.visible) { s.Draw(gameTime); }
       } // end foreach
     } // end DRAW
 
@@ -88,9 +82,9 @@ namespace Monogame_Party_2018 {
       states.Add(state);
     }
 
+
     // TODO
     public void RemoveState(State state) {
-      states.Remove(state);
       states.Remove(state);
     }
 

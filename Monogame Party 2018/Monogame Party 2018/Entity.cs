@@ -10,11 +10,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018 {
 
-  class Entity {
+  public abstract class Entity {
 
     // data
-    public int x;
-    public int y;
+    State state;
+    public double x;
+    public double y;
     public bool active;
     public int id;
 
@@ -22,15 +23,20 @@ namespace Monogame_Party_2018 {
     public bool visible;
 
     // constructor:
-    public Entity(int xPos, int yPos, bool is_visible, int id) {
+    public Entity(State creator, int xPos, int yPos, bool is_visible, int id) {
 
-      // active by default. Use function to deactivate
-      active = true;
-
+      state = creator;
       x = xPos;
       y = yPos;
-      active = is_visible;
+      visible = is_visible;
+
+      // Default values:
+      active = true;
     }
+
+    // VIRTUAL Functions (will be overridden)
+    public virtual void Update(GameTime gametime, KeyboardState ks) { }
+    public virtual void Draw(GameTime gametime) { }
 
   }
 }
