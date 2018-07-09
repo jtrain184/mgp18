@@ -13,7 +13,7 @@ namespace Monogame_Party_2018 {
   public abstract class Entity {
 
     // data
-    State state;
+    State parentState;
     public double x;
     public double y;
     public bool active;
@@ -25,7 +25,7 @@ namespace Monogame_Party_2018 {
     // constructor:
     public Entity(State creator, int xPos, int yPos, bool is_visible, int id) {
 
-      state = creator;
+      parentState = creator;
       x = xPos;
       y = yPos;
       visible = is_visible;

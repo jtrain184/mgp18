@@ -12,7 +12,7 @@ namespace Monogame_Party_2018 {
 
   public abstract class State {
 
-    GameStateManager manager;
+    public GameStateManager parentManager;
 
     public bool active; // whether or not step function is run
     public bool visible; // whether or not draw function is run
@@ -21,17 +21,23 @@ namespace Monogame_Party_2018 {
     public bool flagForDeletion; // at end of Update, delete me (sent to manager)
     public EntityCounter ec;
 
+    // The 'state' will be drawn to the right and below this point
+    public double xPos;
+    public double yPos;
+
     // List of all Entity objects related to this State
     public List<Entity> eList = new List<Entity>();
 
     // CONSTRUCTOR:
-    public State(GameStateManager creator, int playerIndex, EntityCounter eCounter) {
+    public State(GameStateManager creator, EntityCounter eCounter, double xPos, double yPos) {
 
-      this.manager = creator;
-      this.player = playerIndex;
+      // Passed in:
+      this.parentManager = creator;
       this.ec = eCounter;
+      this.xPos = xPos;
+      this.yPos = yPos;
 
-      // Default values:
+      // Default:
       this.active = true;
       this.visible = true;
       this.isTopLayer = false;
@@ -41,7 +47,6 @@ namespace Monogame_Party_2018 {
     // VIRTUAL Functions (will be overridden)
     public virtual void Update(GameTime gameTime, KeyboardState ks) { }
     public virtual void Draw(GameTime gameTime) { }
-
 
     // Add a new Entity to the State:
     public void addEntity(Entity e) { eList.Add(e); }

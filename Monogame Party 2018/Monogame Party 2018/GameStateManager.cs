@@ -31,10 +31,17 @@ namespace Monogame_Party_2018 {
 
     // Shared by all:
     KeyboardState input;
-    Texture2D blankTexture;
-    public SpriteBatch SpriteBatch;
-    public SpriteFont Font;
     public EntityCounter eCounter = new EntityCounter(); // used to give each entity a unique number
+
+    // References for easy access:
+    public MonogameParty game;
+    public SpriteBatch sb;
+
+    public GameStateManager(MonogameParty game) {
+      this.game = game;
+    }
+
+
 
     // Update
     public void Update(GameTime gameTime) {
