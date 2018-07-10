@@ -15,8 +15,8 @@ namespace Monogame_Party_2018
 
         public enum Buttons
         {
-            CASTLE = 0,
-            PIRATE,
+            PIRATE = 0,
+            MOUNTAIN,
             ABOUT,
             EXIT
         }
@@ -29,29 +29,25 @@ namespace Monogame_Party_2018
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
         {
-            currentMenuItem = (int)Buttons.CASTLE;
+            currentMenuItem = (int)Buttons.PIRATE;
 
             items = new List<mainMenuItem>();
 
 
             // Game: Castle Land
-            items.Add(new mainMenuItem(this.xPos + 100, this.yPos + 200, "Castle Land", (int)Buttons.CASTLE));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Pirate Bay", (int)Buttons.PIRATE));
             numItems++;
 
             // Game: Pirate Bay
-            items.Add(new mainMenuItem(this.xPos + 500, this.yPos + 300, "Pirate Bay", (int)Buttons.PIRATE));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Lonely" + System.Environment.NewLine + "Mountain", (int)Buttons.MOUNTAIN));
             numItems++;
 
-            // Settings
-            //items.Add(new mainMenuItem(100, 500, "Settings", (int)buttons.SETTINGS));
-            //numItems++;
-
             // About
-            items.Add(new mainMenuItem(this.xPos + 900, this.yPos + 200, "About", (int)Buttons.ABOUT));
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "About", (int)Buttons.ABOUT));
             numItems++;
 
             // Exit
-            items.Add(new mainMenuItem(this.xPos + 900, this.yPos + 500, "Exit", (int)Buttons.EXIT));
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 500, "Exit", (int)Buttons.EXIT));
             numItems++;
         }
 
@@ -80,24 +76,21 @@ namespace Monogame_Party_2018
                     else { currentMenuItem--; }
                 }
 
-                if (parentManager.km.KeyPressed(Keymap.Select))
-                {
+
+                // Press ENTER while some menu item is highlighted:
+                if (parentManager.km.KeyPressed(Keymap.Select)) {
 
                     // Go to whatever menu item you chose:
-                    if (currentMenuItem == (int)Buttons.CASTLE)
-                    {
+                    if (currentMenuItem == (int)Buttons.PIRATE) {
                         S_MainMenu newMenu = new S_MainMenu(parentManager, parentManager.eCounter, this.xPos + 200, this.yPos + 200);
                         parentManager.AddStateQueue(newMenu);
                     }
 
 
                     // choosing exit actually exits the game:
-                    if (currentMenuItem == (int)Buttons.EXIT)
-                    {
+                    if (currentMenuItem == (int)Buttons.EXIT) {
                         parentManager.game.Exit();
                     }
-
-
 
 
                 }
@@ -119,21 +112,30 @@ namespace Monogame_Party_2018
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
             // Draw Buttons -----------------------
+
+            // Hate hard coding...but just do it...
+            int SPRITE_WIDTH = 320;
+            int SPRITE_HEIGHT = 160;
+
             Color tColor;
             int i = 0;
             foreach (mainMenuItem item in items)
             {
-                Vector2 loc = new Vector2(item.xPos, item.yPos);
+
+                int indent = 16;
+                Vector2 pos = new Vector2(item.xPos, item.yPos);
+                Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
+                Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
 
                 // Cloud Background:
-                sb.Draw(this.parentManager.game.spr_cloudIcon, loc, Color.White);
+                sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
 
                 // Draw Text:
                 if (i == currentMenuItem)
                     tColor = Color.Blue;
                 else
                     tColor = Color.Red;
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, loc, tColor);
+                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, textPos, tColor);
 
                 i++;
             }

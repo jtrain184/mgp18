@@ -12,6 +12,7 @@ namespace Monogame_Party_2018 {
     public float xPos;
     public float yPos;
 
+
     public mainMenuItem above;
     public mainMenuItem right;
     public mainMenuItem below;

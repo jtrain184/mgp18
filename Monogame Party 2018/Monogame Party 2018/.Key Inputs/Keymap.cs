@@ -11,7 +11,6 @@ using Microsoft.Xna.Framework.Input;
 namespace Monogame_Party_2018 {
    static class Keymap {
 
-        
         //Select Button
         public static Keys Select = Keys.Enter;
 
@@ -20,7 +19,7 @@ namespace Monogame_Party_2018 {
 
         //Cancel Button
         public static Keys Cancel = Keys.Escape;
-            
+
         //Up Button
         public static Keys Up = Keys.Up;
         public static Keys p2Up = Keys.W;
