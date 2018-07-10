@@ -15,8 +15,8 @@ namespace Monogame_Party_2018
 
         public enum Buttons
         {
-            CASTLE = 0,
-            PIRATE,
+            PIRATE = 0,
+            MOUNTAIN,
             ABOUT,
             EXIT
         }
@@ -29,17 +29,17 @@ namespace Monogame_Party_2018
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
         {
-            currentMenuItem = (int)Buttons.CASTLE;
+            currentMenuItem = (int)Buttons.PIRATE;
 
             items = new List<mainMenuItem>();
 
 
             // Game: Castle Land
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Castle Land", (int)Buttons.CASTLE));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Pirate Bay", (int)Buttons.PIRATE));
             numItems++;
 
             // Game: Pirate Bay
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Pirate Bay", (int)Buttons.PIRATE));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Lonely" + System.Environment.NewLine + "Mountain", (int)Buttons.MOUNTAIN));
             numItems++;
 
             // About
@@ -78,24 +78,19 @@ namespace Monogame_Party_2018
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select))
-                {
+                if (parentManager.km.KeyPressed(Keymap.Select)) {
 
                     // Go to whatever menu item you chose:
-                    if (currentMenuItem == (int)Buttons.CASTLE)
-                    {
+                    if (currentMenuItem == (int)Buttons.PIRATE) {
                         S_MainMenu newMenu = new S_MainMenu(parentManager, parentManager.eCounter, this.xPos + 200, this.yPos + 200);
                         parentManager.AddStateQueue(newMenu);
                     }
 
 
                     // choosing exit actually exits the game:
-                    if (currentMenuItem == (int)Buttons.EXIT)
-                    {
+                    if (currentMenuItem == (int)Buttons.EXIT) {
                         parentManager.game.Exit();
                     }
-
-
 
 
                 }
