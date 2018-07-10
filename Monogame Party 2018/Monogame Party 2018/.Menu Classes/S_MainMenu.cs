@@ -35,23 +35,19 @@ namespace Monogame_Party_2018
 
 
             // Game: Castle Land
-            items.Add(new mainMenuItem(this.xPos + 100, this.yPos + 200, "Castle Land", (int)Buttons.CASTLE));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Castle Land", (int)Buttons.CASTLE));
             numItems++;
 
             // Game: Pirate Bay
-            items.Add(new mainMenuItem(this.xPos + 500, this.yPos + 300, "Pirate Bay", (int)Buttons.PIRATE));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Pirate Bay", (int)Buttons.PIRATE));
             numItems++;
 
-            // Settings
-            //items.Add(new mainMenuItem(100, 500, "Settings", (int)buttons.SETTINGS));
-            //numItems++;
-
             // About
-            items.Add(new mainMenuItem(this.xPos + 900, this.yPos + 200, "About", (int)Buttons.ABOUT));
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "About", (int)Buttons.ABOUT));
             numItems++;
 
             // Exit
-            items.Add(new mainMenuItem(this.xPos + 900, this.yPos + 500, "Exit", (int)Buttons.EXIT));
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 500, "Exit", (int)Buttons.EXIT));
             numItems++;
         }
 
@@ -80,6 +76,8 @@ namespace Monogame_Party_2018
                     else { currentMenuItem--; }
                 }
 
+
+                // Press ENTER while some menu item is highlighted:
                 if (parentManager.km.KeyPressed(Keymap.Select))
                 {
 
@@ -119,21 +117,30 @@ namespace Monogame_Party_2018
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
             // Draw Buttons -----------------------
+
+            // Hate hard coding...but just do it...
+            int SPRITE_WIDTH = 320;
+            int SPRITE_HEIGHT = 160;
+
             Color tColor;
             int i = 0;
             foreach (mainMenuItem item in items)
             {
-                Vector2 loc = new Vector2(item.xPos, item.yPos);
+
+                int indent = 16;
+                Vector2 pos = new Vector2(item.xPos, item.yPos);
+                Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
+                Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
 
                 // Cloud Background:
-                sb.Draw(this.parentManager.game.spr_cloudIcon, loc, Color.White);
+                sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
 
                 // Draw Text:
                 if (i == currentMenuItem)
                     tColor = Color.Blue;
                 else
                     tColor = Color.Red;
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, loc, tColor);
+                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, textPos, tColor);
 
                 i++;
             }

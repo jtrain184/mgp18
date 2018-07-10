@@ -50,6 +50,7 @@
     <Compile Include=".Menu Classes\mainMenuItem.cs" />
     <Compile Include=".Main Files\MonogameParty.cs" />
     <Compile Include=".Main Files\Program.cs" />
+    <Compile Include="CenterString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include=".Main Files\State.cs" />
     <Compile Include=".Menu Classes\S_MainMenu.cs" />
