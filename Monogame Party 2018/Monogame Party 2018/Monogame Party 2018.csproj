@@ -36,23 +36,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <ApplicationIcon>.Other\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationManifest>.Other\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entity.cs" />
-    <Compile Include="EntityCounter.cs" />
-    <Compile Include="GameStateManager.cs" />
-    <Compile Include="KeyboardManager.cs" />
-    <Compile Include="Keymap.cs" />
-    <Compile Include="mainMenuItem.cs" />
-    <Compile Include="MonogameParty.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include=".Main Files\Entity.cs" />
+    <Compile Include=".Main Files\EntityCounter.cs" />
+    <Compile Include=".Main Files\GameStateManager.cs" />
+    <Compile Include=".Key Inputs\KeyboardManager.cs" />
+    <Compile Include=".Key Inputs\Keymap.cs" />
+    <Compile Include=".Menu Classes\mainMenuItem.cs" />
+    <Compile Include=".Main Files\MonogameParty.cs" />
+    <Compile Include=".Main Files\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="State.cs" />
-    <Compile Include="S_MainMenu.cs" />
+    <Compile Include=".Main Files\State.cs" />
+    <Compile Include=".Menu Classes\S_MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -62,8 +62,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Icon.ico" />
-    <EmbeddedResource Include="Icon.bmp" />
+    <EmbeddedResource Include=".Other\Icon.ico" />
+    <EmbeddedResource Include=".Other\Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
@@ -99,26 +99,24 @@
       <Link>x64\libopenal.so.1</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
       <Link>libSDL2-2.0.0.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
       <Link>libopenal.1.dylib</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
       <Link>MonoGame.Framework.dll.config</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="app.manifest" />
+    <None Include=".Other\app.manifest" />
     <None Include="Content\bg_titleScreen.xnb" />
     <None Include="Content\ft_mainMenu.xnb" />
     <None Include="Content\spr_cloudIcon.xnb" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
