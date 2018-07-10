@@ -45,6 +45,8 @@
     <Compile Include="Entity.cs" />
     <Compile Include="EntityCounter.cs" />
     <Compile Include="GameStateManager.cs" />
+    <Compile Include="KeyboardManager.cs" />
+    <Compile Include="Keymap.cs" />
     <Compile Include="mainMenuItem.cs" />
     <Compile Include="MonogameParty.cs" />
     <Compile Include="Program.cs" />
@@ -113,6 +115,9 @@
     <None Include="Content\bg_titleScreen.xnb" />
     <None Include="Content\ft_mainMenu.xnb" />
     <None Include="Content\spr_cloudIcon.xnb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

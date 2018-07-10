@@ -1,0 +1,24 @@
+
+Program.cs [we don't touch]
+
+MonogameParty.cs: Main Executable File
+
+	- GameStateManager.cs
+		- EntityCounter.cs
+
+	- State.cs
+		- S_MainMenu.cs
+			- mainMenuItem.cs
+
+	- Entity.cs (Entities are optional)
+
+	- KeyboardManager.cs: Object that keeps track of keys
+
+
+
+
+
+
+
+
+

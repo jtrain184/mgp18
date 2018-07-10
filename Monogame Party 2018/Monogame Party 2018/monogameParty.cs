@@ -18,7 +18,6 @@ namespace Monogame_Party_2018 {
     public SpriteBatch spriteBatch;
     public GameStateManager manager;
 
-
     // Graphics:
     public Texture2D bg_titleScreen;
     public Texture2D spr_cloudIcon;
@@ -32,9 +31,6 @@ namespace Monogame_Party_2018 {
 
       // Pass in a reference to itself
       manager = new GameStateManager(this);
-
-      State mainMenu = new S_MainMenu(manager, manager.eCounter, 0, 0);
-      manager.AddState(mainMenu, 0);
 
       graphics.PreferredBackBufferWidth = 1280;
       graphics.PreferredBackBufferHeight = 720;

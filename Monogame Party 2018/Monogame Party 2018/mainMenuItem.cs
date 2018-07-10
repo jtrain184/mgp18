@@ -12,6 +12,11 @@ namespace Monogame_Party_2018 {
     public float xPos;
     public float yPos;
 
+    public mainMenuItem above;
+    public mainMenuItem right;
+    public mainMenuItem below;
+    public mainMenuItem left;
+
     public mainMenuItem(float x, float y, String text, int activeValue) {
       this.xPos = x;
       this.yPos = y;
