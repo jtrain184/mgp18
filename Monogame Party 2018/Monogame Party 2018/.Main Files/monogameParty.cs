@@ -87,16 +87,17 @@ namespace Monogame_Party_2018
         {
 
             // Exit Game:
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-           
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //Exit();
+            
+        
 
             manager.Update(gameTime);
-
+            
+           
             base.Update(gameTime);
 
-            //Exit game from main menu
-            //I put it here so that the states would get removed first. Not sure if thats needed
+            
             
         }
 

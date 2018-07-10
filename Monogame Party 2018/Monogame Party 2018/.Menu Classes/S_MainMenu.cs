@@ -101,8 +101,8 @@ namespace Monogame_Party_2018
 
 
                 }
-            }
-
+            } 
+            
 
         }
 
