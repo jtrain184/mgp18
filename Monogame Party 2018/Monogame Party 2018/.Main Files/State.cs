@@ -22,14 +22,14 @@ namespace Monogame_Party_2018 {
     public EntityCounter ec;
 
     // The 'state' will be drawn to the right and below this point
-    public double xPos;
-    public double yPos;
+    public float xPos;
+    public float yPos;
 
     // List of all Entity objects related to this State
     public List<Entity> eList = new List<Entity>();
 
     // CONSTRUCTOR:
-    public State(GameStateManager creator, EntityCounter eCounter, double xPos, double yPos) {
+    public State(GameStateManager creator, EntityCounter eCounter, float xPos, float yPos) {
 
       // Passed in:
       this.parentManager = creator;

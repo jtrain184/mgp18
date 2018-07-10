@@ -9,11 +9,44 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018 {
-  class Keymap {
+   static class Keymap {
 
-        //ENTER KEY
+        
+        //Select Button
+        public static Keys Select = Keys.Enter;
+
+        //Action Button
+        public static Keys Action = Keys.Space;
+
+        //Cancel Button
+        public static Keys Cancel = Keys.Escape;
+            
+        //Up Button
+        public static Keys Up = Keys.Up;
+        public static Keys p2Up = Keys.W;
+
+        //Down Button
+        public static Keys Down = Keys.Down;
+        public static Keys p2Down = Keys.S;
+
+        //Left Button
+        public static Keys Left = Keys.Left;
+        public static Keys p2Left = Keys.A;
+
+        //Right Button
+        public static Keys Right = Keys.Right;
+        public static Keys p2Right = Keys.D;
 
 
 
-  }
+
+
+
+
+
+
+
+
+
+    }
 }

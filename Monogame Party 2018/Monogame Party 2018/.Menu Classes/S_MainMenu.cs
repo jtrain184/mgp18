@@ -1,135 +1,150 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Monogame_Party_2018 {
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-  public class S_MainMenu : State {
+namespace Monogame_Party_2018
+{
 
-    public enum buttons {
-      CASTLE = 0,
-      PIRATE,
-      SETTINGS,
-      ABOUT,
-      EXIT
-    }
+    public class S_MainMenu : State
+    {
 
-    public List<mainMenuItem> items;
+        public enum Buttons
+        {
+            CASTLE = 0,
+            PIRATE,
+            ABOUT,
+            EXIT
+        }
 
-    int currentMenuItem;
-    int numItems;
+        public List<mainMenuItem> items;
 
-    // Constructor for Main Menu:
-    public S_MainMenu(GameStateManager creator, EntityCounter ec, double xPos, double yPos) : base(creator, ec, xPos, yPos) {
-      currentMenuItem = (int)buttons.CASTLE;
+        int currentMenuItem;
+        int numItems;
 
-      items = new List<mainMenuItem>();
+        // Constructor for Main Menu:
+        public S_MainMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
+        {
+            currentMenuItem = (int)Buttons.CASTLE;
 
-
-      // Game: Castle Land
-      items.Add(new mainMenuItem(100, 200, "Castle Land", (int)buttons.CASTLE));
-      numItems++;
-
-      // Game: Pirate Bay
-      items.Add(new mainMenuItem(500, 300, "Pirate Bay", (int)buttons.PIRATE));
-      numItems++;
-
-      // Settings
-      //items.Add(new mainMenuItem(100, 500, "Settings", (int)buttons.SETTINGS));
-      //numItems++;
-
-      // About
-      items.Add(new mainMenuItem(900, 200, "About", (int)buttons.ABOUT));
-      numItems++;
-
-      // Exit
-      items.Add(new mainMenuItem(900, 500, "Exit", (int)buttons.EXIT));
-      numItems++;
-    }
+            items = new List<mainMenuItem>();
 
 
-    // Update:
-    public override void Update(GameTime gameTime, KeyboardState ks) {
-      base.Update(gameTime, ks);
+            // Game: Castle Land
+            items.Add(new mainMenuItem(this.xPos + 100, this.yPos + 200, "Castle Land", (int)Buttons.CASTLE));
+            numItems++;
 
-      // If this is the top layer, allow moving active menu:
-      //if (this.isTopLayer) {
+            // Game: Pirate Bay
+            items.Add(new mainMenuItem(this.xPos + 500, this.yPos + 300, "Pirate Bay", (int)Buttons.PIRATE));
+            numItems++;
 
+            // Settings
+            //items.Add(new mainMenuItem(100, 500, "Settings", (int)buttons.SETTINGS));
+            //numItems++;
 
-      // Move Menu Selection Up:
-      if (parentManager.km.KeyPressed(Keys.Up)) {
-          if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
-          else { currentMenuItem++; }
-      }
+            // About
+            items.Add(new mainMenuItem(this.xPos + 900, this.yPos + 200, "About", (int)Buttons.ABOUT));
+            numItems++;
 
-      // Move Menu Selection Down:
-      if (parentManager.km.KeyPressed(Keys.Down)) {
-          if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
-          else { currentMenuItem--; }
-      }
-
-      // if (parentManager.km.KeyPressed(Keymap.Select)) {
-      if (parentManager.km.KeyPressed(Keys.Enter)) {
-
-        // Go to whatever menu item you chose:
-        if (currentMenuItem == (int)buttons.CASTLE) {
-          S_MainMenu newMenu = new S_MainMenu(parentManager, parentManager.eCounter, 0, 0);
-          parentManager.AddStateQueue(newMenu);
+            // Exit
+            items.Add(new mainMenuItem(this.xPos + 900, this.yPos + 500, "Exit", (int)Buttons.EXIT));
+            numItems++;
         }
 
 
-        // choosing exit actually exits the game:
+        // Update:
+        public override void Update(GameTime gameTime, KeyboardState ks)
+        {
+            base.Update(gameTime, ks);
+
+            // If this is the top layer, allow moving active menu:
+            if (this.isTopLayer)
+            {
 
 
+                // Move Menu Selection Up:
+                if (parentManager.km.KeyPressed(Keymap.Up))
+                {
+                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
+                    else { currentMenuItem++; }
+                }
 
-      }
+                // Move Menu Selection Down:
+                if (parentManager.km.KeyPressed(Keymap.Down))
+                {
+                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
+                    else { currentMenuItem--; }
+                }
 
+                if (parentManager.km.KeyPressed(Keymap.Select))
+                {
 
-    }
-
-    // Draw:
-    public override void Draw(GameTime gameTime) {
-      base.Draw(gameTime);
-
-      // Draw Background:
-      SpriteBatch sb = this.parentManager.game.spriteBatch;
-
-      sb.Begin();
-
-      sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(0, 0), Color.White);
-
-      // Draw Buttons -----------------------
-      Color tColor;
-      int i = 0;
-      foreach (mainMenuItem item in items) {
-        Vector2 loc = new Vector2(item.xPos, item.yPos);
-
-        // Cloud Background:
-        sb.Draw(this.parentManager.game.spr_cloudIcon, loc, Color.White);
-
-        // Draw Text:
-        if (i == currentMenuItem)
-          tColor = Color.Blue;
-        else
-          tColor = Color.Red;
-        sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, loc, tColor);
-
-        i++;
-      }
+                    // Go to whatever menu item you chose:
+                    if (currentMenuItem == (int)Buttons.CASTLE)
+                    {
+                        S_MainMenu newMenu = new S_MainMenu(parentManager, parentManager.eCounter, this.xPos + 200, this.yPos + 200);
+                        parentManager.AddStateQueue(newMenu);
+                    }
 
 
-      // End drawing:
-      sb.End();
-    }
+                    // choosing exit actually exits the game:
+                    if (currentMenuItem == (int)Buttons.EXIT)
+                    {
+                        parentManager.game.Exit();
+                    }
 
 
 
 
-  } // end class definition
+                }
+            }
+
+
+        }
+
+        // Draw:
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+
+            // Draw Background:
+            SpriteBatch sb = this.parentManager.game.spriteBatch;
+
+            sb.Begin();
+
+            sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
+
+            // Draw Buttons -----------------------
+            Color tColor;
+            int i = 0;
+            foreach (mainMenuItem item in items)
+            {
+                Vector2 loc = new Vector2(item.xPos, item.yPos);
+
+                // Cloud Background:
+                sb.Draw(this.parentManager.game.spr_cloudIcon, loc, Color.White);
+
+                // Draw Text:
+                if (i == currentMenuItem)
+                    tColor = Color.Blue;
+                else
+                    tColor = Color.Red;
+                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, loc, tColor);
+
+                i++;
+            }
+
+
+            // End drawing:
+            sb.End();
+        }
+
+
+
+
+    } // end class definition
 }
