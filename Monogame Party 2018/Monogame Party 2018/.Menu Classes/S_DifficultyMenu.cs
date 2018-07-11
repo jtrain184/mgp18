@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Monogame_Party_2018.Menu_Classes
+namespace Monogame_Party_2018
 {
     public class S_DifficultyMenu : State
     {
@@ -25,7 +25,7 @@ namespace Monogame_Party_2018.Menu_Classes
         int numItems;
 
         // Constructor for Main Menu:
-        public S_DifficultyMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
+        public S_DifficultyMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)Buttons.EASY;
 
@@ -69,15 +69,16 @@ namespace Monogame_Party_2018.Menu_Classes
                 // Move Menu Selection Up:
                 if (parentManager.km.KeyPressed(Keymap.Up))
                 {
-                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
-                    else { currentMenuItem++; }
+                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
+                    else { currentMenuItem--; }
+
                 }
 
                 // Move Menu Selection Down:
                 if (parentManager.km.KeyPressed(Keymap.Down))
                 {
-                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
-                    else { currentMenuItem--; }
+                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
+                    else { currentMenuItem++; }
                 }
 
 
@@ -91,7 +92,7 @@ namespace Monogame_Party_2018.Menu_Classes
                     // Back: Goes back to player count:
                     if (currentMenuItem == (int)Buttons.BACK)
                     {
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
+                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(playerCountMenu);
                         this.flagForDeletion = true;
                     }

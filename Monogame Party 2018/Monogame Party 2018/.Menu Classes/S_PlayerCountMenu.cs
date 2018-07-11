@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Monogame_Party_2018.Menu_Classes
+namespace Monogame_Party_2018
 {
     public class S_PlayerCountMenu : State
     {
@@ -24,7 +24,7 @@ namespace Monogame_Party_2018.Menu_Classes
         int numItems;
 
         // Constructor for Player Count Menu:
-        public S_PlayerCountMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
+        public S_PlayerCountMenu(GameStateManager creator,float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)Buttons.ONE;
 
@@ -59,15 +59,16 @@ namespace Monogame_Party_2018.Menu_Classes
                 // Move Menu Selection Up:
                 if (parentManager.km.KeyPressed(Keymap.Up))
                 {
-                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
-                    else { currentMenuItem++; }
+                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
+                    else { currentMenuItem--; }
+
                 }
 
                 // Move Menu Selection Down:
                 if (parentManager.km.KeyPressed(Keymap.Down))
                 {
-                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
-                    else { currentMenuItem--; }
+                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
+                    else { currentMenuItem++; }
                 }
 
 
@@ -78,7 +79,7 @@ namespace Monogame_Party_2018.Menu_Classes
                     if(currentMenuItem == (int)Buttons.ONE)
                     {
                         parentManager.gameOptions.numPlayers = 1;
-                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, parentManager.eCounter, 0, 0);
+                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(diffMenu);
                         this.flagForDeletion = true;
                     }
@@ -88,7 +89,7 @@ namespace Monogame_Party_2018.Menu_Classes
                     if (currentMenuItem == (int)Buttons.TWO)
                     {
                         parentManager.gameOptions.numPlayers = 2;
-                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, parentManager.eCounter, 0, 0);
+                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(diffMenu);
                         this.flagForDeletion = true;
                     }
@@ -97,7 +98,7 @@ namespace Monogame_Party_2018.Menu_Classes
                     // Back: Goes back to main menu:
                     if (currentMenuItem == (int)Buttons.BACK)
                     {
-                        S_MainMenu mainMenu = new S_MainMenu(parentManager, parentManager.eCounter, 0, 0);
+                        S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(mainMenu);
                         this.flagForDeletion = true;
                     }

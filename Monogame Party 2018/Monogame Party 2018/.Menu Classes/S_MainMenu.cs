@@ -63,27 +63,36 @@ namespace Monogame_Party_2018
                 // Move Menu Selection Up:
                 if (parentManager.km.KeyPressed(Keymap.Up))
                 {
-                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
-                    else { currentMenuItem++; }
+                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
+                    else { currentMenuItem--; }
+                  
                 }
 
                 // Move Menu Selection Down:
                 if (parentManager.km.KeyPressed(Keymap.Down))
                 {
-                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
-                    else { currentMenuItem--; }
+                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
+                    else { currentMenuItem++; }
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
                 if (parentManager.km.KeyPressed(Keymap.Select)) {
 
-                    // Go to whatever menu item you chose:
+                    // Map: Pirte Bay
                     if (currentMenuItem == (int)Buttons.PIRATE) {
-                        S_MainMenu newMenu = new S_MainMenu(parentManager, this.xPos + 200, this.yPos + 200);
-                        parentManager.AddStateQueue(newMenu);
+                        parentManager.gameOptions.mapName = "Pirate Bay";
+                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
+                        parentManager.AddStateQueue(playerCountMenu);
+                        this.flagForDeletion = true;
                     }
 
+                    if (currentMenuItem == (int)Buttons.MOUNTAIN)
+                    {
+                        parentManager.gameOptions.mapName = "Lonely Mountain";
+                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
+                        parentManager.AddStateQueue(playerCountMenu);
+                    }
 
                     // choosing exit actually exits the game:
                     if (currentMenuItem == (int)Buttons.EXIT) {
