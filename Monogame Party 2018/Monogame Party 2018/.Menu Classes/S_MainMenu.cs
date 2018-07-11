@@ -32,21 +32,43 @@ namespace Monogame_Party_2018
             items = new List<mainMenuItem>();
 
 
-            // Game: Castle Land
+            // Game: Pirate Bay
             items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Pirate Bay", (int)Buttons.PIRATE));
             numItems++;
 
-            // Game: Pirate Bay
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Lonely" + System.Environment.NewLine + "Mountain", (int)Buttons.MOUNTAIN));
+            // Game: Lonely Mountain
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "Lonely" + System.Environment.NewLine + "Mountain", (int)Buttons.MOUNTAIN));
             numItems++;
 
             // About
-            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "About", (int)Buttons.ABOUT));
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "About", (int)Buttons.ABOUT));
             numItems++;
 
             // Exit
             items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 500, "Exit", (int)Buttons.EXIT));
             numItems++;
+
+            // Map buttons to each other
+            foreach(mainMenuItem item in items) {
+                //set above and below values
+                if (item.activeValue > 1) 
+                   item.below = item.above = items.Find(x => x.activeValue == item.activeValue - 2);
+                else
+                    item.below = item.above = items.Find(x => x.activeValue == item.activeValue + 2);
+
+                // set left and right values
+                if (item.activeValue % 2 == 0)
+                    item.left = item.right = items.Find(x => x.activeValue == item.activeValue + 1);
+                else
+                    item.left = item.right = items.Find(x => x.activeValue == item.activeValue - 1);
+
+
+
+            }
+           
+
+
+
         }
 
 
@@ -63,16 +85,26 @@ namespace Monogame_Party_2018
                 // Move Menu Selection Up:
                 if (parentManager.km.KeyPressed(Keymap.Up))
                 {
-                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
-                    else { currentMenuItem--; }
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
                   
                 }
 
                 // Move Menu Selection Down:
                 if (parentManager.km.KeyPressed(Keymap.Down))
                 {
-                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
-                    else { currentMenuItem++; }
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
+                }
+
+                // Move Menu Selection Left:
+                if (parentManager.km.KeyPressed(Keymap.Left))
+                {
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
+                }
+
+                // Move Menu Selection Right:
+                if (parentManager.km.KeyPressed(Keymap.Right))
+                {
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
                 }
 
 
