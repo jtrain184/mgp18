@@ -20,6 +20,9 @@ namespace Monogame_Party_2018 {
         //Cancel Button
         public static Keys Cancel = Keys.Escape;
 
+        //Back Button
+        public static Keys Back = Keys.Back;
+
         //Up Button
         public static Keys Up = Keys.Up;
         public static Keys p2Up = Keys.W;

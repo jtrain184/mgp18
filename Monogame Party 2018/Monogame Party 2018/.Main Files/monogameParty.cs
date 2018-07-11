@@ -14,6 +14,7 @@ namespace Monogame_Party_2018 {
         public Texture2D bg_titleScreen;
         public Texture2D spr_cloudIcon;
         public SpriteFont ft_mainMenuFont;
+        public SpriteFont ft_menuDescriptionFont;
 
         // CONSTRUCTOR:
         public MonogameParty() {
@@ -26,6 +27,7 @@ namespace Monogame_Party_2018 {
 
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
+           
         }
 
 
@@ -49,6 +51,7 @@ namespace Monogame_Party_2018 {
             bg_titleScreen = Content.Load<Texture2D>("bg_titleScreen");
             spr_cloudIcon = Content.Load<Texture2D>("spr_cloudIcon");
             ft_mainMenuFont = Content.Load<SpriteFont>("ft_mainMenu");
+            ft_menuDescriptionFont = Content.Load<SpriteFont>("menuDescriptionFont");
 
             // TODO: use this.Content to load your game content here
         }
@@ -63,8 +66,8 @@ namespace Monogame_Party_2018 {
         protected override void Update(GameTime gameTime) {
 
             // Exit Game:
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+           // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+             //   Exit();
 
             manager.Update(gameTime);
             base.Update(gameTime);

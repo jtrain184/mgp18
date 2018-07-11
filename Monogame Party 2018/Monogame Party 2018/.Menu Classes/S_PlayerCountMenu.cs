@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Monogame_Party_2018
@@ -15,7 +16,7 @@ namespace Monogame_Party_2018
         {
             ONE = 0,
             TWO,
-            BACK
+       
         }
 
         public List<mainMenuItem> items;
@@ -39,9 +40,13 @@ namespace Monogame_Party_2018
             items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "2 Players and" + System.Environment.NewLine + "2 Computer Characters", (int)Buttons.TWO));
             numItems++;
 
-            // Back Button
-            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 500, "Back", (int)Buttons.BACK));
-            numItems++;
+            // Menu Description
+            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 650,
+                "Use the arrow keys to select the players for the game" + System.Environment.NewLine +
+                "Confirm your selection by pressing Enter" + System.Environment.NewLine +
+                "Press Back to return to the previous menu", -1));
+
+
 
         }
 
@@ -56,19 +61,19 @@ namespace Monogame_Party_2018
             {
 
 
-                // Move Menu Selection Up:
-                if (parentManager.km.KeyPressed(Keymap.Up))
+                // Move Menu Selection Left:
+                if (parentManager.km.KeyPressed(Keymap.Left))
                 {
-                    if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
-                    else { currentMenuItem--; }
-
+                    if (currentMenuItem == 1) { currentMenuItem = 0; }
+                    
+                
                 }
 
-                // Move Menu Selection Down:
-                if (parentManager.km.KeyPressed(Keymap.Down))
+                // Move Menu Selection Right:
+                if (parentManager.km.KeyPressed(Keymap.Right))
                 {
-                    if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
-                    else { currentMenuItem++; }
+                    if (currentMenuItem == 0) { currentMenuItem = 1; }
+                   
                 }
 
 
@@ -95,15 +100,16 @@ namespace Monogame_Party_2018
                     }
 
 
-                    // Back: Goes back to main menu:
-                    if (currentMenuItem == (int)Buttons.BACK)
-                    {
-                        S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(mainMenu);
-                        this.flagForDeletion = true;
-                    }
+                  
 
 
+                }
+                // Press Cancel Key: Goes back to main menu:
+                if (parentManager.km.KeyPressed(Keymap.Back))
+                {
+                    S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(mainMenu);
+                    this.flagForDeletion = true;
                 }
             }
 
@@ -129,27 +135,32 @@ namespace Monogame_Party_2018
             int SPRITE_HEIGHT = 160;
 
             Color tColor;
-            int i = 0;
-            foreach (mainMenuItem item in items)
+           for(int i = 0; i < numItems; i++)
             {
 
                
-                Vector2 pos = new Vector2(item.xPos, item.yPos);
-                Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
-                Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
+                Vector2 pos = new Vector2(items[i].xPos, items[i].yPos);
+                Vector2 cloudPos = new Vector2(items[i].xPos - SPRITE_WIDTH / 2, items[i].yPos - SPRITE_HEIGHT / 2);
+                Vector2 textPos = CenterString.getCenterStringVector(pos, items[i].text, this.parentManager.game.ft_mainMenuFont);
 
                 // Cloud Background:
-                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)item.xPos - 550 / 2, (int)item.yPos - SPRITE_HEIGHT / 2, 550, 160), Color.White);
+                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[i].xPos - 550 / 2, (int)items[i].yPos - SPRITE_HEIGHT / 2, 550, 160), Color.White);
 
                 // Draw Text:
                 if (i == currentMenuItem)
                     tColor = Color.Blue;
                 else
                     tColor = Color.Red;
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, textPos, tColor);
+                sb.DrawString(this.parentManager.game.ft_mainMenuFont, items[i].text, textPos, tColor);
 
-                i++;
+              
             }
+
+            // Draw the Menu description cloud wider
+            Vector2 menuItemPos = new Vector2(items[numItems].xPos, items[numItems].yPos);
+            Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[numItems].text, this.parentManager.game.ft_menuDescriptionFont);
+            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[numItems].xPos - 600 / 2, (int)items[numItems].yPos - 140 / 2, 600, 140), Color.White);
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, items[numItems].text, menuTextPos, Color.Black);
 
 
             // End drawing:

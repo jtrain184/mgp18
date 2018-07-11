@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{27FA5094-E0F4-41B8-8532-DBE0EF5A355D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Monogame_Party_2018</RootNamespace>
     <AssemblyName>Monogame Party 2018</AssemblyName>
@@ -40,6 +40,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>.Other\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Compile Include=".Board Game\E_Space.cs" />
@@ -120,6 +123,7 @@
     <None Include=".Other\app.manifest" />
     <None Include="Content\bg_titleScreen.xnb" />
     <None Include="Content\ft_mainMenu.xnb" />
+    <None Include="Content\menuDescriptionFont.xnb" />
     <None Include="Content\spr_cloudIcon.xnb" />
   </ItemGroup>
   <ItemGroup />
