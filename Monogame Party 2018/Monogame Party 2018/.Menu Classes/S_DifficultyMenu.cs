@@ -2,23 +2,21 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Monogame_Party_2018.Menu_Classes;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Monogame_Party_2018
+namespace Monogame_Party_2018.Menu_Classes
 {
-
-    public class S_MainMenu : State
+    public class S_DifficultyMenu : State
     {
-
         public enum Buttons
         {
-            PIRATE = 0,
-            MOUNTAIN,
-            ABOUT,
-            EXIT
+            EASY = 0,
+            MEDIUM,
+            HARD,
+            BACK
         }
 
         public List<mainMenuItem> items;
@@ -27,28 +25,34 @@ namespace Monogame_Party_2018
         int numItems;
 
         // Constructor for Main Menu:
-        public S_MainMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
+        public S_DifficultyMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
         {
-            currentMenuItem = (int)Buttons.PIRATE;
+            currentMenuItem = (int)Buttons.EASY;
 
             items = new List<mainMenuItem>();
 
+           
 
-            // Game: Castle Land
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Pirate Bay", (int)Buttons.PIRATE));
+            // Difficulty: Easy
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "EASY", (int)Buttons.EASY));
             numItems++;
 
-            // Game: Pirate Bay
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Lonely" + System.Environment.NewLine + "Mountain", (int)Buttons.MOUNTAIN));
+            // Difficulty: Medium
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "Medium", (int)Buttons.MEDIUM));
             numItems++;
 
-            // About
-            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "About", (int)Buttons.ABOUT));
+            // Difficulty: Hard
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Hard", (int)Buttons.HARD));
             numItems++;
 
-            // Exit
-            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 500, "Exit", (int)Buttons.EXIT));
+            // Back Button
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 500, "Back", (int)Buttons.BACK));
             numItems++;
+
+            // Menu Description
+            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 650, "Choose the difficulty:", -1));
+            
+
         }
 
 
@@ -78,34 +82,24 @@ namespace Monogame_Party_2018
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select)) {
+                if (parentManager.km.KeyPressed(Keymap.Select))
+                {
 
-                    // Go to whatever menu item you chose:
-                    if (currentMenuItem == (int)Buttons.PIRATE) {
-                        parentManager.gameOptions.mapName = "Pirate Bay";
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
-                        this.flagForDeletion = true;
-                    }
 
-                    if (currentMenuItem == (int)Buttons.MOUNTAIN)
+
+
+                    // Back: Goes back to player count:
+                    if (currentMenuItem == (int)Buttons.BACK)
                     {
-                        parentManager.gameOptions.mapName = "Lonely Mountain";
                         S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
                         parentManager.AddStateQueue(playerCountMenu);
                         this.flagForDeletion = true;
-                    }
-
-
-                    // choosing exit actually exits the game:
-                    if (currentMenuItem == (int)Buttons.EXIT) {
-                        parentManager.game.Exit();
                     }
 
 
                 }
-            } 
-            
+            }
+
 
         }
 
@@ -128,14 +122,14 @@ namespace Monogame_Party_2018
             int SPRITE_HEIGHT = 160;
 
             Color tColor;
-            int i = 0;
-            foreach (mainMenuItem item in items)
+           
+            for (int i = 0; i < 4; i++)
             {
 
-                
-                Vector2 pos = new Vector2(item.xPos, item.yPos);
-                Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
-                Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
+
+                Vector2 pos = new Vector2(items[i].xPos, items[i].yPos);
+                Vector2 cloudPos = new Vector2(items[i].xPos - SPRITE_WIDTH / 2, items[i].yPos - SPRITE_HEIGHT / 2);
+                Vector2 textPos = CenterString.getCenterStringVector(pos, items[i].text, this.parentManager.game.ft_mainMenuFont);
 
                 // Cloud Background:
                 sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
@@ -145,18 +139,19 @@ namespace Monogame_Party_2018
                     tColor = Color.Blue;
                 else
                     tColor = Color.Red;
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, textPos, tColor);
+                sb.DrawString(this.parentManager.game.ft_mainMenuFont, items[i].text, textPos, tColor);
 
-                i++;
+                //i++;
             }
 
+            // Draw the Menu description cloud wider
+            Vector2 menuItemPos = new Vector2(items[4].xPos, items[4].yPos);
+            Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[4].text, this.parentManager.game.ft_mainMenuFont);
+            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[4].xPos - 550 / 2, (int)items[4].yPos - 110 / 2, 550, 110), Color.White);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, items[4].text, menuTextPos, Color.Black);
 
             // End drawing:
             sb.End();
         }
-
-
-
-
-    } // end class definition
+    }
 }

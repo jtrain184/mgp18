@@ -2,23 +2,20 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Monogame_Party_2018.Menu_Classes;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Monogame_Party_2018
+namespace Monogame_Party_2018.Menu_Classes
 {
-
-    public class S_MainMenu : State
+    public class S_PlayerCountMenu : State
     {
-
         public enum Buttons
         {
-            PIRATE = 0,
-            MOUNTAIN,
-            ABOUT,
-            EXIT
+            ONE = 0,
+            TWO,
+            BACK
         }
 
         public List<mainMenuItem> items;
@@ -26,29 +23,26 @@ namespace Monogame_Party_2018
         int currentMenuItem;
         int numItems;
 
-        // Constructor for Main Menu:
-        public S_MainMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
+        // Constructor for Player Count Menu:
+        public S_PlayerCountMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
         {
-            currentMenuItem = (int)Buttons.PIRATE;
+            currentMenuItem = (int)Buttons.ONE;
 
             items = new List<mainMenuItem>();
 
 
-            // Game: Castle Land
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "Pirate Bay", (int)Buttons.PIRATE));
+            // Player Count: One
+            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "1 Player and" + System.Environment.NewLine + "3 Computer Characters", (int)Buttons.ONE));
             numItems++;
 
-            // Game: Pirate Bay
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 500, "Lonely" + System.Environment.NewLine + "Mountain", (int)Buttons.MOUNTAIN));
+            // Player Count: Two
+            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "2 Players and" + System.Environment.NewLine + "2 Computer Characters", (int)Buttons.TWO));
             numItems++;
 
-            // About
-            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "About", (int)Buttons.ABOUT));
+            // Back Button
+            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 500, "Back", (int)Buttons.BACK));
             numItems++;
 
-            // Exit
-            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 500, "Exit", (int)Buttons.EXIT));
-            numItems++;
         }
 
 
@@ -78,34 +72,40 @@ namespace Monogame_Party_2018
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select)) {
-
-                    // Go to whatever menu item you chose:
-                    if (currentMenuItem == (int)Buttons.PIRATE) {
-                        parentManager.gameOptions.mapName = "Pirate Bay";
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    if (currentMenuItem == (int)Buttons.MOUNTAIN)
+                if (parentManager.km.KeyPressed(Keymap.Select))
+                {
+                    // One Player
+                    if(currentMenuItem == (int)Buttons.ONE)
                     {
-                        parentManager.gameOptions.mapName = "Lonely Mountain";
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
+                        parentManager.gameOptions.numPlayers = 1;
+                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, parentManager.eCounter, 0, 0);
+                        parentManager.AddStateQueue(diffMenu);
                         this.flagForDeletion = true;
                     }
 
 
-                    // choosing exit actually exits the game:
-                    if (currentMenuItem == (int)Buttons.EXIT) {
-                        parentManager.game.Exit();
+                    //Two Players
+                    if (currentMenuItem == (int)Buttons.TWO)
+                    {
+                        parentManager.gameOptions.numPlayers = 2;
+                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, parentManager.eCounter, 0, 0);
+                        parentManager.AddStateQueue(diffMenu);
+                        this.flagForDeletion = true;
+                    }
+
+
+                    // Back: Goes back to main menu:
+                    if (currentMenuItem == (int)Buttons.BACK)
+                    {
+                        S_MainMenu mainMenu = new S_MainMenu(parentManager, parentManager.eCounter, 0, 0);
+                        parentManager.AddStateQueue(mainMenu);
+                        this.flagForDeletion = true;
                     }
 
 
                 }
-            } 
-            
+            }
+
 
         }
 
@@ -132,13 +132,13 @@ namespace Monogame_Party_2018
             foreach (mainMenuItem item in items)
             {
 
-                
+               
                 Vector2 pos = new Vector2(item.xPos, item.yPos);
                 Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
                 Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
 
                 // Cloud Background:
-                sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
+                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)item.xPos - 550 / 2, (int)item.yPos - SPRITE_HEIGHT / 2, 550, 160), Color.White);
 
                 // Draw Text:
                 if (i == currentMenuItem)
@@ -155,8 +155,5 @@ namespace Monogame_Party_2018
             sb.End();
         }
 
-
-
-
-    } // end class definition
+    }//end of class
 }
