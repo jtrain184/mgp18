@@ -23,11 +23,13 @@ namespace Monogame_Party_2018
 
         int currentMenuItem;
         int numItems;
+        KeyboardManager km;
 
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)Buttons.PIRATE;
+            km = parentManager.km;
 
             items = new List<mainMenuItem>();
 
@@ -61,23 +63,21 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Up:
-                if (parentManager.km.KeyPressed(Keymap.Up))
-                {
+                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
                     if (currentMenuItem == 0) { currentMenuItem = numItems - 1; }
                     else { currentMenuItem--; }
-                  
                 }
 
                 // Move Menu Selection Down:
-                if (parentManager.km.KeyPressed(Keymap.Down))
-                {
+                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
                     if (currentMenuItem == (numItems - 1)) { currentMenuItem = 0; }
                     else { currentMenuItem++; }
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select)) {
+
+                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
 
                     // Map: Pirte Bay
                     if (currentMenuItem == (int)Buttons.PIRATE) {
