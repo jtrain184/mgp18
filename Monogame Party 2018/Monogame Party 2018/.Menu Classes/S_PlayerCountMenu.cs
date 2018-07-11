@@ -16,7 +16,6 @@ namespace Monogame_Party_2018
         {
             ONE = 0,
             TWO,
-       
         }
 
         public List<mainMenuItem> items;
@@ -45,9 +44,6 @@ namespace Monogame_Party_2018
                 "Use the arrow keys to select the players for the game" + System.Environment.NewLine +
                 "Confirm your selection by pressing Enter" + System.Environment.NewLine +
                 "Press Back to return to the previous menu", -1));
-
-
-
         }
 
 
@@ -62,24 +58,19 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Left:
-                if (parentManager.km.KeyPressed(Keymap.Left))
-                {
+                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
                     if (currentMenuItem == 1) { currentMenuItem = 0; }
-                    
-                
                 }
 
                 // Move Menu Selection Right:
-                if (parentManager.km.KeyPressed(Keymap.Right))
-                {
+                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
                     if (currentMenuItem == 0) { currentMenuItem = 1; }
-                   
+
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select))
-                {
+                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
                     // One Player
                     if(currentMenuItem == (int)Buttons.ONE)
                     {
@@ -100,13 +91,12 @@ namespace Monogame_Party_2018
                     }
 
 
-                  
+
 
 
                 }
                 // Press Cancel Key: Goes back to main menu:
-                if (parentManager.km.KeyPressed(Keymap.Back))
-                {
+                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
                     S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
                     parentManager.AddStateQueue(mainMenu);
                     this.flagForDeletion = true;
@@ -138,7 +128,7 @@ namespace Monogame_Party_2018
            for(int i = 0; i < numItems; i++)
             {
 
-               
+
                 Vector2 pos = new Vector2(items[i].xPos, items[i].yPos);
                 Vector2 cloudPos = new Vector2(items[i].xPos - SPRITE_WIDTH / 2, items[i].yPos - SPRITE_HEIGHT / 2);
                 Vector2 textPos = CenterString.getCenterStringVector(pos, items[i].text, this.parentManager.game.ft_mainMenuFont);
@@ -153,7 +143,7 @@ namespace Monogame_Party_2018
                     tColor = Color.Red;
                 sb.DrawString(this.parentManager.game.ft_mainMenuFont, items[i].text, textPos, tColor);
 
-              
+
             }
 
             // Draw the Menu description cloud wider

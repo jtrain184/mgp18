@@ -19,6 +19,7 @@ namespace Monogame_Party_2018 {
     public bool isTopLayer; // Listen for keyboard input?
     public int player;
     public bool flagForDeletion; // at end of Update, delete me (sent to manager)
+    public KeyboardManager km;
 
     // The 'state' will be drawn to the right and below this point
     public float xPos;
@@ -40,6 +41,9 @@ namespace Monogame_Party_2018 {
       this.visible = true;
       this.isTopLayer = false;
       this.flagForDeletion = false;
+
+      // Makes referencing the keyboard manager easier
+      this.km = parentManager.km;
     }
 
     // VIRTUAL Functions (will be overridden)

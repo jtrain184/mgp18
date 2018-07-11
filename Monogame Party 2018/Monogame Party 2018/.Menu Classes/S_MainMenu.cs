@@ -23,15 +23,11 @@ namespace Monogame_Party_2018
 
         int currentMenuItem;
         int numItems;
-        KeyboardManager km;
 
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)Buttons.PIRATE;
-
-            // Makes referencing the keyboard manager easier
-            this.km = parentManager.km;
 
             items = new List<mainMenuItem>();
 
@@ -106,34 +102,29 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Up:
-                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
-                {
+                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
                 }
 
-                // TODO START HERE
                 // Move Menu Selection Down:
-                if (parentManager.km.KeyPressed(Keymap.Down))
-                {
+                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
                 }
 
                 // Move Menu Selection Left:
-                if (parentManager.km.KeyPressed(Keymap.Left))
-                {
+                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
                 }
 
                 // Move Menu Selection Right:
-                if (parentManager.km.KeyPressed(Keymap.Right))
-                {
+                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select)) {
+                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
 
                     // Map: Pirte Bay
                     if (currentMenuItem == (int)Buttons.PIRATE) {

@@ -31,7 +31,6 @@ namespace Monogame_Party_2018
 
             items = new List<mainMenuItem>();
 
-           
 
             // Difficulty: Easy
             items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "EASY", (int)Buttons.EASY));
@@ -53,12 +52,12 @@ namespace Monogame_Party_2018
                 {
                     item.above = item;  // Item is already at the top
                     item.below = items[2];  // Set below value to the only button below
-                    
+
                     // Set left and right values
                     if (item.activeValue == 0)
                     {
                         item.left = item;   // Item is already on the left
-                        item.right = items[1];  // Set right value to button on the right 
+                        item.right = items[1];  // Set right value to button on the right
                     }
                     else
                     {
@@ -68,25 +67,25 @@ namespace Monogame_Party_2018
                 }
                 else
                 {
-                    item.above = items[0];  // Set above value to first button at the top 
+                    item.above = items[0];  // Set above value to first button at the top
                     item.below = item;  // Item is already at the bottom
                     item.left = item;   // Item has no left buttons
                     item.right = item;  // Item has no right buttons
                 }
 
-              
 
-    
+
+
             }
 
-           
+
 
             // Menu Description
-            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 650, 
+            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 650,
                 "Use the arrow keys to select the difficulty of the game" + System.Environment.NewLine +
                 "Confirm your selection by pressing Enter" + System.Environment.NewLine +
                 "Press Back to return to the previous menu", -1));
-            
+
 
         }
 
@@ -102,46 +101,40 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Up:
-                if (parentManager.km.KeyPressed(Keymap.Up))
-                {
+                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
                 }
 
                 // Move Menu Selection Down:
-                if (parentManager.km.KeyPressed(Keymap.Down))
-                {
+                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
                 }
 
                 // Move Menu Selection Left:
-                if (parentManager.km.KeyPressed(Keymap.Left))
-                {
+                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
                 }
 
                 // Move Menu Selection Right:
-                if (parentManager.km.KeyPressed(Keymap.Right))
-                {
+                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (parentManager.km.KeyPressed(Keymap.Select))
-                {
+                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
 
 
 
 
-                   
+
 
 
                 }
 
                 // Press Cancel Key: Goes back to main menu:
-                if (parentManager.km.KeyPressed(Keymap.Back))
-                {
+                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
                     S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                     parentManager.AddStateQueue(playerCountMenu);
                     this.flagForDeletion = true;
@@ -170,7 +163,7 @@ namespace Monogame_Party_2018
             int SPRITE_HEIGHT = 160;
 
             Color tColor;
-           
+
             for (int i = 0; i < numItems; i++)
             {
 
