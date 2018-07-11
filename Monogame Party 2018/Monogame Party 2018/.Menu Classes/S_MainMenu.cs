@@ -23,11 +23,15 @@ namespace Monogame_Party_2018
 
         int currentMenuItem;
         int numItems;
+        KeyboardManager km;
 
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)Buttons.PIRATE;
+
+            // Makes referencing the keyboard manager easier
+            this.km = parentManager.km;
 
             items = new List<mainMenuItem>();
 
@@ -84,7 +88,7 @@ namespace Monogame_Party_2018
 
 
             }
-           
+
 
 
 
@@ -102,12 +106,13 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Up:
-                if (parentManager.km.KeyPressed(Keymap.Up))
+                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
                 {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
-                  
+
                 }
 
+                // TODO START HERE
                 // Move Menu Selection Down:
                 if (parentManager.km.KeyPressed(Keymap.Down))
                 {
