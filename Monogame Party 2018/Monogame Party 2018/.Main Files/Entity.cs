@@ -18,20 +18,23 @@ namespace Monogame_Party_2018 {
     public double y;
     public bool active;
     public int id;
+    public Texture2D sprite;
 
     // drawing
     public bool visible;
 
     // constructor:
-    public Entity(State creator, int xPos, int yPos, bool is_visible, int id) {
+    public Entity(State parentState, Texture2D sprite, int x, int y) {
 
-      parentState = creator;
-      x = xPos;
-      y = yPos;
-      visible = is_visible;
+      this.parentState = parentState;
+      this.x = x;
+      this.y = y;
+      this.id = EntityCounter.takeNumber();
+      this.sprite = sprite;
 
       // Default values:
-      active = true;
+      this.active = true;
+      this.visible = true;
     }
 
     // VIRTUAL Functions (will be overridden)

@@ -42,6 +42,7 @@
     <ApplicationManifest>.Other\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include=".Board Game\E_Space.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
     <Compile Include=".Main Files\Entity.cs" />
     <Compile Include=".Main Files\EntityCounter.cs" />
