@@ -24,6 +24,8 @@ namespace Monogame_Party_2018
 
     public class GameStateManager
     {
+        // State count for debugging
+        private int stateCount;
 
         // List of states, we will loop over these:
         public List<State> states = new List<State>();
@@ -37,6 +39,7 @@ namespace Monogame_Party_2018
         public SpriteBatch sb;
         public KeyboardManager km;
         public GameOptions gameOptions;
+        
 
         // CONSTRUCTOR:
         public GameStateManager(MonogameParty game)
@@ -48,6 +51,7 @@ namespace Monogame_Party_2018
             // Add the ** FIRST ** game state here:
             State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
             this.AddState(mainMenu, 0);
+            this.stateCount = 1;
         }
 
         // Update
@@ -101,6 +105,13 @@ namespace Monogame_Party_2018
 
             // Update New becomes Old states:
             km.KeysPushOld();
+
+            // Log changes in state count
+            if(states.Count != stateCount)
+            {
+                Console.WriteLine("Current State Count: " + states.Count + "\n");
+                stateCount = states.Count;
+            }
 
         } // end UPDATE
 
