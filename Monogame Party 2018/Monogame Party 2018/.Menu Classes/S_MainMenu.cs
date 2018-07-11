@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Monogame_Party_2018.Menu_Classes;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,9 @@ using System.Linq;
 namespace Monogame_Party_2018
 {
 
-    public class S_MainMenu : State
-    {
+    public class S_MainMenu : State {
 
-        public enum Buttons
-        {
+        public enum Buttons {
             PIRATE = 0,
             MOUNTAIN,
             ABOUT,
@@ -27,7 +25,7 @@ namespace Monogame_Party_2018
         int numItems;
 
         // Constructor for Main Menu:
-        public S_MainMenu(GameStateManager creator, EntityCounter ec, float xPos, float yPos) : base(creator, ec, xPos, yPos)
+        public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)Buttons.PIRATE;
 
@@ -82,18 +80,8 @@ namespace Monogame_Party_2018
 
                     // Go to whatever menu item you chose:
                     if (currentMenuItem == (int)Buttons.PIRATE) {
-                        parentManager.gameOptions.mapName = "Pirate Bay";
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    if (currentMenuItem == (int)Buttons.MOUNTAIN)
-                    {
-                        parentManager.gameOptions.mapName = "Lonely Mountain";
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, parentManager.eCounter, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
-                        this.flagForDeletion = true;
+                        S_MainMenu newMenu = new S_MainMenu(parentManager, this.xPos + 200, this.yPos + 200);
+                        parentManager.AddStateQueue(newMenu);
                     }
 
 
@@ -104,8 +92,8 @@ namespace Monogame_Party_2018
 
 
                 }
-            } 
-            
+            }
+
 
         }
 
@@ -132,7 +120,6 @@ namespace Monogame_Party_2018
             foreach (mainMenuItem item in items)
             {
 
-                
                 Vector2 pos = new Vector2(item.xPos, item.yPos);
                 Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
                 Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);

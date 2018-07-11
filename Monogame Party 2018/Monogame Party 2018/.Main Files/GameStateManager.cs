@@ -31,7 +31,6 @@ namespace Monogame_Party_2018
 
         // Shared by all:
         KeyboardState input;
-        public EntityCounter eCounter = new EntityCounter(); // used to give each entity a unique number
 
         // References for easy access:
         public MonogameParty game;
@@ -47,7 +46,7 @@ namespace Monogame_Party_2018
             this.gameOptions = new GameOptions();
 
             // Add the ** FIRST ** game state here:
-            State mainMenu = new S_MainMenu(this, this.eCounter, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
+            State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
             this.AddState(mainMenu, 0);
         }
 
@@ -97,7 +96,7 @@ namespace Monogame_Party_2018
                 statesToCreate.Remove(newState);
             }
 
-           
+
             // Remove from statesToCreate list
 
             // Update New becomes Old states:
