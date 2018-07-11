@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using Monogame_Party_2018.Menu_Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,12 +36,14 @@ namespace Monogame_Party_2018
         public MonogameParty game;
         public SpriteBatch sb;
         public KeyboardManager km;
+        public GameOptions gameOptions;
 
         // CONSTRUCTOR:
         public GameStateManager(MonogameParty game)
         {
             this.game = game;
             this.km = new KeyboardManager();
+            this.gameOptions = new GameOptions();
 
             // Add the ** FIRST ** game state here:
             State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
