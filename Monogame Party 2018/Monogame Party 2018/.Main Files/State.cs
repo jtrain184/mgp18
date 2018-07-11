@@ -19,7 +19,6 @@ namespace Monogame_Party_2018 {
     public bool isTopLayer; // Listen for keyboard input?
     public int player;
     public bool flagForDeletion; // at end of Update, delete me (sent to manager)
-    public EntityCounter ec;
 
     // The 'state' will be drawn to the right and below this point
     public float xPos;
@@ -29,11 +28,10 @@ namespace Monogame_Party_2018 {
     public List<Entity> eList = new List<Entity>();
 
     // CONSTRUCTOR:
-    public State(GameStateManager creator, EntityCounter eCounter, float xPos, float yPos) {
+    public State(GameStateManager creator, float xPos, float yPos) {
 
       // Passed in:
       this.parentManager = creator;
-      this.ec = eCounter;
       this.xPos = xPos;
       this.yPos = yPos;
 
