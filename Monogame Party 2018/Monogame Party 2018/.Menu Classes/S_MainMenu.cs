@@ -124,8 +124,14 @@ namespace Monogame_Party_2018
                     // Map: Pirte Bay
                     if (currentMenuItem == (int)MenuItem.MainMenu.PIRATE) {
                         parentManager.gameOptions.mapName = MenuItem.MainMenu.PIRATE;
+                        // DEBUG
+                        /*
                         S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(playerCountMenu);
+                        */
+
+                        B_PirateBay newBoard = new B_PirateBay(parentManager, 0, 0);
+                        parentManager.AddStateQueue(newBoard);
                         this.flagForDeletion = true;
                     }
 
