@@ -12,7 +12,11 @@ namespace Monogame_Party_2018 {
 
         // Graphics:
         public Texture2D bg_titleScreen;
+        public Texture2D bg_pirateBay;
+
         public Texture2D spr_cloudIcon;
+
+        // Fonts:
         public SpriteFont ft_mainMenuFont;
         public SpriteFont ft_menuDescriptionFont;
 
@@ -27,7 +31,7 @@ namespace Monogame_Party_2018 {
 
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-           
+
         }
 
 
@@ -49,7 +53,10 @@ namespace Monogame_Party_2018 {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             bg_titleScreen = Content.Load<Texture2D>("bg_titleScreen");
+            bg_pirateBay = Content.Load<Texture2D>("bg_pirateBay");
+
             spr_cloudIcon = Content.Load<Texture2D>("spr_cloudIcon");
+
             ft_mainMenuFont = Content.Load<SpriteFont>("ft_mainMenu");
             ft_menuDescriptionFont = Content.Load<SpriteFont>("menuDescriptionFont");
 
