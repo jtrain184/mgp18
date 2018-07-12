@@ -2,6 +2,9 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using MonoGame.Extended;
+
+
 namespace Monogame_Party_2018 {
     public class MonogameParty : Game {
 
@@ -19,6 +22,9 @@ namespace Monogame_Party_2018 {
         // Fonts:
         public SpriteFont ft_mainMenuFont;
         public SpriteFont ft_menuDescriptionFont;
+
+        // CameraProperties:
+        public Camera2D cameraObject;
 
         // CONSTRUCTOR:
         public MonogameParty() {
@@ -39,9 +45,8 @@ namespace Monogame_Party_2018 {
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
-        protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
+        protected override void Initialize() {
+            cameraObject = new Camera2D(GraphicsDevice);
 
             base.Initialize();
         }
@@ -85,7 +90,8 @@ namespace Monogame_Party_2018 {
 
         /// This is called when the game should draw itself.
         protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
+
             manager.Draw(gameTime);
             base.Draw(gameTime);
         }
