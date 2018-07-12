@@ -31,7 +31,6 @@ namespace Monogame_Party_2018
 
             items = new List<mainMenuItem>();
 
-
             // Difficulty: Easy
             items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "EASY", (int)Buttons.EASY));
             numItems++;

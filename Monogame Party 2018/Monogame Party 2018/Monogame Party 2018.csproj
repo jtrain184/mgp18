@@ -45,6 +45,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include=".Board Game\B_PirateBay.cs" />
     <Compile Include=".Board Game\E_Space.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
     <Compile Include=".Main Files\Entity.cs" />
@@ -121,6 +122,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include=".Other\app.manifest" />
+    <None Include="Content\bg_pirateBay.xnb" />
     <None Include="Content\bg_titleScreen.xnb" />
     <None Include="Content\ft_mainMenu.xnb" />
     <None Include="Content\menuDescriptionFont.xnb" />

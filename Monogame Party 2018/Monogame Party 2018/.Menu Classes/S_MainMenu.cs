@@ -126,11 +126,20 @@ namespace Monogame_Party_2018
                 // Press ENTER while some menu item is highlighted:
                 if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
 
-                    // Map: Pirte Bay
+                    // Map: Pirate Bay
                     if (currentMenuItem == (int)Buttons.PIRATE) {
                         parentManager.gameOptions.mapName = "Pirate Bay";
+
+
+                        // DEBUG
+                        /*
                         S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(playerCountMenu);
+                        */
+
+                        B_PirateBay newBoard = new B_PirateBay(parentManager, 0, 0);
+                        parentManager.AddStateQueue(newBoard);
+
                         this.flagForDeletion = true;
                     }
 
