@@ -8,9 +8,9 @@ namespace Monogame_Party_2018.Menu_Classes
 {
     public class GameOptions
     {
-        public string mapName;
+        public MenuItem.MainMenu mapName;
         public int numPlayers;
-        public string difficulty;
+        public MenuItem.Difficulty difficulty;
         public List<string> characters;
         public int numRounds;
         public bool allowBonus;

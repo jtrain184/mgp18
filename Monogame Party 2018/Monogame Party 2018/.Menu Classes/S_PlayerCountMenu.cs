@@ -12,13 +12,9 @@ namespace Monogame_Party_2018
 {
     public class S_PlayerCountMenu : State
     {
-        public enum Buttons
-        {
-            ONE = 0,
-            TWO,
-        }
+        
 
-        public List<mainMenuItem> items;
+        public List<MenuItem> items;
 
         int currentMenuItem;
         int numItems;
@@ -26,24 +22,24 @@ namespace Monogame_Party_2018
         // Constructor for Player Count Menu:
         public S_PlayerCountMenu(GameStateManager creator,float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            currentMenuItem = (int)Buttons.ONE;
+            currentMenuItem = 0;
 
-            items = new List<mainMenuItem>();
+            items = new List<MenuItem>();
 
 
             // Player Count: One
-            items.Add(new mainMenuItem(this.xPos + 300, this.yPos + 200, "1 Player and" + System.Environment.NewLine + "3 Computer Characters", (int)Buttons.ONE));
+            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "1 Player and" + System.Environment.NewLine + "3 Computer Characters", 1));
             numItems++;
 
             // Player Count: Two
-            items.Add(new mainMenuItem(this.xPos + 1000, this.yPos + 200, "2 Players and" + System.Environment.NewLine + "2 Computer Characters", (int)Buttons.TWO));
+            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "2 Players and" + System.Environment.NewLine + "2 Computer Characters", 2));
             numItems++;
 
             // Menu Description
-            items.Add(new mainMenuItem(this.xPos + 650, this.yPos + 650,
-                "Use the arrow keys to select the players for the game" + System.Environment.NewLine +
-                "Confirm your selection by pressing Enter" + System.Environment.NewLine +
-                "Press Back to return to the previous menu", -1));
+            items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
+                "Use [Arrow Keys] to select the players for the game" + System.Environment.NewLine +
+                "Press [Enter] to confirm selection(s)" + System.Environment.NewLine +
+                "Press [Decimal] to return to the previous menu", -1));
         }
 
 
@@ -72,7 +68,7 @@ namespace Monogame_Party_2018
                 // Press ENTER while some menu item is highlighted:
                 if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
                     // One Player
-                    if(currentMenuItem == (int)Buttons.ONE)
+                    if(currentMenuItem == 0)
                     {
                         parentManager.gameOptions.numPlayers = 1;
                         S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);
@@ -82,7 +78,7 @@ namespace Monogame_Party_2018
 
 
                     //Two Players
-                    if (currentMenuItem == (int)Buttons.TWO)
+                    if (currentMenuItem == 1)
                     {
                         parentManager.gameOptions.numPlayers = 2;
                         S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);

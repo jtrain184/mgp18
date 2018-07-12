@@ -7,11 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace Monogame_Party_2018
 {
-    public class S_DifficultyMenu : State
+    public class S_NumRoundsMenu : State
     {
-      
+       
 
         public List<MenuItem> items;
 
@@ -19,46 +20,48 @@ namespace Monogame_Party_2018
         int numItems;
 
         // Constructor for Main Menu:
-        public S_DifficultyMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
+        public S_NumRoundsMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            currentMenuItem = (int)MenuItem.Difficulty.EASY;
+            currentMenuItem = 7;
 
             items = new List<MenuItem>();
 
 
-            // Difficulty: Easy
-            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "EASY", (int)MenuItem.Difficulty.EASY));
+            // Number of Rounds: Seven
+            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "Seven", 7));
             numItems++;
 
-            // Difficulty: Medium
-            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "Medium", (int)MenuItem.Difficulty.MEDIUM));
+            // Number of Rounds: Twelve
+            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "Twelve", 12));
             numItems++;
 
-            // Difficulty: Hard
-            items.Add(new MenuItem(this.xPos + 650, this.yPos + 500, "Hard", (int)MenuItem.Difficulty.HARD));
+            // Number of Rounds: Twenty
+            items.Add(new MenuItem(this.xPos + 650, this.yPos + 500, "Twenty", 20));
             numItems++;
 
             // Map buttons
-            foreach(MenuItem item in items)
+            foreach (MenuItem item in items)
             {
-                // Set above and below values
-                if(item.activeValue < 2)
+                // Set above and below values for buttons SEVEN and TWELVE
+                if (item.activeValue < 13)
                 {
                     item.above = item;  // Item is already at the top
                     item.below = items[2];  // Set below value to the only button below
 
-                    // Set left and right values
-                    if (item.activeValue == 0)
+                    // Set left and right values for SEVEN
+                    if (item.activeValue == 7)
                     {
                         item.left = item;   // Item is already on the left
                         item.right = items[1];  // Set right value to button on the right
                     }
+                    // Set left and right values for TWELVE
                     else
                     {
                         item.left = items[0];   // Set left value to button on the left
                         item.right = item;  // Item is already on the right
                     }
                 }
+                // Set directions for TWENTY button
                 else
                 {
                     item.above = items[0];  // Set above value to first button at the top
@@ -76,9 +79,9 @@ namespace Monogame_Party_2018
 
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to select the difficulty of the game" + System.Environment.NewLine +
-                "Press [Enter] to confirm selection" + System.Environment.NewLine +
-                "Press [Decimal] to return to the previous menu", -1));
+                "Use [Arrow Keys] to select the number of rounds to play" + System.Environment.NewLine +
+                "Press [Enter] to confirm your selection" + System.Environment.NewLine +
+                "Press [decimal] to return to the previous menu", -1));
 
 
         }
@@ -95,56 +98,36 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Up:
-                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
+                {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
                 }
 
                 // Move Menu Selection Down:
-                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
+                {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
                 }
 
                 // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
+                {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
                 }
 
                 // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+                {
                     currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+                {
 
-                    // Difficulty: Easy
-                    if(currentMenuItem == (int)MenuItem.Difficulty.EASY)
-                    {
-                        parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
-                        S_NumRoundsMenu numRoundsMenu= new S_NumRoundsMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(numRoundsMenu);
-                        this.flagForDeletion = true;
-                    }
 
-                    // Difficulty: Medium
-                    if (currentMenuItem == (int)MenuItem.Difficulty.MEDIUM)
-                    {
-                        parentManager.gameOptions.difficulty = MenuItem.Difficulty.MEDIUM;
-                        S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(numRoundsMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    // Difficulty: Medium
-                    if (currentMenuItem == (int)MenuItem.Difficulty.HARD)
-                    {
-                        parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;
-                        S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(numRoundsMenu);
-                        this.flagForDeletion = true;
-                    }
 
 
 
@@ -153,9 +136,10 @@ namespace Monogame_Party_2018
                 }
 
                 // Press Cancel Key: Goes back to main menu:
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
-                    S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(playerCountMenu);
+                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
+                {
+                    S_DifficultyMenu difficultyMenu = new S_DifficultyMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(difficultyMenu);
                     this.flagForDeletion = true;
                 }
             }
@@ -195,7 +179,7 @@ namespace Monogame_Party_2018
                 sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
 
                 // Draw Text:
-                if (i == currentMenuItem)
+                if (items[i].activeValue == currentMenuItem)
                     tColor = Color.Blue;
                 else
                     tColor = Color.Red;
@@ -215,4 +199,3 @@ namespace Monogame_Party_2018
         }
     }
 }
- 
