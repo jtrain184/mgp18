@@ -11,7 +11,7 @@ namespace Monogame_Party_2018.Menu_Classes
         public MenuItem.MainMenu mapName;
         public int numPlayers;
         public MenuItem.Difficulty difficulty;
-        public List<string> characters;
+        public List<MenuItem.Characters> characters;
         public int numRounds;
         public bool allowBonus;
 

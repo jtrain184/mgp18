@@ -5,39 +5,37 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 
 namespace Monogame_Party_2018
 {
-    public class S_PlayerCountMenu : State
+    public class S_BonusMenu : State
     {
-        
-
         public List<MenuItem> items;
 
         int currentMenuItem;
         int numItems;
 
-        // Constructor for Player Count Menu:
-        public S_PlayerCountMenu(GameStateManager creator,float xPos, float yPos) : base(creator, xPos, yPos)
+        // Constructor for Bonus Menu:
+        public S_BonusMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = 0;
 
             items = new List<MenuItem>();
 
 
-            // Player Count: One
-            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "1 Player and" + System.Environment.NewLine + "3 Computer Characters", 1));
+            // Option: Allow Bonuses
+            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "Allow Bonuses", 0));
             numItems++;
 
-            // Player Count: Two
-            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "2 Players and" + System.Environment.NewLine + "2 Computer Characters", 2));
+            // Option: No bonuses
+            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "No Bonuses", 1));
             numItems++;
 
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to select the players for the game" + System.Environment.NewLine +
+                "Bonuses will be annouced at the end of the game." + System.Environment.NewLine +
+                "Use [Arrow Keys] to navigate selections" + System.Environment.NewLine +
                 "Press [Enter] to confirm selection" + System.Environment.NewLine +
                 "Press [Decimal] to return to the previous menu", -1));
         }
@@ -54,43 +52,76 @@ namespace Monogame_Party_2018
 
 
                 // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
+                {
                     if (currentMenuItem == 1) { currentMenuItem = 0; }
                 }
 
                 // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
+                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+                {
                     if (currentMenuItem == 0) { currentMenuItem = 1; }
                 }
 
 
                 // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
-                    // One Player
-                    if(currentMenuItem == 0)
+                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+                {
+                    // Allow Bonuses
+                    if (currentMenuItem == 0)
                     {
-                        parentManager.gameOptions.numPlayers = 1;
-                        S_CharacterMenu characterMenu = new S_CharacterMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(characterMenu);
-                        this.flagForDeletion = true;
+                        parentManager.gameOptions.allowBonus = true;
+
+                        // DEBUG: PRINT GAME OPTIONS
+                        Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
+                            "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
+                        int x = 1;
+                        foreach(MenuItem.Characters character in parentManager.gameOptions.characters)
+                        {
+                            Console.WriteLine("Character " + x + ": " + character);
+                            x++;
+                        }
+
+                        Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
+                            "\nRound Count: " + parentManager.gameOptions.numRounds +
+                            "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
+
+                       // Start game based on game options from here. 
+                       // this.flagForDeletion = true;
                     }
 
-
-                    //Two Players
+                    // No Bonuses
                     if (currentMenuItem == 1)
                     {
-                        parentManager.gameOptions.numPlayers = 2;
-                        S_CharacterMenu characterMenu = new S_CharacterMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(characterMenu);
-                        this.flagForDeletion = true;
+                        parentManager.gameOptions.allowBonus = false;
+
+
+                        // DEBUG: PRINT GAME OPTIONS
+                        Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
+                            "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
+                        int x = 1;
+                        foreach (MenuItem.Characters character in parentManager.gameOptions.characters)
+                        {
+                            Console.WriteLine("Character " + x + ": " + character);
+                            x++;
+                        }
+
+                        Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
+                            "\nRound Count: " + parentManager.gameOptions.numRounds +
+                            "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
+
+
+                        // Start game based on game options from here. 
+                        // this.flagForDeletion = true;
                     }
 
 
                 }
                 // Press Cancel Key: Goes back to main menu:
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
-                    S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(mainMenu);
+                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
+                {
+                    S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(numRoundsMenu);
                     this.flagForDeletion = true;
                 }
             }
@@ -117,7 +148,7 @@ namespace Monogame_Party_2018
             int SPRITE_HEIGHT = 160;
 
             Color tColor;
-           for(int i = 0; i < numItems; i++)
+            for (int i = 0; i < numItems; i++)
             {
                 Vector2 pos = new Vector2(items[i].xPos, items[i].yPos);
                 Vector2 cloudPos = new Vector2(items[i].xPos - SPRITE_WIDTH / 2, items[i].yPos - SPRITE_HEIGHT / 2);
@@ -144,6 +175,5 @@ namespace Monogame_Party_2018
             // End drawing:
             sb.End();
         }
-
-    }//end of class
+    }
 }

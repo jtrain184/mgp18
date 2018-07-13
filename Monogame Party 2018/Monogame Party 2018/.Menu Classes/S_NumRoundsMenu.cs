@@ -126,8 +126,34 @@ namespace Monogame_Party_2018
                 // Press ENTER while some menu item is highlighted:
                 if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
                 {
+                    // Seven Rounds Selected
+                    if(currentMenuItem == 7)
+                    {
+                        parentManager.gameOptions.numRounds = 7;
+                        S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
+                        parentManager.AddStateQueue(bonusMenu);
+                        this.flagForDeletion = true;
 
+                    }
 
+                    // Twelve Rounds Selected
+                    else if( currentMenuItem == 12)
+                    {
+                        parentManager.gameOptions.numRounds = 12;
+                        S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
+                        parentManager.AddStateQueue(bonusMenu);
+                        this.flagForDeletion = true;
+                    }
+
+                    // Twenty Rounds Selected
+                    else
+                    {
+                        parentManager.gameOptions.numRounds = 20;
+                        S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
+                        parentManager.AddStateQueue(bonusMenu);
+                        this.flagForDeletion = true;
+                    }
+                  
 
 
 
