@@ -82,7 +82,6 @@ namespace Monogame_Party_2018
 
 
 
-
         }
 
 
@@ -147,11 +146,9 @@ namespace Monogame_Party_2018
                     // Option: About
                     if(currentMenuItem == (int)MenuItem.MainMenu.ABOUT)
                     {
-                        /*  Just need to update the class name when the state is written
                         S_About about = new S_About(parentManager, 0, 0);
                         parentManager.AddStateQueue(about);
                         this.flagForDeletion = true;
-                        */
                     }
 
                     // Option: Exit

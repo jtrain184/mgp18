@@ -61,7 +61,6 @@ namespace Monogame_Party_2018
                 // Move Menu Selection Right:
                 if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
                     if (currentMenuItem == 0) { currentMenuItem = 1; }
-
                 }
 
 
@@ -85,9 +84,6 @@ namespace Monogame_Party_2018
                         parentManager.AddStateQueue(diffMenu);
                         this.flagForDeletion = true;
                     }
-
-
-
 
 
                 }
@@ -123,8 +119,6 @@ namespace Monogame_Party_2018
             Color tColor;
            for(int i = 0; i < numItems; i++)
             {
-
-
                 Vector2 pos = new Vector2(items[i].xPos, items[i].yPos);
                 Vector2 cloudPos = new Vector2(items[i].xPos - SPRITE_WIDTH / 2, items[i].yPos - SPRITE_HEIGHT / 2);
                 Vector2 textPos = CenterString.getCenterStringVector(pos, items[i].text, this.parentManager.game.ft_mainMenuFont);
@@ -138,8 +132,6 @@ namespace Monogame_Party_2018
                 else
                     tColor = Color.Red;
                 sb.DrawString(this.parentManager.game.ft_mainMenuFont, items[i].text, textPos, tColor);
-
-
             }
 
             // Draw the Menu description cloud wider

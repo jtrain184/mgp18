@@ -135,7 +135,7 @@ namespace Monogame_Party_2018
 
                 }
 
-                // Press Cancel Key: Goes back to main menu:
+                // Press Cancel Key: Goes back to difficulty menu:
                 if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
                 {
                     S_DifficultyMenu difficultyMenu = new S_DifficultyMenu(parentManager, 0, 0);

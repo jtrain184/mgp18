@@ -151,7 +151,7 @@ namespace Monogame_Party_2018
 
                 }
 
-                // Press Cancel Key: Goes back to main menu:
+                // Press Cancel Key: Goes back to Player Count menu:
                 if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
                     S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                     parentManager.AddStateQueue(playerCountMenu);
