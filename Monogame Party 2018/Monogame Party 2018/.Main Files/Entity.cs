@@ -14,8 +14,7 @@ namespace Monogame_Party_2018 {
 
     // data
     State parentState;
-    public double x;
-    public double y;
+    public Vector2 pos;
     public bool active;
     public int id;
     public Texture2D sprite;
@@ -27,8 +26,8 @@ namespace Monogame_Party_2018 {
     public Entity(State parentState, Texture2D sprite, int x, int y) {
 
       this.parentState = parentState;
-      this.x = x;
-      this.y = y;
+      this.pos.X = x;
+      this.pos.Y = y;
       this.id = EntityCounter.takeNumber();
       this.sprite = sprite;
 
@@ -40,6 +39,12 @@ namespace Monogame_Party_2018 {
     // VIRTUAL Functions (will be overridden)
     public virtual void Update(GameTime gametime, KeyboardState ks) { }
     public virtual void Draw(GameTime gametime) { }
+
+    // Set:
+    public void setX(float x) { pos.X = x; }
+    public void setY(float y) { pos.Y = y; }
+
+    public Vector2 getPos() { return pos; }
 
   }
 }

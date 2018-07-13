@@ -18,6 +18,11 @@ namespace Monogame_Party_2018 {
         public Texture2D bg_pirateBay;
 
         public Texture2D spr_cloudIcon;
+        public Texture2D piece_blue64;
+        public Texture2D piece_green64;
+        public Texture2D piece_purple64;
+        public Texture2D piece_red64;
+        public Texture2D piece_white64;
 
         // Fonts:
         public SpriteFont ft_mainMenuFont;
@@ -57,13 +62,18 @@ namespace Monogame_Party_2018 {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            bg_titleScreen = Content.Load<Texture2D>("bg_titleScreen");
-            bg_pirateBay = Content.Load<Texture2D>("bg_pirateBay");
+            bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
+            bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
 
-            spr_cloudIcon = Content.Load<Texture2D>("spr_cloudIcon");
+            spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon");
+            piece_blue64 = Content.Load<Texture2D>("Spaces/piece_blue64");
+            piece_green64 = Content.Load<Texture2D>("Spaces/piece_green64");
+            piece_purple64 = Content.Load<Texture2D>("Spaces/piece_purple64");
+            piece_red64 = Content.Load<Texture2D>("Spaces/piece_red64");
+            piece_white64 = Content.Load<Texture2D>("Spaces/piece_white64");
 
-            ft_mainMenuFont = Content.Load<SpriteFont>("ft_mainMenu");
-            ft_menuDescriptionFont = Content.Load<SpriteFont>("menuDescriptionFont");
+            ft_mainMenuFont = Content.Load<SpriteFont>("MainMenu/ft_mainMenuFont");
+            ft_menuDescriptionFont = Content.Load<SpriteFont>("MainMenu/ft_menuDescriptionFont");
 
             // TODO: use this.Content to load your game content here
         }

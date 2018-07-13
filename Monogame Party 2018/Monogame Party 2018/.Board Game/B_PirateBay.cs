@@ -12,13 +12,32 @@ namespace Monogame_Party_2018 {
   public class B_PirateBay : S_Board {
 
 
+    // Collection of Spaces:
+    List<E_Space> spaces;
 
 
     // Constructor:
     public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
 
+
+      // initialize list of spaces:
+      spaces = new List<E_Space>();
+
+      // Placeholder
+      E_Space space;
+
       // Create Spaces:
-      E_Space space00 = new E_Space(this, parentManager.game.spr_cloudIcon, 200, 200, (int)E_Space.types.BLUE);
+      space = new E_Space(this, parentManager.game.piece_blue64, 200, 200, (int)E_Space.types.BLUE);
+      spaces.Add(space);
+
+      space = new E_Space(this, parentManager.game.piece_red64, 500, 800, (int)E_Space.types.RED);
+      spaces.Add(space);
+
+      space = new E_Space(this, parentManager.game.piece_green64, 1200, 900, (int)E_Space.types.BLUE);
+      spaces.Add(space);
+
+
+
 
       cameraProperties.setX(400);
       cameraProperties.setY(500);
@@ -40,10 +59,6 @@ namespace Monogame_Party_2018 {
       if (km.KeyDown(Keys.S)) { cameraProperties.incY(speed); }
       // END DEBUG
 
-      if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
-      }
-
-
 
       // Camera is fixated on CameraProperties object:
       this.parentManager.game.cameraObject.LookAt(cameraProperties.getPos());
@@ -62,6 +77,11 @@ namespace Monogame_Party_2018 {
 
             // Background
             sb.Draw(this.parentManager.game.bg_pirateBay, new Vector2(xPos, yPos), Color.White);
+
+            // Pieces:
+            foreach (E_Space space in spaces) {
+              sb.Draw(space.sprite, space.getPos(), Color.White);
+            }
 
 
             // End drawing:
