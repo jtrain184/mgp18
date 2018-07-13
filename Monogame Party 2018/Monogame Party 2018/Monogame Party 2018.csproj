@@ -58,6 +58,7 @@
     <Compile Include=".Menu Classes\MenuItem.cs" />
     <Compile Include=".Main Files\MonogameParty.cs" />
     <Compile Include=".Main Files\Program.cs" />
+    <Compile Include=".Menu Classes\S_About.cs" />
     <Compile Include=".Menu Classes\S_DifficultyMenu.cs" />
     <Compile Include=".Menu Classes\S_NumRoundsMenu.cs" />
     <Compile Include=".Menu Classes\S_PlayerCountMenu.cs" />

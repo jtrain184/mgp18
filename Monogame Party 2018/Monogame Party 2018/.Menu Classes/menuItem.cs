@@ -30,7 +30,7 @@ namespace Monogame_Party_2018 {
         EASY = 0,
         MEDIUM,
         HARD
-        }
+    }
 
 
         public MenuItem(float x, float y, String text, int activeValue) {
