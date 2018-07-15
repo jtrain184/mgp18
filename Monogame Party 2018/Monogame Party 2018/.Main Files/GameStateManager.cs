@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Monogame_Party_2018.Menu_Classes;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
