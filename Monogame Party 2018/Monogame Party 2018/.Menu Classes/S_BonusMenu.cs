@@ -86,8 +86,11 @@ namespace Monogame_Party_2018
                             "\nRound Count: " + parentManager.gameOptions.numRounds +
                             "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
 
-                       // Start game based on game options from here. 
-                       // this.flagForDeletion = true;
+                        // Start game based on game options from here. 
+                       
+                        S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0);
+                        parentManager.AddStateQueue(minigame1);
+                        this.flagForDeletion = true;
                     }
 
                     // No Bonuses

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monogame_Party_2018 {
+namespace Monogame_Party_2018
+{
     public class GameOptions
     {
         public MenuItem.MainMenu mapName;
