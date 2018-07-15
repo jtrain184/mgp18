@@ -13,7 +13,7 @@ namespace Monogame_Party_2018 {
 
 
     // Collection of Spaces:
-    List<E_Space> spaces;
+    public List<E_Space> spaces;
 
 
     // Constructor:
@@ -36,12 +36,8 @@ namespace Monogame_Party_2018 {
       space = new E_Space(this, parentManager.game.piece_green64, 1200, 900, (int)E_Space.types.BLUE);
       spaces.Add(space);
 
-
-
-
       cameraProperties.setX(400);
       cameraProperties.setY(500);
-
     }
 
 

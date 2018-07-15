@@ -14,16 +14,34 @@ namespace Monogame_Party_2018 {
 
     // Member variables:
     public CameraProperties cameraProperties;
+    public GameOptions gameOptions;
 
     // Constructor:
-    public S_Board(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
+    public S_Board(GameStateManager creator, float xPos, float yPos, GameOptions Opt) : base(creator, xPos, yPos) {
       cameraProperties = new CameraProperties();
+
+      this.gameOptions = Opt;
+
+      // Create characters:
+      foreach (MenuItem.Characters i in this.gameOptions.characters) {
+
+
+      }
+
+
     } // end constructor
 
 
 
+    // UPDATE
+    public override void Update(GameTime gameTime, KeyboardState ks) {
+      base.Update(gameTime, ks);
+    }
 
-
+    // DRAW
+    public override void Draw(GameTime gameTime) {
+      base.Draw(gameTime);
+    }
 
   }
 }

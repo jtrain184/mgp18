@@ -24,6 +24,13 @@ namespace Monogame_Party_2018 {
         public Texture2D piece_red64;
         public Texture2D piece_white64;
 
+        public Texture2D spr_Manford;
+        public Texture2D spr_Louie;
+        public Texture2D spr_Sue;
+        public Texture2D spr_Velma;
+        public Texture2D spr_Frank;
+        public Texture2D spr_Wilber;
+
         // Fonts:
         public SpriteFont ft_mainMenuFont;
         public SpriteFont ft_menuDescriptionFont;
@@ -71,6 +78,13 @@ namespace Monogame_Party_2018 {
             piece_purple64 = Content.Load<Texture2D>("Spaces/piece_purple64");
             piece_red64 = Content.Load<Texture2D>("Spaces/piece_red64");
             piece_white64 = Content.Load<Texture2D>("Spaces/piece_white64");
+
+            spr_Manford = Content.Load<Texture2D>("Characters/spr_Manford");
+            spr_Louie = Content.Load<Texture2D>("Characters/spr_Louie");
+            spr_Sue = Content.Load<Texture2D>("Characters/spr_Sue");
+            spr_Velma = Content.Load<Texture2D>("Characters/spr_Velma");
+            spr_Frank = Content.Load<Texture2D>("Characters/spr_Frank");
+            spr_Wilber = Content.Load<Texture2D>("Characters/spr_Wilber");
 
             ft_mainMenuFont = Content.Load<SpriteFont>("MainMenu/ft_mainMenuFont");
             ft_menuDescriptionFont = Content.Load<SpriteFont>("MainMenu/ft_menuDescriptionFont");

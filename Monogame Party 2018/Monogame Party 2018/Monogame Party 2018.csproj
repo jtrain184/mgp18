@@ -54,6 +54,8 @@
     <Compile Include=".Main Files\GameStateManager.cs" />
     <Compile Include=".Key Inputs\KeyboardManager.cs" />
     <Compile Include=".Key Inputs\Keymap.cs" />
+    <Compile Include=".Main Files\E_Meeple.cs" />
+    <Compile Include=".Main Files\Player.cs" />
     <Compile Include=".Menu Classes\GameOptions.cs" />
     <Compile Include=".Menu Classes\MenuItem.cs" />
     <Compile Include=".Main Files\MonogameParty.cs" />
@@ -133,6 +135,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include=".Other\app.manifest" />
+    <None Include="Content\Characters\spr_Frank.xnb" />
+    <None Include="Content\Characters\spr_Louie.xnb" />
+    <None Include="Content\Characters\spr_Manford.xnb" />
+    <None Include="Content\Characters\spr_Sue.xnb" />
+    <None Include="Content\Characters\spr_Velma.xnb" />
+    <None Include="Content\Characters\spr_Wilber.xnb" />
     <None Include="Content\MainMenu\bg_titleScreen.xnb" />
     <None Include="Content\MainMenu\ft_mainMenuFont.xnb" />
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
