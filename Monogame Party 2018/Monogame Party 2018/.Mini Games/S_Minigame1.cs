@@ -47,7 +47,7 @@ namespace Monogame_Party_2018
 
 
         //Set move time for com to 500 ms
-        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(600);
+        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(200);
         private TimeSpan comLastMove;
         private bool isMoving = false;
         private int comMove = 1;
@@ -139,8 +139,8 @@ namespace Monogame_Party_2018
             }
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to select your character" + System.Environment.NewLine +
-                "Use [Decimal] to go back" + System.Environment.NewLine +
+                "Try and guess the boxes that do not contain a bomb" + System.Environment.NewLine +
+                "Use [Arrow Keys] to select a box" + System.Environment.NewLine +
                 "Press [Enter] to confirm your selection", -1));
 
 
@@ -215,7 +215,7 @@ namespace Monogame_Party_2018
                             }
                             else
                             {
-                                Console.Write("Computer chose item " + currentMenuItem);
+                                Console.WriteLine("Computer chose item " + currentMenuItem);
                                 isMoving = false;
                                 // Computer has chosen current item
                                 if (currentBomb == currentMenuItem)
@@ -422,9 +422,9 @@ namespace Monogame_Party_2018
             else
             {
                 // Draw the Menu description cloud wider
-                Vector2 menuItemPos = new Vector2(450, 700);
+                Vector2 menuItemPos = new Vector2(650, 250);
                 Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[items.Count - 1].text, this.parentManager.game.ft_menuDescriptionFont);
-                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle(500 - 600 / 2, 500 - 140 / 2, 600, 140), Color.White);
+                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle(650 - 600 / 2, 250 - 140 / 2, 600, 140), Color.White);
                 sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, items[items.Count - 1].text, menuTextPos, Color.Black);
             }
             // End drawing:
