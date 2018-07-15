@@ -19,7 +19,7 @@ namespace Monogame_Party_2018
             // Menu Description
             menuDescription = new MenuItem(this.xPos + 650, this.yPos + 650, "Press [Decimal] to return to the previous menu", -1);
 
-            aboutText = new MenuItem(this.xPos + 1000, this.yPos + 380, "Monogame Party is a party game where up to four " + System.Environment.NewLine +
+            aboutText = new MenuItem(this.xPos + 650, this.yPos + 350, "Monogame Party is a party game where up to four " + System.Environment.NewLine +
                "players compete in a boardgame containing minigames.  " + System.Environment.NewLine 
                + "Up to two of the players are human controlled, while " + System.Environment.NewLine
                + "the rest are controlled by the computer.", -1);
@@ -51,12 +51,12 @@ namespace Monogame_Party_2018
 
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            Vector2 pos = new Vector2(aboutText.xPos, aboutText.yPos);
-            Vector2 aboutCloudPos = new Vector2(340, 220);
-            Vector2 textPos = CenterString.getCenterStringVector(pos, aboutText.text, this.parentManager.game.ft_mainMenuFont);
+            Vector2 aboutCloudPos = new Vector2(aboutText.xPos, aboutText.yPos);
+           // Vector2 aboutCloudPos = new Vector2(aboutText.xPos - 340 / 2, aboutText.yPos - 220 / 2);
+            Vector2 textPos = CenterString.getCenterStringVector(aboutCloudPos, aboutText.text, this.parentManager.game.ft_menuDescriptionFont);
 
             // Draw About Text in a cloud
-            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)aboutCloudPos.X, (int)aboutCloudPos.Y, 650, 250), Color.White);
+            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)aboutCloudPos.X - 650 / 2, (int)aboutCloudPos.Y - 250 / 2, 650, 250), Color.White);
             sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText.text, textPos, Color.Black);          
 
             // Draw the Menu description cloud wider
