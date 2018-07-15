@@ -23,6 +23,7 @@ namespace Monogame_Party_2018 {
       right,
 
       select,
+
       cancel,
       pause,
 

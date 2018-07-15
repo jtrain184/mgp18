@@ -16,11 +16,15 @@ namespace Monogame_Party_2018 {
     public CameraProperties cameraProperties;
     public GameOptions gameOptions;
 
+
+    // TODO ------------------- ROUNDS ----------------------- <<< -------- DO IT
+
+
     // Constructor:
-    public S_Board(GameStateManager creator, float xPos, float yPos, GameOptions Opt) : base(creator, xPos, yPos) {
+    public S_Board(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
       cameraProperties = new CameraProperties();
 
-      this.gameOptions = Opt;
+      this.gameOptions = creator.gameOptions;
 
       // Create characters:
       foreach (MenuItem.Characters i in this.gameOptions.characters) {

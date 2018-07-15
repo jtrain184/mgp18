@@ -11,7 +11,12 @@ using Microsoft.Xna.Framework.Input;
 namespace Monogame_Party_2018 {
   public class Player {
 
-    public int isHuman;
+    public bool isHuman;
+    public E_Meeple meeple;
+
+    public int coins;
+    public int stars;
+
 
     public Player(int type) {
 
