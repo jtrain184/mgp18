@@ -27,10 +27,10 @@ namespace Monogame_Party_2018 {
       this.gameOptions = creator.gameOptions;
 
       // Create characters:
-      foreach (MenuItem.Characters i in this.gameOptions.characters) {
+     // foreach (MenuItem.Characters i in this.gameOptions.characters) {
 
 
-      }
+      //}
 
 
     } // end constructor
