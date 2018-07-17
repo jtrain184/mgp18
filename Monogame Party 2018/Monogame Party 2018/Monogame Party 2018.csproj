@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include=".Board Game\B_PirateBay.cs" />
     <Compile Include=".Board Game\CameraProperties.cs" />
+    <Compile Include=".Board Game\E_Dice.cs" />
     <Compile Include=".Board Game\E_Space.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
     <Compile Include=".Main Files\Entity.cs" />
