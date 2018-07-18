@@ -12,7 +12,6 @@ namespace Monogame_Party_2018
 
     public class S_MainMenu : State {
 
-      
 
         public List<MenuItem> items;
 
