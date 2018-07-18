@@ -11,10 +11,28 @@ using Microsoft.Xna.Framework.Input;
 namespace Monogame_Party_2018 {
   public class B_PirateBay : S_Board {
 
+    int BOARD_WIDTH = 2400;
+    int BOARD_HEIGHT = 1800;
+
+    int TILE_WIDTH = 100;
+    int TILE_HEIGHT = 100;
+    int NUM_COLUMNS = 24;
+    int NUM_ROWS = 18;
+
+    // Get a Vector 2 based on a tile (top left corner or center):
+    public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
+    public Vector2 GetTilePosCenter(int column, int row) { return new Vector2((float)TILE_WIDTH * column + TILE_WIDTH / 2, (float)TILE_HEIGHT * row + TILE_HEIGHT / 2); }
+    // Get a simple x or y float based on a tile (top left corner or center):
+    public int GetColXOrigin(int column) { return TILE_WIDTH * column; }
+    public int GetColXCenter(int column) { return TILE_WIDTH * column + TILE_WIDTH / 2; }
+    public int GetRowYOrigin(int row) { return TILE_HEIGHT * row; }
+    public int GetRowYCenter(int row) { return TILE_HEIGHT * row + TILE_HEIGHT / 2; }
 
     // DEBUG
     Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
     Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
+    Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 64);
+    Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
 
 
     // Collection of Spaces:
@@ -34,14 +52,24 @@ namespace Monogame_Party_2018 {
       E_Space space;
 
       // Create Spaces:
-      space = new E_Space(this, parentManager.game.piece_blue64, 200, 200, (int)E_Space.types.BLUE);
+      // STARTING WITH TOP LEFT, MOVING DOWN, THEN RIGHT, THEN UP, THEN FINALLY LEFT
+      // TOP LEFT SPACE:
+      space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(2), (int)E_Space.types.BLUE);
       spaces.Add(space);
 
-      space = new E_Space(this, parentManager.game.piece_red64, 500, 800, (int)E_Space.types.RED);
+      // 3,3
+      space = new E_Space(this, parentManager.game.piece_red64, GetColXCenter(3), GetRowYCenter(3), (int)E_Space.types.RED);
       spaces.Add(space);
 
-      space = new E_Space(this, parentManager.game.piece_green64, 1200, 900, (int)E_Space.types.BLUE);
+      // 3,7
+      space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(7), (int)E_Space.types.BLUE);
       spaces.Add(space);
+
+
+
+
+
+
 
       cameraProperties.setX(400);
       cameraProperties.setY(500);
@@ -86,7 +114,7 @@ namespace Monogame_Party_2018 {
 
             // Pieces:
             foreach (E_Space space in spaces) {
-              sb.Draw(space.sprite, space.getPos(), Color.White);
+              sb.Draw(space.sprite, space.getPosCenter(), Color.White);
             }
 
             // Test dice
@@ -102,8 +130,10 @@ namespace Monogame_Party_2018 {
             sb.Begin();
               // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
               sb.Draw(this.parentManager.game.piece_green64, DEBUG_POS, Color.White);
-              string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(DEBUG_POS.X).ToString();
-              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_POS, Color.White);
+              string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
+              string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
+              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_TEXT_LINE1, Color.White);
+              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugY, DEBUG_TEXT_LINE2, Color.White);
 
             sb.End();
 
