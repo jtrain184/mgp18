@@ -12,6 +12,15 @@ namespace Monogame_Party_2018 {
 
   public abstract class Entity {
 
+    public enum typeSpace {
+      blue = 0,
+      red,
+      chance,
+      bonus,
+      star,
+      invisible
+    }
+
     // data
     public State parentState;
     public Vector2 pos;
@@ -39,6 +48,25 @@ namespace Monogame_Party_2018 {
       this.active = true;
       this.visible = true;
     }
+
+
+    // shortened constructor (used for Entities such as E_Space:
+    public Entity(State parentState, Vector2 pos) {
+
+      this.parentState = parentState;
+      this.pos = pos;
+      this.id = EntityCounter.takeNumber();
+      //this.sprite = sprite; //                  << ----------- use error sprite here
+      //this.spriteWidth = sprite.Width;
+      //this.spriteHeight = sprite.Height;
+
+      // Default values:
+      this.active = true;
+      this.visible = true;
+    }
+
+
+
 
     // VIRTUAL Functions (will be overridden)
     public virtual void Update(GameTime gameTime, KeyboardState ks) { }

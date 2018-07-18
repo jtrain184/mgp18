@@ -59,7 +59,8 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            //DEBUG: 
+            /*
+            //DEBUG:
             if (currRound > numRounds)
             {
                 S_GameResults gameResults = new S_GameResults(parentManager, 0, 0);
@@ -76,7 +77,7 @@ namespace Monogame_Party_2018
                 Console.WriteLine("Paused the S_Board");
                 currRound++;
             }
-         
+            */
         }
 
         // DRAW

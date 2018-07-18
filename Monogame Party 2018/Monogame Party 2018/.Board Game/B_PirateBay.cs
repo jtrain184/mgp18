@@ -48,31 +48,34 @@ namespace Monogame_Party_2018 {
       // initialize list of spaces:
       spaces = new List<E_Space>();
 
+      // position camera starting location:
+      cameraProperties.setX(400);
+      cameraProperties.setY(500);
+
       // Placeholder
       E_Space space;
 
       // Create Spaces:
       // STARTING WITH TOP LEFT, MOVING DOWN, THEN RIGHT, THEN UP, THEN FINALLY LEFT
       // TOP LEFT SPACE:
-      space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(2), (int)E_Space.types.BLUE);
+      //space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(2), (int)E_Space.types.BLUE);
+      space = new E_Space(this, GetTilePosCenter(3, 2), Entity.typeSpace.blue);
       spaces.Add(space);
 
       // 3,3
-      space = new E_Space(this, parentManager.game.piece_red64, GetColXCenter(3), GetRowYCenter(3), (int)E_Space.types.RED);
+      //space = new E_Space(this, parentManager.game.piece_red64, GetColXCenter(3), GetRowYCenter(3), (int)E_Space.types.RED);
+      space = new E_Space(this, GetTilePosCenter(3, 3), Entity.typeSpace.red);
       spaces.Add(space);
 
       // 3,7
-      space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(7), (int)E_Space.types.BLUE);
+      //space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(7), (int)E_Space.types.BLUE);
+      space = new E_Space(this, GetTilePosCenter(3, 7), Entity.typeSpace.blue);
       spaces.Add(space);
 
 
 
 
 
-
-
-      cameraProperties.setX(400);
-      cameraProperties.setY(500);
     }
 
 

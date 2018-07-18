@@ -38,7 +38,7 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
 
-            //DEBUG: 
+            //DEBUG:
             if (!playerIsPlaying)
             {
                 // Last player went. Go to minigame
@@ -62,9 +62,7 @@ namespace Monogame_Party_2018
                     Console.WriteLine("Paused the S_Round");
                 }
             }
-           
-              
-            
+
         }
 
 

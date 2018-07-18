@@ -156,6 +156,7 @@
     <None Include="Content\MainMenu\ft_mainMenuFont.xnb" />
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
+    <None Include="Content\noSprite.xnb" />
     <None Include="Content\PirateBay\bg_pirateBay.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
     <None Include="Content\Spaces\piece_green64.xnb" />
