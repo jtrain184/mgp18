@@ -50,8 +50,8 @@ namespace Monogame_Party_2018 {
             // Pass in a reference to itself
             manager = new GameStateManager(this);
 
-            graphics.PreferredBackBufferWidth = 1280;
-            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = MGP_Constants.SCREEN_WIDTH;
+            graphics.PreferredBackBufferHeight = MGP_Constants.SCREEN_HEIGHT;
 
         }
 

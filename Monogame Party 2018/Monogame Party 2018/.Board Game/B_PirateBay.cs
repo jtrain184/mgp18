@@ -12,6 +12,11 @@ namespace Monogame_Party_2018 {
   public class B_PirateBay : S_Board {
 
 
+    // DEBUG
+    Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
+    Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
+
+
     // Collection of Spaces:
     public List<E_Space> spaces;
     public E_Dice testDice;
@@ -88,8 +93,25 @@ namespace Monogame_Party_2018 {
             sb.Draw(testDice.sprite, testDice.getPos(), Color.White);
             testDice.Draw(gameTime);
 
-            // End drawing:
+            // End drawing in Camera:
             sb.End();
+
+
+
+            // DRAW UI ON WHOLE SCREEN:
+            sb.Begin();
+              // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
+              sb.Draw(this.parentManager.game.piece_green64, DEBUG_POS, Color.White);
+              string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(DEBUG_POS.X).ToString();
+              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_POS, Color.White);
+
+            sb.End();
+
     }
   }
+
+
+
+
+
 }

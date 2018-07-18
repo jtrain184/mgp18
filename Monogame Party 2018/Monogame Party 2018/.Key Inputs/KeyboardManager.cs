@@ -86,7 +86,8 @@ namespace Monogame_Party_2018 {
 
         case action.select:
           return KeyPressed(Keys.E) ||
-                 KeyPressed(Keys.Enter);
+                 KeyPressed(Keys.Enter) ||
+                 KeyPressed(Keys.Space);
 
         case action.cancel:
           return KeyPressed(Keys.Q) ||
