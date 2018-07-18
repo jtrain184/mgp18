@@ -63,6 +63,7 @@
     <Compile Include=".Main Files\GameStateManager.cs" />
     <Compile Include=".Key Inputs\KeyboardManager.cs" />
     <Compile Include=".Main Files\E_Meeple.cs" />
+    <Compile Include=".Main Files\MGP_Constants.cs" />
     <Compile Include=".Main Files\Player.cs" />
     <Compile Include=".Menu Classes\GameOptions.cs" />
     <Compile Include=".Menu Classes\MenuItem.cs" />

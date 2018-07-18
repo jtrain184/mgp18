@@ -18,6 +18,8 @@ namespace Monogame_Party_2018 {
     public bool active;
     public int id;
     public Texture2D sprite;
+    public int spriteWidth;
+    public int spriteHeight;
 
     // drawing
     public bool visible;
@@ -30,6 +32,8 @@ namespace Monogame_Party_2018 {
       this.pos.Y = y;
       this.id = EntityCounter.takeNumber();
       this.sprite = sprite;
+      this.spriteWidth = sprite.Width;
+      this.spriteHeight = sprite.Height;
 
       // Default values:
       this.active = true;
@@ -45,6 +49,7 @@ namespace Monogame_Party_2018 {
     public void setY(float y) { pos.Y = y; }
 
     public Vector2 getPos() { return pos; }
+    public Vector2 getPosCenter() { return new Vector2(pos.X - spriteWidth / 2, pos.Y - spriteHeight / 2); }
 
   }
 }
