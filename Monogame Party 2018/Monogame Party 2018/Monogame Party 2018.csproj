@@ -50,6 +50,13 @@
     <Compile Include=".Board Game\E_Dice.cs" />
     <Compile Include=".Board Game\E_Space.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
+    <Compile Include=".Board Game\S_ConfirmPlayer.cs" />
+    <Compile Include=".Board Game\S_GameResults.cs" />
+    <Compile Include=".Board Game\S_LandAction.cs" />
+    <Compile Include=".Mini Games\S_MinigameInstructions.cs" />
+    <Compile Include=".Board Game\S_MovePlayer.cs" />
+    <Compile Include=".Board Game\S_RollDice.cs" />
+    <Compile Include=".Board Game\S_Round.cs" />
     <Compile Include=".Main Files\Entity.cs" />
     <Compile Include=".Main Files\EntityCounter.cs" />
     <Compile Include=".Main Files\GameSetup.cs" />
@@ -68,6 +75,7 @@
     <Compile Include=".Menu Classes\S_NumRoundsMenu.cs" />
     <Compile Include=".Menu Classes\S_PlayerCountMenu.cs" />
     <Compile Include=".Mini Games\S_Minigame1.cs" />
+    <Compile Include=".Mini Games\S_MinigameResults.cs" />
     <Compile Include="CenterString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include=".Main Files\State.cs" />

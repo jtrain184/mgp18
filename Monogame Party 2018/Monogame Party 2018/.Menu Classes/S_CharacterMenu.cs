@@ -171,6 +171,16 @@ namespace Monogame_Party_2018
                     // If only one player or both players have made selections
                     if (numOfPlayers == 1 || characters.Count == 2)
                     {
+                        // DEBUG: Add remaining characters to list
+                        for(int j = 0; j < 4; j++)
+                        {
+                            if (!characters.Contains((MenuItem.Characters)j))
+                            {
+                                characters.Add((MenuItem.Characters)j);
+                            }
+                        }
+
+
                         parentManager.gameOptions.characters = characters;  // Add list of characters to game options
                         S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(diffMenu);

@@ -40,9 +40,7 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
 
-            // Hate hard coding...but just do it...
-            int SPRITE_WIDTH = 320;
-            int SPRITE_HEIGHT = 160;
+   
 
             // Draw Background:
             SpriteBatch sb = this.parentManager.game.spriteBatch;

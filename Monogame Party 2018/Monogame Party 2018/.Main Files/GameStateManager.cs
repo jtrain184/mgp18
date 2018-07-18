@@ -39,6 +39,8 @@ namespace Monogame_Party_2018
         public SpriteBatch sb;
         public KeyboardManager km;
         public GameOptions gameOptions;
+        public S_Board boardGame;
+        public S_Round round;
 
         // CONSTRUCTOR:
         public GameStateManager(MonogameParty game)

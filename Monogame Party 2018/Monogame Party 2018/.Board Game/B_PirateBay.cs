@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018 {
   public class B_PirateBay : S_Board {
-
+        
 
     // Collection of Spaces:
     public List<E_Space> spaces;

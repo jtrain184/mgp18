@@ -88,8 +88,8 @@ namespace Monogame_Party_2018
 
                         // Start game based on game options from here. 
                        
-                        S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0);
-                        parentManager.AddStateQueue(minigame1);
+                        S_Board board = new S_Board(parentManager, 0, 0);
+                        parentManager.AddStateQueue(board);
                         this.flagForDeletion = true;
                     }
 

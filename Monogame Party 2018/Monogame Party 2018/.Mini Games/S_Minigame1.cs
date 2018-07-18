@@ -14,6 +14,7 @@ namespace Monogame_Party_2018
         public List<int> itemsSelected;
         public List<Player> players;
         public List<MenuItem.Characters> characters;    // used in creating players, can be removed when a list of players is passed
+        public List<MenuItem.Characters> resultsList;
 
         // ---------Replace once player class is made ------------------
         public class Player
@@ -45,6 +46,8 @@ namespace Monogame_Party_2018
         int numOfPlayers;
         int playerIndex;
 
+        //Debug
+        public bool playGame;
 
         //Set move time for com to 500 ms
         private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(200);
@@ -53,16 +56,18 @@ namespace Monogame_Party_2018
         private int comMove = 1;
 
         // Constructor for Main Menu:
-        public S_Minigame1(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
+        public S_Minigame1(GameStateManager creator, float xPos, float yPos, bool playGame) : base(creator, xPos, yPos)
         {
+           
             currentMenuItem = 0;
             random = new Random();
             currentBomb = random.Next(0, 5);
-            Console.WriteLine("Bomb is at " + currentBomb);
+           // Console.WriteLine("Bomb is at " + currentBomb);
 
             items = new List<MenuItem>();
             itemsSelected = new List<int>();
             players = new List<Player>();
+            resultsList = new List<MenuItem.Characters>();
 
             characters = new List<MenuItem.Characters>();   // Can be removed when player class is created
 
@@ -145,6 +150,10 @@ namespace Monogame_Party_2018
 
 
 
+            // DEBUG: SKIP THE GAME
+            this.playGame = playGame;
+          
+
 
 
         }
@@ -154,7 +163,21 @@ namespace Monogame_Party_2018
         public override void Update(GameTime gameTime, KeyboardState ks)
         {
             base.Update(gameTime, ks);
-         
+
+            // DEBUG: SKIP THE GAME
+            if (!playGame)
+            {
+                foreach (Player p in players)
+                {
+                    resultsList.Add(p.character);
+                }
+
+                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                parentManager.AddStateQueue(minigameResults);
+                this.flagForDeletion = true;
+                Console.WriteLine("Finished minigame, going to results");
+            }
+
 
             // If this is the top layer, allow moving active menu:
             if (this.isTopLayer)
@@ -165,6 +188,13 @@ namespace Monogame_Party_2018
                 if (players.Count == 1)
                 {
                     items[items.Count - 1].text = (players[0].character.ToString() + "\n WINS");
+
+                    // Add player to results list
+                    resultsList.Add(players[0].character);
+                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                    parentManager.AddStateQueue(minigameResults);
+                    this.flagForDeletion = true;
+                    Console.WriteLine("Finished minigame, going to results");
                 }
 
                 // Check if all players have gone
@@ -224,6 +254,7 @@ namespace Monogame_Party_2018
                                     numItems--;
                                     items.Remove(items[numItems]);
                                     
+                                    
                                     items.Remove(items[numItems + playerIndex]);
                                    
                                     // Reset items selected list
@@ -231,6 +262,9 @@ namespace Monogame_Party_2018
 
                                     // Remove player and get next player
                                     players.Remove(currentPlayer);
+
+                                    // Add player to results list
+                                    resultsList.Add(currentPlayer.character);
 
                                     // If removed player was the last player
                                     if (playerIndex == players.Count)
@@ -323,6 +357,8 @@ namespace Monogame_Party_2018
                                 itemsSelected = new List<int>();
 
 
+                                // Add player to results list
+                                resultsList.Add(currentPlayer.character);
                                 players.Remove(currentPlayer);
                                 // If removed player was the last player
                                 if (playerIndex == players.Count)
