@@ -39,7 +39,11 @@ namespace Monogame_Party_2018
 
             this.gameOptions = creator.gameOptions;
             this.currRound = 1;
-            this.numRounds = gameOptions.numRounds;
+            //DEBUG:
+            if (creator.gameOptions.numRounds < 1)
+                this.numRounds = 1;
+            else
+                this.numRounds = gameOptions.numRounds;
 
             parentManager.boardGame = this;
 

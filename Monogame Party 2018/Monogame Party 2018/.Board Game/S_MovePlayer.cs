@@ -16,7 +16,10 @@ namespace Monogame_Party_2018
         public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos)
         {
             this.moveNum = moveNum;
-            this.currPlayer = parentManager.round.currPlayer;
+            if (parentManager.round == null)
+                this.currPlayer = MenuItem.Characters.King;
+            else
+                this.currPlayer = parentManager.round.currPlayer;
         }
 
         // Update:
