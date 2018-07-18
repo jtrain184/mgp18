@@ -14,11 +14,13 @@ namespace Monogame_Party_2018 {
 
     // Collection of Spaces:
     public List<E_Space> spaces;
-
+    public E_Dice testDice;
 
     // Constructor:
-    public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
+        public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
 
+      // Create testDice
+      testDice = new E_Dice(this, parentManager.game.spr_testDice, 25, 150, 10);
 
       // initialize list of spaces:
       spaces = new List<E_Space>();
@@ -59,6 +61,9 @@ namespace Monogame_Party_2018 {
       // Camera is fixated on CameraProperties object:
       this.parentManager.game.cameraObject.LookAt(cameraProperties.getPos());
 
+      // testDice update
+      testDice.Update(gameTime, ks);
+
     }
 
 
@@ -79,18 +84,12 @@ namespace Monogame_Party_2018 {
               sb.Draw(space.sprite, space.getPos(), Color.White);
             }
 
+            // Test dice
+            sb.Draw(testDice.sprite, testDice.getPos(), Color.White);
+            testDice.Draw(gameTime);
 
             // End drawing:
             sb.End();
-
-
-
     }
-
-
-
-
-
-
   }
 }

@@ -13,7 +13,7 @@ namespace Monogame_Party_2018 {
   public abstract class Entity {
 
     // data
-    State parentState;
+    public State parentState;
     public Vector2 pos;
     public bool active;
     public int id;
@@ -37,8 +37,8 @@ namespace Monogame_Party_2018 {
     }
 
     // VIRTUAL Functions (will be overridden)
-    public virtual void Update(GameTime gametime, KeyboardState ks) { }
-    public virtual void Draw(GameTime gametime) { }
+    public virtual void Update(GameTime gameTime, KeyboardState ks) { }
+    public virtual void Draw(GameTime gameTime) { }
 
     // Set:
     public void setX(float x) { pos.X = x; }

@@ -31,6 +31,9 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_Frank;
         public Texture2D spr_Wilber;
 
+        // Test graphic
+        public Texture2D spr_testDice;
+
         // Fonts:
         public SpriteFont ft_mainMenuFont;
         public SpriteFont ft_menuDescriptionFont;
@@ -88,6 +91,10 @@ namespace Monogame_Party_2018 {
 
             ft_mainMenuFont = Content.Load<SpriteFont>("MainMenu/ft_mainMenuFont");
             ft_menuDescriptionFont = Content.Load<SpriteFont>("MainMenu/ft_menuDescriptionFont");
+
+            // Temp dice object
+            spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
+
 
             // TODO: use this.Content to load your game content here
         }

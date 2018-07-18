@@ -29,12 +29,12 @@ namespace Monogame_Party_2018 {
 
 
 
-    public override void Update(GameTime gametime, KeyboardState ks) {
+    public override void Update(GameTime gameTime, KeyboardState ks) {
 
     }
 
 
-    public override void Draw(GameTime gametime) {
+    public override void Draw(GameTime gameTime) {
 
     }
 
