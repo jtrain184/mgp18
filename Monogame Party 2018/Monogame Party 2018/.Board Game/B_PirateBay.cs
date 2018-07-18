@@ -41,29 +41,30 @@ namespace Monogame_Party_2018 {
 
     // Constructor:
         public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
+           
 
-      // Create testDice
-      testDice = new E_Dice(this, parentManager.game.spr_testDice, 25, 150, 10);
+              // Create testDice
+              testDice = new E_Dice(this, parentManager.game.spr_testDice, 25, 150, 10);
 
-      // initialize list of spaces:
-      spaces = new List<E_Space>();
+              // initialize list of spaces:
+              spaces = new List<E_Space>();
 
-      // Placeholder
-      E_Space space;
+              // Placeholder
+              E_Space space;
 
-      // Create Spaces:
-      // STARTING WITH TOP LEFT, MOVING DOWN, THEN RIGHT, THEN UP, THEN FINALLY LEFT
-      // TOP LEFT SPACE:
-      space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(2), (int)E_Space.types.BLUE);
-      spaces.Add(space);
+              // Create Spaces:
+              // STARTING WITH TOP LEFT, MOVING DOWN, THEN RIGHT, THEN UP, THEN FINALLY LEFT
+              // TOP LEFT SPACE:
+              space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(2), (int)E_Space.types.BLUE);
+              spaces.Add(space);
 
-      // 3,3
-      space = new E_Space(this, parentManager.game.piece_red64, GetColXCenter(3), GetRowYCenter(3), (int)E_Space.types.RED);
-      spaces.Add(space);
+              // 3,3
+              space = new E_Space(this, parentManager.game.piece_red64, GetColXCenter(3), GetRowYCenter(3), (int)E_Space.types.RED);
+              spaces.Add(space);
 
-      // 3,7
-      space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(7), (int)E_Space.types.BLUE);
-      spaces.Add(space);
+              // 3,7
+              space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(7), (int)E_Space.types.BLUE);
+              spaces.Add(space);
 
 
 
