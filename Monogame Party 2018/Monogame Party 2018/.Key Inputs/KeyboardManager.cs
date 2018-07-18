@@ -65,8 +65,52 @@ namespace Monogame_Party_2018 {
     // Key was just pressed
     public bool ActionPressed(action a, playerIndex p) {
 
+
+
     // ------- PLAYER ONE PRESSED --------
     if (p == playerIndex.one) {
+
+      switch (a) {
+
+        case action.up:
+          return KeyPressed(Keys.W);
+
+        case action.left:
+          return KeyPressed(Keys.A);
+
+        case action.down:
+          return KeyPressed(Keys.S);
+
+        case action.right:
+          return KeyPressed(Keys.D);
+
+        case action.select:
+          return KeyPressed(Keys.E) ||
+                 KeyPressed(Keys.Enter);
+
+        case action.cancel:
+          return KeyPressed(Keys.Q) ||
+                 KeyPressed(Keys.Back);
+
+        case action.pause:
+          return KeyPressed(Keys.LeftShift);
+
+        case action.action_1:
+          return KeyPressed(Keys.B);
+
+        case action.action_2:
+          return KeyPressed(Keys.N);
+
+        case action.action_3:
+          return KeyPressed(Keys.M);
+
+        default:
+          return false;
+      } // end switch
+    } // end player one input check
+
+    // ------- PLAYER TWO PRESSED --------
+    else if (p == playerIndex.two) {
 
       switch (a) {
 
@@ -103,48 +147,9 @@ namespace Monogame_Party_2018 {
         default:
           return false;
       } // end switch
-    } // end player one input check
-
-
-    // ------- PLAYER TWO PRESSED --------
-    else if (p == playerIndex.two) {
-
-      switch (a) {
-
-        case action.up:
-          return KeyPressed(Keys.W);
-
-        case action.left:
-          return KeyPressed(Keys.A);
-
-        case action.down:
-          return KeyPressed(Keys.S);
-
-        case action.right:
-          return KeyPressed(Keys.D);
-
-        case action.select:
-          return KeyPressed(Keys.E);
-
-        case action.cancel:
-          return KeyPressed(Keys.Q);
-
-        case action.pause:
-          return KeyPressed(Keys.LeftShift);
-
-        case action.action_1:
-          return KeyPressed(Keys.B);
-
-        case action.action_2:
-          return KeyPressed(Keys.N);
-
-        case action.action_3:
-          return KeyPressed(Keys.M);
-
-        default:
-          return false;
-      } // end switch
     } // end player two input check
+
+
 
     else
       return false;

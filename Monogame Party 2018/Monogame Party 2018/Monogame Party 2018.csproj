@@ -55,7 +55,6 @@
     <Compile Include=".Main Files\GameSetup.cs" />
     <Compile Include=".Main Files\GameStateManager.cs" />
     <Compile Include=".Key Inputs\KeyboardManager.cs" />
-    <Compile Include=".Key Inputs\Keymap.cs" />
     <Compile Include=".Main Files\E_Meeple.cs" />
     <Compile Include=".Main Files\Player.cs" />
     <Compile Include=".Menu Classes\GameOptions.cs" />
