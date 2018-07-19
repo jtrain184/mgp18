@@ -57,8 +57,6 @@ namespace Monogame_Party_2018 {
 
 
       // Create Spaces:
-      E_Space firstSpace;
-      E_Space lastSpace;
       E_Space curSpace;
       E_Space prevSpace;
 
@@ -67,7 +65,6 @@ namespace Monogame_Party_2018 {
       curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
       spaces.Add(curSpace);
       this.startingSpace = curSpace; // STARTING SPACE
-      firstSpace = curSpace; // FIRST SPACE
       prevSpace = curSpace;
 
       // <<---- MOVING LEFT NOW: ----->>
@@ -96,84 +93,232 @@ namespace Monogame_Party_2018 {
       prevSpace = curSpace;
 
       // 15, 15
+      curSpace = new E_Space(this, GetTilePosCenter(15, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 14, 15
+      curSpace = new E_Space(this, GetTilePosCenter(14, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 12, 15
+      curSpace = new E_Space(this, GetTilePosCenter(12, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 12, 16
+      curSpace = new E_Space(this, GetTilePosCenter(12, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 10, 16
+      curSpace = new E_Space(this, GetTilePosCenter(10, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 7, 16
+      curSpace = new E_Space(this, GetTilePosCenter(7, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 6, 16 CHANCE TIME
+      curSpace = new E_Space(this, GetTilePosCenter(6, 16), Entity.typeSpace.chance);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // <<---- MOVING UP NOW: ----->>
       // 6, 15
+      curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
-      // 12, 13
+      // 6, 13
+      curSpace = new E_Space(this, GetTilePosCenter(6, 13), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
-      // 12, 10
+      // 6, 10
+      curSpace = new E_Space(this, GetTilePosCenter(6, 10), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
-      // 12, 9
+      // 6, 9
+      curSpace = new E_Space(this, GetTilePosCenter(6, 9), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 4, 9
+      curSpace = new E_Space(this, GetTilePosCenter(4, 9), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 3, 9
+      curSpace = new E_Space(this, GetTilePosCenter(3, 9), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 3, 8
+      curSpace = new E_Space(this, GetTilePosCenter(3, 8), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 3, 7
+      curSpace = new E_Space(this, GetTilePosCenter(3, 7), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 3, 3
+      curSpace = new E_Space(this, GetTilePosCenter(3, 3), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 3, 2
+      curSpace = new E_Space(this, GetTilePosCenter(3, 2), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
 
       // <<---- MOVING RIGHT NOW: ----->>
       // 4, 1
+      curSpace = new E_Space(this, GetTilePosCenter(4, 1), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 5, 1
+      curSpace = new E_Space(this, GetTilePosCenter(5, 1), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 7, 1
+      curSpace = new E_Space(this, GetTilePosCenter(7, 1), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 8, 2
+      curSpace = new E_Space(this, GetTilePosCenter(8, 2), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 9, 2
+      curSpace = new E_Space(this, GetTilePosCenter(9, 2), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 10, 3
+      curSpace = new E_Space(this, GetTilePosCenter(10, 3), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 12, 3
+      curSpace = new E_Space(this, GetTilePosCenter(12, 3), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 13, 3
+      curSpace = new E_Space(this, GetTilePosCenter(13, 3), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 14, 3
+      curSpace = new E_Space(this, GetTilePosCenter(14, 3), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 16, 3
+      curSpace = new E_Space(this, GetTilePosCenter(16, 3), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 17, 4
+      curSpace = new E_Space(this, GetTilePosCenter(17, 4), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 18, 4
+      curSpace = new E_Space(this, GetTilePosCenter(18, 4), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
 
 
       // <<---- MOVING DOWN NOW: ----->>
       // 19, 5
+      curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 19, 7
+      curSpace = new E_Space(this, GetTilePosCenter(19, 7), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 19, 8
+      curSpace = new E_Space(this, GetTilePosCenter(19, 8), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 19, 10
+      curSpace = new E_Space(this, GetTilePosCenter(19, 10), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 19, 11
+      curSpace = new E_Space(this, GetTilePosCenter(19, 11), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 19, 13
+      curSpace = new E_Space(this, GetTilePosCenter(19, 13), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 21, 13
+      curSpace = new E_Space(this, GetTilePosCenter(21, 13), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 22, 13
+      curSpace = new E_Space(this, GetTilePosCenter(22, 13), Entity.typeSpace.red);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
       // 22, 15 FINAL PIECE
       curSpace = new E_Space(this, GetTilePosCenter(22, 15), Entity.typeSpace.blue);
