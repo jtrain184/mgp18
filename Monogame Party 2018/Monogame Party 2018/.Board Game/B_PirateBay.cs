@@ -19,6 +19,9 @@ namespace Monogame_Party_2018 {
     int NUM_COLUMNS = 24;
     int NUM_ROWS = 18;
 
+    E_Space startingSpace;
+    E_Space finalSpace;
+
     // Get a Vector 2 based on a tile (top left corner or center):
     public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
     public Vector2 GetTilePosCenter(int column, int row) { return new Vector2((float)TILE_WIDTH * column + TILE_WIDTH / 2, (float)TILE_HEIGHT * row + TILE_HEIGHT / 2); }
@@ -52,34 +55,136 @@ namespace Monogame_Party_2018 {
       cameraProperties.setX(400);
       cameraProperties.setY(500);
 
-      // Placeholder
-      E_Space space;
 
       // Create Spaces:
-      // STARTING WITH TOP LEFT, MOVING DOWN, THEN RIGHT, THEN UP, THEN FINALLY LEFT
-      // TOP LEFT SPACE:
-      //space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(2), (int)E_Space.types.BLUE);
-      space = new E_Space(this, GetTilePosCenter(3, 2), Entity.typeSpace.blue);
-      spaces.Add(space);
+      E_Space firstSpace;
+      E_Space lastSpace;
+      E_Space curSpace;
+      E_Space prevSpace;
 
-      // 3,3
-      //space = new E_Space(this, parentManager.game.piece_red64, GetColXCenter(3), GetRowYCenter(3), (int)E_Space.types.RED);
-      space = new E_Space(this, GetTilePosCenter(3, 3), Entity.typeSpace.red);
-      spaces.Add(space);
+      // STARTING WITH BOTTOM RIGHT, MOVING LEFT
+      // Bottom right space:
+      curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace);
+      this.startingSpace = curSpace; // STARTING SPACE
+      firstSpace = curSpace; // FIRST SPACE
+      prevSpace = curSpace;
 
-      // 3,7
-      //space = new E_Space(this, parentManager.game.piece_blue64, GetColXCenter(3), GetRowYCenter(7), (int)E_Space.types.BLUE);
-      space = new E_Space(this, GetTilePosCenter(3, 7), Entity.typeSpace.blue);
-      spaces.Add(space);
+      // <<---- MOVING LEFT NOW: ----->>
+      // 20, 16
+      curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
+
+      // 19, 16
+      curSpace = new E_Space(this, GetTilePosCenter(19, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
+
+      // 17, 16
+      curSpace = new E_Space(this, GetTilePosCenter(17, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
+
+      // 16, 15
+      curSpace = new E_Space(this, GetTilePosCenter(16, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
+
+      // 15, 15
+
+      // 14, 15
+
+      // 12, 15
+
+      // 12, 16
+
+      // 10, 16
+
+      // 7, 16
+
+      // 6, 16 CHANCE TIME
+
+      // <<---- MOVING UP NOW: ----->>
+      // 6, 15
+
+      // 12, 13
+
+      // 12, 10
+
+      // 12, 9
+
+      // 4, 9
+
+      // 3, 9
+
+      // 3, 8
+
+      // 3, 7
+
+      // 3, 3
+
+      // 3, 2
+
+
+      // <<---- MOVING RIGHT NOW: ----->>
+      // 4, 1
+
+      // 5, 1
+
+      // 7, 1
+
+      // 8, 2
+
+      // 9, 2
+
+      // 10, 3
+
+      // 12, 3
+
+      // 13, 3
+
+      // 14, 3
+
+      // 16, 3
+
+      // 17, 4
+
+      // 18, 4
 
 
 
+      // <<---- MOVING DOWN NOW: ----->>
+      // 19, 5
 
+      // 19, 7
+
+      // 19, 8
+
+      // 19, 10
+
+      // 19, 11
+
+      // 19, 13
+
+      // 21, 13
+
+      // 22, 13
+
+      // 22, 15 FINAL PIECE
+      curSpace = new E_Space(this, GetTilePosCenter(22, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      this.finalSpace = curSpace; // FINAL SPACE
+
+      // Finally, link up last space and first space:
+      this.startingSpace.assignSpaces(this.finalSpace);
 
     }
-
-
-
     // ** UPDATE **
     public override void Update(GameTime gameTime, KeyboardState ks) {
       base.Update(gameTime, ks);
@@ -92,6 +197,21 @@ namespace Monogame_Party_2018 {
       if (km.KeyDown(Keys.W)) { cameraProperties.incY(-speed); }
       if (km.KeyDown(Keys.S)) { cameraProperties.incY(speed); }
       // END DEBUG
+
+
+
+      // DEBUG: pressing 7 will print the Space list to the console:
+      if (km.KeyPressed(Keys.Y)) {
+        foreach (E_Space space in spaces) {
+          Console.WriteLine("Space @ " + space.pos.X.ToString() + ", " + space.pos.Y.ToString());
+          Console.WriteLine("Next Pieces:");
+          foreach (E_Space reference in space.spacesAhead) { Console.WriteLine("    " + reference.pos.X.ToString() + ", " + reference.pos.Y.ToString()); }
+          Console.WriteLine("Prev Pieces:");
+          foreach (E_Space reference in space.spacesBehind) { Console.WriteLine("    " + reference.pos.X.ToString() + ", " + reference.pos.Y.ToString()); }
+          Console.WriteLine("------------------------\n");
+        }
+      }
+
 
 
       // Camera is fixated on CameraProperties object:
@@ -117,7 +237,8 @@ namespace Monogame_Party_2018 {
 
             // Pieces:
             foreach (E_Space space in spaces) {
-              sb.Draw(space.sprite, space.getPosCenter(), Color.White);
+              if (space.visible)
+                sb.Draw(space.sprite, space.getPosCenter(), Color.White);
             }
 
             // Test dice

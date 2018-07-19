@@ -56,9 +56,9 @@ namespace Monogame_Party_2018 {
       this.parentState = parentState;
       this.pos = pos;
       this.id = EntityCounter.takeNumber();
-      //this.sprite = sprite; //                  << ----------- use error sprite here
-      //this.spriteWidth = sprite.Width;
-      //this.spriteHeight = sprite.Height;
+      this.sprite = parentState.parentManager.game.noSprite; // default sprite
+      this.spriteWidth = sprite.Width;
+      this.spriteHeight = sprite.Height;
 
       // Default values:
       this.active = true;

@@ -15,10 +15,16 @@ namespace Monogame_Party_2018 {
 
     // Member variables
     public Entity.typeSpace type;
+    public List<E_Space> spacesAhead;
+    public List<E_Space> spacesBehind;
+
 
     // Constructor:
     public E_Space(State parentState, Vector2 pos, Entity.typeSpace type) : base(parentState, pos) {
       this.type = type;
+
+      spacesAhead = new List<E_Space>();
+      spacesBehind = new List<E_Space>();
 
       // Get graphic based on type:
       switch (type) {
@@ -44,6 +50,7 @@ namespace Monogame_Party_2018 {
 
         case Entity.typeSpace.invisible:
           this.sprite = parentState.parentManager.game.noSprite;
+          this.visible = false;
           break;
 
         default:
@@ -59,14 +66,24 @@ namespace Monogame_Party_2018 {
 
 
 
-    public override void Update(GameTime gameTime, KeyboardState ks) {
 
+    void addAhead(E_Space newSpace) { this.spacesAhead.Add(newSpace); }
+    void addBehind(E_Space newSpace) { this.spacesBehind.Add(newSpace); }
+    void removeAhead(E_Space newSpace) { this.spacesAhead.Remove(newSpace); }
+    void removeBehind(E_Space newSpace) { this.spacesBehind.Remove(newSpace); }
+
+    public void assignSpaces(E_Space prev) {
+      prev.addAhead(this);
+      this.addBehind(prev);
     }
 
 
-    public override void Draw(GameTime gameTime) {
+    // Update:
+    public override void Update(GameTime gameTime, KeyboardState ks) { }
 
-    }
+
+    // Draw:
+    public override void Draw(GameTime gameTime) { }
 
 
   }
