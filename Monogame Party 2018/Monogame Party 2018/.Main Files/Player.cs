@@ -9,33 +9,82 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018 {
-  public class Player {
+    public class Player
+    {
 
-    public bool isHuman;
-    public E_Meeple meeple;
-
-    public int coins;
-    public int stars;
-
-    public int place; // such as first place, second place, etc..
-
-    // Other interesting information tracked throughout gameplay:
-    public int totalMiniGameWins;
-    public int totalMiniGameLosses;
-
-    public int totalRedSpaceLands;
-    public int totalBlueSpaceLands;
-    public int totalChanceSpaceLands;
-    public int totalSpecialSpaceLands;
-
-    public int totalCoinsGained;
-    public int totalCoinsLost;
+        public enum Type
+        {
+            FRANK = 0,
+            LOUIE,
+            MANFORD,
+            SUE,
+            VELMA,
+            WILBER
+        }
 
 
-    public Player(int type) {
+        public bool isHuman;
+        public E_Meeple meeple;
+        public Player.Type type;
 
+        public int coins;
+        public int stars;
+
+        public int place; // such as first place, second place, etc..
+
+        // Other interesting information tracked throughout gameplay:
+        public int totalMiniGameWins;
+        public int totalMiniGameLosses;
+
+        public int totalRedSpaceLands;
+        public int totalBlueSpaceLands;
+        public int totalChanceSpaceLands;
+        public int totalSpecialSpaceLands;
+
+        public int totalCoinsGained;
+        public int totalCoinsLost;
+
+
+        public Player(GameStateManager gameStateManager, Player.Type type, bool isHuman)
+        {
+            this.isHuman = isHuman;
+            switch (type)
+            {
+
+                case Player.Type.FRANK:
+                    this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.type = type;
+                    
+                    break;
+
+                case Player.Type.LOUIE:
+                    this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.type = type;
+                    break;
+
+                case Player.Type.MANFORD:
+                    this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.type = type;
+                    break;
+
+                case Player.Type.SUE:
+                    this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.type = type;
+                    break;
+
+                case Player.Type.VELMA:
+                    this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.type = type;
+                    break;
+
+                case Player.Type.WILBER:
+                    this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.type = type;
+                    break;
+
+            }
+
+
+        }
     }
-
-
-  }
 }

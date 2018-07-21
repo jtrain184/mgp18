@@ -13,6 +13,7 @@ namespace Monogame_Party_2018 {
   public abstract class State {
 
     public GameStateManager parentManager;
+    public State state;
 
     public bool active; // whether or not step function is run
     public bool visible; // whether or not draw function is run
@@ -33,6 +34,7 @@ namespace Monogame_Party_2018 {
 
       // Passed in:
       this.parentManager = creator;
+      this.state = this;
       this.xPos = xPos;
       this.yPos = yPos;
 

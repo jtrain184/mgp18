@@ -9,9 +9,9 @@ namespace Monogame_Party_2018
 {
     public class S_MinigameResults : State
     {
-        public List<MenuItem.Characters> results;
+        public List<Player> results;
         // Constructor
-        public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<MenuItem.Characters> results) : base(creator, xPos, yPos)
+        public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results) : base(creator, xPos, yPos)
         {
             this.results = results;
         }

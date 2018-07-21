@@ -13,30 +13,9 @@ namespace Monogame_Party_2018
         public List<MenuItem> items;
         public List<int> itemsSelected;
         public List<Player> players;
-        public List<MenuItem.Characters> characters;    // used in creating players, can be removed when a list of players is passed
-        public List<MenuItem.Characters> resultsList;
+        public List<Player> resultsList;
 
-        // ---------Replace once player class is made ------------------
-        public class Player
-        {
-            public MenuItem.Characters character;
-            public enum PlayerType
-            {
-                PLAYER_ONE = 0,
-                PLAYER_TWO,
-                COM
-            }
-
-            public PlayerType pType;
-
-            // constructor
-            public Player(MenuItem.Characters character, PlayerType pType)
-            {
-                this.character = character;
-                this.pType = pType;
-            }
-
-        }
+      
 
         int currentMenuItem;
         int currentBomb;
@@ -67,44 +46,18 @@ namespace Monogame_Party_2018
             items = new List<MenuItem>();
             itemsSelected = new List<int>();
             players = new List<Player>();
-            resultsList = new List<MenuItem.Characters>();
+            players = creator.gameOptions.players;
+            resultsList = new List<Player>();
 
-            characters = new List<MenuItem.Characters>();   // Can be removed when player class is created
+           
 
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
-            // Can be removed when player class is created
-            characters.Add(MenuItem.Characters.Princess);
-            characters.Add(MenuItem.Characters.Prince);
-            characters.Add(MenuItem.Characters.Queen);
-            characters.Add(MenuItem.Characters.King);
 
 
             // Create Players - Can be removed when player class is created
 
-            // Player 1
-            players.Add(new Player(parentManager.gameOptions.characters[0], Player.PlayerType.PLAYER_ONE));
-            characters.Remove(players[0].character);
-
-            // Player 2
-            if(numOfPlayers == 2)
-            {
-                players.Add(new Player(parentManager.gameOptions.characters[1], Player.PlayerType.PLAYER_TWO));
-                characters.Remove(players[1].character);
-            }
-            else
-            {
-                players.Add(new Player(characters[0], Player.PlayerType.COM));
-                characters.Remove(players[1].character);
-            }
-
-            // Player 3
-            players.Add(new Player(characters[0], Player.PlayerType.COM));
-            characters.Remove(players[2].character);
-
-            // Player 4
-            players.Add(new Player(characters[0], Player.PlayerType.COM));
-
+           
 
             currentPlayer = players[0];
 
@@ -138,7 +91,7 @@ namespace Monogame_Party_2018
             int playerID = 5;
             foreach(Player p in players)
             {
-                items.Add(new MenuItem(this.xPos + playerXPos, this.yPos + 500, p.character.ToString(), playerID));
+                items.Add(new MenuItem(this.xPos + playerXPos, this.yPos + 500, p.type.ToString(), playerID));
                 playerXPos += 350;
                 playerID++;
             }
@@ -169,7 +122,7 @@ namespace Monogame_Party_2018
             {
                 foreach (Player p in players)
                 {
-                    resultsList.Add(p.character);
+                    resultsList.Add(p);
                 }
 
                 S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
@@ -187,10 +140,10 @@ namespace Monogame_Party_2018
                 // Check if only one player left
                 if (players.Count == 1)
                 {
-                    items[items.Count - 1].text = (players[0].character.ToString() + "\n WINS");
+                    items[items.Count - 1].text = (players[0].type.ToString() + "\n WINS");
 
                     // Add player to results list
-                    resultsList.Add(players[0].character);
+                    resultsList.Add(players[0]);
                     S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
                     parentManager.AddStateQueue(minigameResults);
                     this.flagForDeletion = true;
@@ -209,7 +162,7 @@ namespace Monogame_Party_2018
                     // move current menu item to first available item
                    
                 {
-                    if (currentPlayer.pType == Player.PlayerType.COM)
+                    if (!currentPlayer.isHuman)
                     {
                         if (!isMoving)
                         {
@@ -264,7 +217,7 @@ namespace Monogame_Party_2018
                                     players.Remove(currentPlayer);
 
                                     // Add player to results list
-                                    resultsList.Add(currentPlayer.character);
+                                    resultsList.Add(currentPlayer);
 
                                     // If removed player was the last player
                                     if (playerIndex == players.Count)
@@ -358,7 +311,7 @@ namespace Monogame_Party_2018
 
 
                                 // Add player to results list
-                                resultsList.Add(currentPlayer.character);
+                                resultsList.Add(currentPlayer);
                                 players.Remove(currentPlayer);
                                 // If removed player was the last player
                                 if (playerIndex == players.Count)

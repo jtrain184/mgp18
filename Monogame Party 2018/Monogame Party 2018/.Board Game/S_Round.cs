@@ -13,7 +13,7 @@ namespace Monogame_Party_2018
         // Vars
         //public Player currPlayer;
         public GameOptions gameOptions;
-        public MenuItem.Characters currPlayer;  //Swap with Player code once we get that set up
+        public Player currPlayer;  //Swap with Player code once we get that set up
         public bool playerIsPlaying;
         public int playerIndex;
 
@@ -27,7 +27,7 @@ namespace Monogame_Party_2018
 
             // DEBUG:
             Console.WriteLine("Created Round " + creator.boardGame.currRound);
-            currPlayer = gameOptions.characters[0];
+            currPlayer = gameOptions.players[0];
             playerIndex = -1;
             playerIsPlaying = false;
         }
@@ -53,7 +53,7 @@ namespace Monogame_Party_2018
                 {
                     playerIndex++;
                     playerIsPlaying = true;
-                    currPlayer = gameOptions.characters[playerIndex];
+                    currPlayer = gameOptions.players[playerIndex];
 
 
                     S_ConfirmPlayer confirmPlayer = new S_ConfirmPlayer(parentManager, 0, 0);

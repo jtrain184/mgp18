@@ -386,6 +386,14 @@ namespace Monogame_Party_2018 {
                 sb.Draw(space.sprite, space.getPosCenter(), Color.White);
             }
 
+            // Draw the meebles all on the starting space overlapping each other
+            int x = 20;
+            for(int i = 3; i >= 0; i--)
+            {
+                sb.Draw(parentManager.gameOptions.players[i].meeple.sprite, startingSpace.getPosCenter() + new Vector2(x, 0), Color.White);
+                x -= 10;
+            }
+
             // Test dice
             sb.Draw(testDice.sprite, testDice.getPos(), Color.White);
             testDice.Draw(gameTime);

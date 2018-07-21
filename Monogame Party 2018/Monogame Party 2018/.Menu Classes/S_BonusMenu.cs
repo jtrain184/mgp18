@@ -76,9 +76,9 @@ namespace Monogame_Party_2018
                         Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
                             "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
                         int x = 1;
-                        foreach(MenuItem.Characters character in parentManager.gameOptions.characters)
+                        foreach(Player player in parentManager.gameOptions.players)
                         {
-                            Console.WriteLine("Character " + x + ": " + character);
+                            Console.WriteLine("Character " + x + ": " + player.type);
                             x++;
                         }
 
@@ -88,7 +88,7 @@ namespace Monogame_Party_2018
 
                         // Start game based on game options from here. 
                        
-                        S_Board board = new S_Board(parentManager, 0, 0);
+                        S_Board board = new B_PirateBay(parentManager, 0, 0);       // add code to create correct board
                         parentManager.AddStateQueue(board);
                         this.flagForDeletion = true;
                     }
@@ -103,9 +103,9 @@ namespace Monogame_Party_2018
                         Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
                             "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
                         int x = 1;
-                        foreach (MenuItem.Characters character in parentManager.gameOptions.characters)
+                        foreach (Player player in parentManager.gameOptions.players)
                         {
-                            Console.WriteLine("Character " + x + ": " + character);
+                            Console.WriteLine("Player " + x + ": " + player.type);
                             x++;
                         }
 

@@ -65,6 +65,13 @@ namespace Monogame_Party_2018 {
       this.visible = true;
     }
 
+   public Entity()
+        {
+            // Default values:
+            this.active = true;
+            this.visible = true;
+        }
+
 
 
 
@@ -78,6 +85,7 @@ namespace Monogame_Party_2018 {
 
     public Vector2 getPos() { return pos; }
     public Vector2 getPosCenter() { return new Vector2(pos.X - spriteWidth / 2, pos.Y - spriteHeight / 2); }
+ 
 
-  }
+    }
 }

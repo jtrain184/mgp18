@@ -11,13 +11,13 @@ namespace Monogame_Party_2018
     public class S_MovePlayer : State
     {
         public int moveNum;
-        public MenuItem.Characters currPlayer;
+        public Player currPlayer;
         // Constructor
         public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos)
         {
             this.moveNum = moveNum;
             if (parentManager.round == null)
-                this.currPlayer = MenuItem.Characters.King;
+                this.currPlayer = new Player(creator, Player.Type.FRANK, true);
             else
                 this.currPlayer = parentManager.round.currPlayer;
         }
