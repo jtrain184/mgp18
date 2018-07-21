@@ -329,6 +329,12 @@ namespace Monogame_Party_2018 {
       // Finally, link up last space and first space:
       this.startingSpace.assignSpaces(this.finalSpace);
 
+        // Assign starting space to all players
+        foreach(Player p in this.gameOptions.players)
+            {
+                p.currSpace = this.startingSpace;
+            }
+
     }
     // ** UPDATE **
     public override void Update(GameTime gameTime, KeyboardState ks) {
@@ -386,12 +392,12 @@ namespace Monogame_Party_2018 {
                 sb.Draw(space.sprite, space.getPosCenter(), Color.White);
             }
 
-            // Draw the meebles all on the starting space overlapping each other
-            int x = 20;
-            for(int i = 3; i >= 0; i--)
+            // Draw the meebles
+       
+            foreach(Player p in parentManager.gameOptions.players)
             {
-                sb.Draw(parentManager.gameOptions.players[i].meeple.sprite, startingSpace.getPosCenter() + new Vector2(x, 0), Color.White);
-                x -= 10;
+                sb.Draw(p.meeple.sprite, p.currSpace.getPosCenter(), Color.White);
+                
             }
 
             // Test dice

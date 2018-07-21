@@ -26,6 +26,7 @@ namespace Monogame_Party_2018 {
         public bool isHuman;
         public E_Meeple meeple;
         public Player.Type type;
+        public E_Space currSpace;
 
         public int coins;
         public int stars;
@@ -48,6 +49,20 @@ namespace Monogame_Party_2018 {
         public Player(GameStateManager gameStateManager, Player.Type type, bool isHuman)
         {
             this.isHuman = isHuman;
+            this.coins = 0;
+            this.stars = 0;
+
+            this.totalMiniGameWins = 0;
+            this.totalMiniGameLosses = 0;
+
+            this.totalRedSpaceLands = 0;
+            this.totalBlueSpaceLands = 0;
+            this.totalChanceSpaceLands = 0;
+            this.totalSpecialSpaceLands = 0;
+
+            this.totalCoinsGained = 0;
+            this.totalCoinsLost = 0;
+
             switch (type)
             {
 
