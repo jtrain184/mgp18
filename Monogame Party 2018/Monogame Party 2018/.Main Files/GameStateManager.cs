@@ -41,6 +41,7 @@ namespace Monogame_Party_2018
         public GameOptions gameOptions;
         public S_Board boardGame;
         public S_Round round;
+        public Random random;
 
         // CONSTRUCTOR:
         public GameStateManager(MonogameParty game)
@@ -48,6 +49,7 @@ namespace Monogame_Party_2018
             this.game = game;
             this.km = new KeyboardManager();
             this.gameOptions = new GameOptions();
+            this.random = new Random();
 
             // Add the ** FIRST ** game state here:
             State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN

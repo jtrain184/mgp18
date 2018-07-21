@@ -82,6 +82,7 @@ namespace Monogame_Party_2018 {
     // Set:
     public void setX(float x) { pos.X = x; }
     public void setY(float y) { pos.Y = y; }
+    public void setPos(Vector2 newPos) {pos.X = newPos.X; pos.Y = newPos.Y; }
 
     public Vector2 getPos() { return pos; }
     public Vector2 getPosCenter() { return new Vector2(pos.X - spriteWidth / 2, pos.Y - spriteHeight / 2); }

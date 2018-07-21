@@ -333,6 +333,7 @@ namespace Monogame_Party_2018 {
         foreach(Player p in this.gameOptions.players)
             {
                 p.currSpace = this.startingSpace;
+                p.meeple.setPos(p.currSpace.pos);
             }
 
     }

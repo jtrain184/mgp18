@@ -47,11 +47,7 @@ namespace Monogame_Party_2018
 
             parentManager.boardGame = this;
 
-            // Create characters:
-            // foreach (MenuItem.Characters i in this.gameOptions.characters) {
-
-
-            //}
+            
 
 
         } // end constructor
@@ -72,7 +68,7 @@ namespace Monogame_Party_2018
                 this.flagForDeletion = true;
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
-
+            */
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
             {
                 S_Round newRound = new S_Round(parentManager, 0, 0);
@@ -81,7 +77,7 @@ namespace Monogame_Party_2018
                 Console.WriteLine("Paused the S_Board");
                 currRound++;
             }
-            */
+            
         }
 
         // DRAW
