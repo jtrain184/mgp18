@@ -41,7 +41,9 @@ namespace Monogame_Party_2018
                 isRolling = false;
                 //S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, random.Next(1, 13));
 
+                // Get player roll and reset dice
                 S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, (int)Math.Ceiling(parentManager.boardGame.testDice.timer));
+                parentManager.boardGame.testDice.timer = 0f;
                 parentManager.AddStateQueue(movePlayer);
                 this.flagForDeletion = true;
                 Console.WriteLine(currPlayer + " has rolled");
