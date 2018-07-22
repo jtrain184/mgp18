@@ -33,7 +33,7 @@ namespace Monogame_Party_2018
             S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, random.Next(1, 13));
             parentManager.AddStateQueue(movePlayer);
             this.flagForDeletion = true;
-            Console.WriteLine(currPlayer + " has rolled");
+            Console.WriteLine(currPlayer.type + " has rolled");
             
         }
 

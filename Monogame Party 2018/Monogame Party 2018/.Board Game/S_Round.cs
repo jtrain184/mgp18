@@ -11,9 +11,9 @@ namespace Monogame_Party_2018
     public class S_Round : State
     {
         // Vars
-        
+
         public GameOptions gameOptions;
-        public Player currPlayer;  
+        public Player currPlayer;
         public bool playerIsPlaying;
         public int playerIndex;
 
@@ -39,9 +39,25 @@ namespace Monogame_Party_2018
 
             //move camera to current player
             parentManager.boardGame.cameraProperties.setPos(currPlayer.meeple.pos);
+
+            // Make screen doesn't go off the board
+            // Check too far right
+            if (parentManager.boardGame.cameraProperties.getX() > MGP_Constants.BOARD_MAX_WIDTH)
+                parentManager.boardGame.cameraProperties.setX(MGP_Constants.BOARD_MAX_WIDTH);
+            // Check too far left
+            if (parentManager.boardGame.cameraProperties.getX() < MGP_Constants.BOARD_MIN_WIDTH)
+                parentManager.boardGame.cameraProperties.setX(MGP_Constants.BOARD_MIN_WIDTH);
+            // Check t0o far down
+            if (parentManager.boardGame.cameraProperties.getY() > MGP_Constants.BOARD_MAX_HEIGHT)
+                parentManager.boardGame.cameraProperties.setY(MGP_Constants.BOARD_MAX_HEIGHT);
+            // Check too far up
+            if (parentManager.boardGame.cameraProperties.getY() < MGP_Constants.BOARD_MIN_HEIGHT)
+                parentManager.boardGame.cameraProperties.setY(MGP_Constants.BOARD_MIN_HEIGHT);
+
             // Camera is fixated on CameraProperties object:
             parentManager.game.cameraObject.LookAt(parentManager.boardGame.cameraProperties.getPos());
-            //DEBUG:
+
+            //DEBUG: 
             if (!playerIsPlaying)
             {
                 // Last player went. Go to minigame
@@ -54,11 +70,11 @@ namespace Monogame_Party_2018
                 }
                 else
                 {
-                    
+
                     playerIndex++;
                     playerIsPlaying = true;
                     currPlayer = gameOptions.players[playerIndex];
-                    
+
 
 
                     S_ConfirmPlayer confirmPlayer = new S_ConfirmPlayer(parentManager, 0, 0);

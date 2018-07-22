@@ -31,7 +31,7 @@ namespace Monogame_Party_2018
             S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
             parentManager.AddStateQueue(landAction);
             this.flagForDeletion = true;
-            Console.WriteLine("Moved " + currPlayer + " " + moveNum.ToString() + " spaces");
+            Console.WriteLine("Moved " + currPlayer.type + " " + moveNum.ToString() + " spaces");
         }
 
 
