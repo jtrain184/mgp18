@@ -26,12 +26,14 @@ namespace Monogame_Party_2018
         public override void Update(GameTime gameTime, KeyboardState ks)
         {
             base.Update(gameTime, ks);
+            Console.WriteLine("Moved " + currPlayer.type + " " + moveNum.ToString() + " spaces");
+           
             
-        
             S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
             parentManager.AddStateQueue(landAction);
             this.flagForDeletion = true;
-            Console.WriteLine("Moved " + currPlayer.type + " " + moveNum.ToString() + " spaces");
+            
+            
         }
 
 
@@ -40,6 +42,19 @@ namespace Monogame_Party_2018
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+            SpriteBatch sb = parentManager.game.spriteBatch;
+            sb.Begin();
+            SpriteFont pipFont = parentManager.game.ft_menuDescriptionFont;
+           
+            // TODO:  FIX POSITION ---------------------------------------------------------------------------------------
+            sb.DrawString(pipFont, moveNum.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 250, MGP_Constants.SCREEN_MID_Y - 125), Color.Black);
+            sb.End();
+        }
+
+        public void MovePlayer ()
+        {
+            // Add code that moves the player to next spaces
+
         }
     }
 }
