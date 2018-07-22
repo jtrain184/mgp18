@@ -74,10 +74,10 @@ namespace Monogame_Party_2018
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
             // Can be removed when player class is created
-            characters.Add(MenuItem.Characters.Princess);
-            characters.Add(MenuItem.Characters.Prince);
-            characters.Add(MenuItem.Characters.Queen);
-            characters.Add(MenuItem.Characters.King);
+            characters.Add(MenuItem.Characters.Manford);
+            characters.Add(MenuItem.Characters.Louie);
+            characters.Add(MenuItem.Characters.Sue);
+            characters.Add(MenuItem.Characters.Frank);
 
 
             // Create Players - Can be removed when player class is created

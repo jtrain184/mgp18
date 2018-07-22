@@ -34,10 +34,12 @@ namespace Monogame_Party_2018 {
 
         public enum Characters
         {
-            Princess = 0,
-            Prince,
-            Queen,
-            King
+            Manford = 0,
+            Louie,
+            Sue,
+            Frank,
+            Velma,
+            Wilber
         }
 
 

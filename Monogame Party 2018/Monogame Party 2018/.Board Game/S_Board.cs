@@ -63,25 +63,25 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            /*
             //DEBUG:
-            if (currRound > numRounds)
-            {
+            // Game is finished:
+            if (currRound > numRounds) {
                 S_GameResults gameResults = new S_GameResults(parentManager, 0, 0);
                 parentManager.AddStateQueue(gameResults);
-                this.flagForDeletion = true;
+                this.flagForDeletion = true; // delete this S_Board object
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
 
-            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
-            {
+            // confirm player start?
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
+
+                // Create a new Round:
                 S_Round newRound = new S_Round(parentManager, 0, 0);
                 parentManager.AddStateQueue(newRound);
                 this.active = false;
                 Console.WriteLine("Paused the S_Board");
                 currRound++;
             }
-            */
         }
 
         // DRAW

@@ -22,26 +22,26 @@ namespace Monogame_Party_2018
         // Constructor for Main Menu:
         public S_CharacterMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            currentMenuItem = (int)MenuItem.Characters.Princess;
+            currentMenuItem = (int)MenuItem.Characters.Manford;
             items = new List<MenuItem>();
             characters = new List<MenuItem.Characters>();
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
 
             // Character: Princess Peach
-            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "Princess" + System.Environment.NewLine + "Peach", (int)MenuItem.Characters.Princess));
+            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "Princess" + System.Environment.NewLine + "Peach", (int)MenuItem.Characters.Manford));
             numItems++;
 
             // Character: Prince of Persia
-            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "Prince" + System.Environment.NewLine + "of Persia", (int)MenuItem.Characters.Prince));
+            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "Prince" + System.Environment.NewLine + "of Persia", (int)MenuItem.Characters.Louie));
             numItems++;
 
             // Character: Queen of Hearts
-            items.Add(new MenuItem(this.xPos + 300, this.yPos + 500, "Queen" + System.Environment.NewLine + "of Hearts", (int)MenuItem.Characters.Queen));
+            items.Add(new MenuItem(this.xPos + 300, this.yPos + 500, "Queen" + System.Environment.NewLine + "of Hearts", (int)MenuItem.Characters.Sue));
             numItems++;
 
             // Character: King Kong
-            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 500, "King" + System.Environment.NewLine + "Kong", (int)MenuItem.Characters.King));
+            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 500, "King" + System.Environment.NewLine + "Kong", (int)MenuItem.Characters.Frank));
             numItems++;
 
             // Menu Description

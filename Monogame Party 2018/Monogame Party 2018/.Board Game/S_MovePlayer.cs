@@ -17,7 +17,7 @@ namespace Monogame_Party_2018
         {
             this.moveNum = moveNum;
             if (parentManager.round == null)
-                this.currPlayer = MenuItem.Characters.King;
+                this.currPlayer = MenuItem.Characters.Frank;
             else
                 this.currPlayer = parentManager.round.currPlayer;
         }
