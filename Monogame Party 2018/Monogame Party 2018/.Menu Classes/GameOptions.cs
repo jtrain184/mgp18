@@ -11,11 +11,12 @@ namespace Monogame_Party_2018
         public MenuItem.MainMenu mapName;
         public int numPlayers;
         public MenuItem.Difficulty difficulty;
-        public List<MenuItem.Characters> characters;
+        public List<Player> players;
         public int numRounds;
         public bool allowBonus;
 
         //Contructor
-        public GameOptions() { ; }
+        public GameOptions() {
+            this.players = new List<Player>(); }
     }
 }

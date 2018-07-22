@@ -12,7 +12,7 @@ namespace Monogame_Party_2018
     {
 
         //public Player currPlayer;
-        public MenuItem.Characters currPlayer;  //Swap with Player code once we get that set up
+        public Player currPlayer;  //Swap with Player code once we get that set up
 
 
         // Constructor
