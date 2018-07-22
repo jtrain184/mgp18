@@ -18,6 +18,7 @@ namespace Monogame_Party_2018 {
         public Texture2D bg_pirateBay;
 
         public Texture2D noSprite; // used as default and errors
+        public Texture2D spr_cameraCrosshair;
 
         public Texture2D spr_cloudIcon;
         public Texture2D piece_blue64;
@@ -78,6 +79,8 @@ namespace Monogame_Party_2018 {
             bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
 
             noSprite = Content.Load<Texture2D>("noSprite");
+
+            spr_cameraCrosshair = Content.Load<Texture2D>("BoardGameComponents/cameraCrosshair");
 
             spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon");
             piece_blue64 = Content.Load<Texture2D>("Spaces/piece_blue64");

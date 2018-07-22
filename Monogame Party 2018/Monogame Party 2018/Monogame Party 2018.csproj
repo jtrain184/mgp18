@@ -146,6 +146,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include=".Other\app.manifest" />
+    <None Include="Content\BoardGameComponents\cameraCrosshair.xnb" />
+    <None Include="Content\BoardGameComponents\testDiceBox.xnb" />
     <None Include="Content\Characters\spr_Frank.xnb" />
     <None Include="Content\Characters\spr_Louie.xnb" />
     <None Include="Content\Characters\spr_Manford.xnb" />

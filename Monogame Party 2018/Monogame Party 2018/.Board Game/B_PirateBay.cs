@@ -33,9 +33,9 @@ namespace Monogame_Party_2018 {
 
     // DEBUG
     Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
-    Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
-    Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 64);
-    Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
+    Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 16, MGP_Constants.SCREEN_MID_Y - 16);
+    Vector2 DEBUG_TEXT_LINE1 = new Vector2(16, 16);
+    Vector2 DEBUG_TEXT_LINE2 = new Vector2(16, 64);
 
 
     // Collection of Spaces:
@@ -60,12 +60,16 @@ namespace Monogame_Party_2018 {
       E_Space curSpace;
       E_Space prevSpace;
 
-      // STARTING WITH BOTTOM RIGHT, MOVING LEFT
+
+
+      // STARTING WITH BOTTOM RIGHT
       // Bottom right space:
       curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
       spaces.Add(curSpace);
       this.startingSpace = curSpace; // STARTING SPACE
       prevSpace = curSpace;
+
+
 
       // <<---- MOVING LEFT NOW: ----->>
       // 20, 16
@@ -134,6 +138,10 @@ namespace Monogame_Party_2018 {
       curSpace.assignSpaces(prevSpace);
       prevSpace = curSpace;
 
+
+
+
+
       // <<---- MOVING UP NOW: ----->>
       // 6, 15
       curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
@@ -194,6 +202,10 @@ namespace Monogame_Party_2018 {
       spaces.Add(curSpace); // add to overall list
       curSpace.assignSpaces(prevSpace);
       prevSpace = curSpace;
+
+
+
+
 
 
       // <<---- MOVING RIGHT NOW: ----->>
@@ -271,6 +283,10 @@ namespace Monogame_Party_2018 {
 
 
 
+
+
+
+
       // <<---- MOVING DOWN NOW: ----->>
       // 19, 5
       curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
@@ -329,14 +345,28 @@ namespace Monogame_Party_2018 {
       // Finally, link up last space and first space:
       this.startingSpace.assignSpaces(this.finalSpace);
 
-        // Assign starting space to all players
-        foreach(Player p in this.gameOptions.players)
-            {
-                p.currSpace = this.startingSpace;
-                p.meeple.setPos(p.currSpace.pos);
-            }
+
+
+
+
+
+      // Assign starting space to all players
+      foreach(Player p in this.gameOptions.players) {
+              p.currSpace = this.startingSpace;
+              p.meeple.setPos(p.currSpace.pos);
+          }
 
     }
+
+
+
+
+
+
+
+
+
+
     // ** UPDATE **
     public override void Update(GameTime gameTime, KeyboardState ks) {
       base.Update(gameTime, ks);
@@ -393,12 +423,10 @@ namespace Monogame_Party_2018 {
                 sb.Draw(space.sprite, space.getPosCenter(), Color.White);
             }
 
-            // Draw the meebles
-       
-            foreach(Player p in parentManager.gameOptions.players)
-            {
+            // Draw the meeples
+            foreach(Player p in parentManager.gameOptions.players) {
                 sb.Draw(p.meeple.sprite, p.currSpace.getPosCenter(), Color.White);
-                
+
             }
 
             // Test dice
@@ -413,7 +441,8 @@ namespace Monogame_Party_2018 {
             // DRAW UI ON WHOLE SCREEN:
             sb.Begin();
               // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
-              sb.Draw(this.parentManager.game.piece_green64, DEBUG_POS, Color.White);
+              sb.Draw(this.parentManager.game.spr_cameraCrosshair, DEBUG_POS, Color.White);
+
               string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
               string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
               sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_TEXT_LINE1, Color.White);
