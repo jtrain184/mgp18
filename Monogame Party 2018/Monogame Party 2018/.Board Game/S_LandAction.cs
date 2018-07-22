@@ -58,10 +58,14 @@ namespace Monogame_Party_2018
                 this.flagForDeletion = true;
                 Console.WriteLine("Performed land action code. Going back to S_Round");
             }
-            if(moveYPos > 60)
+            if (Math.Abs(moveYPos) > 60)
                 finishedAnimation = true;
-            else
-                moveYPos += 1;
+            // make the items move up for blue spaces
+            else if (spaceType == Entity.typeSpace.blue)
+                moveYPos--;
+            // make the items move down for red spaces
+            else if (spaceType == Entity.typeSpace.red)
+                moveYPos ++;
         }
 
 

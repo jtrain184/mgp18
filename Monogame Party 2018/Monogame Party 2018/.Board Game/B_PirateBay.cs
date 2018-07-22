@@ -427,8 +427,7 @@ namespace Monogame_Party_2018
 
             }
 
-            // Test dice
-            sb.Draw(testDice.sprite, testDice.getPos(), Color.White);
+            
 
             // End drawing in Camera:
             sb.End();
