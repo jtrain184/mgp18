@@ -17,8 +17,7 @@ namespace Monogame_Party_2018
         // Member variables
         public const int ROLL_SPEED = 2;
         public int pipCount;
-        float timer = 0f;
-        bool isRolling = true;
+        public float timer = 0f;
 
         // Constructor:
         public E_Dice(State parentState, Texture2D sprite, int x, int y, int pips = 10) : base(parentState, sprite, x, y)
@@ -35,13 +34,10 @@ namespace Monogame_Party_2018
         public override void Update(GameTime gameTime, KeyboardState ks)
         {
             base.Update(gameTime, ks);
-
-            if (isRolling)
-            {
                 timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
                 // TODO:  RESET THE TIMER WHEN IT REACHES 10
                 // TODO:  CHANGE SPEED AT WHICH DICE UPDATES
-            }
+                if (timer > pipCount) { timer = 0f; }
         }
 
         public override void Draw(GameTime gameTime)
@@ -49,8 +45,12 @@ namespace Monogame_Party_2018
             base.Draw(gameTime);
 
             SpriteBatch sb = this.parentState.parentManager.game.spriteBatch;
+            sb.Begin();
             SpriteFont pipFont = this.parentState.parentManager.game.ft_menuDescriptionFont;
-            sb.DrawString(pipFont, Math.Ceiling(timer).ToString(), new Vector2(30, 155), Color.Black);
+            Vector2 dicePosition = this.getPos();
+            // TODO:  FIX POSITION ---------------------------------------------------------------------------------------
+            sb.DrawString(pipFont, Math.Ceiling(timer).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 250, MGP_Constants.SCREEN_MID_Y - 125), Color.Black);
+            sb.End();
         }
     }
 }

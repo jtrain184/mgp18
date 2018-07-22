@@ -38,7 +38,7 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             //move camera to current player
-            parentManager.boardGame.cameraProperties.setPos(currPlayer.meeple.pos);
+            //parentManager.boardGame.cameraProperties.setPos(currPlayer.meeple.pos);
             // Camera is fixated on CameraProperties object:
             parentManager.game.cameraObject.LookAt(parentManager.boardGame.cameraProperties.getPos());
             //DEBUG:
