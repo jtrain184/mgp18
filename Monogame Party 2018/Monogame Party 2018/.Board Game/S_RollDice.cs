@@ -22,6 +22,7 @@ namespace Monogame_Party_2018
         {
             currPlayer = parentManager.round.currPlayer;
             rollTime = 60 / ROLL_SPEED; // Start rolling right away
+            parentManager.boardGame.testDice.diceRoll = 1;  // start dice at 1;
         }
 
         // Update:
@@ -57,14 +58,14 @@ namespace Monogame_Party_2018
 
                 // DEBUG: Paused game here to make sure dice roll number matches what is displayed
 
-                //S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, random.Next(1, 13));
-                /*
+             
+                
                 // Get player roll and reset dice
                 S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, parentManager.boardGame.testDice.diceRoll);
-                parentManager.boardGame.testDice.diceRoll = 1;
+                
                 parentManager.AddStateQueue(movePlayer);
                 this.flagForDeletion = true;
-                */
+                
 
             }
         }

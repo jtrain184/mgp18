@@ -13,11 +13,11 @@ namespace Monogame_Party_2018 {
 
         // Member variables:
         public Player.Type type;
-
+        GameStateManager gsm;
 
         // Constructor
         public E_Meeple(GameStateManager gameStateManager, Vector2 pos, Player.Type type) : base() {
-
+            gsm = gameStateManager;
 
             switch (type)
             {
@@ -51,8 +51,19 @@ namespace Monogame_Party_2018 {
 
         } // end constructor
 
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
+            SpriteBatch sb = gsm.game.spriteBatch;
+            sb.Begin();
+            
+            sb.Draw(this.sprite, this.pos, Color.White);
+            sb.End();
+        }
 
 
 
-  }
+
+
+    }
 }

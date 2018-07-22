@@ -21,8 +21,7 @@ namespace Monogame_Party_2018
         int NUM_COLUMNS = 24;
         int NUM_ROWS = 18;
 
-        E_Space startingSpace;
-        E_Space finalSpace;
+       
 
         // Get a Vector 2 based on a tile (top left corner or center):
         public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
@@ -334,7 +333,7 @@ namespace Monogame_Party_2018
             foreach (Player p in this.gameOptions.players)
             {
                 p.currSpace = this.startingSpace;
-                p.meeple.setPos(p.currSpace.pos);
+                p.meeple.setPos(p.currSpace.getPosCenter());
             }
 
         }
@@ -393,8 +392,7 @@ namespace Monogame_Party_2018
             // Camera is fixated on CameraProperties object:
             this.parentManager.game.cameraObject.LookAt(cameraProperties.getPos());
 
-            // testDice update
-            testDice.Update(gameTime, ks);
+            
 
         }
 
@@ -421,9 +419,9 @@ namespace Monogame_Party_2018
 
             // Draw the meebles
 
-            foreach (Player p in parentManager.gameOptions.players)
+            for(int i = 3; i >=0; i--)
             {
-                sb.Draw(p.meeple.sprite, p.currSpace.getPosCenter(), Color.White);
+                sb.Draw(this.gameOptions.players[i].meeple.sprite, this.gameOptions.players[i].meeple.getPosCenter(), Color.White);
 
             }
 
