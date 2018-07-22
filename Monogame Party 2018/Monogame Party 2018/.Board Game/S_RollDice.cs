@@ -13,7 +13,7 @@ namespace Monogame_Party_2018
 
         //public Player currPlayer;
         public Player currPlayer;  //Swap with Player code once we get that set up
-
+        bool isRolling = true;
 
         // Constructor
         public S_RollDice(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
@@ -29,12 +29,23 @@ namespace Monogame_Party_2018
             //DEBUG:
             Random random;
             random = new Random();
+
+            if (isRolling)
+            {
+                // testDice update
+                parentManager.boardGame.testDice.Update(gameTime, ks);
+            }
             
-            S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, random.Next(1, 13));
-            parentManager.AddStateQueue(movePlayer);
-            this.flagForDeletion = true;
-            Console.WriteLine(currPlayer.type + " has rolled");
-            
+            if(km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            {
+                isRolling = false;
+                //S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, random.Next(1, 13));
+
+                S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, (int)Math.Ceiling(parentManager.boardGame.testDice.timer));
+                parentManager.AddStateQueue(movePlayer);
+                this.flagForDeletion = true;
+                Console.WriteLine(currPlayer + " has rolled");
+            }
         }
 
 
@@ -43,6 +54,11 @@ namespace Monogame_Party_2018
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+
+            // Draw numbers on dice
+            SpriteBatch sb = this.parentManager.game.spriteBatch;
+   
+            parentManager.boardGame.testDice.Draw(gameTime);
         }
     }
 }

@@ -24,8 +24,7 @@ namespace Monogame_Party_2018
         public S_Round round;
         public List<Player> players;
 
-
-
+        public E_Dice testDice;
 
 
 
@@ -46,6 +45,9 @@ namespace Monogame_Party_2018
                 this.numRounds = gameOptions.numRounds;
 
             parentManager.boardGame = this;
+
+            // Create testDice
+            testDice = new E_Dice(this, parentManager.game.spr_testDice, MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y, 10);
 
             // Create characters:
             // foreach (MenuItem.Characters i in this.gameOptions.characters) {
