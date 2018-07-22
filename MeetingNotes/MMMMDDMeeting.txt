@@ -1,0 +1,14 @@
+
+July ??, 2018
+?? PM
+
+Should a player object contain a currSpace entity or should the space contain a list of players on it?
+    Chris - I'm thinking the player should have a space
+
+How to handle multiple meebles on one space?
+  Draw position offset from center space?
+  Display toplayer meeble (i.e. currPlayer or another way)
+
+
+If you only use the bool isHuman in the player class, how are you planning to tell player 1 from player 2 apart?
+  Subclasses of Player (P_Human and P_Computer)?
