@@ -44,15 +44,14 @@ namespace Monogame_Party_2018
         //public List<E_Space> spaces;
 
         // Constructor:
-        public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
-        {
+        public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
 
 
 
             // initialize list of spaces:
             spaces = new List<E_Space>();
 
-           
+
 
 
             // Create Spaces:
@@ -350,7 +349,7 @@ namespace Monogame_Party_2018
             // position camera starting at star location:
             cameraProperties.setPos(spaces.Find(x=> x.type == Entity.typeSpace.star).getPosCenter());
             MGP_Tools.KeepCameraOnBoard(parentManager);
-           
+
 
             // Assign starting space to all players
             foreach (Player p in this.gameOptions.players)
@@ -359,13 +358,19 @@ namespace Monogame_Party_2018
                 p.meeple.setPos(p.currSpace.getPosCenter());
             }
 
-            
+
 
         }
 
 
 
 
+    // ** Destructor **
+    ~B_PirateBay() {
+
+
+
+    }
 
 
 
@@ -421,7 +426,6 @@ namespace Monogame_Party_2018
                 }
             }
 
-            
 
 
 

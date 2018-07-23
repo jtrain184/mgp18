@@ -21,7 +21,6 @@ namespace Monogame_Party_2018
             else
                 this.currPlayer = parentManager.round.currPlayer;
 
-            
         }
 
         // Update:
@@ -34,14 +33,17 @@ namespace Monogame_Party_2018
             // Move the player
             if (moveNum > 0)
             {
-                
+
+
+                // Move the meeple untill it's close enough to space
                 // Find next space
                 E_Space spaceToMoveTo = currPlayer.currSpace.spacesAhead[0];
-          
-                // Move the meeple untill it's close enough to space
-                if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F)
-                {
-                    currPlayer.meeple.setPos(MGP_Tools.Ease(currPlayer.meeple.getPosCenter(), spaceToMoveTo.getPosCenter(), 1.5F));
+
+                if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F) {
+          //currPlayer.meeple.setPos(MGP_Tools.EaseVector(currPlayer.meeple.getPosCenter(), spaceToMoveTo.getPosCenter(), 1.5F));
+                    float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getPosCenter().X, 0.1F);
+                    float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.1F);
+                    currPlayer.meeple.setPos(new Vector2(newX, newY));
                     MGP_Tools.Follow_Player(parentManager, currPlayer);
                 }
                 // Meeple has arrived at new space
@@ -50,7 +52,7 @@ namespace Monogame_Party_2018
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
                 }
-                
+
 
 
             }

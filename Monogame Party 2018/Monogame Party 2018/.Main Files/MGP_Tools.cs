@@ -10,13 +10,21 @@ namespace Monogame_Party_2018
 {
     static class MGP_Tools
     {
-        public static Vector2 Ease(Vector2 current, Vector2 target, float speed)
+        public static Vector2 EaseVector(Vector2 current, Vector2 target, float speed)
         {
             Vector2 moveDir = target - current; // get the direction we want to move in
             moveDir.Normalize();    // make movement only 1 at a time
             //Console.WriteLine("Move Direction: " + moveDir);
             return current + (moveDir * speed);
         }
+
+        public static float Ease(float currentVal, float targetVal, float speed) {
+          // Speed suggested at 0.1
+          return (currentVal + ((targetVal - currentVal) * speed));
+        }
+
+
+
 
         public static void Follow_Player(GameStateManager parentManager, Player currPlayer)
         {
@@ -30,7 +38,7 @@ namespace Monogame_Party_2018
 
         public static void Assign_Star(S_Board board)
         {
-            // Get index of next star based on where current star was 
+            // Get index of next star based on where current star was
             int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star) + board.parentManager.random.Next(10, 25);
             board.spaces[starIndex].type = Entity.typeSpace.star;
             board.spaces[starIndex].sprite = board.parentManager.game.piece_star64; ;
@@ -60,14 +68,12 @@ namespace Monogame_Party_2018
         public static void PanCameraFromStar(GameStateManager parentManager, E_Space currSpace, Player currPlayer){
            // TO DO
 
-           
 
 
 
 
 
 
-            
         }
 
     }
