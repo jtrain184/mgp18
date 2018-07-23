@@ -36,12 +36,16 @@ namespace Monogame_Party_2018
             }
 
             // Landed on a red space
-            if (spaceType == Entity.typeSpace.red)
+            else if (spaceType == Entity.typeSpace.red)
             {
                 // Subtract a random amount of coins between 3 - 7 to curr player
                 numCoins = creator.random.Next(3, 15);
                 creator.round.currPlayer.coins -= numCoins;
                 landAction.text = "- " + numCoins.ToString();
+            }
+            else
+            {
+                landAction.text = " This is a chance space";
             }
 
         }
@@ -65,7 +69,10 @@ namespace Monogame_Party_2018
                 moveYPos--;
             // make the items move down for red spaces
             else if (spaceType == Entity.typeSpace.red)
-                moveYPos ++;
+                moveYPos++;
+            // DEBUG: Skip chance spaces for now
+            else
+                moveYPos = 61;
         }
 
 

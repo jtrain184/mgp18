@@ -25,6 +25,7 @@ namespace Monogame_Party_2018 {
         public Texture2D piece_purple64;
         public Texture2D piece_red64;
         public Texture2D piece_white64;
+        public Texture2D piece_star64;
 
         public Texture2D spr_Manford;
         public Texture2D spr_Louie;
@@ -85,6 +86,7 @@ namespace Monogame_Party_2018 {
             piece_purple64 = Content.Load<Texture2D>("Spaces/piece_purple64");
             piece_red64 = Content.Load<Texture2D>("Spaces/piece_red64");
             piece_white64 = Content.Load<Texture2D>("Spaces/piece_white64");
+            piece_star64 = Content.Load<Texture2D>("Spaces/piece_star64");
 
             spr_Manford = Content.Load<Texture2D>("Characters/spr_Manford");
             spr_Louie = Content.Load<Texture2D>("Characters/spr_Louie");
