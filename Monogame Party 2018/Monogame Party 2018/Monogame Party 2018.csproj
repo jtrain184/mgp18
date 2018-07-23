@@ -50,6 +50,7 @@
     <Compile Include=".Board Game\E_Dice.cs" />
     <Compile Include=".Board Game\E_Space.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
+    <Compile Include=".Board Game\S_BuyStar.cs" />
     <Compile Include=".Board Game\S_ConfirmPlayer.cs" />
     <Compile Include=".Board Game\S_GameResults.cs" />
     <Compile Include=".Board Game\S_LandAction.cs" />

@@ -21,8 +21,8 @@ namespace Monogame_Party_2018
         int NUM_COLUMNS = 24;
         int NUM_ROWS = 18;
 
-    E_Space startingSpace;
-    E_Space finalSpace;
+   // E_Space startingSpace;
+   // E_Space finalSpace;
 
     // Get a Vector 2 based on a tile (top left corner or center):
     public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
@@ -41,7 +41,7 @@ namespace Monogame_Party_2018
 
 
         // Collection of Spaces:
-        public List<E_Space> spaces;
+        //public List<E_Space> spaces;
 
         // Constructor:
         public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
@@ -52,9 +52,7 @@ namespace Monogame_Party_2018
             // initialize list of spaces:
             spaces = new List<E_Space>();
 
-            // position camera starting location:
-            cameraProperties.setX(640);
-            cameraProperties.setY(360);
+           
 
 
             // Create Spaces:
@@ -346,6 +344,14 @@ namespace Monogame_Party_2018
             // Finally, link up last space and first space:
             this.startingSpace.assignSpaces(this.finalSpace);
 
+            // Assign the star space to a random space
+            MGP_Tools.Assign_Star(this);
+
+            // position camera starting at star location:
+            cameraProperties.setPos(spaces.Find(x=> x.type == Entity.typeSpace.star).getPosCenter());
+            MGP_Tools.KeepCameraOnBoard(parentManager);
+           
+
             // Assign starting space to all players
             foreach (Player p in this.gameOptions.players)
             {
@@ -353,7 +359,9 @@ namespace Monogame_Party_2018
                 p.meeple.setPos(p.currSpace.getPosCenter());
             }
 
-    }
+            
+
+        }
 
 
 
@@ -412,6 +420,9 @@ namespace Monogame_Party_2018
                     Console.WriteLine("------------------------\n");
                 }
             }
+
+            
+
 
 
 

@@ -20,9 +20,25 @@ namespace Monogame_Party_2018
 
         public static void Follow_Player(GameStateManager parentManager, Player currPlayer)
         {
-            //move camera to current player
+            // Move camera to current player
             parentManager.boardGame.cameraProperties.setPos(currPlayer.meeple.pos);
 
+            // Make sure camera is still on the board
+            MGP_Tools.KeepCameraOnBoard(parentManager);
+
+        }
+
+        public static void Assign_Star(S_Board board)
+        {
+            // Get index of next star based on where current star was 
+            int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star) + board.parentManager.random.Next(10, 25);
+            board.spaces[starIndex].type = Entity.typeSpace.star;
+            board.spaces[starIndex].sprite = board.parentManager.game.piece_star64; ;
+
+        }
+
+        public static void KeepCameraOnBoard(GameStateManager parentManager)
+        {
             // Make screen doesn't go off the board
             // Check too far right
             if (parentManager.boardGame.cameraProperties.getX() > MGP_Constants.BOARD_MAX_WIDTH)
@@ -39,6 +55,19 @@ namespace Monogame_Party_2018
 
             // Camera is fixated on CameraProperties object:
             parentManager.game.cameraObject.LookAt(parentManager.boardGame.cameraProperties.getPos());
+        }
+
+        public static void PanCameraFromStar(GameStateManager parentManager, E_Space currSpace, Player currPlayer){
+           // TO DO
+
+           
+
+
+
+
+
+
+            
         }
 
     }

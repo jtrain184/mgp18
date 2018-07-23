@@ -45,7 +45,7 @@ namespace Monogame_Party_2018 {
           break;
 
         case Entity.typeSpace.star:
-          this.sprite = parentState.parentManager.game.piece_green64; // TODO: make a star space sprite
+          this.sprite = parentState.parentManager.game.piece_star64; // TODO: make a star space sprite
           break;
 
         case Entity.typeSpace.invisible:
