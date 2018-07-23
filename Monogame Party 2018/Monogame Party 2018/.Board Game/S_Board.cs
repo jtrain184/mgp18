@@ -19,6 +19,7 @@ namespace Monogame_Party_2018
         public GameOptions gameOptions;
         public E_Space startingSpace;
         public E_Space finalSpace;
+        public List<E_Space> spaces;
 
         // Game Vars
         public int numRounds;
