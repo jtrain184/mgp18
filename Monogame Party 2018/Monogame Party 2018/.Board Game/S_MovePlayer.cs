@@ -51,6 +51,13 @@ namespace Monogame_Party_2018
                 {
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
+
+                    // TO DO : Create state to buy star option ----------------------------------------------------------------
+                    if(currPlayer.currSpace.type == Entity.typeSpace.star)
+                    {
+                        S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
+                        parentManager.AddStateQueue(landAction);
+                    }
                 }
 
 

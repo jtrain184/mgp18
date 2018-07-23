@@ -38,6 +38,7 @@ namespace Monogame_Party_2018 {
         // Test graphic
         public Texture2D spr_testDice;
         public Texture2D spr_coin;
+        public Texture2D spr_star;
 
         // Fonts:
         public SpriteFont ft_mainMenuFont;
@@ -105,8 +106,9 @@ namespace Monogame_Party_2018 {
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
 
-            // Coin object
+            // Game objects
             spr_coin = Content.Load<Texture2D>("BoardGameComponents/piece_coin64");
+            spr_star = Content.Load<Texture2D>("BoardGameComponents/star_icon");
 
 
             // TODO: use this.Content to load your game content here
