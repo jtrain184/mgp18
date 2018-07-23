@@ -69,7 +69,6 @@ namespace Monogame_Party_2018 {
                 case Player.Type.FRANK:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.type = type;
-                    
                     break;
 
                 case Player.Type.LOUIE:

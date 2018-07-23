@@ -21,22 +21,23 @@ namespace Monogame_Party_2018
         int NUM_COLUMNS = 24;
         int NUM_ROWS = 18;
 
-       
+    E_Space startingSpace;
+    E_Space finalSpace;
 
-        // Get a Vector 2 based on a tile (top left corner or center):
-        public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
-        public Vector2 GetTilePosCenter(int column, int row) { return new Vector2((float)TILE_WIDTH * column + TILE_WIDTH / 2, (float)TILE_HEIGHT * row + TILE_HEIGHT / 2); }
-        // Get a simple x or y float based on a tile (top left corner or center):
-        public int GetColXOrigin(int column) { return TILE_WIDTH * column; }
-        public int GetColXCenter(int column) { return TILE_WIDTH * column + TILE_WIDTH / 2; }
-        public int GetRowYOrigin(int row) { return TILE_HEIGHT * row; }
-        public int GetRowYCenter(int row) { return TILE_HEIGHT * row + TILE_HEIGHT / 2; }
+    // Get a Vector 2 based on a tile (top left corner or center):
+    public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
+    public Vector2 GetTilePosCenter(int column, int row) { return new Vector2((float)TILE_WIDTH * column + TILE_WIDTH / 2, (float)TILE_HEIGHT * row + TILE_HEIGHT / 2); }
+    // Get a simple x or y float based on a tile (top left corner or center):
+    public int GetColXOrigin(int column) { return TILE_WIDTH * column; }
+    public int GetColXCenter(int column) { return TILE_WIDTH * column + TILE_WIDTH / 2; }
+    public int GetRowYOrigin(int row) { return TILE_HEIGHT * row; }
+    public int GetRowYCenter(int row) { return TILE_HEIGHT * row + TILE_HEIGHT / 2; }
 
-        // DEBUG
-        Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
-        Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
-        Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 64);
-        Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X - 32, MGP_Constants.SCREEN_MID_Y - 32);
+    // DEBUG
+    Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
+    Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 16, MGP_Constants.SCREEN_MID_Y - 16);
+    Vector2 DEBUG_TEXT_LINE1 = new Vector2(16, 16);
+    Vector2 DEBUG_TEXT_LINE2 = new Vector2(16, 64);
 
 
         // Collection of Spaces:
@@ -60,19 +61,23 @@ namespace Monogame_Party_2018
             E_Space curSpace;
             E_Space prevSpace;
 
-            // STARTING WITH BOTTOM RIGHT, MOVING LEFT
-            // Bottom right space:
-            curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
-            spaces.Add(curSpace);
-            this.startingSpace = curSpace; // STARTING SPACE
-            prevSpace = curSpace;
 
-            // <<---- MOVING LEFT NOW: ----->>
-            // 20, 16
-            curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.blue);
-            spaces.Add(curSpace); // add to overall list
-            curSpace.assignSpaces(prevSpace);
-            prevSpace = curSpace;
+
+      // STARTING WITH BOTTOM RIGHT
+      // Bottom right space:
+      curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace);
+      this.startingSpace = curSpace; // STARTING SPACE
+      prevSpace = curSpace;
+
+
+
+      // <<---- MOVING LEFT NOW: ----->>
+      // 20, 16
+      curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
             // 19, 16
             curSpace = new E_Space(this, GetTilePosCenter(19, 16), Entity.typeSpace.blue);
@@ -134,12 +139,16 @@ namespace Monogame_Party_2018
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-            // <<---- MOVING UP NOW: ----->>
-            // 6, 15
-            curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
-            spaces.Add(curSpace); // add to overall list
-            curSpace.assignSpaces(prevSpace);
-            prevSpace = curSpace;
+
+
+
+
+      // <<---- MOVING UP NOW: ----->>
+      // 6, 15
+      curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
             // 6, 13
             curSpace = new E_Space(this, GetTilePosCenter(6, 13), Entity.typeSpace.red);
@@ -196,12 +205,16 @@ namespace Monogame_Party_2018
             prevSpace = curSpace;
 
 
-            // <<---- MOVING RIGHT NOW: ----->>
-            // 4, 1
-            curSpace = new E_Space(this, GetTilePosCenter(4, 1), Entity.typeSpace.blue);
-            spaces.Add(curSpace); // add to overall list
-            curSpace.assignSpaces(prevSpace);
-            prevSpace = curSpace;
+
+
+
+
+      // <<---- MOVING RIGHT NOW: ----->>
+      // 4, 1
+      curSpace = new E_Space(this, GetTilePosCenter(4, 1), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
             // 5, 1
             curSpace = new E_Space(this, GetTilePosCenter(5, 1), Entity.typeSpace.blue);
@@ -271,12 +284,16 @@ namespace Monogame_Party_2018
 
 
 
-            // <<---- MOVING DOWN NOW: ----->>
-            // 19, 5
-            curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
-            spaces.Add(curSpace); // add to overall list
-            curSpace.assignSpaces(prevSpace);
-            prevSpace = curSpace;
+
+
+
+
+      // <<---- MOVING DOWN NOW: ----->>
+      // 19, 5
+      curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
+      spaces.Add(curSpace); // add to overall list
+      curSpace.assignSpaces(prevSpace);
+      prevSpace = curSpace;
 
             // 19, 7
             curSpace = new E_Space(this, GetTilePosCenter(19, 7), Entity.typeSpace.blue);
@@ -336,11 +353,20 @@ namespace Monogame_Party_2018
                 p.meeple.setPos(p.currSpace.getPosCenter());
             }
 
-        }
-        // ** UPDATE **
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
-            base.Update(gameTime, ks);
+    }
+
+
+
+
+
+
+
+
+
+
+    // ** UPDATE **
+    public override void Update(GameTime gameTime, KeyboardState ks) {
+      base.Update(gameTime, ks);
 
 
             // DEBUG move the camera around!
@@ -434,12 +460,13 @@ namespace Monogame_Party_2018
 
             // DRAW UI ON WHOLE SCREEN:
             sb.Begin();
-            // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
-            sb.Draw(this.parentManager.game.piece_green64, DEBUG_POS, Color.White);
-            string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
-            string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
-            sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_TEXT_LINE1, Color.White);
-            sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugY, DEBUG_TEXT_LINE2, Color.White);
+              // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
+              sb.Draw(this.parentManager.game.spr_cameraCrosshair, DEBUG_POS, Color.White);
+
+              string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
+              string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
+              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_TEXT_LINE1, Color.White);
+              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugY, DEBUG_TEXT_LINE2, Color.White);
 
             sb.End();
 
