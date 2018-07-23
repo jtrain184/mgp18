@@ -15,13 +15,14 @@ namespace Monogame_Party_2018
     public class E_Dice : Entity
     {
         // Member variables
-        public const int ROLL_SPEED = 2;
+        //public const int ROLL_SPEED = 20;
         public int pipCount;
-        float timer = 0f;
-        bool isRolling = true;
+        //public float timer = 0F;
+        public int diceRoll = 1;
+        public const int MAX_DICE_ROLL = 10;    // Set the max number you can roll on a dice
 
         // Constructor:
-        public E_Dice(State parentState, Texture2D sprite, int x, int y, int pips = 10) : base(parentState, sprite, x, y)
+        public E_Dice(State parentState, Texture2D sprite, int x, int y, int pips = 1000) : base(parentState, sprite, x, y)
         {
             this.pipCount = pips;
         }
@@ -36,12 +37,16 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            if (isRolling)
-            {
-                timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-                // TODO:  RESET THE TIMER WHEN IT REACHES 10
-                // TODO:  CHANGE SPEED AT WHICH DICE UPDATES
-            }
+            // For random sequence
+            // diceRoll = parentState.parentManager.random.Next(1, Max_DICE_ROLL);
+
+            // For sequential sequence
+            if (diceRoll >= MAX_DICE_ROLL)
+                diceRoll = 1;
+            else
+                diceRoll++;
+            
+            
         }
 
         public override void Draw(GameTime gameTime)
@@ -49,8 +54,12 @@ namespace Monogame_Party_2018
             base.Draw(gameTime);
 
             SpriteBatch sb = this.parentState.parentManager.game.spriteBatch;
+            sb.Begin();
             SpriteFont pipFont = this.parentState.parentManager.game.ft_menuDescriptionFont;
-            sb.DrawString(pipFont, Math.Ceiling(timer).ToString(), new Vector2(30, 155), Color.Black);
+            Vector2 dicePosition = this.getPos();
+            // TODO:  FIX POSITION ---------------------------------------------------------------------------------------
+            sb.DrawString(pipFont, diceRoll.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 250, MGP_Constants.SCREEN_MID_Y - 125), Color.Black);
+            sb.End();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Monogame_Party_2018
             Console.WriteLine("Results of minigame: ");
             for(int i = 3; i >= 0; i--)
             {
-                Console.WriteLine(Math.Abs(i - 4).ToString() + ". " + results[i]);
+                Console.WriteLine(Math.Abs(i - 4).ToString() + ". " + results[i].type);
             }
 
             //DEBUG:

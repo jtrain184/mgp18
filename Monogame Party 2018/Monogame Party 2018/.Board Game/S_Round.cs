@@ -11,9 +11,9 @@ namespace Monogame_Party_2018
     public class S_Round : State
     {
         // Vars
-        
+
         public GameOptions gameOptions;
-        public Player currPlayer;  
+        public Player currPlayer;
         public bool playerIsPlaying;
         public int playerIndex;
 
@@ -37,11 +37,9 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            //move camera to current player
-            parentManager.boardGame.cameraProperties.setPos(currPlayer.meeple.pos);
-            // Camera is fixated on CameraProperties object:
-            parentManager.game.cameraObject.LookAt(parentManager.boardGame.cameraProperties.getPos());
-            //DEBUG:
+            MGP_Tools.Follow_Player(parentManager, currPlayer);
+
+            //DEBUG: 
             if (!playerIsPlaying)
             {
                 // Last player went. Go to minigame
@@ -54,11 +52,11 @@ namespace Monogame_Party_2018
                 }
                 else
                 {
-                    
+
                     playerIndex++;
                     playerIsPlaying = true;
                     currPlayer = gameOptions.players[playerIndex];
-                    
+                    MGP_Tools.Follow_Player(parentManager, currPlayer);
 
 
                     S_ConfirmPlayer confirmPlayer = new S_ConfirmPlayer(parentManager, 0, 0);

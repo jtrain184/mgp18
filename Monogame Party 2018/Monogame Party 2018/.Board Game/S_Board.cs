@@ -17,6 +17,8 @@ namespace Monogame_Party_2018
         // Member variables:
         public CameraProperties cameraProperties;
         public GameOptions gameOptions;
+        public E_Space startingSpace;
+        public E_Space finalSpace;
 
         // Game Vars
         public int numRounds;
@@ -24,8 +26,7 @@ namespace Monogame_Party_2018
         public S_Round round;
         public List<Player> players;
 
-
-
+        public E_Dice testDice;
 
 
 
@@ -47,11 +48,10 @@ namespace Monogame_Party_2018
 
             parentManager.boardGame = this;
 
-            // Create characters:
-            // foreach (MenuItem.Characters i in this.gameOptions.characters) {
+            // Create testDice
+            testDice = new E_Dice(this, parentManager.game.spr_testDice, MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y, 10);
 
-
-            //}
+         
 
 
         } // end constructor
@@ -72,7 +72,7 @@ namespace Monogame_Party_2018
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
 
-            // confirm player start?
+            // DEBUG: Start the round
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
 
                 // Create a new Round:
@@ -82,6 +82,8 @@ namespace Monogame_Party_2018
                 Console.WriteLine("Paused the S_Board");
                 currRound++;
             }
+
+            
         }
 
         // DRAW

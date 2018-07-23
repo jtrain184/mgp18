@@ -23,7 +23,7 @@ namespace Monogame_Party_2018
             S_RollDice rollDice = new S_RollDice(parentManager, 0, 0);
             parentManager.AddStateQueue(rollDice);
             this.flagForDeletion = true;
-            Console.WriteLine( parentManager.round.currPlayer + " confirmed its their turn and has chosen to roll the dice");
+            Console.WriteLine( parentManager.round.currPlayer.type + " confirmed its their turn and has chosen to roll the dice");
         }
 
 
