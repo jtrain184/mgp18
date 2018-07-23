@@ -399,7 +399,7 @@ namespace Monogame_Party_2018
 
 
 
-            // DEBUG: pressing 7 will print the Space list to the console:
+            // DEBUG: pressing Y will print the Space list to the console:
             if (km.KeyPressed(Keys.Y))
             {
                 foreach (E_Space space in spaces)
@@ -418,7 +418,6 @@ namespace Monogame_Party_2018
             // Camera is fixated on CameraProperties object:
             this.parentManager.game.cameraObject.LookAt(cameraProperties.getPos());
 
-            
 
         }
 
@@ -451,7 +450,6 @@ namespace Monogame_Party_2018
 
             }
 
-            
 
             // End drawing in Camera:
             sb.End();

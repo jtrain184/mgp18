@@ -56,7 +56,7 @@ namespace Monogame_Party_2018 {
             base.Draw(gameTime);
             SpriteBatch sb = gsm.game.spriteBatch;
             sb.Begin();
-            
+
             sb.Draw(this.sprite, this.pos, Color.White);
             sb.End();
         }
