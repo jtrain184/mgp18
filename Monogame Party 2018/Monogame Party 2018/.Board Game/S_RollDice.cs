@@ -27,7 +27,7 @@ namespace Monogame_Party_2018
             parentManager.boardGame.testDice.diceRoll = 1;  // start dice at 1;
 
             compRollBegin = 0;
-            compRollEnd = creator.random.Next(ROLL_SPEED, ROLL_SPEED * 3); // have computer 'hit the dice' after 1 - 3 secs
+            compRollEnd = creator.random.Next(ROLL_SPEED, ROLL_SPEED * 2); // have computer 'hit the dice' after 1 - 2 secs
         }
 
         // Update:

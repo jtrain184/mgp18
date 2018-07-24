@@ -37,9 +37,9 @@ namespace Monogame_Party_2018
 
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to select the players for the game" + System.Environment.NewLine +
+                "Use [W-A-S-D Keys] to select the players for the game" + System.Environment.NewLine +
                 "Press [Enter] to confirm selection" + System.Environment.NewLine +
-                "Press [Decimal] to return to the previous menu", -1));
+                "Press [Backspace] to return to the previous menu", -1));
         }
 
 

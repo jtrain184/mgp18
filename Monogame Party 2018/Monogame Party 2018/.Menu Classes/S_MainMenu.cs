@@ -44,7 +44,7 @@ namespace Monogame_Party_2018
 
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to navigate the menu" + System.Environment.NewLine +
+                "Use [W-A-S-D Keys] to navigate the menu" + System.Environment.NewLine +
                 "Press [Enter] to confirm your selection", -1));
 
             // Map buttons to each other
@@ -121,25 +121,35 @@ namespace Monogame_Party_2018
 
                     // Map: Pirte Bay
                     if (currentMenuItem == (int)MenuItem.MainMenu.PIRATE) {
-                        parentManager.gameOptions.mapName = MenuItem.MainMenu.PIRATE;
-                        // DEBUG
-                        /*
+                        parentManager.gameOptions.mapName = MenuItem.MainMenu.MOUNTAIN;
                         S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(playerCountMenu);
-                        */
-
-                        B_PirateBay newBoard = new B_PirateBay(parentManager, 0, 0);
-                        parentManager.AddStateQueue(newBoard);
                         this.flagForDeletion = true;
                     }
 
                     // Map: Lonely Moutain
                     if (currentMenuItem == (int)MenuItem.MainMenu.MOUNTAIN)
                     {
-                        parentManager.gameOptions.mapName = MenuItem.MainMenu.MOUNTAIN;
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
+                        // DEBUG: Go straight to the mini game
+                        // Create player entitities and add to game options
+                        for (int i = 0; i < 4; i++)
+                        {
+                            // add as a human player
+                            if (i < 1)
+                                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
+                            // add a comp player
+                            else
+                                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false));
+
+                        }
+                        parentManager.gameOptions.numPlayers = 1;
+
+                        S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0, true);
+                        parentManager.AddStateQueue(minigame1);
                         this.flagForDeletion = true;
+
+
+                      
                     }
 
                     // Option: About

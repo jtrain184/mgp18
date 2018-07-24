@@ -57,8 +57,8 @@ namespace Monogame_Party_2018
 
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to select your character" + System.Environment.NewLine +
-                "Use [Decimal] to go back" + System.Environment.NewLine +
+                "Use [W-A-S-D Keys] to select your character" + System.Environment.NewLine +
+                "Use [Bakespace] to go back" + System.Environment.NewLine +
                 "Press [Enter] to confirm your selection", -1));
 
 

@@ -41,7 +41,7 @@ namespace Monogame_Party_2018
             currentMenuItem = 0;
             random = new Random();
             currentBomb = random.Next(0, 5);
-           // Console.WriteLine("Bomb is at " + currentBomb);
+            Console.WriteLine("Bomb is at " + currentBomb);
 
             items = new List<MenuItem>();
             itemsSelected = new List<int>();
@@ -53,11 +53,6 @@ namespace Monogame_Party_2018
 
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
-
-
-            // Create Players - Can be removed when player class is created
-
-           
 
             currentPlayer = players[0];
 
@@ -98,7 +93,7 @@ namespace Monogame_Party_2018
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
                 "Try and guess the boxes that do not contain a bomb" + System.Environment.NewLine +
-                "Use [Arrow Keys] to select a box" + System.Environment.NewLine +
+                "Use [W-A-S-D Keys] to select a box" + System.Environment.NewLine +
                 "Press [Enter] to confirm your selection", -1));
 
 
