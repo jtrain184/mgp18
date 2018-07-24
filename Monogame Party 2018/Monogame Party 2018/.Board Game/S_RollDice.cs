@@ -31,23 +31,22 @@ namespace Monogame_Party_2018
         }
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
+        public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
 
             if (rollTime == 60 / ROLL_SPEED && isRolling) // update according to roll speed
             {
-                
+
                 rollTime = 0;
                 parentManager.boardGame.testDice.Update(gameTime, ks);
 
-                // if comp is rolling 
+                // if comp is rolling
                 if (!currPlayer.isHuman)
                     compRollBegin++;
             }
             else
             {
-                
+
                 rollTime++;
             }
 
@@ -66,10 +65,12 @@ namespace Monogame_Party_2018
 
                 parentManager.AddStateQueue(movePlayer);
                 this.flagForDeletion = true;
-
-
             }
-        }
+
+            // Listen for and allow a pause
+            ListenPause();
+
+        } // end update
 
 
 

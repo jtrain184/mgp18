@@ -70,8 +70,8 @@ namespace Monogame_Party_2018
 
             // Loop through all states and update them!:
             State s;
-            while (num > -1)
-            {
+            int delayTimer = 0;
+            while (num > -1) {
 
                 // Start with topmost state:
                 s = states[num];
@@ -86,13 +86,26 @@ namespace Monogame_Party_2018
 
                 // ** UPDATE ALL STATES **
                 // Only update if State is 'active' and not flagged for deletion:
-                if (s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
+                if ((delayTimer <= 0) && s.active && !s.flagForDeletion) {
+                  s.Update(gameTime, input);
+                }
+
+
+                // Wait after unpausing:
+                if (s.sendDelay > 0) {
+                  delayTimer += s.sendDelay;
+                  s.sendDelay = 0; // reset send delay from object (notification of it was received)
+                }
+                //if (delayTimer > 0) { Console.WriteLine("timer = " + delayTimer.ToString()); }
 
                 // State is flagged for deletion, remove it now:
                 if (s.flagForDeletion) { RemoveState(s); }
 
                 --num;
             } // end while
+
+            // decrement timer
+            delayTimer--;
 
 
             // Create any new states?

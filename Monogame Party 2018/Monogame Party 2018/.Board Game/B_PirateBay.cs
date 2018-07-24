@@ -13,8 +13,8 @@ namespace Monogame_Party_2018
     public class B_PirateBay : S_Board
     {
 
-        int BOARD_WIDTH = 2400;
-        int BOARD_HEIGHT = 1800;
+        static public int BOARD_WIDTH = 2400;
+        static public int BOARD_HEIGHT = 1800;
 
         int TILE_WIDTH = 100;
         int TILE_HEIGHT = 100;
@@ -365,13 +365,6 @@ namespace Monogame_Party_2018
 
 
 
-    // ** Destructor **
-    ~B_PirateBay() {
-
-
-
-    }
-
 
 
 
@@ -438,8 +431,7 @@ namespace Monogame_Party_2018
 
 
         // ** DRAW **
-        public override void Draw(GameTime gameTime)
-        {
+        public override void Draw(GameTime gameTime) {
             base.Draw(gameTime);
 
             // Draw Background:
@@ -457,12 +449,10 @@ namespace Monogame_Party_2018
                     sb.Draw(space.sprite, space.getPosCenter(), Color.White);
             }
 
-            // Draw the meebles
+            // Draw the meeples
 
-            for(int i = 3; i >=0; i--)
-            {
+            for(int i = 3; i >=0; i--) {
                 sb.Draw(this.gameOptions.players[i].meeple.sprite, this.gameOptions.players[i].meeple.getPosCenter(), Color.White);
-
             }
 
 

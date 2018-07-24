@@ -41,8 +41,8 @@ namespace Monogame_Party_2018
 
                 if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F) {
           //currPlayer.meeple.setPos(MGP_Tools.EaseVector(currPlayer.meeple.getPosCenter(), spaceToMoveTo.getPosCenter(), 1.5F));
-                    float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getPosCenter().X, 0.1F);
-                    float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.1F);
+                    float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getPosCenter().X, 0.15F);
+                    float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.15F);
                     currPlayer.meeple.setPos(new Vector2(newX, newY));
                     MGP_Tools.Follow_Player(parentManager, currPlayer);
                 }
@@ -67,6 +67,10 @@ namespace Monogame_Party_2018
                 parentManager.AddStateQueue(landAction);
                 this.flagForDeletion = true;
             }
+
+
+            // Listen for pausing here:
+            ListenPause();
 
 
         }

@@ -18,8 +18,9 @@ namespace Monogame_Party_2018 {
     public bool active; // whether or not step function is run
     public bool visible; // whether or not draw function is run
     public bool isTopLayer; // Listen for keyboard input?
-    public int player;
+    public KeyboardManager.playerIndex player;
     public bool flagForDeletion; // at end of Update, delete me (sent to manager)
+    public int sendDelay;
     public KeyboardManager km;
 
     // The 'state' will be drawn to the right and below this point
@@ -43,6 +44,7 @@ namespace Monogame_Party_2018 {
       this.visible = true;
       this.isTopLayer = false;
       this.flagForDeletion = false;
+      this.sendDelay = 0;
 
       // Makes referencing the keyboard manager easier
       this.km = parentManager.km;
@@ -57,6 +59,23 @@ namespace Monogame_Party_2018 {
 
     // Remove Entity from the State:
     public void removeEntity(Entity e) { eList.Remove(e); }
+
+
+    // Listen for a pause and do so at this time
+    public void ListenPause() {
+      // Pausing while in a board state:
+      if (km.ActionPressed(KeyboardManager.action.pause, KeyboardManager.playerIndex.one)) {
+        S_Pause pauseMenu = new S_Pause(parentManager, 0, 0, KeyboardManager.playerIndex.one);
+        parentManager.AddStateQueue(pauseMenu);
+        Console.WriteLine("Player 1 paused the game");
+      }
+      else if (km.ActionPressed(KeyboardManager.action.pause, KeyboardManager.playerIndex.two)) {
+        S_Pause pauseMenu = new S_Pause(parentManager, 0, 0, KeyboardManager.playerIndex.two);
+        parentManager.AddStateQueue(pauseMenu);
+        Console.WriteLine("Player 2 paused the game");
+      }
+    }
+
 
 
   } // end State class

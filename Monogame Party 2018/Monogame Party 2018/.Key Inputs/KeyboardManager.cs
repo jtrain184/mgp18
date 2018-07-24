@@ -13,7 +13,8 @@ namespace Monogame_Party_2018 {
 
     public enum playerIndex {
       one,
-      two
+      two,
+      all
     }
 
     public enum action {
@@ -68,7 +69,7 @@ namespace Monogame_Party_2018 {
 
 
     // ------- PLAYER ONE PRESSED --------
-    if (p == playerIndex.one) {
+    if ((p == playerIndex.one) || (p == playerIndex.all)) {
 
       switch (a) {
 
@@ -111,7 +112,7 @@ namespace Monogame_Party_2018 {
     } // end player one input check
 
     // ------- PLAYER TWO PRESSED --------
-    else if (p == playerIndex.two) {
+    else if ((p == playerIndex.two) || (p == playerIndex.all)) {
 
       switch (a) {
 
