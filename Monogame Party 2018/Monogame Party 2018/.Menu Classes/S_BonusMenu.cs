@@ -72,51 +72,33 @@ namespace Monogame_Party_2018
                     {
                         parentManager.gameOptions.allowBonus = true;
 
-                        // DEBUG: PRINT GAME OPTIONS
-                        Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
-                            "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
-                        int x = 1;
-                        foreach(Player player in parentManager.gameOptions.players)
-                        {
-                            Console.WriteLine("Character " + x + ": " + player.type);
-                            x++;
-                        }
-
-                        Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
-                            "\nRound Count: " + parentManager.gameOptions.numRounds +
-                            "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
-
-                        // Start game based on game options from here. 
-                       
-                        S_Board board = new B_PirateBay(parentManager, 0, 0);       // add code to create correct board
-                        parentManager.AddStateQueue(board);
-                        this.flagForDeletion = true;
                     }
 
                     // No Bonuses
                     if (currentMenuItem == 1)
                     {
                         parentManager.gameOptions.allowBonus = false;
-
-
-                        // DEBUG: PRINT GAME OPTIONS
-                        Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
-                            "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
-                        int x = 1;
-                        foreach (Player player in parentManager.gameOptions.players)
-                        {
-                            Console.WriteLine("Player " + x + ": " + player.type);
-                            x++;
-                        }
-
-                        Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
-                            "\nRound Count: " + parentManager.gameOptions.numRounds +
-                            "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
-
-
-                        // Start game based on game options from here. 
-                        // this.flagForDeletion = true;
                     }
+
+                    // DEBUG: PRINT GAME OPTIONS
+                    Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
+                        "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
+                    int x = 1;
+                    foreach (Player player in parentManager.gameOptions.players)
+                    {
+                        Console.WriteLine("Character " + x + ": " + player.type);
+                        x++;
+                    }
+
+                    Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
+                        "\nRound Count: " + parentManager.gameOptions.numRounds +
+                        "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
+
+                    // Start game based on game options from here. 
+
+                    S_Board board = new B_PirateBay(parentManager, 0, 0);       // add code to create correct board
+                    parentManager.AddStateQueue(board);
+                    this.flagForDeletion = true;
 
 
                 }
