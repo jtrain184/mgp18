@@ -79,9 +79,9 @@ namespace Monogame_Party_2018
 
             // Menu Description
             items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [Arrow Keys] to select the number of rounds to play" + System.Environment.NewLine +
+                "Use [W-A-S-D Keys] to select the number of rounds to play" + System.Environment.NewLine +
                 "Press [Enter] to confirm your selection" + System.Environment.NewLine +
-                "Press [decimal] to return to the previous menu", -1));
+                "Press [Backspace] to return to the previous menu", -1));
 
 
         }
@@ -217,7 +217,7 @@ namespace Monogame_Party_2018
             // Draw the Menu description cloud wider
             Vector2 menuItemPos = new Vector2(items[numItems].xPos, items[numItems].yPos);
             Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[numItems].text, this.parentManager.game.ft_menuDescriptionFont);
-            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[numItems].xPos - 600 / 2, (int)items[numItems].yPos - 140 / 2, 600, 140), Color.White);
+            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[numItems].xPos - 650 / 2, (int)items[numItems].yPos - 140 / 2, 650, 140), Color.White);
             sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, items[numItems].text, menuTextPos, Color.Black);
 
             // End drawing:

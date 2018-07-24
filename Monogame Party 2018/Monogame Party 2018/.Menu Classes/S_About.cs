@@ -17,7 +17,7 @@ namespace Monogame_Party_2018
         public S_About(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             // Menu Description
-            menuDescription = new MenuItem(this.xPos + 650, this.yPos + 650, "Press [Decimal] to return to the previous menu", -1);
+            menuDescription = new MenuItem(this.xPos + 650, this.yPos + 650, "Press [Backspace] to return to the main menu", -1);
 
             aboutText = new MenuItem(this.xPos + 650, this.yPos + 350, "Monogame Party is a party game where up to four " + System.Environment.NewLine +
                "players compete in a boardgame containing minigames.  " + System.Environment.NewLine 

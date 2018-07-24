@@ -10,7 +10,7 @@ namespace Monogame_Party_2018
 {
     public class S_LandAction : State
     {
-        public int numCoins;
+        public const int numCoins = 3;
         public Entity.typeSpace spaceType;
         public bool finishedAnimation;
         public int moveYPos;
@@ -29,8 +29,7 @@ namespace Monogame_Party_2018
             // Landed on a blue space
             if(spaceType == Entity.typeSpace.blue)
             {
-                // Add a random amount of coins between 3 - 15 to curr player
-                numCoins = creator.random.Next(3, 15);
+                // Add 3 coins to player
                 creator.round.currPlayer.coins += numCoins;
                 landAction.text = "+ " + numCoins.ToString();
             }
@@ -38,10 +37,13 @@ namespace Monogame_Party_2018
             // Landed on a red space
             else if (spaceType == Entity.typeSpace.red)
             {
-                // Subtract a random amount of coins between 3 - 7 to curr player
-                numCoins = creator.random.Next(3, 15);
+                // Subtract a 3 coins from player
                 creator.round.currPlayer.coins -= numCoins;
                 landAction.text = "- " + numCoins.ToString();
+            }
+            else if(spaceType == Entity.typeSpace.star)
+            {
+                creator.round.currPlayer.stars++;
             }
             else
             {
@@ -57,15 +59,24 @@ namespace Monogame_Party_2018
             //DEBUG:
             if (finishedAnimation)
             {
-                parentManager.round.active = true;      //Make S_Round Active
-                parentManager.round.playerIsPlaying = false;   // Allow S_Round to get next player
-                this.flagForDeletion = true;
-                Console.WriteLine("Performed land action code. Going back to S_Round");
+                if (spaceType == Entity.typeSpace.star)
+                {
+                    this.flagForDeletion = true;
+                }
+                else
+                {
+
+
+                    parentManager.round.active = true;      //Make S_Round Active
+                    parentManager.round.playerIsPlaying = false;   // Allow S_Round to get next player
+                    this.flagForDeletion = true;
+                    Console.WriteLine("Performed land action code. Going back to S_Round");
+                }
             }
             if (Math.Abs(moveYPos) > 60)
                 finishedAnimation = true;
-            // make the items move up for blue spaces
-            else if (spaceType == Entity.typeSpace.blue)
+            // make the items move up for blue spaces or star spaces
+            else if (spaceType == Entity.typeSpace.blue || spaceType == Entity.typeSpace.star)
                 moveYPos--;
             // make the items move down for red spaces
             else if (spaceType == Entity.typeSpace.red)
@@ -87,12 +98,20 @@ namespace Monogame_Party_2018
             sb.Begin();
             Vector2 menuItemPos = new Vector2(landAction.xPos, landAction.yPos + moveYPos);
             Vector2 menuTextPos = menuItemPos + new Vector2(30, -25);     // Draw text to the right of object
-            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)menuItemPos.X - 50 / 2, (int)menuItemPos.Y - 50 / 2, 50, 50), Color.White);
-            if(spaceType == Entity.typeSpace.blue)
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, menuTextPos, Color.Blue);
-            if (spaceType == Entity.typeSpace.red)
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, menuTextPos, Color.Red);
+            if (spaceType == Entity.typeSpace.star)
+            {
+                sb.Draw(this.parentManager.game.spr_star, new Rectangle((int)menuItemPos.X - 50 / 2, (int)menuItemPos.Y - 50 / 2, 50, 50), Color.White);
+            }
+            else
+            {
 
+                sb.Draw(this.parentManager.game.spr_coin, new Rectangle((int)menuItemPos.X - 50 / 2, (int)menuItemPos.Y - 50 / 2, 50, 50), Color.White);
+                if (spaceType == Entity.typeSpace.blue)
+                    sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, menuTextPos, Color.Blue);
+                if (spaceType == Entity.typeSpace.red)
+                    sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, menuTextPos, Color.Red);
+            }
+            
             sb.End();
         }
     }
