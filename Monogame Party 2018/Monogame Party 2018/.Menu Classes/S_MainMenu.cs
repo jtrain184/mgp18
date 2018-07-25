@@ -21,7 +21,7 @@ namespace Monogame_Party_2018
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            currentMenuItem = (int)MenuItem.MainMenu.PIRATE;
+            this.currentMenuItem = (int)MenuItem.MainMenu.PIRATE;
 
             items = new List<MenuItem>();
 
@@ -85,101 +85,91 @@ namespace Monogame_Party_2018
 
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
+        public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
-            {
+            // Move Menu Selection Up:
+            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
+            }
 
-                // Move Menu Selection Up:
-                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
+            // Move Menu Selection Down:
+            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
+            }
 
-                }
+            // Move Menu Selection Left:
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
+            }
 
-                // Move Menu Selection Down:
-                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
-                }
-
-                // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
-                }
-
-                // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
-                }
-
-
-                // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
-
-                    // Map: Pirte Bay
-                    if (currentMenuItem == (int)MenuItem.MainMenu.PIRATE) {
-                        parentManager.gameOptions.mapName = MenuItem.MainMenu.MOUNTAIN;
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    // Map: Lonely Moutain
-                    if (currentMenuItem == (int)MenuItem.MainMenu.MOUNTAIN)
-                    {
-                        // DEBUG: Go straight to the mini game
-                        // Create player entitities and add to game options
-                        for (int i = 0; i < 4; i++)
-                        {
-                            // add as a human player
-                            if (i < 1)
-                                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
-                            // add a comp player
-                            else
-                                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false));
-
-                        }
-                        parentManager.gameOptions.numPlayers = 1;
-
-                        S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0, true);
-                        parentManager.AddStateQueue(minigame1);
-                        this.flagForDeletion = true;
-
-
-                      
-                    }
-
-                    // Option: About
-                    if(currentMenuItem == (int)MenuItem.MainMenu.ABOUT)
-                    {
-                        S_About about = new S_About(parentManager, 0, 0);
-                        parentManager.AddStateQueue(about);
-                        this.flagForDeletion = true;
-                    }
-
-                    // Option: Exit
-                    if (currentMenuItem == (int)MenuItem.MainMenu.EXIT) {
-                        parentManager.game.Exit();
-                    }
-
-
-                }
+            // Move Menu Selection Right:
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
             }
 
 
-        }
+            // Press ENTER while some menu item is highlighted:
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
+
+                // Map: Pirte Bay
+                if (currentMenuItem == (int)MenuItem.MainMenu.PIRATE) {
+                    parentManager.gameOptions.mapName = MenuItem.MainMenu.MOUNTAIN;
+                    S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(playerCountMenu);
+                    this.flagForDeletion = true;
+                }
+
+                // Map: Lonely Moutain
+                if (currentMenuItem == (int)MenuItem.MainMenu.MOUNTAIN) {
+                    // DEBUG: Go straight to the mini game
+                    // Create player entitities and add to game options
+                    for (int i = 0; i < 4; i++)
+                    {
+                        // add as a human player
+                        if (i < 1)
+                            parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
+                        // add a comp player
+                        else
+                            parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false));
+
+                    }
+                    parentManager.gameOptions.numPlayers = 1;
+
+                    S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0, true);
+                    parentManager.AddStateQueue(minigame1);
+                    this.flagForDeletion = true;
+
+
+                } // end Lonely Mountain choice
+
+
+
+                // Option: About
+                if(currentMenuItem == (int)MenuItem.MainMenu.ABOUT) {
+                    S_About about = new S_About(parentManager, 0, 0);
+                    parentManager.AddStateQueue(about);
+                    this.flagForDeletion = true;
+                }
+
+                // Option: Exit
+                if (currentMenuItem == (int)MenuItem.MainMenu.EXIT) {
+                    parentManager.game.Exit();
+                }
+
+
+            } // end pressed 'select' button
+
+
+        } // end update function
 
         // Draw:
-        public override void Draw(GameTime gameTime)
-        {
+        public override void Draw(GameTime gameTime) {
             base.Draw(gameTime);
 
             // Draw Background:
             SpriteBatch sb = this.parentManager.game.spriteBatch;
-
             sb.Begin();
 
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);

@@ -23,6 +23,8 @@ namespace Monogame_Party_2018 {
     public int sendDelay;
     public KeyboardManager km;
 
+    public string debugStateTitle;
+
     // The 'state' will be drawn to the right and below this point
     public float xPos;
     public float yPos;
@@ -42,7 +44,6 @@ namespace Monogame_Party_2018 {
       // Default:
       this.active = true;
       this.visible = true;
-      this.isTopLayer = false;
       this.flagForDeletion = false;
       this.sendDelay = 0;
 

@@ -12,7 +12,7 @@ namespace Monogame_Party_2018
 {
     public class S_PlayerCountMenu : State
     {
-        
+
 
         public List<MenuItem> items;
 
@@ -48,59 +48,52 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
-            {
+            // Move Menu Selection Left:
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
+                if (currentMenuItem == 1) { currentMenuItem = 0; }
+            }
 
-
-                // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
-                    if (currentMenuItem == 1) { currentMenuItem = 0; }
-                }
-
-                // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
-                    if (currentMenuItem == 0) { currentMenuItem = 1; }
-                }
-
-
-                // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
-                    // One Player
-                    if(currentMenuItem == 0)
-                    {
-                        parentManager.gameOptions.numPlayers = 1;
-                        S_CharacterMenu characterMenu = new S_CharacterMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(characterMenu);
-                        this.flagForDeletion = true;
-                    }
-
-
-                    //Two Players
-                    if (currentMenuItem == 1)
-                    {
-                        parentManager.gameOptions.numPlayers = 2;
-                        S_CharacterMenu characterMenu = new S_CharacterMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(characterMenu);
-                        this.flagForDeletion = true;
-                    }
-
-
-                }
-                // Press Cancel Key: Goes back to main menu:
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
-                    S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(mainMenu);
-                    this.flagForDeletion = true;
-                }
+            // Move Menu Selection Right:
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
+                if (currentMenuItem == 0) { currentMenuItem = 1; }
             }
 
 
+            // Press ENTER while some menu item is highlighted:
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
+                // One Player
+                if(currentMenuItem == 0)
+                {
+                    parentManager.gameOptions.numPlayers = 1;
+                    S_CharacterMenu characterMenu = new S_CharacterMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(characterMenu);
+                    this.flagForDeletion = true;
+                }
+
+
+                //Two Players
+                if (currentMenuItem == 1)
+                {
+                    parentManager.gameOptions.numPlayers = 2;
+                    S_CharacterMenu characterMenu = new S_CharacterMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(characterMenu);
+                    this.flagForDeletion = true;
+                }
+
+
+            }
+            // Press Cancel Key: Goes back to main menu:
+            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
+                S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
+                parentManager.AddStateQueue(mainMenu);
+                this.flagForDeletion = true;
+            }
         }
 
+
+
         // Draw:
-        public override void Draw(GameTime gameTime)
-        {
+        public override void Draw(GameTime gameTime) {
             base.Draw(gameTime);
 
             // Draw Background:

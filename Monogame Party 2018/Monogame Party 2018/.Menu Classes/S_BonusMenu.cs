@@ -46,73 +46,66 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
+            // Move Menu Selection Left:
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
             {
+                if (currentMenuItem == 1) { currentMenuItem = 0; }
+            }
 
-
-                // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
-                {
-                    if (currentMenuItem == 1) { currentMenuItem = 0; }
-                }
-
-                // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
-                {
-                    if (currentMenuItem == 0) { currentMenuItem = 1; }
-                }
-
-
-                // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
-                {
-                    // Allow Bonuses
-                    if (currentMenuItem == 0)
-                    {
-                        parentManager.gameOptions.allowBonus = true;
-
-                    }
-
-                    // No Bonuses
-                    if (currentMenuItem == 1)
-                    {
-                        parentManager.gameOptions.allowBonus = false;
-                    }
-
-                    // DEBUG: PRINT GAME OPTIONS
-                    Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
-                        "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
-                    int x = 1;
-                    foreach (Player player in parentManager.gameOptions.players)
-                    {
-                        Console.WriteLine("Character " + x + ": " + player.type);
-                        x++;
-                    }
-
-                    Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
-                        "\nRound Count: " + parentManager.gameOptions.numRounds +
-                        "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
-
-                    // Start game based on game options from here. 
-
-                    S_Board board = new B_PirateBay(parentManager, 0, 0);       // add code to create correct board
-                    parentManager.AddStateQueue(board);
-                    this.flagForDeletion = true;
-
-
-                }
-                // Press Cancel Key: Goes back to main menu:
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
-                {
-                    S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(numRoundsMenu);
-                    this.flagForDeletion = true;
-                }
+            // Move Menu Selection Right:
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+            {
+                if (currentMenuItem == 0) { currentMenuItem = 1; }
             }
 
 
+            // Press ENTER while some menu item is highlighted:
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            {
+                // Allow Bonuses
+                if (currentMenuItem == 0)
+                {
+                    parentManager.gameOptions.allowBonus = true;
+
+                }
+
+                // No Bonuses
+                if (currentMenuItem == 1)
+                {
+                    parentManager.gameOptions.allowBonus = false;
+                }
+
+                // DEBUG: PRINT GAME OPTIONS
+                Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
+                    "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
+                int x = 1;
+                foreach (Player player in parentManager.gameOptions.players)
+                {
+                    Console.WriteLine("Character " + x + ": " + player.type);
+                    x++;
+                }
+
+                Console.WriteLine("Difficulty: " + parentManager.gameOptions.difficulty +
+                    "\nRound Count: " + parentManager.gameOptions.numRounds +
+                    "\nAllow Bonuses: " + parentManager.gameOptions.allowBonus + "\n");
+
+                // Start game based on game options from here.
+
+                S_Board board = new B_PirateBay(parentManager, 0, 0);       // add code to create correct board
+                parentManager.AddStateQueue(board);
+                this.flagForDeletion = true;
+
+
+            }
+            // Press Cancel Key: Goes back to main menu:
+            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
+            {
+                S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
+                parentManager.AddStateQueue(numRoundsMenu);
+                this.flagForDeletion = true;
+            }
         }
+
 
         // Draw:
         public override void Draw(GameTime gameTime)

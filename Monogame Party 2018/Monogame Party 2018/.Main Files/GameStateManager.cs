@@ -43,6 +43,8 @@ namespace Monogame_Party_2018
         public S_Round round;
         public Random random;
 
+        public bool debugMode;
+
         // CONSTRUCTOR:
         public GameStateManager(MonogameParty game)
         {
@@ -50,6 +52,7 @@ namespace Monogame_Party_2018
             this.km = new KeyboardManager();
             this.gameOptions = new GameOptions();
             this.random = new Random();
+            this.debugMode = false;
 
             // Add the ** FIRST ** game state here:
             State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
@@ -64,8 +67,6 @@ namespace Monogame_Party_2018
             // Update the keyboard for BEGINNING of updates:
             km.KeysUpdateCurrent();
 
-            //input = Keyboard.GetState();
-            bool inputSent = false;
             var num = states.Count - 1;
 
             // Loop through all states and update them!:
@@ -76,14 +77,6 @@ namespace Monogame_Party_2018
                 // Start with topmost state:
                 s = states[num];
 
-                // First (topmost) state is the 'top layer'. Send ONLY it the input:
-                if (!inputSent)
-                {
-                    s.isTopLayer = true;
-                    inputSent = true;
-                }
-                else { s.isTopLayer = false; } // all other layers false (updates last frame if changed)
-
                 // ** UPDATE ALL STATES **
                 // Only update if State is 'active' and not flagged for deletion:
                 if ((delayTimer <= 0) && s.active && !s.flagForDeletion) {
@@ -91,7 +84,7 @@ namespace Monogame_Party_2018
                 }
 
 
-                // Wait after unpausing:
+                //
                 if (s.sendDelay > 0) {
                   delayTimer += s.sendDelay;
                   s.sendDelay = 0; // reset send delay from object (notification of it was received)
@@ -119,8 +112,6 @@ namespace Monogame_Party_2018
 
             // Remove from statesToCreate list
 
-            // Update New becomes Old states:
-            km.KeysPushOld();
 
             // Log changes in state count
             if(states.Count != stateCount)
@@ -129,6 +120,22 @@ namespace Monogame_Party_2018
                 stateCount = states.Count;
             }
 
+            // Debug mode activation:
+            if (km.ActionPressed(KeyboardManager.action.debugMode, KeyboardManager.playerIndex.one)) {
+              if (this.debugMode == false) {
+                this.debugMode = true;
+                Console.WriteLine("turned debugMode on");
+              }
+              else {
+                this.debugMode = false;
+                Console.WriteLine("turned debugMode off");
+              }
+            }
+
+
+
+            // Update New becomes Old states:
+            km.KeysPushOld();
         } // end UPDATE
 
 
@@ -136,12 +143,45 @@ namespace Monogame_Party_2018
         {
 
             // Start at bottom of state list, draw bottom up
+            SpriteBatch sb = this.game.spriteBatch;
             foreach (State s in states)
             {
 
                 // If visible, draw:
                 if (s.visible) { s.Draw(gameTime); }
+
+                // DEBUG (draw each state title): // TODO START HERE << -------------------------- TODO START HERE << -----
+
+
+
             } // end foreach
+
+
+            // Debug Mode (draw in seperate foreach loop, on top of other states):
+            if (debugMode) {
+              sb.Begin();
+
+              int line = 0;
+              int lineHeight = 16;
+              string str = "STATES";
+              Vector2 debugTextPos = new Vector2(16, line * lineHeight);
+              sb.DrawString(this.game.ft_debugMedium, str, debugTextPos, Color.Black);
+              line++;
+
+
+              foreach (State s in states) {
+                str = s.GetType().ToString();
+                debugTextPos.Y = line * lineHeight;
+                sb.DrawString(this.game.ft_debugSmall, str, debugTextPos, Color.White);
+                line++;
+
+              }
+              sb.End();
+            }
+
+
+
+
         } // end DRAW
 
 

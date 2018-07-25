@@ -11,7 +11,6 @@ namespace Monogame_Party_2018
 {
     public class S_DifficultyMenu : State
     {
-      
 
         public List<MenuItem> items;
 
@@ -88,79 +87,72 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
-            {
+            // Move Menu Selection Up:
+            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
+            }
 
-                // Move Menu Selection Up:
-                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
+            // Move Menu Selection Down:
+            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
+            }
 
-                }
+            // Move Menu Selection Left:
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
+            }
 
-                // Move Menu Selection Down:
-                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
-                }
-
-                // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
-                }
-
-                // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
-                }
-
-
-                // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
-
-                    // Difficulty: Easy
-                    if(currentMenuItem == (int)MenuItem.Difficulty.EASY)
-                    {
-                        parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
-                        S_NumRoundsMenu numRoundsMenu= new S_NumRoundsMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(numRoundsMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    // Difficulty: Medium
-                    if (currentMenuItem == (int)MenuItem.Difficulty.MEDIUM)
-                    {
-                        parentManager.gameOptions.difficulty = MenuItem.Difficulty.MEDIUM;
-                        S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(numRoundsMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    // Difficulty: Medium
-                    if (currentMenuItem == (int)MenuItem.Difficulty.HARD)
-                    {
-                        parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;
-                        S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(numRoundsMenu);
-                        this.flagForDeletion = true;
-                    }
-
-
-
-
-
-                }
-
-                // Press Cancel Key: Goes back to Player Count menu:
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
-                    S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(playerCountMenu);
-                    this.flagForDeletion = true;
-                }
+            // Move Menu Selection Right:
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
             }
 
 
+            // Press ENTER while some menu item is highlighted:
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
+
+                // Difficulty: Easy
+                if(currentMenuItem == (int)MenuItem.Difficulty.EASY)
+                {
+                    parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
+                    S_NumRoundsMenu numRoundsMenu= new S_NumRoundsMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(numRoundsMenu);
+                    this.flagForDeletion = true;
+                }
+
+                // Difficulty: Medium
+                if (currentMenuItem == (int)MenuItem.Difficulty.MEDIUM)
+                {
+                    parentManager.gameOptions.difficulty = MenuItem.Difficulty.MEDIUM;
+                    S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(numRoundsMenu);
+                    this.flagForDeletion = true;
+                }
+
+                // Difficulty: Medium
+                if (currentMenuItem == (int)MenuItem.Difficulty.HARD)
+                {
+                    parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;
+                    S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(numRoundsMenu);
+                    this.flagForDeletion = true;
+                }
+
+
+
+
+
+            }
+
+            // Press Cancel Key: Goes back to Player Count menu:
+            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
+                S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
+                parentManager.AddStateQueue(playerCountMenu);
+                this.flagForDeletion = true;
+            }
         }
+
 
         // Draw:
         public override void Draw(GameTime gameTime)
@@ -214,4 +206,3 @@ namespace Monogame_Party_2018
         }
     }
 }
- 
