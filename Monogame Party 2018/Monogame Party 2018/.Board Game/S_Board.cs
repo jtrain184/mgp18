@@ -52,7 +52,7 @@ namespace Monogame_Party_2018
             // Create testDice
             testDice = new E_Dice(this, parentManager.game.spr_testDice, MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y, 10);
 
-         
+
 
 
         } // end constructor
@@ -84,7 +84,9 @@ namespace Monogame_Party_2018
                 currRound++;
             }
 
-            
+            // Listen for pausing here:
+            ListenPause();
+
         }
 
         // DRAW
@@ -93,5 +95,7 @@ namespace Monogame_Party_2018
             base.Draw(gameTime);
         }
 
+
     }
+
 }

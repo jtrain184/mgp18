@@ -33,15 +33,13 @@ namespace Monogame_Party_2018
         }
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
+        public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
 
             MGP_Tools.Follow_Player(parentManager, currPlayer);
 
-            //DEBUG: 
-            if (!playerIsPlaying)
-            {
+            //DEBUG:
+            if (!playerIsPlaying) {
                 // Last player went. Go to minigame
                 if (playerIndex == 3)
                 {
@@ -66,7 +64,11 @@ namespace Monogame_Party_2018
                 }
             }
 
-        }
+            // Listen for and allow for pauses:
+            ListenPause();
+
+
+        } // end Update method
 
 
 
