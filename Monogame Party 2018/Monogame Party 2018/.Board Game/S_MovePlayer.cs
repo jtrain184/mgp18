@@ -67,7 +67,7 @@ namespace Monogame_Party_2018
             else
             {
 
-                Console.WriteLine("Moved " + currPlayer.type + " " + moveNum.ToString() + " spaces");
+               // Console.WriteLine("Moved " + currPlayer.type + " " + moveNum.ToString() + " spaces");
 
 
                 S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
