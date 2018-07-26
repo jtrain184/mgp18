@@ -11,8 +11,9 @@ using Microsoft.Xna.Framework.Input;
 namespace Monogame_Party_2018
 {
 
-    public class S_Board : State
-    {
+    public class S_Board : State {
+
+
 
         // Member variables:
         public CameraProperties cameraProperties;
@@ -20,6 +21,8 @@ namespace Monogame_Party_2018
         public E_Space startingSpace;
         public E_Space finalSpace;
         public List<E_Space> spaces;
+
+        public S_PlayerUI playerUI;
 
         // Game Vars
         public int numRounds;

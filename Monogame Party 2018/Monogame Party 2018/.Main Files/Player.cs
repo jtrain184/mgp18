@@ -95,10 +95,12 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.type = type;
                     break;
+            } // end switch
 
-            }
+
+        } // end constructor
 
 
-        }
-    }
+
+    } // end player class
 }

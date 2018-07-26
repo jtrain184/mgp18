@@ -13,21 +13,13 @@ namespace Monogame_Party_2018 {
         public SpriteBatch spriteBatch;
         public GameStateManager manager;
 
-        // Graphics:
-        public Texture2D bg_titleScreen;
-        public Texture2D bg_pirateBay;
-
-        public Texture2D noSprite; // used as default and errors
+        // Graphics: ------------------------------------------------->>
+        // BoardGameComponenents:
         public Texture2D spr_cameraCrosshair;
+        public Texture2D spr_playerBox;
+        public Texture2D spr_playerBoxFrame;
 
-        public Texture2D spr_cloudIcon;
-        public Texture2D piece_blue64;
-        public Texture2D piece_green64;
-        public Texture2D piece_purple64;
-        public Texture2D piece_red64;
-        public Texture2D piece_white64;
-        public Texture2D piece_star64;
-
+        // Characters:
         public Texture2D spr_Manford;
         public Texture2D spr_Louie;
         public Texture2D spr_Sue;
@@ -35,10 +27,31 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_Frank;
         public Texture2D spr_Wilber;
 
+        // MainMenu:
+        public Texture2D bg_titleScreen;
+        public Texture2D spr_cloudIcon;
+
+        // PirateBay:
+        public Texture2D bg_pirateBay;
+
+        // Spaces:
+        public Texture2D piece_blue64;
+        public Texture2D piece_green64;
+        public Texture2D piece_purple64;
+        public Texture2D piece_red64;
+        public Texture2D piece_white64;
+        public Texture2D piece_star64;
+
+        // Other:
+        public Texture2D noSprite; // used as default and errors
+
+
         // Test graphic
         public Texture2D spr_testDice;
         public Texture2D spr_coin;
         public Texture2D spr_star;
+
+        // --------------------------------------------------END GRAPHICS
 
         // Fonts:
         public SpriteFont ft_mainMenuFont;
@@ -80,21 +93,13 @@ namespace Monogame_Party_2018 {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
-            bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
 
-            noSprite = Content.Load<Texture2D>("noSprite");
-
+            // BoardGameComponents
             spr_cameraCrosshair = Content.Load<Texture2D>("BoardGameComponents/cameraCrosshair");
+            spr_playerBox = Content.Load<Texture2D>("BoardGameComponents/spr_playerBox");
+            spr_playerBoxFrame = Content.Load<Texture2D>("BoardGameComponents/spr_playerBoxFrame");
 
-            spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon");
-            piece_blue64 = Content.Load<Texture2D>("Spaces/piece_blue64");
-            piece_green64 = Content.Load<Texture2D>("Spaces/piece_green64");
-            piece_purple64 = Content.Load<Texture2D>("Spaces/piece_purple64");
-            piece_red64 = Content.Load<Texture2D>("Spaces/piece_red64");
-            piece_white64 = Content.Load<Texture2D>("Spaces/piece_white64");
-            piece_star64 = Content.Load<Texture2D>("Spaces/piece_star64");
-
+            // Characters:
             spr_Manford = Content.Load<Texture2D>("Characters/spr_Manford");
             spr_Louie = Content.Load<Texture2D>("Characters/spr_Louie");
             spr_Sue = Content.Load<Texture2D>("Characters/spr_Sue");
@@ -102,6 +107,25 @@ namespace Monogame_Party_2018 {
             spr_Frank = Content.Load<Texture2D>("Characters/spr_Frank");
             spr_Wilber = Content.Load<Texture2D>("Characters/spr_Wilber");
 
+            // MainMenu:
+            bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
+            spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon");
+
+            // PirateBay:
+            bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
+
+            // Spaces:
+            piece_blue64 = Content.Load<Texture2D>("Spaces/piece_blue64");
+            piece_green64 = Content.Load<Texture2D>("Spaces/piece_green64");
+            piece_purple64 = Content.Load<Texture2D>("Spaces/piece_purple64");
+            piece_red64 = Content.Load<Texture2D>("Spaces/piece_red64");
+            piece_white64 = Content.Load<Texture2D>("Spaces/piece_white64");
+            piece_star64 = Content.Load<Texture2D>("Spaces/piece_star64");
+
+            // Other:
+            noSprite = Content.Load<Texture2D>("noSprite");
+
+            // Fonts:
             ft_mainMenuFont = Content.Load<SpriteFont>("MainMenu/ft_mainMenuFont");
             ft_menuDescriptionFont = Content.Load<SpriteFont>("MainMenu/ft_menuDescriptionFont");
             ft_debugSmall = Content.Load<SpriteFont>("MainMenu/ft_debugSmall");
@@ -114,8 +138,6 @@ namespace Monogame_Party_2018 {
             spr_coin = Content.Load<Texture2D>("BoardGameComponents/piece_coin64");
             spr_star = Content.Load<Texture2D>("BoardGameComponents/star_icon");
 
-
-            // TODO: use this.Content to load your game content here
         }
 
         /// UnloadContent will be called once per game and is the place to unload

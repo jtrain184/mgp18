@@ -13,32 +13,29 @@ namespace Monogame_Party_2018
     public class B_PirateBay : S_Board
     {
 
-        static public int BOARD_WIDTH = 2400;
-        static public int BOARD_HEIGHT = 1800;
+       static public int BOARD_WIDTH = 2400;
+       static public int BOARD_HEIGHT = 1800;
 
-        int TILE_WIDTH = 100;
-        int TILE_HEIGHT = 100;
-        int NUM_COLUMNS = 24;
-        int NUM_ROWS = 18;
+       int TILE_WIDTH = 100;
+       int TILE_HEIGHT = 100;
+       int NUM_COLUMNS = 24;
+       int NUM_ROWS = 18;
 
-   // E_Space startingSpace;
-   // E_Space finalSpace;
+        // Get a Vector 2 based on a tile (top left corner or center):
+        public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
+        public Vector2 GetTilePosCenter(int column, int row) { return new Vector2((float)TILE_WIDTH * column + TILE_WIDTH / 2, (float)TILE_HEIGHT * row + TILE_HEIGHT / 2); }
+        // Get a simple x or y float based on a tile (top left corner or center):
+        public int GetColXOrigin(int column) { return TILE_WIDTH * column; }
+        public int GetColXCenter(int column) { return TILE_WIDTH * column + TILE_WIDTH / 2; }
+        public int GetRowYOrigin(int row) { return TILE_HEIGHT * row; }
+        public int GetRowYCenter(int row) { return TILE_HEIGHT * row + TILE_HEIGHT / 2; }
 
-    // Get a Vector 2 based on a tile (top left corner or center):
-    public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
-    public Vector2 GetTilePosCenter(int column, int row) { return new Vector2((float)TILE_WIDTH * column + TILE_WIDTH / 2, (float)TILE_HEIGHT * row + TILE_HEIGHT / 2); }
-    // Get a simple x or y float based on a tile (top left corner or center):
-    public int GetColXOrigin(int column) { return TILE_WIDTH * column; }
-    public int GetColXCenter(int column) { return TILE_WIDTH * column + TILE_WIDTH / 2; }
-    public int GetRowYOrigin(int row) { return TILE_HEIGHT * row; }
-    public int GetRowYCenter(int row) { return TILE_HEIGHT * row + TILE_HEIGHT / 2; }
-
-    // DEBUG
-    Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
-    Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 16, MGP_Constants.SCREEN_MID_Y - 16);
-    Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X, 0);
-    Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X, 24);
-    Vector2 DEBUG_TEXT_LINE3 = new Vector2(MGP_Constants.SCREEN_MID_X, 48);
+        // DEBUG
+        Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
+        Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 16, MGP_Constants.SCREEN_MID_Y - 16);
+        Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X, 0);
+        Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X, 24);
+        Vector2 DEBUG_TEXT_LINE3 = new Vector2(MGP_Constants.SCREEN_MID_X, 48);
 
 
         // Collection of Spaces:
@@ -49,17 +46,13 @@ namespace Monogame_Party_2018
 
 
 
+
+
+            // --------------------------- Create Spaces: ----------------------------------
             // initialize list of spaces:
             spaces = new List<E_Space>();
-
-
-
-
-            // Create Spaces:
             E_Space curSpace;
             E_Space prevSpace;
-
-
 
       // STARTING WITH BOTTOM RIGHT
       // Bottom right space:
@@ -352,16 +345,16 @@ namespace Monogame_Party_2018
             MGP_Tools.KeepCameraOnBoard(parentManager);
 
 
+
+
+
             // Assign starting space to all players
             foreach (Player p in this.gameOptions.players)
             {
                 p.currSpace = this.startingSpace;
                 p.meeple.setPos(p.currSpace.getPosCenter());
             }
-
-
-
-        }
+        } // end constructor
 
 
 

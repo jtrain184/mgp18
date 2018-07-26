@@ -55,6 +55,7 @@
     <Compile Include=".Board Game\S_GameResults.cs" />
     <Compile Include=".Board Game\S_LandAction.cs" />
     <Compile Include=".Board Game\S_Pause.cs" />
+    <Compile Include=".Board Game\S_PlayerUI.cs" />
     <Compile Include=".Main Files\MGP_Tools.cs" />
     <Compile Include=".Mini Games\S_MinigameInstructions.cs" />
     <Compile Include=".Board Game\S_MovePlayer.cs" />
@@ -150,6 +151,8 @@
     </None>
     <None Include=".Other\app.manifest" />
     <None Include="Content\BoardGameComponents\cameraCrosshair.xnb" />
+    <None Include="Content\BoardGameComponents\spr_playerBox.xnb" />
+    <None Include="Content\BoardGameComponents\spr_playerBoxFrame.xnb" />
     <None Include="Content\BoardGameComponents\testDiceBox.xnb" />
     <None Include="Content\Characters\spr_Frank.xnb" />
     <None Include="Content\Characters\spr_Louie.xnb" />

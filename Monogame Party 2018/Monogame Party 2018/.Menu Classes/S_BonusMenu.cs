@@ -93,6 +93,13 @@ namespace Monogame_Party_2018
 
                 S_Board board = new B_PirateBay(parentManager, 0, 0);       // add code to create correct board
                 parentManager.AddStateQueue(board);
+
+                // Add UI to game:
+                board.playerUI = new S_PlayerUI(parentManager, 0, 0);
+                parentManager.AddStateQueue(board.playerUI);
+
+
+
                 this.flagForDeletion = true;
 
 
