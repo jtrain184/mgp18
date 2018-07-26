@@ -20,7 +20,7 @@ namespace Monogame_Party_2018
             menuDescription = new MenuItem(this.xPos + 650, this.yPos + 650, "Press [Backspace] to return to the main menu", -1);
 
             aboutText = new MenuItem(this.xPos + 650, this.yPos + 350, "Monogame Party is a party game where up to four " + System.Environment.NewLine +
-               "players compete in a boardgame containing minigames.  " + System.Environment.NewLine 
+               "players compete in a boardgame containing minigames.  " + System.Environment.NewLine
                + "Up to two of the players are human controlled, while " + System.Environment.NewLine
                + "the rest are controlled by the computer.", -1);
         }
@@ -40,7 +40,7 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
 
-   
+
 
             // Draw Background:
             SpriteBatch sb = this.parentManager.game.spriteBatch;
@@ -55,7 +55,7 @@ namespace Monogame_Party_2018
 
             // Draw About Text in a cloud
             sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)aboutCloudPos.X - 650 / 2, (int)aboutCloudPos.Y - 250 / 2, 650, 250), Color.White);
-            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText.text, textPos, Color.Black);          
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText.text, textPos, Color.Black);
 
             // Draw the Menu description cloud wider
             Vector2 menuItemPos = new Vector2(menuDescription.xPos, menuDescription.yPos);

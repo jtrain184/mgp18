@@ -91,7 +91,11 @@ namespace Monogame_Party_2018 {
         // Destroy pause menu state
         flagForDeletion = true;
         sendDelay = 2;
-      }
+
+
+
+      } // end if press pause/cancel button
+
 
     }
 

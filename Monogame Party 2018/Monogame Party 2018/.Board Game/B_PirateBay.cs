@@ -36,8 +36,9 @@ namespace Monogame_Party_2018
     // DEBUG
     Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
     Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 16, MGP_Constants.SCREEN_MID_Y - 16);
-    Vector2 DEBUG_TEXT_LINE1 = new Vector2(16, 16);
-    Vector2 DEBUG_TEXT_LINE2 = new Vector2(16, 64);
+    Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X, 0);
+    Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X, 24);
+    Vector2 DEBUG_TEXT_LINE3 = new Vector2(MGP_Constants.SCREEN_MID_X, 48);
 
 
         // Collection of Spaces:
@@ -460,18 +461,20 @@ namespace Monogame_Party_2018
             sb.End();
 
 
-
             // DRAW UI ON WHOLE SCREEN:
-            sb.Begin();
+            if (parentManager.debugMode) {
+              sb.Begin();
               // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
               sb.Draw(this.parentManager.game.spr_cameraCrosshair, DEBUG_POS, Color.White);
 
               string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
               string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
-              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugX, DEBUG_TEXT_LINE1, Color.White);
-              sb.DrawString(this.parentManager.game.ft_mainMenuFont, textDebugY, DEBUG_TEXT_LINE2, Color.White);
+              sb.DrawString(this.parentManager.game.ft_debugMedium, "Camera Position", DEBUG_TEXT_LINE1, Color.Black);
+              sb.DrawString(this.parentManager.game.ft_debugSmall, textDebugX, DEBUG_TEXT_LINE2, Color.White);
+              sb.DrawString(this.parentManager.game.ft_debugSmall, textDebugY, DEBUG_TEXT_LINE3, Color.White);
 
-            sb.End();
+              sb.End();
+            }
 
         }
     }

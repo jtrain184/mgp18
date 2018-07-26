@@ -30,7 +30,9 @@ namespace Monogame_Party_2018 {
 
       action_1,
       action_2,
-      action_3
+      action_3,
+
+      debugMode
     }
 
     // Member Variables
@@ -106,6 +108,10 @@ namespace Monogame_Party_2018 {
         case action.action_3:
           return KeyPressed(Keys.M);
 
+        case action.debugMode:
+          return KeyPressed(Keys.F2);
+
+
         default:
           return false;
       } // end switch
@@ -145,6 +151,9 @@ namespace Monogame_Party_2018 {
 
         case action.action_3:
           return KeyPressed(Keys.NumPad3); // on numPad
+
+        case action.debugMode:
+          return KeyPressed(Keys.F2);
 
         default:
           return false;

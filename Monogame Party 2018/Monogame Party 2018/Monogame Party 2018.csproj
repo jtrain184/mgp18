@@ -186,6 +186,8 @@
     <None Include="Content\Characters\spr_Velma.xnb" />
     <None Include="Content\Characters\spr_Wilber.xnb" />
     <None Include="Content\MainMenu\bg_titleScreen.xnb" />
+    <None Include="Content\MainMenu\ft_debugMedium.xnb" />
+    <None Include="Content\MainMenu\ft_debugSmall.xnb" />
     <None Include="Content\MainMenu\ft_mainMenuFont.xnb" />
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />

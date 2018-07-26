@@ -43,6 +43,8 @@ namespace Monogame_Party_2018 {
         // Fonts:
         public SpriteFont ft_mainMenuFont;
         public SpriteFont ft_menuDescriptionFont;
+        public SpriteFont ft_debugSmall;
+        public SpriteFont ft_debugMedium;
 
         // CameraProperties:
         public Camera2D cameraObject;
@@ -102,6 +104,8 @@ namespace Monogame_Party_2018 {
 
             ft_mainMenuFont = Content.Load<SpriteFont>("MainMenu/ft_mainMenuFont");
             ft_menuDescriptionFont = Content.Load<SpriteFont>("MainMenu/ft_menuDescriptionFont");
+            ft_debugSmall = Content.Load<SpriteFont>("MainMenu/ft_debugSmall");
+            ft_debugMedium = Content.Load<SpriteFont>("MainMenu/ft_debugMedium");
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");

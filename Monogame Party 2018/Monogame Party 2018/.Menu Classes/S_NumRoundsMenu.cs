@@ -12,7 +12,6 @@ namespace Monogame_Party_2018
 {
     public class S_NumRoundsMenu : State
     {
-       
 
         public List<MenuItem> items;
 
@@ -92,86 +91,77 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
+            // Move Menu Selection Up:
+            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
             {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
+            }
 
-                // Move Menu Selection Up:
-                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
-                {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
+            // Move Menu Selection Down:
+            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
+            {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
+            }
 
-                }
+            // Move Menu Selection Left:
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
+            {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
+            }
 
-                // Move Menu Selection Down:
-                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
-                {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
-                }
-
-                // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
-                {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
-                }
-
-                // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
-                {
-                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
-                }
-
-
-                // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
-                {
-                    // Seven Rounds Selected
-                    if(currentMenuItem == 7)
-                    {
-                        parentManager.gameOptions.numRounds = 7;
-                        S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(bonusMenu);
-                        this.flagForDeletion = true;
-
-                    }
-
-                    // Twelve Rounds Selected
-                    else if( currentMenuItem == 12)
-                    {
-                        parentManager.gameOptions.numRounds = 12;
-                        S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(bonusMenu);
-                        this.flagForDeletion = true;
-                    }
-
-                    // Twenty Rounds Selected
-                    else
-                    {
-                        parentManager.gameOptions.numRounds = 20;
-                        S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(bonusMenu);
-                        this.flagForDeletion = true;
-                    }
-                  
-
-
-
-
-
-                }
-
-                // Press Cancel Key: Goes back to difficulty menu:
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
-                {
-                    S_DifficultyMenu difficultyMenu = new S_DifficultyMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(difficultyMenu);
-                    this.flagForDeletion = true;
-                }
+            // Move Menu Selection Right:
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+            {
+                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
             }
 
 
+            // Press ENTER while some menu item is highlighted:
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            {
+                // Seven Rounds Selected
+                if(currentMenuItem == 7)
+                {
+                    parentManager.gameOptions.numRounds = 7;
+                    S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(bonusMenu);
+                    this.flagForDeletion = true;
+
+                }
+
+                // Twelve Rounds Selected
+                else if( currentMenuItem == 12)
+                {
+                    parentManager.gameOptions.numRounds = 12;
+                    S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(bonusMenu);
+                    this.flagForDeletion = true;
+                }
+
+                // Twenty Rounds Selected
+                else
+                {
+                    parentManager.gameOptions.numRounds = 20;
+                    S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(bonusMenu);
+                    this.flagForDeletion = true;
+                }
+
+
+
+
+            }
+
+            // Press Cancel Key: Goes back to difficulty menu:
+            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
+            {
+                S_DifficultyMenu difficultyMenu = new S_DifficultyMenu(parentManager, 0, 0);
+                parentManager.AddStateQueue(difficultyMenu);
+                this.flagForDeletion = true;
+            }
         }
+
 
         // Draw:
         public override void Draw(GameTime gameTime)

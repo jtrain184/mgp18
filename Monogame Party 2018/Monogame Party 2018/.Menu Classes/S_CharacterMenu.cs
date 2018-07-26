@@ -113,155 +113,146 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
+            // Move Menu Selection Up:
+            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
             {
-
-
-                // Move Menu Selection Up:
-                if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
+                // Check if player 1 has made a selection
+                if (players.Count == 1)
                 {
-                    // Check if player 1 has made a selection
-                    if (players.Count == 1)
-                    {
-                        // Only allow movement if player 1 has not chosen that character
-                        if (items.Find(x => x.activeValue == currentMenuItem).above.activeValue != (int)players[0])
-                            currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
-                        
-                    }
-                    // Player 1 is selecting
-                    else
+                    // Only allow movement if player 1 has not chosen that character
+                    if (items.Find(x => x.activeValue == currentMenuItem).above.activeValue != (int)players[0])
                         currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
-
                 }
+                // Player 1 is selecting
+                else
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
 
-                // Move Menu Selection Down:
-                if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
+            }
+
+            // Move Menu Selection Down:
+            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
+            {
+                // Check if player 1 has made a selection
+                if (players.Count == 1)
                 {
-                    // Check if player 1 has made a selection
-                    if (players.Count == 1)
-                    {
-                        // Only allow movement if player 1 has not chosen that character
-                        if (items.Find(x => x.activeValue == currentMenuItem).below.activeValue != (int)players[0])
-                            currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
-                       
-                    }
-                    // Player 1 is selecting
-                    else
+                    // Only allow movement if player 1 has not chosen that character
+                    if (items.Find(x => x.activeValue == currentMenuItem).below.activeValue != (int)players[0])
                         currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
                 }
+                // Player 1 is selecting
+                else
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
+            }
 
-                // Move Menu Selection Left:
-                if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
+            // Move Menu Selection Left:
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
+            {
+                // Check if player 1 has made a selection
+                if (players.Count == 1)
                 {
-                    // Check if player 1 has made a selection
-                    if (players.Count == 1)
-                    {
-                        // Only allow movement if player 1 has not chosen that character
-                        if (items.Find(x => x.activeValue == currentMenuItem).left.activeValue != (int)players[0])
-                            currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
-                        // the item to the left has been selected so choose the item to the left of the left item. 
-                        else
-                            currentMenuItem = items.Find(y => y.activeValue == items.Find(x => x.activeValue == currentMenuItem).left.activeValue).left.activeValue;
-                    }
-                    // Player 1 is selecting
-                    else
+                    // Only allow movement if player 1 has not chosen that character
+                    if (items.Find(x => x.activeValue == currentMenuItem).left.activeValue != (int)players[0])
                         currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
-
-                }
-
-                // Move Menu Selection Right:
-                if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
-                {
-                    // Check if player 1 has made a selection
-                    if (players.Count == 1)
-                    {
-                        // Select the item directly to the right
-                        if ((items.Find(x => x.activeValue == currentMenuItem).right.activeValue) != (int)players[0])
-                            currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
-                        // the item to the right has been selected so choose the item to the right of the right item. 
-                        else
-                            currentMenuItem = items.Find(y=> y.activeValue == items.Find(x => x.activeValue == currentMenuItem).right.activeValue).right.activeValue;
-
-                    }
-                    // Player 1 is selecting
+                    // the item to the left has been selected so choose the item to the left of the left item.
                     else
+                        currentMenuItem = items.Find(y => y.activeValue == items.Find(x => x.activeValue == currentMenuItem).left.activeValue).left.activeValue;
+                }
+                // Player 1 is selecting
+                else
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
+
+            }
+
+            // Move Menu Selection Right:
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+            {
+                // Check if player 1 has made a selection
+                if (players.Count == 1)
+                {
+                    // Select the item directly to the right
+                    if ((items.Find(x => x.activeValue == currentMenuItem).right.activeValue) != (int)players[0])
                         currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
-                }
-
-
-                // Press ENTER while some menu item is highlighted:
-                if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
-                {
-                    // Add character to List 
-                    players.Add((Player.Type)items.Find(x => (int)x.activeValue == currentMenuItem).activeValue);
-
-                    // If only one player or both players have made selections
-                    if (numOfPlayers == 1 || players.Count == 2)
-                    {
-                        // DEBUG: Add remaining characters to list
-                        for(int j = 0; j < 6; j++)
-                        {
-                            if (!players.Contains((Player.Type)j))
-                            {
-                                players.Add((Player.Type)j);
-                            }
-                            if(players.Count >= 4)
-                            {
-                                j = 6;
-                            }
-                        }
-
-                        // Create player entitities and add to game options
-                        for(int i = 0; i < players.Count; i++)
-                        {
-                            // add as a human player
-                            if(i < numOfPlayers)
-                                parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true));
-                            // add a comp player
-                            else
-                                parentManager.gameOptions.players.Add(new Player(this.creator, players[i], false));
-
-                        }
-                         
-                        S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(diffMenu);
-                        this.flagForDeletion = true;
-                    }
-                    // Begin character selection for player 2
+                    // the item to the right has been selected so choose the item to the right of the right item.
                     else
-                    {
-                        // Move selection to first availble character for player two
-                        if (currentMenuItem == 0)
-                            currentMenuItem = 1;
-                        else
-                            currentMenuItem = 0;
-                    }
-       
-                }
+                        currentMenuItem = items.Find(y=> y.activeValue == items.Find(x => x.activeValue == currentMenuItem).right.activeValue).right.activeValue;
 
-                // Option: Cancel Key
-                if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
-                {
-                    // If first player has made a choice 
-                    if(players.Count == 1)
-                    {
-                        // Remove the character choice so they can choose again
-                        players.RemoveAt(0);
-                    }
-                    // No selections have been made and we return to the player count menu
-                    else
-                    {
-                        S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
-                        parentManager.AddStateQueue(playerCountMenu);
-                        this.flagForDeletion = true;
-                    }
-                   
                 }
+                // Player 1 is selecting
+                else
+                    currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
             }
 
 
+            // Press ENTER while some menu item is highlighted:
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            {
+                // Add character to List
+                players.Add((Player.Type)items.Find(x => (int)x.activeValue == currentMenuItem).activeValue);
+
+                // If only one player or both players have made selections
+                if (numOfPlayers == 1 || players.Count == 2)
+                {
+                    // DEBUG: Add remaining characters to list
+                    for(int j = 0; j < 6; j++)
+                    {
+                        if (!players.Contains((Player.Type)j))
+                        {
+                            players.Add((Player.Type)j);
+                        }
+                        if(players.Count >= 4)
+                        {
+                            j = 6;
+                        }
+                    }
+
+                    // Create player entitities and add to game options
+                    for(int i = 0; i < players.Count; i++)
+                    {
+                        // add as a human player
+                        if(i < numOfPlayers)
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true));
+                        // add a comp player
+                        else
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], false));
+
+                    }
+
+                    S_DifficultyMenu diffMenu = new S_DifficultyMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(diffMenu);
+                    this.flagForDeletion = true;
+                }
+                // Begin character selection for player 2
+                else
+                {
+                    // Move selection to first availble character for player two
+                    if (currentMenuItem == 0)
+                        currentMenuItem = 1;
+                    else
+                        currentMenuItem = 0;
+                }
+
+            }
+
+            // Option: Cancel Key
+            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
+            {
+                // If first player has made a choice
+                if(players.Count == 1)
+                {
+                    // Remove the character choice so they can choose again
+                    players.RemoveAt(0);
+                }
+                // No selections have been made and we return to the player count menu
+                else
+                {
+                    S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
+                    parentManager.AddStateQueue(playerCountMenu);
+                    this.flagForDeletion = true;
+                }
+
+            }
         }
+
 
         // Draw:
         public override void Draw(GameTime gameTime)
@@ -319,5 +310,5 @@ namespace Monogame_Party_2018
         }
     }
 
-   
+
 }
