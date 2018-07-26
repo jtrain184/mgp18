@@ -59,19 +59,12 @@ namespace Monogame_Party_2018
             //DEBUG:
             if (finishedAnimation)
             {
-                if (spaceType == Entity.typeSpace.star)
-                {
-                    this.flagForDeletion = true;
-                }
-                else
-                {
-
-
+ 
                     parentManager.round.active = true;      //Make S_Round Active
                     parentManager.round.playerIsPlaying = false;   // Allow S_Round to get next player
                     this.flagForDeletion = true;
                     Console.WriteLine("Performed land action code. Going back to S_Round");
-                }
+                
             }
             if (Math.Abs(moveYPos) > 60)
                 finishedAnimation = true;
@@ -96,21 +89,21 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
 
             sb.Begin();
-            Vector2 menuItemPos = new Vector2(landAction.xPos, landAction.yPos + moveYPos);
-            Vector2 menuTextPos = menuItemPos + new Vector2(30, -25);     // Draw text to the right of object
-            if (spaceType == Entity.typeSpace.star)
-            {
-                sb.Draw(this.parentManager.game.spr_star, new Rectangle((int)menuItemPos.X - 50 / 2, (int)menuItemPos.Y - 50 / 2, 50, 50), Color.White);
-            }
-            else
-            {
 
-                sb.Draw(this.parentManager.game.spr_coin, new Rectangle((int)menuItemPos.X - 50 / 2, (int)menuItemPos.Y - 50 / 2, 50, 50), Color.White);
+            // Draw coins animation if landing on red or blue
+            if (spaceType == Entity.typeSpace.blue || spaceType == Entity.typeSpace.red)
+            {
+                Vector2 coinPos = new Vector2(landAction.xPos, landAction.yPos + moveYPos);
+                Vector2 coinTextPos = coinPos + new Vector2(30, -25);     // Draw text to the right of object
+
+
+                sb.Draw(this.parentManager.game.spr_coin, new Rectangle((int)coinPos.X - 50 / 2, (int)coinPos.Y - 50 / 2, 50, 50), Color.White);
                 if (spaceType == Entity.typeSpace.blue)
-                    sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, menuTextPos, Color.Blue);
+                    sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, coinTextPos, Color.Blue);
                 if (spaceType == Entity.typeSpace.red)
-                    sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, menuTextPos, Color.Red);
+                    sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, coinTextPos, Color.Red);
             }
+            
             
             sb.End();
         }

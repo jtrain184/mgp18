@@ -33,14 +33,11 @@ namespace Monogame_Party_2018
             // Move the player
             if (moveNum > 0)
             {
-
-
-                // Move the meeple untill it's close enough to space
                 // Find next space
                 E_Space spaceToMoveTo = currPlayer.currSpace.spacesAhead[0];
 
+                // Move the meeple untill it's close enough to space
                 if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F) {
-          //currPlayer.meeple.setPos(MGP_Tools.EaseVector(currPlayer.meeple.getPosCenter(), spaceToMoveTo.getPosCenter(), 1.5F));
                     float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getPosCenter().X, 0.15F);
                     float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.15F);
                     currPlayer.meeple.setPos(new Vector2(newX, newY));
@@ -52,24 +49,18 @@ namespace Monogame_Party_2018
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
 
-                    // TO DO : Create state to buy star option ----------------------------------------------------------------
-                    if(currPlayer.currSpace.type == Entity.typeSpace.star)
+                    // If player passes a star
+                    if (currPlayer.currSpace.type == Entity.typeSpace.star)
                     {
-                        S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
-                        parentManager.AddStateQueue(landAction);
+                        S_BuyStar buyStar = new S_BuyStar(parentManager, 0, 0);
+                        parentManager.AddStateQueue(buyStar);
+                        this.active = false; //pause moving player
                     }
                 }
-
-
-
             }
             // finished moving meeple
             else
             {
-
-               // Console.WriteLine("Moved " + currPlayer.type + " " + moveNum.ToString() + " spaces");
-
-
                 S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
                 parentManager.AddStateQueue(landAction);
                 this.flagForDeletion = true;

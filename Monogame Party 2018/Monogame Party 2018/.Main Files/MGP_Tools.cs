@@ -14,7 +14,6 @@ namespace Monogame_Party_2018
         {
             Vector2 moveDir = target - current; // get the direction we want to move in
             moveDir.Normalize();    // make movement only 1 at a time
-            //Console.WriteLine("Move Direction: " + moveDir);
             return current + (moveDir * speed);
         }
 
@@ -39,7 +38,7 @@ namespace Monogame_Party_2018
         public static void Assign_Star(S_Board board)
         {
             // Get index of next star based on where current star was
-            int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star) + board.parentManager.random.Next(10, 25);
+            int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star) + board.parentManager.random.Next(2, 3);
             board.spaces[starIndex].type = Entity.typeSpace.star;
             board.spaces[starIndex].sprite = board.parentManager.game.piece_star64; ;
 

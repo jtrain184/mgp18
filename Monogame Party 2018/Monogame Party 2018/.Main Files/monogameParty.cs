@@ -18,6 +18,7 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_cameraCrosshair;
         public Texture2D spr_playerBox;
         public Texture2D spr_playerBoxFrame;
+        public Texture2D spr_messageBox;
 
         // Characters:
         public Texture2D spr_Manford;
@@ -98,6 +99,7 @@ namespace Monogame_Party_2018 {
             spr_cameraCrosshair = Content.Load<Texture2D>("BoardGameComponents/cameraCrosshair");
             spr_playerBox = Content.Load<Texture2D>("BoardGameComponents/spr_playerBox");
             spr_playerBoxFrame = Content.Load<Texture2D>("BoardGameComponents/spr_playerBoxFrame");
+            spr_messageBox = Content.Load<Texture2D>("BoardGameComponents/spr_messageBox");
 
             // Characters:
             spr_Manford = Content.Load<Texture2D>("Characters/spr_Manford");
