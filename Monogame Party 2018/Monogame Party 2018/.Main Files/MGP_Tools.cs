@@ -38,9 +38,21 @@ namespace Monogame_Party_2018
         public static void Assign_Star(S_Board board)
         {
             // Get index of next star based on where current star was
-            int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star) + board.parentManager.random.Next(2, 3);
-            board.spaces[starIndex].type = Entity.typeSpace.star;
-            board.spaces[starIndex].sprite = board.parentManager.game.piece_star64; ;
+            int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star);
+            
+
+            // When creating game;
+            if (starIndex < 0)
+            {
+                starIndex = 0;
+                board.spaces[starIndex].prevType = Entity.typeSpace.blue;
+            }
+            int nextStarIndex =  board.parentManager.random.Next(2, 3);
+
+            // Change current star and new star
+            board.spaces[starIndex].changeSpace(board.spaces[starIndex].prevType);
+            board.spaces[starIndex + nextStarIndex].changeSpace(Entity.typeSpace.star);
+            
 
         }
 

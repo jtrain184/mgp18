@@ -55,6 +55,13 @@ namespace Monogame_Party_2018
                 // Finished star animation or couldnt buy star
                 if (moveYPos > 90 || !buystar)
                 {
+                    // Move the star
+                    if(buystar)
+                    {
+                        MGP_Tools.Assign_Star(parentManager.boardGame);
+                        parentManager.round.currPlayer.currSpace.type = Entity.typeSpace.chance;
+                    }
+
                     this.flagForDeletion = true;
                     // Start moving the player again
                     parentManager.states.Find(s => s.GetType() == typeof(S_MovePlayer)).active = true;
