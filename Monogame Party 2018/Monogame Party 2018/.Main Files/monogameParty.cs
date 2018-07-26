@@ -18,14 +18,21 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_cameraCrosshair;
         public Texture2D spr_playerBox;
         public Texture2D spr_playerBoxFrame;
+        public Texture2D spr_boxInner;
 
         // Characters:
         public Texture2D spr_Manford;
+        public Texture2D spr_ManfordCloseup;
         public Texture2D spr_Louie;
+        public Texture2D spr_LouieCloseup;
         public Texture2D spr_Sue;
+        public Texture2D spr_SueCloseup;
         public Texture2D spr_Velma;
+        public Texture2D spr_VelmaCloseup;
         public Texture2D spr_Frank;
+        public Texture2D spr_FrankCloseup;
         public Texture2D spr_Wilber;
+        public Texture2D spr_WilberCloseup;
 
         // MainMenu:
         public Texture2D bg_titleScreen;
@@ -98,14 +105,21 @@ namespace Monogame_Party_2018 {
             spr_cameraCrosshair = Content.Load<Texture2D>("BoardGameComponents/cameraCrosshair");
             spr_playerBox = Content.Load<Texture2D>("BoardGameComponents/spr_playerBox");
             spr_playerBoxFrame = Content.Load<Texture2D>("BoardGameComponents/spr_playerBoxFrame");
+            spr_boxInner = Content.Load<Texture2D>("BoardGameComponents/spr_boxInner");
 
             // Characters:
             spr_Manford = Content.Load<Texture2D>("Characters/spr_Manford");
+            spr_ManfordCloseup = Content.Load<Texture2D>("Characters/spr_ManfordCloseup");
             spr_Louie = Content.Load<Texture2D>("Characters/spr_Louie");
+            spr_LouieCloseup = Content.Load<Texture2D>("Characters/spr_LouieCloseup");
             spr_Sue = Content.Load<Texture2D>("Characters/spr_Sue");
+            spr_SueCloseup = Content.Load<Texture2D>("Characters/spr_SueCloseup");
             spr_Velma = Content.Load<Texture2D>("Characters/spr_Velma");
+            spr_VelmaCloseup = Content.Load<Texture2D>("Characters/spr_VelmaCloseup");
             spr_Frank = Content.Load<Texture2D>("Characters/spr_Frank");
+            spr_FrankCloseup = Content.Load<Texture2D>("Characters/spr_FrankCloseup");
             spr_Wilber = Content.Load<Texture2D>("Characters/spr_Wilber");
+            spr_WilberCloseup = Content.Load<Texture2D>("Characters/spr_WilberCloseup");
 
             // MainMenu:
             bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
