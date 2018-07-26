@@ -21,16 +21,15 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            Console.WriteLine("Results of minigame: ");
-            for(int i = 3; i >= 0; i--)
+            // Wait till player presses enter to start the next round
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
             {
-                Console.WriteLine(Math.Abs(i - 4).ToString() + ". " + results[i].type);
+                // Begin next round:
+                parentManager.round.currRound++;
+                parentManager.round.playerIsPlaying = false;
+                this.flagForDeletion = true;
+                parentManager.round.active = true;
             }
-
-            //DEBUG:
-            parentManager.boardGame.active = true;      //Make S_Board Active
-            this.flagForDeletion = true;
-            Console.WriteLine("Performed minigame results. Going back to S_Board");
         }
 
 

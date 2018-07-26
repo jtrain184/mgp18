@@ -23,7 +23,7 @@ namespace Monogame_Party_2018
 
         // Game Vars
         public int numRounds;
-        public int currRound;
+       
         public S_Round round;
         public List<Player> players;
 
@@ -31,7 +31,7 @@ namespace Monogame_Party_2018
 
 
 
-        // TODO ------------------- ROUNDS ----------------------- <<< -------- DO IT
+        
 
 
         // Constructor:
@@ -40,7 +40,7 @@ namespace Monogame_Party_2018
             cameraProperties = new CameraProperties();
 
             this.gameOptions = creator.gameOptions;
-            this.currRound = 1;
+            
             //DEBUG:
             if (creator.gameOptions.numRounds < 1)
                 this.numRounds = 1;
@@ -52,7 +52,12 @@ namespace Monogame_Party_2018
             // Create testDice
             testDice = new E_Dice(this, parentManager.game.spr_testDice, MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y, 10);
 
-
+          
+            // Start first round:
+            S_Round newRound = new S_Round(parentManager, 0, 0);
+            parentManager.AddStateQueue(newRound);
+            this.round = newRound;
+            
 
 
         } // end constructor
@@ -66,23 +71,20 @@ namespace Monogame_Party_2018
 
             //DEBUG:
             // Game is finished:
-            if (currRound > numRounds) {
+            if (round.currRound > numRounds) {
+                // Go to game results state
                 S_GameResults gameResults = new S_GameResults(parentManager, 0, 0);
                 parentManager.AddStateQueue(gameResults);
-                this.flagForDeletion = true; // delete this S_Board object
+
+                // remove every other state
+                foreach(State s in parentManager.states)
+                {
+                    s.flagForDeletion = true;
+                }
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
 
-            // DEBUG: Start the round
-            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
-
-                // Create a new Round:
-                S_Round newRound = new S_Round(parentManager, 0, 0);
-                parentManager.AddStateQueue(newRound);
-                this.active = false;
-                Console.WriteLine("Paused the S_Board");
-                currRound++;
-            }
+        
 
             // Listen for pausing here:
             ListenPause();

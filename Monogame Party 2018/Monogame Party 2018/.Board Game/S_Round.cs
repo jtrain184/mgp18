@@ -14,21 +14,20 @@ namespace Monogame_Party_2018
 
         public GameOptions gameOptions;
         public Player currPlayer;
-        public bool playerIsPlaying;
-        public int playerIndex;
+        public bool playerIsPlaying;    //determine whether or not to change current player
+        public int playerIndex;     // current player
+        public int currRound;   // current round number
 
         // Constructor
         public S_Round(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            // Assign this round to gamestate manager
+            // Assign the round to gamestate manager
             parentManager.round = this;
 
             gameOptions = creator.gameOptions;
 
-            // DEBUG:
-            Console.WriteLine("Created Round " + creator.boardGame.currRound);
             currPlayer = gameOptions.players[0];
-            playerIndex = -1;
+            playerIndex = 0;
             playerIsPlaying = false;
         }
 
@@ -41,26 +40,29 @@ namespace Monogame_Party_2018
             //DEBUG:
             if (!playerIsPlaying) {
                 // Last player went. Go to minigame
-                if (playerIndex == 3)
+                if (playerIndex == 4)
                 {
                     S_MinigameInstructions minigameInstructions = new S_MinigameInstructions(parentManager, 0, 0);
                     parentManager.AddStateQueue(minigameInstructions);
-                    this.flagForDeletion = true;
-                    Console.WriteLine("Round over, going to minigame. Closing Round state");
+                    playerIndex = 0;    // start with player one when round resumes
+                    this.active = false;
+
+                    
                 }
+                // Start next players turn
                 else
                 {
+                    currPlayer = gameOptions.players[playerIndex];  // set current player
+                    MGP_Tools.Follow_Player(parentManager, currPlayer); // move camera to current player
 
-                    playerIndex++;
-                    playerIsPlaying = true;
-                    currPlayer = gameOptions.players[playerIndex];
-                    MGP_Tools.Follow_Player(parentManager, currPlayer);
-
-
+                    // start confirm player state
                     S_ConfirmPlayer confirmPlayer = new S_ConfirmPlayer(parentManager, 0, 0);
                     parentManager.AddStateQueue(confirmPlayer);
                     this.active = false;
-                    Console.WriteLine("Paused the S_Round");
+
+                    //set vars for next round
+                    playerIndex++;
+                    playerIsPlaying = true;
                 }
             }
 
