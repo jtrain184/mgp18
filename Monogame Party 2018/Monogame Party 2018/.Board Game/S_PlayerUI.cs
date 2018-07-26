@@ -71,18 +71,15 @@ namespace Monogame_Party_2018 {
     void drawPlayer(Player p, Vector2 pos, SpriteBatch sb, Color c) {
       // Box:
       sb.Draw(this.parentManager.game.spr_playerBox, pos, c);
+      sb.Draw(this.parentManager.game.spr_boxInner, pos, Color.White);
+
       // Frame:
       sb.Draw(this.parentManager.game.spr_playerBoxFrame, pos, Color.White);
 
-      // Character Name:
-
       // Picture:
-
-      // Coin Graphic:
+      sb.Draw(p.closeupPicture, pos, Color.White);
 
       // Coin Count:
-
-      // Star Graphic:
 
       // Star Count:
 

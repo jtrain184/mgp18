@@ -70,7 +70,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include=".Board Game\B_PirateBay.cs" />
@@ -179,15 +179,22 @@
     </None>
     <None Include=".Other\app.manifest" />
     <None Include="Content\BoardGameComponents\cameraCrosshair.xnb" />
+    <None Include="Content\BoardGameComponents\spr_boxInner.xnb" />
     <None Include="Content\BoardGameComponents\spr_playerBox.xnb" />
     <None Include="Content\BoardGameComponents\spr_playerBoxFrame.xnb" />
     <None Include="Content\BoardGameComponents\testDiceBox.xnb" />
     <None Include="Content\Characters\spr_Frank.xnb" />
+    <None Include="Content\Characters\spr_FrankCloseup.xnb" />
     <None Include="Content\Characters\spr_Louie.xnb" />
+    <None Include="Content\Characters\spr_LouieCloseup.xnb" />
     <None Include="Content\Characters\spr_Manford.xnb" />
+    <None Include="Content\Characters\spr_ManfordCloseup.xnb" />
     <None Include="Content\Characters\spr_Sue.xnb" />
+    <None Include="Content\Characters\spr_SueCloseup.xnb" />
     <None Include="Content\Characters\spr_Velma.xnb" />
+    <None Include="Content\Characters\spr_VelmaCloseup.xnb" />
     <None Include="Content\Characters\spr_Wilber.xnb" />
+    <None Include="Content\Characters\spr_WilberCloseup.xnb" />
     <None Include="Content\MainMenu\bg_titleScreen.xnb" />
     <None Include="Content\MainMenu\ft_debugMedium.xnb" />
     <None Include="Content\MainMenu\ft_debugSmall.xnb" />

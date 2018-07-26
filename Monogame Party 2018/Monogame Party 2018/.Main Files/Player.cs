@@ -25,6 +25,7 @@ namespace Monogame_Party_2018 {
 
         public bool isHuman;
         public E_Meeple meeple;
+        public Texture2D closeupPicture;
         public Player.Type type;
         public E_Space currSpace;
 
@@ -68,31 +69,37 @@ namespace Monogame_Party_2018 {
 
                 case Player.Type.FRANK:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.closeupPicture = gameStateManager.game.spr_FrankCloseup;
                     this.type = type;
                     break;
 
                 case Player.Type.LOUIE:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.closeupPicture = gameStateManager.game.spr_LouieCloseup;
                     this.type = type;
                     break;
 
                 case Player.Type.MANFORD:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.closeupPicture = gameStateManager.game.spr_ManfordCloseup;
                     this.type = type;
                     break;
 
                 case Player.Type.SUE:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.closeupPicture = gameStateManager.game.spr_SueCloseup;
                     this.type = type;
                     break;
 
                 case Player.Type.VELMA:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.closeupPicture = gameStateManager.game.spr_VelmaCloseup;
                     this.type = type;
                     break;
 
                 case Player.Type.WILBER:
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
+                    this.closeupPicture = gameStateManager.game.spr_WilberCloseup;
                     this.type = type;
                     break;
             } // end switch
