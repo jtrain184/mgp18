@@ -16,6 +16,10 @@ namespace Monogame_Party_2018 {
         // Graphics: ------------------------------------------------->>
         // BoardGameComponenents:
         public Texture2D spr_cameraCrosshair;
+        public Texture2D spr_playerBox;
+        public Texture2D spr_playerBoxFrame;
+        public Texture2D spr_boxInner;
+        public Texture2D spr_messageBox;
 
         // Characters:
         public Texture2D spr_Manford;
