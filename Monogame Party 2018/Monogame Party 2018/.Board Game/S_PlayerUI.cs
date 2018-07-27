@@ -80,12 +80,40 @@ namespace Monogame_Party_2018 {
       sb.Draw(p.closeupPicture, pos, Color.White);
 
       // Coin Count:
+      Vector2 coinPos = new Vector2(pos.X + 257, pos.Y + 22);
+      sb.DrawString(this.parentManager.game.ft_playerUIdata, p.coins.ToString(), coinPos, Color.Gold);
 
       // Star Count:
+      Vector2 starPos = new Vector2(pos.X + 257, pos.Y + 87);
+      sb.DrawString(this.parentManager.game.ft_playerUIdata, p.stars.ToString(), starPos, Color.Goldenrod);
 
       // Current Place:
+      sb.Draw(GetPlaceSprite(p.place), pos, Color.White);
+
+
+    } // end drawPlayer member function
+
+
+    Texture2D GetPlaceSprite(int place) {
+      switch (place) {
+        case 1: return parentManager.game.spr_firstPlace;
+
+        case 2: return parentManager.game.spr_secondPlace;
+
+        case 3: return parentManager.game.spr_thirdPlace;
+
+        case 4: return parentManager.game.spr_fourthPlace;
+
+        default: // error
+          return parentManager.game.noSprite;
+
+      } // end switch
+
 
     }
+
+
+
 
   }
 }

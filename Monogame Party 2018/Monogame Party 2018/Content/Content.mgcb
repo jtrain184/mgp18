@@ -281,7 +281,7 @@
 /processorParam:TextureFormat=Compressed
 /build:MainMenu/ft_debugMedium.spritefont
 
-#begin BoardGameComponents/spr_playerBox.png
+#begin playerUI/spr_boxInner.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -291,9 +291,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:BoardGameComponents/spr_playerBox.png
+/build:playerUI/spr_boxInner.png
 
-#begin BoardGameComponents/spr_playerBoxFrame.png
+#begin playerUI/spr_firstPlace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -303,9 +303,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:BoardGameComponents/spr_playerBoxFrame.png
+/build:playerUI/spr_firstPlace.png
 
-#begin BoardGameComponents/spr_boxInner.png
+#begin playerUI/spr_fourthPlace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -315,9 +315,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:BoardGameComponents/spr_boxInner.png
+/build:playerUI/spr_fourthPlace.png
 
-#begin Characters/spr_FrankCloseup.png
+#begin playerUI/spr_playerBox.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -327,9 +327,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/spr_FrankCloseup.png
+/build:playerUI/spr_playerBox.png
 
-#begin Characters/spr_LouieCloseup.png
+#begin playerUI/spr_playerBoxFrame.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -339,9 +339,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/spr_LouieCloseup.png
+/build:playerUI/spr_playerBoxFrame.png
 
-#begin Characters/spr_ManfordCloseup.png
+#begin playerUI/spr_secondPlace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -351,9 +351,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/spr_ManfordCloseup.png
+/build:playerUI/spr_secondPlace.png
 
-#begin Characters/spr_SueCloseup.png
+#begin playerUI/spr_thirdPlace.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -363,9 +363,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/spr_SueCloseup.png
+/build:playerUI/spr_thirdPlace.png
 
-#begin Characters/spr_VelmaCloseup.png
+#begin playerUI/spr_FrankCloseup.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -375,9 +375,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/spr_VelmaCloseup.png
+/build:playerUI/spr_FrankCloseup.png
 
-#begin Characters/spr_WilberCloseup.png
+#begin playerUI/spr_LouieCloseup.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -387,5 +387,60 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Characters/spr_WilberCloseup.png
+/build:playerUI/spr_LouieCloseup.png
+
+#begin playerUI/spr_ManfordCloseup.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:playerUI/spr_ManfordCloseup.png
+
+#begin playerUI/spr_SueCloseup.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:playerUI/spr_SueCloseup.png
+
+#begin playerUI/spr_VelmaCloseup.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:playerUI/spr_VelmaCloseup.png
+
+#begin playerUI/spr_WilberCloseup.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:playerUI/spr_WilberCloseup.png
+
+#begin playerUI/playerUIdata.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:playerUI/playerUIdata.spritefont
 

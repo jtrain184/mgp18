@@ -16,23 +16,14 @@ namespace Monogame_Party_2018 {
         // Graphics: ------------------------------------------------->>
         // BoardGameComponenents:
         public Texture2D spr_cameraCrosshair;
-        public Texture2D spr_playerBox;
-        public Texture2D spr_playerBoxFrame;
-        public Texture2D spr_boxInner;
 
         // Characters:
         public Texture2D spr_Manford;
-        public Texture2D spr_ManfordCloseup;
         public Texture2D spr_Louie;
-        public Texture2D spr_LouieCloseup;
         public Texture2D spr_Sue;
-        public Texture2D spr_SueCloseup;
         public Texture2D spr_Velma;
-        public Texture2D spr_VelmaCloseup;
         public Texture2D spr_Frank;
-        public Texture2D spr_FrankCloseup;
         public Texture2D spr_Wilber;
-        public Texture2D spr_WilberCloseup;
 
         // MainMenu:
         public Texture2D bg_titleScreen;
@@ -40,6 +31,21 @@ namespace Monogame_Party_2018 {
 
         // PirateBay:
         public Texture2D bg_pirateBay;
+
+        // playerUI:
+        public Texture2D spr_SueCloseup;
+        public Texture2D spr_LouieCloseup;
+        public Texture2D spr_WilberCloseup;
+        public Texture2D spr_FrankCloseup;
+        public Texture2D spr_VelmaCloseup;
+        public Texture2D spr_ManfordCloseup;
+        public Texture2D spr_playerBox;
+        public Texture2D spr_playerBoxFrame;
+        public Texture2D spr_boxInner;
+        public Texture2D spr_firstPlace;
+        public Texture2D spr_secondPlace;
+        public Texture2D spr_thirdPlace;
+        public Texture2D spr_fourthPlace;
 
         // Spaces:
         public Texture2D piece_blue64;
@@ -65,6 +71,7 @@ namespace Monogame_Party_2018 {
         public SpriteFont ft_menuDescriptionFont;
         public SpriteFont ft_debugSmall;
         public SpriteFont ft_debugMedium;
+        public SpriteFont ft_playerUIdata;
 
         // CameraProperties:
         public Camera2D cameraObject;
@@ -103,23 +110,29 @@ namespace Monogame_Party_2018 {
 
             // BoardGameComponents
             spr_cameraCrosshair = Content.Load<Texture2D>("BoardGameComponents/cameraCrosshair");
-            spr_playerBox = Content.Load<Texture2D>("BoardGameComponents/spr_playerBox");
-            spr_playerBoxFrame = Content.Load<Texture2D>("BoardGameComponents/spr_playerBoxFrame");
-            spr_boxInner = Content.Load<Texture2D>("BoardGameComponents/spr_boxInner");
+
+            // playerUI
+            spr_playerBox = Content.Load<Texture2D>("playerUI/spr_playerBox");
+            spr_playerBoxFrame = Content.Load<Texture2D>("playerUI/spr_playerBoxFrame");
+            spr_boxInner = Content.Load<Texture2D>("playerUI/spr_boxInner");
+            spr_ManfordCloseup = Content.Load<Texture2D>("playerUI/spr_ManfordCloseup");
+            spr_LouieCloseup = Content.Load<Texture2D>("playerUI/spr_LouieCloseup");
+            spr_SueCloseup = Content.Load<Texture2D>("playerUI/spr_SueCloseup");
+            spr_VelmaCloseup = Content.Load<Texture2D>("playerUI/spr_VelmaCloseup");
+            spr_FrankCloseup = Content.Load<Texture2D>("playerUI/spr_FrankCloseup");
+            spr_WilberCloseup = Content.Load<Texture2D>("playerUI/spr_WilberCloseup");
+            spr_firstPlace = Content.Load<Texture2D>("playerUI/spr_firstPlace");
+            spr_secondPlace = Content.Load<Texture2D>("playerUI/spr_secondPlace");
+            spr_thirdPlace = Content.Load<Texture2D>("playerUI/spr_thirdPlace");
+            spr_fourthPlace = Content.Load<Texture2D>("playerUI/spr_fourthPlace");
 
             // Characters:
             spr_Manford = Content.Load<Texture2D>("Characters/spr_Manford");
-            spr_ManfordCloseup = Content.Load<Texture2D>("Characters/spr_ManfordCloseup");
             spr_Louie = Content.Load<Texture2D>("Characters/spr_Louie");
-            spr_LouieCloseup = Content.Load<Texture2D>("Characters/spr_LouieCloseup");
             spr_Sue = Content.Load<Texture2D>("Characters/spr_Sue");
-            spr_SueCloseup = Content.Load<Texture2D>("Characters/spr_SueCloseup");
             spr_Velma = Content.Load<Texture2D>("Characters/spr_Velma");
-            spr_VelmaCloseup = Content.Load<Texture2D>("Characters/spr_VelmaCloseup");
             spr_Frank = Content.Load<Texture2D>("Characters/spr_Frank");
-            spr_FrankCloseup = Content.Load<Texture2D>("Characters/spr_FrankCloseup");
             spr_Wilber = Content.Load<Texture2D>("Characters/spr_Wilber");
-            spr_WilberCloseup = Content.Load<Texture2D>("Characters/spr_WilberCloseup");
 
             // MainMenu:
             bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
@@ -144,6 +157,7 @@ namespace Monogame_Party_2018 {
             ft_menuDescriptionFont = Content.Load<SpriteFont>("MainMenu/ft_menuDescriptionFont");
             ft_debugSmall = Content.Load<SpriteFont>("MainMenu/ft_debugSmall");
             ft_debugMedium = Content.Load<SpriteFont>("MainMenu/ft_debugMedium");
+            ft_playerUIdata = Content.Load<SpriteFont>("playerUI/playerUIdata");
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");

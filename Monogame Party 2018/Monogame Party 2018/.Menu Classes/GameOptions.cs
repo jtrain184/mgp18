@@ -18,5 +18,9 @@ namespace Monogame_Party_2018
         //Contructor
         public GameOptions() {
             this.players = new List<Player>(); }
+
+
+
+
     }
 }
