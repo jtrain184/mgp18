@@ -108,6 +108,12 @@ namespace Monogame_Party_2018 {
         } // end constructor
 
 
+        public int GetCombinedScore() {
+          int starScore = 1000;
+          int coinScore = 1;
+          return this.stars * starScore + this.coins * coinScore;
+        }
+
 
     } // end player class
 }

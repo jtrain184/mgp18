@@ -50,7 +50,6 @@ namespace Monogame_Party_2018
                     playerIndex = 0;    // start with player one when round resumes
                     this.active = false;
 
-                    
                 }
                 // Start next players turn
                 else
@@ -72,6 +71,9 @@ namespace Monogame_Party_2018
             // Listen for and allow for pauses:
             ListenPause();
 
+            // Update player places:
+            updatePlayerPlaces();
+
 
         } // end Update method
 
@@ -82,5 +84,45 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
         }
-    }
+
+
+        public void updatePlayerPlaces() {
+          // start with all players:
+          List<Player> playersLeft = new List<Player>();
+          List<Player> playersToRemove = new List<Player>();
+          foreach (Player p in parentManager.gameOptions.players) {
+            playersLeft.Add(p);
+          }
+
+          // now based on that score, place the players:
+          int place = 1; // start with first place
+          while (playersLeft.Count > 0) {
+            int largestScore = 0;
+            int curScore;
+            foreach (Player p in playersLeft) { // determine largest score
+              curScore = p.GetCombinedScore();
+              if (curScore > largestScore)
+                largestScore = curScore;
+            }
+
+            foreach (Player p in playersLeft) { // assign place of current largest score (can be ties)
+              curScore = p.GetCombinedScore();
+              if (curScore == largestScore) {
+                p.place = place;
+                playersToRemove.Add(p);
+              }
+            }
+
+            // Clean up playersLeft (cannot remove directly in above loop)
+            foreach (Player p in playersToRemove) { playersLeft.Remove(p); }
+            playersToRemove.Clear();
+
+            place++; // since there are only 4 players, the maximum place will have is 4
+          } // end while
+
+        } // end update places
+
+
+
+    } // end S_Round class
 }

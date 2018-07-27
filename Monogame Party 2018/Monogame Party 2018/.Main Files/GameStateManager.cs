@@ -164,7 +164,7 @@ namespace Monogame_Party_2018
               int line = 0;
               int lineHeight = 16;
               string str = "STATES";
-              Vector2 debugTextPos = new Vector2(16, line * lineHeight);
+              Vector2 debugTextPos = new Vector2(400, line * lineHeight);
               sb.DrawString(this.game.ft_debugMedium, str, debugTextPos, Color.Black);
               line++;
 

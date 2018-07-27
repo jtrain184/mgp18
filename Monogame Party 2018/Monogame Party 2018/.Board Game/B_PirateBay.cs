@@ -32,10 +32,10 @@ namespace Monogame_Party_2018
 
         // DEBUG
         Vector2 SCREEN_MID = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
-        Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X - 16, MGP_Constants.SCREEN_MID_Y - 16);
-        Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X, 0);
-        Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X, 24);
-        Vector2 DEBUG_TEXT_LINE3 = new Vector2(MGP_Constants.SCREEN_MID_X, 48);
+        Vector2 DEBUG_POS = new Vector2(MGP_Constants.SCREEN_MID_X + 64, MGP_Constants.SCREEN_MID_Y - 16);
+        Vector2 DEBUG_TEXT_LINE1 = new Vector2(MGP_Constants.SCREEN_MID_X + 64, 0);
+        Vector2 DEBUG_TEXT_LINE2 = new Vector2(MGP_Constants.SCREEN_MID_X + 64, 24);
+        Vector2 DEBUG_TEXT_LINE3 = new Vector2(MGP_Constants.SCREEN_MID_X + 64, 48);
 
 
         // Collection of Spaces:
