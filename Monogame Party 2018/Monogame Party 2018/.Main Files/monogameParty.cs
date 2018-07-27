@@ -111,6 +111,7 @@ namespace Monogame_Party_2018 {
 
             // BoardGameComponents
             spr_cameraCrosshair = Content.Load<Texture2D>("BoardGameComponents/cameraCrosshair");
+            spr_messageBox = Content.Load<Texture2D>("BoardGameComponents/spr_messageBox");
 
             // playerUI
             spr_playerBox = Content.Load<Texture2D>("playerUI/spr_playerBox");
