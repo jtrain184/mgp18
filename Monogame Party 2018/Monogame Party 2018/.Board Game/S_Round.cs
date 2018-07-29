@@ -26,12 +26,10 @@ namespace Monogame_Party_2018
 
             gameOptions = creator.gameOptions;
 
-            currPlayer = gameOptions.players[0];
+            // Set first player to player index 0;
             playerIndex = 0;
+            currPlayer = gameOptions.players[playerIndex];
             playerIsPlaying = false;
-
-            // DEBUG Give player 2 enough coins to buy a lot of stars
-            gameOptions.players[1].coins = 100;
         }
 
         // Update:

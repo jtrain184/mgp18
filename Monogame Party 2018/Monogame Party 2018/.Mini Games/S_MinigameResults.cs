@@ -38,6 +38,19 @@ namespace Monogame_Party_2018
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
+            SpriteBatch sb = this.parentManager.game.spriteBatch;
+
+            sb.Begin();
+
+            // DEBUG IN PROGRESS
+            sb.Draw(this.parentManager.game.confirmPlayerFade, new Rectangle(0, 0, MGP_Constants.SCREEN_WIDTH, MGP_Constants.SCREEN_HEIGHT), Color.White);
+
+            string text = "Minigame Results Screen\nUnder Construction\nPress Enter to continue";
+            Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer);
+            sb.DrawString(this.parentManager.game.ft_confirmPlayer, text, textPos, Color.White);
+
+            sb.End();
         }
     }
+    
 }

@@ -58,6 +58,7 @@ namespace Monogame_Party_2018 {
 
         // Other:
         public Texture2D noSprite; // used as default and errors
+        public Texture2D confirmPlayerFade; // used for transition in confirm player state
 
 
         // Test graphic
@@ -73,6 +74,7 @@ namespace Monogame_Party_2018 {
         public SpriteFont ft_debugSmall;
         public SpriteFont ft_debugMedium;
         public SpriteFont ft_playerUIdata;
+        public SpriteFont ft_confirmPlayer;
 
         // CameraProperties:
         public Camera2D cameraObject;
@@ -153,6 +155,7 @@ namespace Monogame_Party_2018 {
 
             // Other:
             noSprite = Content.Load<Texture2D>("noSprite");
+            confirmPlayerFade = Content.Load<Texture2D>("transitions/confirmPlayerFade");   // Black box used for transitions
 
             // Fonts:
             ft_mainMenuFont = Content.Load<SpriteFont>("MainMenu/ft_mainMenuFont");
@@ -160,6 +163,7 @@ namespace Monogame_Party_2018 {
             ft_debugSmall = Content.Load<SpriteFont>("MainMenu/ft_debugSmall");
             ft_debugMedium = Content.Load<SpriteFont>("MainMenu/ft_debugMedium");
             ft_playerUIdata = Content.Load<SpriteFont>("playerUI/playerUIdata");
+            ft_confirmPlayer = Content.Load<SpriteFont>("transitions/confirmPlayerFont");
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");

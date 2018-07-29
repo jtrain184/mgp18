@@ -47,11 +47,13 @@ namespace Monogame_Party_2018
                 starIndex = 0;
                 board.spaces[starIndex].prevType = Entity.typeSpace.blue;
             }
-            int nextStarIndex =  board.parentManager.random.Next(2, 3);
+            
+            // Randomly select a new postion for the star
+            int nextStarIndex =  board.parentManager.random.Next(15, 30);
 
             // Change current star and new star
             board.spaces[starIndex].changeSpace(board.spaces[starIndex].prevType);
-            board.spaces[starIndex + nextStarIndex].changeSpace(Entity.typeSpace.star);
+            board.spaces[(starIndex + nextStarIndex) % 40].changeSpace(Entity.typeSpace.star);
             
 
         }
