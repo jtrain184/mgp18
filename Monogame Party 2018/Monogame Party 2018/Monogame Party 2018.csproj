@@ -77,6 +77,7 @@
     <Compile Include=".Board Game\CameraProperties.cs" />
     <Compile Include=".Board Game\E_Dice.cs" />
     <Compile Include=".Board Game\E_Space.cs" />
+    <Compile Include=".Board Game\PauseItem.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
     <Compile Include=".Board Game\S_BuyStar.cs" />
     <Compile Include=".Board Game\S_ConfirmPlayer.cs" />
@@ -85,6 +86,7 @@
     <Compile Include=".Board Game\S_Pause.cs" />
     <Compile Include=".Board Game\S_PlayerUI.cs" />
     <Compile Include=".Main Files\MGP_Tools.cs" />
+    <Compile Include=".Menu Classes\E_Glove.cs" />
     <Compile Include=".Mini Games\S_MinigameInstructions.cs" />
     <Compile Include=".Board Game\S_MovePlayer.cs" />
     <Compile Include=".Board Game\S_RollDice.cs" />
@@ -193,6 +195,7 @@
     <None Include="Content\MainMenu\ft_mainMenuFont.xnb" />
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
+    <None Include="Content\MainMenu\spr_glove.xnb" />
     <None Include="Content\noSprite.xnb" />
     <None Include="Content\PirateBay\bg_pirateBay.xnb" />
     <None Include="Content\playerUI\playerUIdata.xnb" />

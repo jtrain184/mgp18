@@ -27,6 +27,9 @@ namespace Monogame_Party_2018
         // State count for debugging
         private int stateCount;
 
+        // Flag for clearing all states (must be done last)
+        bool clearAllStates;
+
         // List of states, we will loop over these:
         public List<State> states = new List<State>();
         public List<State> statesToCreate = new List<State>();
@@ -52,7 +55,10 @@ namespace Monogame_Party_2018
             this.km = new KeyboardManager();
             this.gameOptions = new GameOptions();
             this.random = new Random();
-            this.debugMode = false;
+            this.debugMode = true; // before game release turn off! TODO TODO TODO
+            this.clearAllStates = false;
+
+
 
             // Add the ** FIRST ** game state here:
             State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
@@ -74,31 +80,39 @@ namespace Monogame_Party_2018
             int delayTimer = 0;
             while (num > -1) {
 
-                // Start with topmost state:
-                s = states[num];
+              // Start with topmost state:
+              s = states[num];
 
-                // ** UPDATE ALL STATES **
-                // Only update if State is 'active' and not flagged for deletion:
-                if ((delayTimer <= 0) && s.active && !s.flagForDeletion) {
-                  s.Update(gameTime, input);
-                }
+              // ** UPDATE ALL STATES **
+              // Only update if State is 'active' and not flagged for deletion:
+              if ((delayTimer <= 0) && s.active && !s.flagForDeletion) {
+                s.Update(gameTime, input);
+              }
 
 
-                //
-                if (s.sendDelay > 0) {
-                  delayTimer += s.sendDelay;
-                  s.sendDelay = 0; // reset send delay from object (notification of it was received)
-                }
-                //if (delayTimer > 0) { Console.WriteLine("timer = " + delayTimer.ToString()); }
+              //
+              if (s.sendDelay > 0) {
+                delayTimer += s.sendDelay;
+                s.sendDelay = 0; // reset send delay from object (notification of it was received)
+              }
+              //if (delayTimer > 0) { Console.WriteLine("timer = " + delayTimer.ToString()); }
 
-                // State is flagged for deletion, remove it now:
-                if (s.flagForDeletion) { RemoveState(s); }
+              // State is flagged for deletion, remove it now:
+              if (s.flagForDeletion) { RemoveState(s); }
 
-                --num;
+              --num;
             } // end while
 
             // decrement timer
             delayTimer--;
+
+
+
+            // Clear all states flag?
+            if (clearAllStates) {
+              states.Clear();
+              clearAllStates = false; // reset flag
+            }
 
 
             // Create any new states?
@@ -131,6 +145,7 @@ namespace Monogame_Party_2018
                 Console.WriteLine("turned debugMode off");
               }
             }
+
 
 
 
@@ -203,6 +218,10 @@ namespace Monogame_Party_2018
         public void AddStateQueue(State s)
         {
             statesToCreate.Add(s);
+        }
+
+        public void clearStates() {
+          clearAllStates = true;
         }
 
 
