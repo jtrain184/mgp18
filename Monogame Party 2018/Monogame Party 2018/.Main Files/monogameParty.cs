@@ -66,6 +66,7 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_testDice;
         public Texture2D spr_coin;
         public Texture2D spr_star;
+        public Texture2D spr_diceBox;
 
         // --------------------------------------------------END GRAPHICS
 
@@ -169,6 +170,7 @@ namespace Monogame_Party_2018 {
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
+            spr_diceBox = Content.Load<Texture2D>("BoardGameComponents/spr_diceBox");
 
             // Game objects
             spr_coin = Content.Load<Texture2D>("BoardGameComponents/piece_coin64");

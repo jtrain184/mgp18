@@ -55,10 +55,12 @@ namespace Monogame_Party_2018
 
             SpriteBatch sb = this.parentState.parentManager.game.spriteBatch;
             sb.Begin();
-            SpriteFont pipFont = this.parentState.parentManager.game.ft_menuDescriptionFont;
+            SpriteFont pipFont = this.parentState.parentManager.game.ft_playerUIdata;
             Vector2 dicePosition = this.getPos();
             // TODO:  FIX POSITION ---------------------------------------------------------------------------------------
-            sb.DrawString(pipFont, diceRoll.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 250, MGP_Constants.SCREEN_MID_Y - 125), Color.Black);
+            sb.Draw(this.parentState.parentManager.game.spr_diceBox, new Vector2(MGP_Constants.SCREEN_MID_X + 150, MGP_Constants.SCREEN_MID_Y - 125), Color.White);
+            sb.DrawString(pipFont, diceRoll.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 168, MGP_Constants.SCREEN_MID_Y - 109), Color.DarkBlue);
+            
             sb.End();
         }
     }
