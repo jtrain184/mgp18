@@ -61,6 +61,13 @@ namespace Monogame_Party_2018
                     {
                         // update last players coins
                         results[currentIndex].coins += entities[currentIndex].changeValue;
+
+                        // Prevent negative coin values
+                        if (results[currentIndex].coins < 0)
+                        {
+                            results[currentIndex].coins = 0;
+                        }
+
                         changedLastPlayer = true;
                     }
                     waitTime++;
@@ -69,6 +76,13 @@ namespace Monogame_Party_2018
                 {
                     // update players coins
                     results[currentIndex].coins += entities[currentIndex].changeValue;
+
+                    // Prevent negative coin values
+                    if (results[currentIndex].coins < 0)
+                    {
+                        results[currentIndex].coins = 0;
+                    }
+
                     // ease next result
                     currentIndex++;
                     

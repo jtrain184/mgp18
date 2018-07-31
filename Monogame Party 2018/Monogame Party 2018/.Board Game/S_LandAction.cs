@@ -39,6 +39,11 @@ namespace Monogame_Party_2018
             {
                 // Subtract a 3 coins from player
                 creator.round.currPlayer.coins -= numCoins;
+                // Prevent negative values
+                if (creator.round.currPlayer.coins < 0)
+                {
+                    creator.round.currPlayer.coins = 0;
+                }
                 landAction.text = "- " + numCoins.ToString();
             }
             else if(spaceType == Entity.typeSpace.star)
