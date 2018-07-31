@@ -29,6 +29,7 @@ namespace Monogame_Party_2018 {
         // MainMenu:
         public Texture2D bg_titleScreen;
         public Texture2D spr_cloudIcon;
+        public Texture2D spr_glove;
 
         // PirateBay:
         public Texture2D bg_pirateBay;
@@ -65,6 +66,7 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_testDice;
         public Texture2D spr_coin;
         public Texture2D spr_star;
+        public Texture2D spr_diceBox;
 
         // --------------------------------------------------END GRAPHICS
 
@@ -141,6 +143,7 @@ namespace Monogame_Party_2018 {
             // MainMenu:
             bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
             spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon");
+            spr_glove = Content.Load<Texture2D>("MainMenu/spr_glove");
 
             // PirateBay:
             bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
@@ -167,6 +170,7 @@ namespace Monogame_Party_2018 {
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
+            spr_diceBox = Content.Load<Texture2D>("BoardGameComponents/spr_diceBox");
 
             // Game objects
             spr_coin = Content.Load<Texture2D>("BoardGameComponents/piece_coin64");
