@@ -208,7 +208,7 @@ namespace Monogame_Party_2018 {
 
         /// This is called when the game should draw itself.
         protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.CornflowerBlue);
 
             manager.Draw(gameTime);
             base.Draw(gameTime);

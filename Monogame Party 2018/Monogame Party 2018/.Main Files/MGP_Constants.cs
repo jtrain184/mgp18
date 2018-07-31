@@ -16,10 +16,10 @@ namespace Monogame_Party_2018
         public static int SCREEN_MID_X = SCREEN_WIDTH / 2;
         public static int SCREEN_MID_Y = SCREEN_HEIGHT / 2;
 
-        public static int BOARD_MAX_WIDTH = 1760;
-        public static int BOARD_MAX_HEIGHT = 1440;
-        public static int BOARD_MIN_WIDTH = 640;
-        public static int BOARD_MIN_HEIGHT = 360;
+        public static int BOARD_MAX_WIDTH = 2400;
+        public static int BOARD_MAX_HEIGHT = 1800;
+        public static int BOARD_MIN_WIDTH = 0;
+        public static int BOARD_MIN_HEIGHT = 0;
 
 
     }
