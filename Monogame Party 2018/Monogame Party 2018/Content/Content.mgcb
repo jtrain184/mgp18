@@ -499,3 +499,22 @@
 /processorParam:TextureFormat=Color
 /build:MainMenu/spr_glove.png
 
+#begin Minigames/spr_minigameInstructionBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigames/spr_minigameInstructionBox.png
+
+#begin Transitions/confirmPlayerFont_s27.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Transitions/confirmPlayerFont_s27.spritefont
+
