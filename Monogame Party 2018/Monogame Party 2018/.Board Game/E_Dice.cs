@@ -15,21 +15,15 @@ namespace Monogame_Party_2018
     public class E_Dice : Entity
     {
         // Member variables
-        //public const int ROLL_SPEED = 20;
         public int pipCount;
-        //public float timer = 0F;
         public int diceRoll = 1;
-        public const int MAX_DICE_ROLL = 10;    // Set the max number you can roll on a dice
+        public const int MAX_DICE_ROLL = 9;    // Set the max number you can roll on a dice
 
         // Constructor:
         public E_Dice(State parentState, Texture2D sprite, int x, int y, int pips = 1000) : base(parentState, sprite, x, y)
         {
             this.pipCount = pips;
-        }
-
-        // Member methods
-        public void Roll()
-        {
+            this.pos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 150);
 
         }
 
@@ -45,8 +39,10 @@ namespace Monogame_Party_2018
                 diceRoll = 1;
             else
                 diceRoll++;
-            
-            
+
+
+            this.pos = parentState.parentManager.round.currPlayer.currSpace.pos - new Vector2(0, 150);
+
         }
 
         public override void Draw(GameTime gameTime)
@@ -56,10 +52,13 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentState.parentManager.game.spriteBatch;
             sb.Begin();
             SpriteFont pipFont = this.parentState.parentManager.game.ft_playerUIdata;
-            Vector2 dicePosition = this.getPos();
+            //Vector2 dicePosition = this.getPos();
+
             // TODO:  FIX POSITION ---------------------------------------------------------------------------------------
-            sb.Draw(this.parentState.parentManager.game.spr_diceBox, new Vector2(MGP_Constants.SCREEN_MID_X + 150, MGP_Constants.SCREEN_MID_Y - 125), Color.White);
-            sb.DrawString(pipFont, diceRoll.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 168, MGP_Constants.SCREEN_MID_Y - 109), Color.DarkBlue);
+            Vector2 dicePos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 150);
+
+            sb.Draw(this.parentState.parentManager.game.spr_diceBox, dicePos, Color.White);
+            sb.DrawString(pipFont, diceRoll.ToString(), new Vector2(dicePos.X + 20, dicePos .Y + 20), Color.DarkBlue);
             
             sb.End();
         }

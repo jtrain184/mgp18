@@ -25,6 +25,13 @@
 /processorParam:TextureFormat=Color
 /build:BoardGameComponents/cameraCrosshair.png
 
+#begin BoardGameComponents/confirmPlayerFont_Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:BoardGameComponents/confirmPlayerFont_Bold.spritefont
+
 #begin BoardGameComponents/piece_coin64.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -36,6 +43,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:BoardGameComponents/piece_coin64.png
+
+#begin BoardGameComponents/spr_diceBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:BoardGameComponents/spr_diceBox.png
 
 #begin BoardGameComponents/spr_messageBox.png
 /importer:TextureImporter
@@ -196,6 +215,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:MainMenu/spr_cloudIcon.png
+
+#begin MainMenu/spr_glove.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MainMenu/spr_glove.png
+
+#begin Minigames/spr_minigameInstructionBox.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Minigames/spr_minigameInstructionBox.png
 
 #begin noSprite.png
 /importer:TextureImporter
@@ -475,41 +518,12 @@
 /processorParam:TextureFormat=Compressed
 /build:Transitions/confirmPlayerFont.spritefont
 
-#begin BoardGameComponents/spr_diceBox.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
+#begin Transitions/confirmPlayerFont_Bold.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:BoardGameComponents/spr_diceBox.png
-
-#begin MainMenu/spr_glove.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:MainMenu/spr_glove.png
-
-#begin Minigames/spr_minigameInstructionBox.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Minigames/spr_minigameInstructionBox.png
+/processorParam:TextureFormat=Compressed
+/build:Transitions/confirmPlayerFont_Bold.spritefont
 
 #begin Transitions/confirmPlayerFont_s27.spritefont
 /importer:FontDescriptionImporter
@@ -517,4 +531,11 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Transitions/confirmPlayerFont_s27.spritefont
+
+#begin Transitions/confirmPlayerFont_sm.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Transitions/confirmPlayerFont_sm.spritefont
 

@@ -82,8 +82,8 @@ namespace Monogame_Party_2018
             // DEBUG: Show the number of spaces left to move.
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();
-            SpriteFont spacesLeft = this.parentManager.game.ft_mainMenuFont;
-            sb.DrawString(spacesLeft, moveNum.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 250, MGP_Constants.SCREEN_MID_Y - 125), Color.Black);
+            SpriteFont spacesLeft = this.parentManager.game.ft_playerUIdata;
+            sb.DrawString(spacesLeft, moveNum.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
             sb.End();
 
         }

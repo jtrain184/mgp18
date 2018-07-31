@@ -79,7 +79,9 @@ namespace Monogame_Party_2018 {
         public SpriteFont ft_debugMedium;
         public SpriteFont ft_playerUIdata;
         public SpriteFont ft_confirmPlayer;
+        public SpriteFont ft_confirmPlayer_Bold;
         public SpriteFont ft_confirmPlayer_s27;
+        public SpriteFont ft_confirmPlayer_sm;
 
 
         // CameraProperties:
@@ -171,7 +173,9 @@ namespace Monogame_Party_2018 {
             ft_debugMedium = Content.Load<SpriteFont>("MainMenu/ft_debugMedium");
             ft_playerUIdata = Content.Load<SpriteFont>("playerUI/playerUIdata");
             ft_confirmPlayer = Content.Load<SpriteFont>("transitions/confirmPlayerFont");
+            ft_confirmPlayer_Bold = Content.Load<SpriteFont>("transitions/confirmPlayerFont_Bold");
             ft_confirmPlayer_s27 = Content.Load<SpriteFont>("transitions/confirmPlayerFont_s27");
+            ft_confirmPlayer_sm = Content.Load<SpriteFont>("transitions/confirmPlayerFont_sm");
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");

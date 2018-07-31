@@ -19,7 +19,7 @@ namespace Monogame_Party_2018
         {
             transitionTimerOne = 0;
             transitionTimerTwo = 0;
-            roundsLeft = parentManager.gameOptions.numRounds - parentManager.round.currRound;
+            roundsLeft = parentManager.gameOptions.numRounds - parentManager.round.currRound + 1;
             playerName = parentManager.round.currPlayer.type.ToString().ToUpper();
 
         }
@@ -71,11 +71,21 @@ namespace Monogame_Party_2018
                 string text =  playerName + " START";
                 if(roundsLeft <= 3)
                 {
-                    text = "LAST " + roundsLeft.ToString() + " TURNS\n" + text;
+                    text = "LAST" + roundsLeft.ToString() + " TURNS\n" + text;
                 }
+                else if( roundsLeft == 1)
+                {
+                    text = "LAST TURN\n" + text;
+                }
+
+                Vector2 boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_Bold);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, boldTextPos, Color.White);
 
                 Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer);
                 sb.DrawString(this.parentManager.game.ft_confirmPlayer, text, textPos, Color.Black);
+
+                Vector2 sm_textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_sm);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_sm, text, sm_textPos, Color.Gold);
 
             }
 

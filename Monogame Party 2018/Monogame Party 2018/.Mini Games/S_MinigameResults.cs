@@ -13,8 +13,8 @@ namespace Monogame_Party_2018
         public List<E_MinigameResult> entities;
         public List<Vector2> resultPos;
         public int currentIndex;
-        public TimeSpan gameTime;
-        public int startSec;
+        public int waitTime;
+        public const int maxWaitTime = 120; // # of frames
         public bool changedLastPlayer;
         
         
@@ -33,7 +33,7 @@ namespace Monogame_Party_2018
             }
 
             currentIndex = 0;
-            gameTime = new GameTime().TotalGameTime;
+            waitTime = 0;
             changedLastPlayer = false;
         }
 
@@ -48,8 +48,8 @@ namespace Monogame_Party_2018
                 // Last result has been eased
                 if(currentIndex == 3)
                 {
-                    // Wait 3 seconds after displaying last result
-                    if (gameTime.TotalGameTime.Seconds >= startSec + 3)
+                    // Wait  seconds after displaying last result
+                    if (waitTime >= maxWaitTime)
                     {
                         // Begin next round:
                         parentManager.round.currRound++;
@@ -63,6 +63,7 @@ namespace Monogame_Party_2018
                         results[currentIndex].coins += entities[currentIndex].changeValue;
                         changedLastPlayer = true;
                     }
+                    waitTime++;
                 }
                 else
                 {
@@ -70,7 +71,7 @@ namespace Monogame_Party_2018
                     results[currentIndex].coins += entities[currentIndex].changeValue;
                     // ease next result
                     currentIndex++;
-                    startSec = gameTime.TotalGameTime.Seconds;
+                    
                 }
             }
             // Continue to ease the current indexed result
