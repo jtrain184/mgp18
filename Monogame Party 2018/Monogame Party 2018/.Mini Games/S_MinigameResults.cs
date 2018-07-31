@@ -10,10 +10,29 @@ namespace Monogame_Party_2018
     public class S_MinigameResults : State
     {
         public List<Player> results;
+        public List<E_MinigameResult> entities;
+        public List<Vector2> resultPos;
+        public int currentIndex;
+        public TimeSpan gameTime;
+        public int startSec;
+        
+        
+
         // Constructor
         public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results) : base(creator, xPos, yPos)
         {
             this.results = results;
+            entities = new List<E_MinigameResult>();
+            resultPos = new List<Vector2>();
+            
+            for(int i = 0; i <= 3; i++)
+            {
+                entities.Add(new E_MinigameResult(creator, Math.Abs(i - 4), results[i], new Vector2(350, -100)));
+                resultPos.Add(new Vector2(350, 500 - (i * 100)));
+            }
+
+            currentIndex = 0;
+            gameTime = new GameTime().TotalGameTime; 
         }
 
         // Update:
@@ -21,15 +40,35 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            // Wait till player presses enter to start the next round
-            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            // If result has finished easing
+            if(Vector2.Distance(entities[currentIndex].position, resultPos[currentIndex]) < 1.0f )
             {
-                // Begin next round:
-                parentManager.round.currRound++;
-                parentManager.round.playerIsPlaying = false;
-                this.flagForDeletion = true;
-                parentManager.round.active = true;
+                // Last result has been eased
+                if(currentIndex == 3)
+                {
+                    // Wait 3 seconds after displaying last result
+                    if (gameTime.TotalGameTime.Seconds >= startSec + 3)
+                    {
+                        // Begin next round:
+                        parentManager.round.currRound++;
+                        parentManager.round.playerIsPlaying = false;
+                        this.flagForDeletion = true;
+                        parentManager.round.active = true;
+                    }
+                }
+                else
+                {
+                    // ease next result
+                    currentIndex++;
+                    startSec = gameTime.TotalGameTime.Seconds;
+                }
             }
+            // Continue to ease the current indexed result
+            else
+            {
+                entities[currentIndex].position.Y = MGP_Tools.Ease(entities[currentIndex].position.Y, resultPos[currentIndex].Y, 0.1f);
+            }
+
         }
 
 
@@ -42,14 +81,23 @@ namespace Monogame_Party_2018
 
             sb.Begin();
 
-            // DEBUG IN PROGRESS
-            sb.Draw(this.parentManager.game.confirmPlayerFade, new Rectangle(0, 0, MGP_Constants.SCREEN_WIDTH, MGP_Constants.SCREEN_HEIGHT), Color.White);
+            // Background Box
+            Vector2 backgroundBox = new Vector2(MGP_Constants.SCREEN_MID_X - 300, MGP_Constants.SCREEN_MID_Y - 300);
+            sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)backgroundBox.X, (int)backgroundBox.Y, 600, 600), new Color(0, 0, 128, 200));
 
-            string text = "Minigame Results Screen\nUnder Construction\nPress Enter to continue";
-            Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer);
-            sb.DrawString(this.parentManager.game.ft_confirmPlayer, text, textPos, Color.White);
+            // Title
+            String title = "Minigame Results";
+            Vector2 titlePos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + 300 , backgroundBox.Y + 50), title, this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, title, titlePos, Color.White);
 
             sb.End();
+
+            // Player Result Entities
+            for(int i = 0; i <=3; i++)
+            {
+                entities[i].Draw(gameTime);
+            }
+           
         }
     }
     
