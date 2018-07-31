@@ -62,6 +62,7 @@ namespace Monogame_Party_2018
                 rollTime++;
             }
 
+            // Allow the transition to run after select is pressed jsut once
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one) && currPlayer.isHuman == true)
             {
                 playerSelected = true;
@@ -77,7 +78,7 @@ namespace Monogame_Party_2018
                 {
                     if(Vector2.Distance(currPlayer.meeple.pos, dice.pos) <= 50.0f)
                     {
-                        bounceUp = true;
+                        bounceUp = true;    // stop moving up
                     }
                     else
                     {
@@ -89,20 +90,21 @@ namespace Monogame_Party_2018
                 {
                     if (Vector2.Distance(currPlayer.meeple.getPosCenter(), currPlayer.currSpace.getPosCenter()) <= 10.0f)
                     {
-                        bounceDown = true;
+                        bounceDown = true;  // stop moving down
                     }
                     else
                     {
                         currPlayer.meeple.pos.Y = MGP_Tools.Ease(currPlayer.meeple.pos.Y, currPlayer.currSpace.pos.Y, 0.05f);
                     }
                 }
+                // transistions are finished
                 else if(bounceUp && bounceDown){
 
+                    // wait 1/4 of a sec before the meeple starts moving spaces
                     if (waitTime >= 15)
                     {
-                        // Get player roll and reset dice
+                        // Start moving the player based on the roll
                         S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, parentManager.boardGame.testDice.diceRoll);
-
                         parentManager.AddStateQueue(movePlayer);
                         this.flagForDeletion = true;
                     }
@@ -133,20 +135,5 @@ namespace Monogame_Party_2018
         }
 
 
-        public bool moveMeepleUp()
-        {
-            if ((parentManager.round.currPlayer.meeple.pos.Y - parentManager.boardGame.testDice.pos.Y) <= 64)
-                return true;
-            else
-                return false;
-        }
-
-        public bool moveMeepleDown()
-        {
-            if (Vector2.Distance(parentManager.round.currPlayer.meeple.pos, parentManager.round.currPlayer.currSpace.getPosCenter()) <= 1.0f)
-                return true;
-            else
-                return false;
-        }
     }
 }
