@@ -127,9 +127,7 @@ namespace Monogame_Party_2018
             }
 
 
-            // If this is the top layer, allow moving active menu:
-            if (this.isTopLayer)
-            {
+         
                 playerIndex = players.FindIndex(x => x == currentPlayer);
 
                 // Check if only one player left
@@ -343,7 +341,7 @@ namespace Monogame_Party_2018
                         }
                     }
 
-                }               
+                               
             }
 
 
