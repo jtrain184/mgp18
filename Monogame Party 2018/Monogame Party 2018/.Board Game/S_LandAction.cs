@@ -31,6 +31,7 @@ namespace Monogame_Party_2018
             {
                 // Add 3 coins to player
                 creator.round.currPlayer.coins += numCoins;
+                creator.round.currPlayer.totalCoinsGained += numCoins;
                 landAction.text = "+ " + numCoins.ToString();
             }
 
@@ -45,10 +46,6 @@ namespace Monogame_Party_2018
                     creator.round.currPlayer.coins = 0;
                 }
                 landAction.text = "- " + numCoins.ToString();
-            }
-            else if(spaceType == Entity.typeSpace.star)
-            {
-                creator.round.currPlayer.stars++;
             }
             else
             {

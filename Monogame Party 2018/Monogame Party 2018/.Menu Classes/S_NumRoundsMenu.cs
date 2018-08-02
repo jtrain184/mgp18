@@ -142,7 +142,7 @@ namespace Monogame_Party_2018
                 // Twenty Rounds Selected
                 else
                 {
-                    parentManager.gameOptions.numRounds = 20;
+                    parentManager.gameOptions.numRounds = 1;        /////////////////////////// DEBUG ALLOW ONLY ONE ROUND FOR TESTING
                     S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
                     parentManager.AddStateQueue(bonusMenu);
                     this.flagForDeletion = true;

@@ -69,14 +69,15 @@ namespace Monogame_Party_2018
             {
                 // draw text 
                 string text =  playerName + " START";
-                if(roundsLeft <= 3)
-                {
-                    text = "LAST" + roundsLeft.ToString() + " TURNS\n" + text;
-                }
-                else if( roundsLeft == 1)
+                if (roundsLeft == 1)
                 {
                     text = "LAST TURN\n" + text;
                 }
+                else if(roundsLeft <= 3)
+                {
+                    text = "LAST" + roundsLeft.ToString() + " TURNS\n" + text;
+                }
+               
 
                 Vector2 boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_Bold);
                 sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, boldTextPos, Color.White);

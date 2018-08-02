@@ -75,12 +75,22 @@ namespace Monogame_Party_2018
             //DEBUG:
             // Game is finished:
             if (round.currRound > numRounds) {
-                // Go to game results state
-                S_GameResults gameResults = new S_GameResults(parentManager, 0, 0);
-                parentManager.AddStateQueue(gameResults);
+                if (this.gameOptions.allowBonus)
+                {
+                    // Go to game results state to count bonuses
+                    S_GameResults gameResults = new S_GameResults(parentManager, 0, 0);
+                    parentManager.AddStateQueue(gameResults);
+                }
+                else
+                {
+                    // Go to final results
+                    S_FinalResults finalResults = new S_FinalResults(parentManager, 0, 0);
+                    parentManager.AddStateQueue(finalResults);
 
-                // remove every other state
-                foreach(State s in parentManager.states)
+                }
+
+                // Remove all states
+                foreach (State s in parentManager.states)
                 {
                     s.flagForDeletion = true;
                 }

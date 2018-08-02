@@ -22,6 +22,7 @@ namespace Monogame_Party_2018
         // Constructor
         public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results) : base(creator, xPos, yPos)
         {
+            // Results are in reverse order ie. index 0 = last, index 3 = first
             this.results = results;
             entities = new List<E_MinigameResult>();
             resultPos = new List<Vector2>();
@@ -31,6 +32,16 @@ namespace Monogame_Party_2018
                 entities.Add(new E_MinigameResult(creator, Math.Abs(i - 4), results[i], new Vector2(350, -100)));
                 resultPos.Add(new Vector2(350, 500 - (i * 100)));
             }
+
+            // Add coins to players totalCoins gained 
+            for(int j = 0; j < 3; j++)
+            {
+                if(entities[j].changeValue > 0)
+                    results[j].totalCoinsGained += entities[j].changeValue;
+            }
+
+            // Add minigame win to 1st place player
+            results[3].totalMiniGameWins++;
 
             currentIndex = 0;
             waitTime = 0;
@@ -76,6 +87,9 @@ namespace Monogame_Party_2018
                 {
                     // update players coins
                     results[currentIndex].coins += entities[currentIndex].changeValue;
+
+                    
+                    
 
                     // Prevent negative coin values
                     if (results[currentIndex].coins < 0)

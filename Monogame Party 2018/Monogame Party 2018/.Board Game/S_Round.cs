@@ -30,6 +30,7 @@ namespace Monogame_Party_2018
             playerIndex = 0;
             currPlayer = gameOptions.players[playerIndex];
             playerIsPlaying = false;
+            currRound = 1;
         }
 
         // Update:
