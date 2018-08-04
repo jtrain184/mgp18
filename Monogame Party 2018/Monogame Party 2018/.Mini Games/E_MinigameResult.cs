@@ -21,6 +21,8 @@ namespace Monogame_Party_2018
         public Vector2 position;
         public int changeValue;
 
+        public Texture2D background;
+
         public E_MinigameResult(GameStateManager parentManager, int place, Player player, Vector2 pos)
         {
             this.parentManager = parentManager;
@@ -30,6 +32,8 @@ namespace Monogame_Party_2018
             this.coinSprite = parentManager.game.spr_coin;
             this.coinValueString = getCoinValueString(place);
             this.position = pos;
+
+            
             
         }
 

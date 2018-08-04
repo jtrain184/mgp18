@@ -26,6 +26,9 @@ namespace Monogame_Party_2018
         public E_MinigameOneExplosion explosionSprite;
         public bool isExploding;
 
+        public int waitTime;
+        public const int maxWaitTime = 60;
+
 
         //Debug
         public bool playGame;
@@ -80,6 +83,8 @@ namespace Monogame_Party_2018
             explosionSprite = new E_MinigameOneExplosion(this);
             isExploding = false;
 
+            waitTime = maxWaitTime;
+
             // DEBUG: SKIP THE GAME
             this.playGame = playGame;
         }
@@ -98,7 +103,7 @@ namespace Monogame_Party_2018
                     resultsList.Add(p);
                 }
 
-                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 1);
                 parentManager.AddStateQueue(minigameResults);
                 this.flagForDeletion = true;
                 Console.WriteLine("Finished minigame, going to results");
@@ -109,20 +114,27 @@ namespace Monogame_Party_2018
             {
                 explosionSprite.Update(gameTime, ks);
                 if (!explosionSprite.active)
+                {
                     isExploding = false;
+                    waitTime = 0;
+                }
 
+
+            }
+            // Wait sometime before moving onto next player
+            else if (waitTime < maxWaitTime)
+            {
+                waitTime++;
             }
             else
             {
-                // Update player index 
-                playerIndex = players.FindIndex(x => x == currentPlayer);
 
                 // Check if only one player left
                 if (players.Count == 1)
                 {
                     // Add player to results list
                     resultsList.Add(players[0]);
-                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 1);
                     parentManager.AddStateQueue(minigameResults);
                     this.flagForDeletion = true;
 
@@ -138,41 +150,46 @@ namespace Monogame_Party_2018
                 else
                 {
 
-
                     // Computer Logic
                     if (!currentPlayer.isHuman)
                     {
-                        // Set random amount of moves for computer
+                        // Set COM to move over every plunger once
                         if (!isMoving)
                         {
-                            comMove = parentManager.random.Next(plungers.Count, 10);
+                            comMove = plungers.Count - selectedPlungers;
                             isMoving = true;
                             comLastMove = gameTime.TotalGameTime;
                         }
                         else
                         {
-                            // Move computer selection
-                            if (comMove > 0)
+                            // Only move every 500ms
+                            if (comLastMove + comMoveSpeed < gameTime.TotalGameTime)
                             {
-                                // Only move every 500ms
-                                if (comLastMove + comMoveSpeed < gameTime.TotalGameTime)
+                                // Move computer selection
+                                if (comMove > 0)
                                 {
                                     comLastMove = gameTime.TotalGameTime;
                                     // move selection by (skipping over already pressed plungers)
                                     getNextSelection();
+
+                                    // If currently selecting the bomb, roll a dice based on difficulty 
+                                    if (currSelection.isBomb)
+                                        rollChance(parentManager.gameOptions.difficulty);
+
                                     comMove--;
                                 }
-                            }
-                            // Computer has finished moving
-                            else
-                            {
-                                isMoving = false;
+                                // Computer has finished moving
+                                else
+                                {
+                                    isMoving = false;
 
-                                handleSelection();
+                                    handleSelection();
 
-                                // Move current selection to next available plunger
-                                getNextSelection();
+                                    // Move current selection to next available plunger
+                                    getNextSelection();
+                                }
                             }
+                            
 
                         }
                     }   // End of Computer Logic
@@ -216,7 +233,7 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
 
-            
+
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();
 
@@ -224,7 +241,7 @@ namespace Monogame_Party_2018
             sb.Draw(this.parentManager.game.minigame_one_background, new Vector2(0, 0), Color.White);
 
             // Draw Plungers
-            foreach(E_MinigameOnePlunger p in plungers)
+            foreach (E_MinigameOnePlunger p in plungers)
             {
                 sb.Draw(p.sprite, p.pos, p.color);
             }
@@ -238,12 +255,12 @@ namespace Monogame_Party_2018
                 sb.Draw(players[i].meeple.sprite, new Rectangle((int)playerPositions[i].X, (int)playerPositions[i].Y, 100, 100), Color.White);
             }
 
-            
+
 
             // Draw current selection hand
             sb.Draw(parentManager.game.spr_glove, new Vector2(currSelection.pos.X - 60, currSelection.pos.Y + 40), Color.White);
 
-       
+
             // End drawing:
             sb.End();
 
@@ -251,8 +268,8 @@ namespace Monogame_Party_2018
             {
                 explosionSprite.Draw(gameTime);
             }
-                
-            
+
+
 
         }
 
@@ -263,7 +280,7 @@ namespace Monogame_Party_2018
         public void resetSelections()
         {
             selectedPlungers = 0;
-            foreach(E_MinigameOnePlunger p in plungers)
+            foreach (E_MinigameOnePlunger p in plungers)
             {
                 p.isBomb = false;
                 p.pressed = false;
@@ -304,6 +321,7 @@ namespace Monogame_Party_2018
         // Player made selection
         public void handleSelection()
         {
+
             // Player selected the bomb
             if (currSelection.isBomb)
             {
@@ -314,6 +332,11 @@ namespace Monogame_Party_2018
             {
                 bombNotChosen();
             }
+
+            // Update player index 
+            playerIndex = players.FindIndex(x => x == currentPlayer);
+            waitTime = 0;
+
         }
 
         // Selection is bomb
@@ -352,7 +375,7 @@ namespace Monogame_Party_2018
 
             isExploding = true;
             explosionSprite.active = true;
-            
+
 
         }
 
@@ -373,6 +396,36 @@ namespace Monogame_Party_2018
             {
                 currentPlayer = players[playerIndex + 1];
             }
+        }
+
+        // Decide whether or not Computer should stop moving
+        public void rollChance(MenuItem.Difficulty difficulty)
+        {
+            int chanceRoll = parentManager.random.Next(1, 101);
+            Console.WriteLine(chanceRoll);
+            int difficultyLevel;
+
+            switch (difficulty)
+            {
+                case MenuItem.Difficulty.EASY:
+                    difficultyLevel = 50;
+                    break;
+                case MenuItem.Difficulty.MEDIUM:
+                    difficultyLevel = 30;
+                    break;
+                case MenuItem.Difficulty.HARD:
+                    difficultyLevel = 10;
+                    break;
+                default:
+                    difficultyLevel = 0;
+                    break;
+            }
+            // If the chance lower than the difficulty number, the computer will stop moving 
+            // and choose that plunger
+            if (chanceRoll <= difficultyLevel)
+                comMove = 0;
+            
+
         }
     }
 

@@ -137,6 +137,8 @@ namespace Monogame_Party_2018
                     }
                     parentManager.gameOptions.numPlayers = 1;
 
+                    parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
+
                     S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0, true);
                     parentManager.AddStateQueue(minigame1);
                     this.flagForDeletion = true;
