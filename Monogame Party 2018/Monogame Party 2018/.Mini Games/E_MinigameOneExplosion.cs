@@ -30,9 +30,9 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // Increase size
-            if(resize < 120)
+            if(resize < 270)
             {
-                resize+=2;
+                resize+=6;
             }
             // Reset 
             else
