@@ -86,6 +86,8 @@
     <Compile Include=".Board Game\S_Pause.cs" />
     <Compile Include=".Board Game\S_PlayerUI.cs" />
     <Compile Include=".Main Files\MGP_Tools.cs" />
+    <Compile Include=".Mini Games\E_MinigameOneExplosion.cs" />
+    <Compile Include=".Mini Games\E_MinigameOnePlunger.cs" />
     <Compile Include=".Mini Games\E_MinigameResult.cs" />
     <Compile Include=".Menu Classes\E_Glove.cs" />
     <Compile Include=".Mini Games\S_MinigameInstructions.cs" />
