@@ -73,7 +73,7 @@ namespace Monogame_Party_2018
             else
             {
                 // Draw Star
-                Vector2 starPos = new Vector2(MGP_Constants.SCREEN_MID_X - 150, MGP_Constants.SCREEN_MID_Y - 150);
+                Vector2 starPos = new Vector2(MGP_Constants.SCREEN_MID_X - 150, MGP_Constants.SCREEN_MID_Y - 300);
                 Texture2D star;
                 if(timer % 30 < 6)
                     star = gsm.game.spr_star1;
@@ -86,13 +86,24 @@ namespace Monogame_Party_2018
                 else
                     star = gsm.game.spr_star5;
 
-
-
                 sb.Draw(star, starPos, Color.White);
 
-                // Draw Player Meeple
 
                 // Draw Player's name
+                Vector2 namePos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y + 75), winner.type.ToString(), gsm.game.ft_confirmPlayer_Bold);
+                sb.DrawString(gsm.game.ft_confirmPlayer_Bold, winner.type.ToString(), namePos, Color.White);
+
+                Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y + 75), winner.type.ToString(), this.parentManager.game.ft_confirmPlayer);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer, winner.type.ToString(), textPos, Color.Black);
+
+                Vector2 sm_textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y + 75), winner.type.ToString(), this.parentManager.game.ft_confirmPlayer_sm);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_sm, winner.type.ToString(), sm_textPos, Color.Gold);
+
+                // Draw Player Meeple
+                Vector2 meeplePos = new Vector2(namePos.X - 75, namePos.Y);
+                sb.Draw(winner.meeple.sprite, new Rectangle((int)meeplePos.X, (int)meeplePos.Y, 72, 72), Color.White);
+
+               
             }
             
 

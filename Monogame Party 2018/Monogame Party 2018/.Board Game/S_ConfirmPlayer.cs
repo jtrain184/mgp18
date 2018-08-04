@@ -68,29 +68,43 @@ namespace Monogame_Party_2018
             else
             {
                 // draw text 
-                string text =  playerName + " START";
+
+                // Draw text for last 3 rounds
+                string text = ""; 
                 if (roundsLeft == 1)
                 {
-                    text = "LAST TURN\n" + text;
+                    text = "LAST TURN"; 
                 }
                 else if(roundsLeft <= 3)
                 {
-                    text = "LAST" + roundsLeft.ToString() + " TURNS\n" + text;
+                    text = "LAST" + roundsLeft.ToString() + " TURNS";
                 }
-               
-
-                Vector2 boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_Bold);
+                Vector2 boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer_Bold);
                 sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, boldTextPos, Color.White);
 
-                Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer);
+                Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer);
                 sb.DrawString(this.parentManager.game.ft_confirmPlayer, text, textPos, Color.Black);
 
-                Vector2 sm_textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_sm);
+                Vector2 sm_textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer_sm);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_sm, text, sm_textPos, Color.Gold);
+
+
+                // Draw text for players name
+                text = playerName + " START";
+                boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_Bold);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, boldTextPos, Color.White);
+
+                textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer, text, textPos, Color.Black);
+
+                sm_textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_confirmPlayer_sm);
                 sb.DrawString(this.parentManager.game.ft_confirmPlayer_sm, text, sm_textPos, Color.Gold);
 
             }
 
             sb.End();
-        }
+        }// End Draw
+
+       
     }
 }
