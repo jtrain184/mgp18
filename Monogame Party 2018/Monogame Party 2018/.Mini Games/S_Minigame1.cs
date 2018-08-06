@@ -100,10 +100,6 @@ namespace Monogame_Party_2018
 
             // DEBUG: SKIP THE GAME
             this.playGame = playGame;
-          
-
-
-
         }
 
 

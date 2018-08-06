@@ -137,8 +137,8 @@ namespace Monogame_Party_2018
                     }
                     parentManager.gameOptions.numPlayers = 1;
 
-                    S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0, true);
-                    parentManager.AddStateQueue(minigame1);
+                    S_Minigame2 minigame = new S_Minigame2(parentManager, 0, 0, true);
+                    parentManager.AddStateQueue(minigame);
                     this.flagForDeletion = true;
 
 

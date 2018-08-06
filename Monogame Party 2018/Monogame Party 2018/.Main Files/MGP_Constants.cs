@@ -21,6 +21,8 @@ namespace Monogame_Party_2018
         public static int BOARD_MIN_WIDTH = 0;
         public static int BOARD_MIN_HEIGHT = 0;
 
-
+        public static double EASY_MULTIPLIER = 0.80;
+        public static double MEDIUM_MULTIPLIER = 0.65;
+        public static double HARD_MULTIPLIER = 0.30;
     }
 }
