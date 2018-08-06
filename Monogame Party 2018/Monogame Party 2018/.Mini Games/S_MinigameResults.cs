@@ -16,12 +16,26 @@ namespace Monogame_Party_2018
         public int waitTime;
         public const int maxWaitTime = 120; // # of frames
         public bool changedLastPlayer;
+
+        public Texture2D background;
         
         
 
         // Constructor
-        public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results) : base(creator, xPos, yPos)
+        public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results, int minigame) : base(creator, xPos, yPos)
         {
+            // assign background based on which minigame was just played
+            switch (minigame)
+            {
+                case 1:
+                    background = parentManager.game.minigame_one_background;
+                    break;
+                default:
+                    background = parentManager.game.bg_pirateBay;
+                    break;
+
+            }
+
             // Results are in reverse order ie. index 0 = last, index 3 = first
             this.results = results;
             entities = new List<E_MinigameResult>();
@@ -59,7 +73,7 @@ namespace Monogame_Party_2018
                 // Last result has been eased
                 if(currentIndex == 3)
                 {
-                    // Wait  seconds after displaying last result
+                    // Wait  time after displaying last result
                     if (waitTime >= maxWaitTime)
                     {
                         // Begin next round:
@@ -119,6 +133,8 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
 
             sb.Begin();
+
+            sb.Draw(background, new Vector2(0, 0), Color.White);
 
             // Background Box
             Vector2 backgroundBox = new Vector2(MGP_Constants.SCREEN_MID_X - 300, MGP_Constants.SCREEN_MID_Y - 300);

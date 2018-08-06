@@ -109,11 +109,36 @@ namespace Monogame_Party_2018
                 currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
             }
 
+            //DEBUG:  GO TO MINIGAME2
+            if (km.KeyPressed(Keys.D9))
+            {
+                // DEBUG: Go straight to the mini game
+                // Create player entitities and add to game options
+                for (int i = 0; i < 4; i++)
+                {
+                    // add as a human player
+                    if (i < 1)
+                        parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
+                    // add a comp player
+                    else
+                        parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false));
+
+                }
+                parentManager.gameOptions.numPlayers = 1;
+
+                S_Minigame2 minigame = new S_Minigame2(parentManager, 0, 0, true);
+                parentManager.AddStateQueue(minigame);
+
+                parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
+
+                this.flagForDeletion = true;
+
+            }
 
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
 
-                // Map: Pirte Bay
+                // Map: Pirate Bay
                 if (currentMenuItem == (int)MenuItem.MainMenu.PIRATE) {
                     parentManager.gameOptions.mapName = MenuItem.MainMenu.MOUNTAIN;
                     S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
@@ -137,8 +162,10 @@ namespace Monogame_Party_2018
                     }
                     parentManager.gameOptions.numPlayers = 1;
 
-                    S_Minigame2 minigame = new S_Minigame2(parentManager, 0, 0, true);
-                    parentManager.AddStateQueue(minigame);
+                    parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
+
+                    S_Minigame1 minigame1 = new S_Minigame1(parentManager, 0, 0, true);
+                    parentManager.AddStateQueue(minigame1);
                     this.flagForDeletion = true;
 
 

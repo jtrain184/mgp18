@@ -119,7 +119,7 @@ namespace Monogame_Party_2018
                     resultsList.Add(p);
                 }
 
-                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 2);
                 parentManager.AddStateQueue(minigameResults);
                 this.flagForDeletion = true;
                 Console.WriteLine("Finished minigame, going to results");
@@ -132,7 +132,7 @@ namespace Monogame_Party_2018
 
                     // Add player to results list
                     resultsList.Add(players[0]);
-                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 2);
                     parentManager.AddStateQueue(minigameResults);
                     this.flagForDeletion = true;
                     Console.WriteLine("Finished minigame, going to results");

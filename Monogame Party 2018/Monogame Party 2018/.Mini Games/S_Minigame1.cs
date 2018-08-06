@@ -10,26 +10,31 @@ namespace Monogame_Party_2018
 {
     public class S_Minigame1 : State
     {
-        public List<MenuItem> items;
-        public List<int> itemsSelected;
+        public List<E_MinigameOnePlunger> plungers;
+        public int selectedPlungers;
         public List<Player> players;
         public List<Player> resultsList;
 
-      
 
-        int currentMenuItem;
-        int currentBomb;
-        Random random;
-        Player currentPlayer;
-        int numItems;
+        public E_MinigameOnePlunger currSelection;
+        public int plungerIndex;
+        public Player currentPlayer;
+        public int playerIndex;
+        public List<Vector2> playerPositions;
         int numOfPlayers;
-        int playerIndex;
+
+        public E_MinigameOneExplosion explosionSprite;
+        public bool isExploding;
+
+        public int waitTime;
+        public const int maxWaitTime = 60;
+
 
         //Debug
         public bool playGame;
 
         //Set move time for com to 500 ms
-        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(200);
+        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(500);
         private TimeSpan comLastMove;
         private bool isMoving = false;
         private int comMove = 1;
@@ -37,66 +42,48 @@ namespace Monogame_Party_2018
         // Constructor for Main Menu:
         public S_Minigame1(GameStateManager creator, float xPos, float yPos, bool playGame) : base(creator, xPos, yPos)
         {
-           
-            currentMenuItem = 0;
-            random = new Random();
-            currentBomb = random.Next(0, 5);
-            Console.WriteLine("Bomb is at " + currentBomb);
-
-            items = new List<MenuItem>();
-            itemsSelected = new List<int>();
+            // Create the list of players and empty list for results
             players = new List<Player>();
             players = creator.gameOptions.players;
             resultsList = new List<Player>();
 
-           
+            // Create the list of positions for players
+            playerPositions = new List<Vector2>();
+            playerPositions.Add(new Vector2(150, 500));
+            playerPositions.Add(new Vector2(450, 500));
+            playerPositions.Add(new Vector2(750, 500));
+            playerPositions.Add(new Vector2(1050, 500));
 
+            // Create the list of plungers
+            plungers = new List<E_MinigameOnePlunger>();
+            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 300, 275, Color.Green));
+            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 440, 275, Color.Blue));
+            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 590, 275, Color.Yellow));
+            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 740, 275, Color.Red));
+            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 875, 275, Color.Purple));
+
+            // Set one of the plungers to be the bomb
+            plungers[creator.random.Next(0, plungers.Count)].isBomb = true;
+
+            // DEBUG: 
+            Console.WriteLine("Bomb is color: " + plungers.Find(x => x.isBomb == true).color);
+
+            // Start with 0 selected plungers
+            selectedPlungers = 0;
+
+            // Set number of human players
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
+            // Start with first player
+            playerIndex = 0;
+            currentPlayer = players[playerIndex];
+            plungerIndex = 0;
+            currSelection = plungers[plungerIndex];
 
-            currentPlayer = players[0];
+            explosionSprite = new E_MinigameOneExplosion(this);
+            isExploding = false;
 
-
-            // Create Boxes for game
-
-
-            // Box: One
-            items.Add(new MenuItem(this.xPos + 300, this.yPos + 100, "Box 1", 0));
-            numItems++;
-
-            // Box: Two
-            items.Add(new MenuItem(this.xPos + 650, this.yPos + 100, "Box 2", 1));
-            numItems++;
-
-            // Box: Three
-            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 100, "Box 3", 2));
-            numItems++;
-
-            // Box: Four
-            items.Add(new MenuItem(this.xPos + 475, this.yPos + 300, "Box 4", 3));
-            numItems++;
-
-            // Box: Five
-            items.Add(new MenuItem(this.xPos + 825, this.yPos + 300, "Box 5", 4));
-            numItems++;
-
-
-            // Create Player Items for game
-            int playerXPos = 100;
-            int playerID = 5;
-            foreach(Player p in players)
-            {
-                items.Add(new MenuItem(this.xPos + playerXPos, this.yPos + 500, p.type.ToString(), playerID));
-                playerXPos += 350;
-                playerID++;
-            }
-            // Menu Description
-            items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Try and guess the boxes that do not contain a bomb" + System.Environment.NewLine +
-                "Use [W-A-S-D Keys] to select a box" + System.Environment.NewLine +
-                "Press [Enter] to confirm your selection", -1));
-
-
+            waitTime = maxWaitTime;
 
             // DEBUG: SKIP THE GAME
             this.playGame = playGame;
@@ -116,144 +103,96 @@ namespace Monogame_Party_2018
                     resultsList.Add(p);
                 }
 
-                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 1);
                 parentManager.AddStateQueue(minigameResults);
                 this.flagForDeletion = true;
                 Console.WriteLine("Finished minigame, going to results");
             }
 
+            // Check if exploding animation is active
+            if (isExploding)
+            {
+                explosionSprite.Update(gameTime, ks);
+                if (!explosionSprite.active)
+                {
+                    isExploding = false;
+                    waitTime = 0;
+                }
 
-         
-                playerIndex = players.FindIndex(x => x == currentPlayer);
+
+            }
+            // Wait sometime before moving onto next player
+            else if (waitTime < maxWaitTime)
+            {
+                waitTime++;
+            }
+            else
+            {
 
                 // Check if only one player left
                 if (players.Count == 1)
                 {
-                    items[items.Count - 1].text = (players[0].type.ToString() + "\n WINS");
-
                     // Add player to results list
                     resultsList.Add(players[0]);
-                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList);
+                    S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 1);
                     parentManager.AddStateQueue(minigameResults);
                     this.flagForDeletion = true;
-                    Console.WriteLine("Finished minigame, going to results");
+
                 }
 
                 // Check if all players have gone
-                else if (itemsSelected.Count == numItems - 1)
+                else if (selectedPlungers == plungers.Count - 1)
                 {
-                    itemsSelected = new List<int>();
-                    currentBomb = random.Next(0, numItems);
-                    Console.WriteLine("Bomb is at " + currentBomb);
+                    // Reset plungers
+                    resetSelections();
                 }
                 // Whose Turn is it
                 else
-                    // move current menu item to first available item
-                   
                 {
+
+                    // Computer Logic
                     if (!currentPlayer.isHuman)
                     {
+                        // Set COM to move over every plunger once
                         if (!isMoving)
                         {
-                            comMove = random.Next(numItems, 10);
+                            comMove = plungers.Count - selectedPlungers;
                             isMoving = true;
                             comLastMove = gameTime.TotalGameTime;
-
-                            do
-                            {
-                                if (currentMenuItem == 0)
-                                    currentMenuItem = numItems - 1;
-                                else
-                                    currentMenuItem--;
-                            } while (itemsSelected.Contains(currentMenuItem));
                         }
                         else
                         {
-                            if (comMove > 0)
+                            // Only move every 500ms
+                            if (comLastMove + comMoveSpeed < gameTime.TotalGameTime)
                             {
-                                // Only move every 500ms
-                                if (comLastMove + comMoveSpeed < gameTime.TotalGameTime)
+                                // Move computer selection
+                                if (comMove > 0)
                                 {
                                     comLastMove = gameTime.TotalGameTime;
-                                    do
-                                    {
-                                        if (currentMenuItem == 0)
-                                            currentMenuItem = numItems - 1;
-                                        else
-                                            currentMenuItem--;
-                                    } while (itemsSelected.Contains(currentMenuItem));
+                                    // move selection by (skipping over already pressed plungers)
+                                    getNextSelection();
+
+                                    // If currently selecting the bomb, roll a dice based on difficulty 
+                                    if (currSelection.isBomb)
+                                        rollChance(parentManager.gameOptions.difficulty);
+
                                     comMove--;
                                 }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Computer chose item " + currentMenuItem);
-                                isMoving = false;
-                                // Computer has chosen current item
-                                if (currentBomb == currentMenuItem)
-                                {
-                                    // Remove Items to draw
-                                    numItems--;
-                                    items.Remove(items[numItems]);
-                                    
-                                    
-                                    items.Remove(items[numItems + playerIndex]);
-                                   
-                                    // Reset items selected list
-                                    itemsSelected = new List<int>();
-
-                                    // Remove player and get next player
-                                    players.Remove(currentPlayer);
-
-                                    // Add player to results list
-                                    resultsList.Add(currentPlayer);
-
-                                    // If removed player was the last player
-                                    if (playerIndex == players.Count)
-                                    {
-                                        //next player is first player
-                                        currentPlayer = players[0];
-                                    }
-                                    // if removed player was second to last player
-                                    else if(playerIndex == players.Count - 1)
-                                    {
-                                        currentPlayer = players[playerIndex];
-                                    }
-                                    else
-                                    {
-                                        currentPlayer = players[playerIndex + 1];
-                                    }
-
-                                    // Reset bomb
-                                    currentBomb = random.Next(0, numItems);
-                                    
-                                    Console.WriteLine("Bomb is at " + currentBomb);
-                                }
+                                // Computer has finished moving
                                 else
                                 {
-                                    itemsSelected.Add(currentMenuItem);
-                                    if (playerIndex == players.Count - 1)
-                                    {
-                                        currentPlayer = players[0];
-                                    }
-                                    else
-                                    {
-                                        currentPlayer = players[playerIndex + 1];
-                                    }
-                                }
+                                    isMoving = false;
 
-                                // Move current item to forst available item
-                                do
-                                {
-                                    if (currentMenuItem == 0)
-                                        currentMenuItem = numItems - 1;
-                                    else
-                                        currentMenuItem--;
-                                } while (itemsSelected.Contains(currentMenuItem));
+                                    handleSelection();
+
+                                    // Move current selection to next available plunger
+                                    getNextSelection();
+                                }
                             }
+                            
 
                         }
-                    }
+                    }   // End of Computer Logic
 
                     else
                     {
@@ -261,83 +200,29 @@ namespace Monogame_Party_2018
                         // Move Menu Selection Left:
                         if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
                         {
-                            do
-                            {
-                                if (currentMenuItem == 0)
-                                    currentMenuItem = numItems - 1;
-                                else
-                                    currentMenuItem--;
-                            } while (itemsSelected.Contains(currentMenuItem));
+                            getNextSelection();
 
                         }
 
                         // Move Menu Selection Right:
                         if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
                         {
-                            do
-                            {
-                                if (currentMenuItem == numItems - 1)
-                                    currentMenuItem = 0;
-                                else
-                                    currentMenuItem++;
-                        }   while (itemsSelected.Contains(currentMenuItem)) ;
-                    }
+                            getNextSelectionRight();
+                        }
 
 
-                        // Press ENTER while some menu item is highlighted:
+                        // Human Player selectes a plunger
                         if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
                         {
-                            
-                            if (currentBomb == currentMenuItem)
-                            {
-                                numItems--;
-                                items.Remove(items[numItems]);
-                                
-                             
-                                items.Remove(items[numItems + playerIndex ]);
-                         
-                                itemsSelected = new List<int>();
+                            handleSelection();
 
-
-                                // Add player to results list
-                                resultsList.Add(currentPlayer);
-                                players.Remove(currentPlayer);
-                                // If removed player was the last player
-                                if (playerIndex == players.Count)
-                                {
-                                    //next player is first player
-                                    currentPlayer = players[0];
-                                }
-                                // if removed player was second to last player
-                                else if (playerIndex == players.Count - 1)
-                                {
-                                    currentPlayer = players[playerIndex];
-                                }
-                                else
-                                {
-                                    currentPlayer = players[playerIndex + 1];
-                                }
-                                currentBomb = random.Next(0, numItems);
-                                currentMenuItem = 0;
-                                Console.WriteLine("Bomb is at " + currentBomb);
-                            }
-                            else
-                            {
-                                itemsSelected.Add(currentMenuItem);
-                                if (playerIndex == players.Count - 1)
-                                {
-                                    currentPlayer = players[0];
-                                }
-                                else
-                                {
-                                    currentPlayer = players[playerIndex + 1];
-                                }
-                            }
-
+                            // Move current selection to next available plunger
+                            getNextSelection();
                         }
                     }
 
-                               
+
+                }
             }
 
 
@@ -348,65 +233,199 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
 
-            // Draw Background:
-            SpriteBatch sb = this.parentManager.game.spriteBatch;
 
+            SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();
 
-            sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
+            // Draw Background:
+            sb.Draw(this.parentManager.game.minigame_one_background, new Vector2(0, 0), Color.White);
 
-            // Draw Buttons -----------------------
-
-            // Hate hard coding...but just do it...
-            int SPRITE_WIDTH = 320;
-            int SPRITE_HEIGHT = 160;
-
-            Color tColor;
-            int i = 0;
-            if (players.Count != 1)
+            // Draw Plungers
+            foreach (E_MinigameOnePlunger p in plungers)
             {
-                foreach (MenuItem item in items)
-                {
-                    if (item.activeValue != -1)
-                    {
-                        Vector2 pos = new Vector2(item.xPos, item.yPos);
-                        Vector2 cloudPos = new Vector2(item.xPos - SPRITE_WIDTH / 2, item.yPos - SPRITE_HEIGHT / 2);
-                        Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
+                sb.Draw(p.sprite, p.pos, p.color);
+            }
 
-                        // Cloud Background:
-                        sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
+            // Draw current player highlighter
+            sb.Draw(parentManager.game.minigame_one_currPlayer, new Rectangle((int)playerPositions[playerIndex].X - 30, (int)playerPositions[playerIndex].Y - 15, 150, 150), new Color(255, 255, 255, 255));    // Draw color white semi transparent
 
-                        // Draw Text:
-                        if (i == currentMenuItem || i == playerIndex + numItems)
-                            tColor = Color.Blue;
-                        // Color first character choice grey
-                        else if (itemsSelected.Count > 0 && itemsSelected.Contains(i))
-                            tColor = Color.Gray;
-                        else
-                            tColor = Color.Red;
-                        sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, textPos, tColor);
-
-                        i++;
-                    }
-                }
+            // Draw Players
+            for (int i = 0; i < players.Count; i++)
+            {
+                sb.Draw(players[i].meeple.sprite, new Rectangle((int)playerPositions[i].X, (int)playerPositions[i].Y, 100, 100), Color.White);
+            }
 
 
-                // Draw the Menu description cloud wider
-                Vector2 menuItemPos = new Vector2(items[items.Count - 1].xPos, items[items.Count - 1].yPos);
-                Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[items.Count - 1].text, this.parentManager.game.ft_menuDescriptionFont);
-                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[items.Count - 1].xPos - 600 / 2, (int)items[items.Count - 1].yPos - 140 / 2, 600, 140), Color.White);
-                sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, items[items.Count - 1].text, menuTextPos, Color.Black);
+
+            // Draw current selection hand
+            sb.Draw(parentManager.game.spr_glove, new Vector2(currSelection.pos.X - 60, currSelection.pos.Y + 40), Color.White);
+
+
+            // End drawing:
+            sb.End();
+
+            if (isExploding)
+            {
+                explosionSprite.Draw(gameTime);
+            }
+
+
+
+        }
+
+
+        // HELPER FUNCTIONS
+
+        // Reset plunger selections
+        public void resetSelections()
+        {
+            selectedPlungers = 0;
+            foreach (E_MinigameOnePlunger p in plungers)
+            {
+                p.isBomb = false;
+                p.pressed = false;
+                p.Update_Sprite();
+            }
+
+            // Assign a new bomb
+            plungers[parentManager.random.Next(0, plungers.Count)].isBomb = true;
+
+            // Reset current selection
+            currSelection = plungers[0];
+        }
+
+        // Get next available plunger selection to the left
+        public void getNextSelection()
+        {
+            do
+            {
+                if (currSelection == plungers[0])
+                    currSelection = plungers[plungers.Count - 1];
+                else
+                    currSelection = plungers[plungers.FindIndex(x => x == currSelection) - 1];
+            } while (currSelection.pressed);
+        }
+
+        // Get next available plunger selection to the right
+        public void getNextSelectionRight()
+        {
+            do
+            {
+                if (currSelection == plungers[plungers.Count - 1])
+                    currSelection = plungers[0];
+                else
+                    currSelection = plungers[plungers.FindIndex(x => x == currSelection) + 1];
+            } while (currSelection.pressed);
+        }
+
+        // Player made selection
+        public void handleSelection()
+        {
+
+            // Player selected the bomb
+            if (currSelection.isBomb)
+            {
+                bombChosen();
+            }
+            // Player did not select the bomb
+            else
+            {
+                bombNotChosen();
+            }
+
+            // Update player index 
+            playerIndex = players.FindIndex(x => x == currentPlayer);
+            waitTime = 0;
+
+        }
+
+        // Selection is bomb
+        public void bombChosen()
+        {
+
+            // Remove plunger from game
+            plungers.Remove(currSelection);
+
+            // Reset plungers
+            resetSelections();
+
+            // Remove player from game
+            players.Remove(currentPlayer);
+
+            // Add player to results list
+            resultsList.Add(currentPlayer);
+
+
+            // Get next player
+            // If removed player was the last player
+            if (playerIndex == players.Count)
+            {
+                //next player is first player
+                currentPlayer = players[0];
+            }
+            // if removed player was second to last player
+            else if (playerIndex == players.Count - 1)
+            {
+                currentPlayer = players[playerIndex];
             }
             else
             {
-                // Draw the Menu description cloud wider
-                Vector2 menuItemPos = new Vector2(650, 250);
-                Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[items.Count - 1].text, this.parentManager.game.ft_menuDescriptionFont);
-                sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle(650 - 600 / 2, 250 - 140 / 2, 600, 140), Color.White);
-                sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, items[items.Count - 1].text, menuTextPos, Color.Black);
+                currentPlayer = players[playerIndex + 1];
             }
-            // End drawing:
-            sb.End();
+
+            isExploding = true;
+            explosionSprite.active = true;
+
+
+        }
+
+        // Selection is not bomb
+        public void bombNotChosen()
+        {
+            // Mark selection as pressed
+            selectedPlungers++;
+            currSelection.pressed = true;
+            currSelection.Update_Sprite();
+
+            // get next player
+            if (playerIndex == players.Count - 1)
+            {
+                currentPlayer = players[0];
+            }
+            else
+            {
+                currentPlayer = players[playerIndex + 1];
+            }
+        }
+
+        // Decide whether or not Computer should stop moving
+        public void rollChance(MenuItem.Difficulty difficulty)
+        {
+            int chanceRoll = parentManager.random.Next(1, 101);
+            Console.WriteLine(chanceRoll);
+            int difficultyLevel;
+
+            switch (difficulty)
+            {
+                case MenuItem.Difficulty.EASY:
+                    difficultyLevel = 50;
+                    break;
+                case MenuItem.Difficulty.MEDIUM:
+                    difficultyLevel = 30;
+                    break;
+                case MenuItem.Difficulty.HARD:
+                    difficultyLevel = 10;
+                    break;
+                default:
+                    difficultyLevel = 0;
+                    break;
+            }
+            // If the chance lower than the difficulty number, the computer will stop moving 
+            // and choose that plunger
+            if (chanceRoll <= difficultyLevel)
+                comMove = 0;
+            
+
         }
     }
 
