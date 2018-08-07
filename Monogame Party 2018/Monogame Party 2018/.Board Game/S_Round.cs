@@ -31,6 +31,9 @@ namespace Monogame_Party_2018
             currPlayer = gameOptions.players[playerIndex];
             playerIsPlaying = false;
             currRound = 1;
+
+            creator.audioEngine.addSongQueue(MGP_Constants.music.pirateBay);
+            Console.WriteLine("Added pirateBay to music queue");
         }
 
         // Update:

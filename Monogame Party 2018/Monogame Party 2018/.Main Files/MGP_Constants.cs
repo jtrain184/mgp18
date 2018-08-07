@@ -24,5 +24,25 @@ namespace Monogame_Party_2018
         public static double EASY_MULTIPLIER = 0.80;
         public static double MEDIUM_MULTIPLIER = 0.65;
         public static double HARD_MULTIPLIER = 0.30;
+
+
+
+        public enum soundEffects {
+          pressStart = 0,
+          space
+        }
+
+        public enum music {
+          pirateBay = 0
+        }
+
+
+
+
+
     }
+
+
+
+
 }

@@ -45,6 +45,7 @@ namespace Monogame_Party_2018
         public S_Board boardGame;
         public S_Round round;
         public Random random;
+        public S_AudioEngine audioEngine;
 
         public bool debugMode;
 
@@ -60,10 +61,14 @@ namespace Monogame_Party_2018
 
 
 
-            // Add the ** FIRST ** game state here:
+            // Add the ** FIRST ** game states here:
+
+            audioEngine = new S_AudioEngine(this, 0, 0);
+            this.AddState(audioEngine, 0);
+
             State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
             this.AddState(mainMenu, 0);
-            this.stateCount = 1;
+            this.stateCount = 2;
         }
 
         // Update

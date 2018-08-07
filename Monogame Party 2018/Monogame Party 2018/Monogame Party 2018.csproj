@@ -86,6 +86,7 @@
     <Compile Include=".Board Game\S_Pause.cs" />
     <Compile Include=".Board Game\S_PlayerUI.cs" />
     <Compile Include=".Main Files\MGP_Tools.cs" />
+    <Compile Include=".Main Files\S_AudioEngine.cs" />
     <Compile Include=".Mini Games\E_MinigameOneExplosion.cs" />
     <Compile Include=".Mini Games\E_MinigameOnePlunger.cs" />
     <Compile Include=".Mini Games\E_MinigameResult.cs" />
@@ -201,6 +202,7 @@
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
     <None Include="Content\MainMenu\spr_glove.xnb" />
+    <None Include="Content\Music\mus_pirateBay.xnb" />
     <None Include="Content\noSprite.xnb" />
     <None Include="Content\PirateBay\bg_pirateBay.xnb" />
     <None Include="Content\playerUI\playerUIdata.xnb" />
@@ -217,6 +219,8 @@
     <None Include="Content\playerUI\spr_thirdPlace.xnb" />
     <None Include="Content\playerUI\spr_VelmaCloseup.xnb" />
     <None Include="Content\playerUI\spr_WilberCloseup.xnb" />
+    <None Include="Content\SFX\sfx_pressStart.xnb" />
+    <None Include="Content\SFX\sfx_space.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
     <None Include="Content\Spaces\piece_green64.xnb" />
     <None Include="Content\Spaces\piece_purple64.xnb" />

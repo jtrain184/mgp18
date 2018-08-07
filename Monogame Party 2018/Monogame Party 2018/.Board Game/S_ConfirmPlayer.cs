@@ -14,6 +14,8 @@ namespace Monogame_Party_2018
         public int roundsLeft;
         public string playerName;
 
+        bool soundPlayed;
+
         // Constructor
         public S_ConfirmPlayer(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
@@ -22,6 +24,8 @@ namespace Monogame_Party_2018
             roundsLeft = parentManager.gameOptions.numRounds - parentManager.round.currRound + 1;
             playerName = parentManager.round.currPlayer.type.ToString().ToUpper();
 
+            soundPlayed = false;
+
         }
 
         // Update:
@@ -29,20 +33,29 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            if(transitionTimerOne < 60) 
-                transitionTimerOne++; 
+            if(transitionTimerOne < 60)
+                transitionTimerOne++;
             else
             {
+
+                // Play press start sound effect:
+                if (!soundPlayed) {
+                    parentManager.audioEngine.playSound(MGP_Constants.soundEffects.pressStart, 1.0f);
+                    soundPlayed = true;
+                }
+
+
                 if (transitionTimerTwo < 60)
                     transitionTimerTwo++;
                 else
                 {
+
                     S_RollDice rollDice = new S_RollDice(parentManager, 0, 0);
                     parentManager.AddStateQueue(rollDice);
                     this.flagForDeletion = true;
                 }
             }
-            
+
         }
 
 
@@ -67,13 +80,13 @@ namespace Monogame_Party_2018
             }
             else
             {
-                // draw text 
+                // draw text
 
                 // Draw text for last 3 rounds
-                string text = ""; 
+                string text = "";
                 if (roundsLeft == 1)
                 {
-                    text = "LAST TURN"; 
+                    text = "LAST TURN";
                 }
                 else if(roundsLeft <= 3)
                 {
@@ -105,6 +118,6 @@ namespace Monogame_Party_2018
             sb.End();
         }// End Draw
 
-       
+
     }
 }

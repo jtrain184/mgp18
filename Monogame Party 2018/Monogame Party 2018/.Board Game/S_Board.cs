@@ -14,7 +14,6 @@ namespace Monogame_Party_2018
     public class S_Board : State {
 
 
-
         // Member variables:
         public CameraProperties cameraProperties;
         public GameOptions gameOptions;
@@ -26,7 +25,7 @@ namespace Monogame_Party_2018
 
         // Game Vars
         public int numRounds;
-       
+
         public S_Round round;
         public List<Player> players;
 
@@ -34,7 +33,7 @@ namespace Monogame_Party_2018
 
 
 
-        
+
 
 
         // Constructor:
@@ -43,7 +42,7 @@ namespace Monogame_Party_2018
             cameraProperties = new CameraProperties();
 
             this.gameOptions = creator.gameOptions;
-            
+
             //DEBUG:
             if (creator.gameOptions.numRounds < 1)
                 this.numRounds = 1;
@@ -55,12 +54,12 @@ namespace Monogame_Party_2018
             // Create testDice
             testDice = new E_Dice(this, parentManager.game.spr_testDice, MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y, 10);
 
-          
+
             // Start first round:
             S_Round newRound = new S_Round(parentManager, 0, 0);
             parentManager.AddStateQueue(newRound);
             this.round = newRound;
-            
+
 
 
         } // end constructor
@@ -97,7 +96,7 @@ namespace Monogame_Party_2018
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
 
-        
+
 
             // Listen for pausing here:
             ListenPause();

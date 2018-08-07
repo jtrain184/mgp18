@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 
 using MonoGame.Extended;
 
@@ -94,6 +97,9 @@ namespace Monogame_Party_2018 {
         public SpriteFont ft_confirmPlayer_Bold;
         public SpriteFont ft_confirmPlayer_s27;
         public SpriteFont ft_confirmPlayer_sm;
+
+        public Dictionary<MGP_Constants.music, Song> songs = new Dictionary<MGP_Constants.music, Song>();
+        public Dictionary<MGP_Constants.soundEffects, SoundEffect> sfx = new Dictionary<MGP_Constants.soundEffects, SoundEffect>();
 
 
         // CameraProperties:
@@ -212,6 +218,13 @@ namespace Monogame_Party_2018 {
             spr_star4 = Content.Load<Texture2D>("Results/result_Star4");
             spr_star5 = Content.Load<Texture2D>("Results/result_Star5");
 
+
+            // Music:
+            songs.Add(MGP_Constants.music.pirateBay, Content.Load<Song>("Music/mus_pirateBay"));
+
+            // SFX:
+            sfx.Add(MGP_Constants.soundEffects.pressStart, Content.Load<SoundEffect>("SFX/sfx_pressStart"));
+            sfx.Add(MGP_Constants.soundEffects.space, Content.Load<SoundEffect>("SFX/sfx_space"));
 
         }
 

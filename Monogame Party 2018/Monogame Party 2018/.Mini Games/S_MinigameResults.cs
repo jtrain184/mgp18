@@ -18,8 +18,8 @@ namespace Monogame_Party_2018
         public bool changedLastPlayer;
 
         public Texture2D background;
-        
-        
+
+
 
         // Constructor
         public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results, int minigame) : base(creator, xPos, yPos)
@@ -40,14 +40,14 @@ namespace Monogame_Party_2018
             this.results = results;
             entities = new List<E_MinigameResult>();
             resultPos = new List<Vector2>();
-            
+
             for(int i = 0; i <= 3; i++)
             {
                 entities.Add(new E_MinigameResult(creator, Math.Abs(i - 4), results[i], new Vector2(350, -100)));
                 resultPos.Add(new Vector2(350, 500 - (i * 100)));
             }
 
-            // Add coins to players totalCoins gained 
+            // Add coins to players totalCoins gained
             for(int j = 0; j < 3; j++)
             {
                 if(entities[j].changeValue > 0)
@@ -102,8 +102,8 @@ namespace Monogame_Party_2018
                     // update players coins
                     results[currentIndex].coins += entities[currentIndex].changeValue;
 
-                    
-                    
+
+
 
                     // Prevent negative coin values
                     if (results[currentIndex].coins < 0)
@@ -113,7 +113,7 @@ namespace Monogame_Party_2018
 
                     // ease next result
                     currentIndex++;
-                    
+
                 }
             }
             // Continue to ease the current indexed result
@@ -152,8 +152,8 @@ namespace Monogame_Party_2018
             {
                 entities[i].Draw(gameTime);
             }
-           
+
         }
     }
-    
+
 }
