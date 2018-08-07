@@ -68,6 +68,8 @@ namespace Monogame_Party_2018 {
         public Texture2D minigame_one_currPlayer;
         public Texture2D minigame_one_plungerDown;
         public Texture2D minigame_one_plungerUp;
+        public Texture2D minigame_two_background;
+        public Texture2D minigame_two_racetrack;
 
         // Result Stars
         public Texture2D spr_star1;
@@ -204,6 +206,10 @@ namespace Monogame_Party_2018 {
             minigame_one_explosion = Content.Load<Texture2D>("Minigames/Explosion");
             minigame_one_plungerUp = Content.Load<Texture2D>("Minigames/plunger_up");
             minigame_one_plungerDown = Content.Load<Texture2D>("Minigames/plunger_down");
+            minigame_two_background = Content.Load<Texture2D>("Minigames/bg_minigame2");
+            minigame_two_racetrack = Content.Load<Texture2D>("Minigames/spr_racetrack");
+
+
 
             // Game Result Stars
             spr_star1 = Content.Load<Texture2D>("Results/result_Star1");

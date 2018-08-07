@@ -31,7 +31,7 @@ namespace Monogame_Party_2018
         public bool playGame;
 
         //Set move time for com to 500 ms
-        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(200);
+        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(500);
         private TimeSpan comLastMove;
         private bool isMoving = false;
         private int comMove = 1;
@@ -77,7 +77,7 @@ namespace Monogame_Party_2018
                 Console.WriteLine("Changing position of " + p.type + "at " + playerXPos + ", ");
 
                 p.meeple.setX(playerXPos);
-                p.meeple.setY(520);
+                p.meeple.setY(550);
                 playerXPos += MGP_Constants.SCREEN_WIDTH / 5;
             }
 
@@ -109,6 +109,19 @@ namespace Monogame_Party_2018
                 players[0].meeple.setY(playerOnePosition.Y - move);
                 currentMoveplayerOne = directionKeys[random.Next(directionKeys.Length)];
                 Console.WriteLine("Current move 1 = " + currentMoveplayerOne);
+            }
+
+    
+             // Only move every 500ms
+             if (comLastMove + comMoveSpeed < gameTime.TotalGameTime)
+              {
+                comLastMove = gameTime.TotalGameTime;
+                if (comChanceToMove())
+                {
+                    players[2].meeple.setY(playerOnePosition.Y - move);
+                    currentMoveplayerThree = directionKeys[random.Next(directionKeys.Length)];
+                    Console.WriteLine("Current move 3 = " + currentMoveplayerOne);
+                }
             }
 
             // DEBUG: SKIP THE GAME
@@ -153,7 +166,8 @@ namespace Monogame_Party_2018
             //Vector2 playerNamePos = new Vector2(meeplePos.X + playerMeeple.Width + 10, meeplePos.Y);
             //sb.DrawString(this.parentManager.game.ft_mainMenuFont, playerName, playerNamePos, Color.White);
 
-            sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
+            sb.Draw(this.parentManager.game.minigame_two_background, new Vector2(xPos, yPos), Color.White);
+            sb.Draw(this.parentManager.game.minigame_two_racetrack, new Vector2(215, yPos), Color.White);
 
             for (int i = 3; i >= 0; i--)
             {
@@ -163,11 +177,21 @@ namespace Monogame_Party_2018
             // Player one instruction
             Vector2 playerOneInstructionPos= players[0].meeple.getPos();
             playerOneInstructionPos.Y = 600;
-            sb.DrawString(this.parentManager.game.ft_mainMenuFont, currentMoveplayerOne.ToString(), playerOneInstructionPos, Color.White);
+            sb.DrawString(this.parentManager.game.ft_confirmPlayer_s27, currentMoveplayerOne.ToString(), playerOneInstructionPos, Color.White);
+
+
 
 
             // End drawing:
             sb.End();
+        }
+
+        public bool comChanceToMove()
+        {
+            var n = random.NextDouble();
+            Console.WriteLine("Player 3 rolled " + n);
+
+            return n > difficultyMultiplier;
         }
     }
 }
