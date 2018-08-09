@@ -701,3 +701,21 @@
 /processorParam:TextureFormat=Color
 /build:MainMenu/bg_titleScreen.png
 
+#begin SFX/sfx_dicePre.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_dicePre.wav
+
+#begin SFX/sfx_diceHit.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_diceHit.wav
+
+#begin SFX/sfx_diceRolling.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_diceRolling.wav
+

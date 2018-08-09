@@ -219,6 +219,9 @@
     <None Include="Content\playerUI\spr_thirdPlace.xnb" />
     <None Include="Content\playerUI\spr_VelmaCloseup.xnb" />
     <None Include="Content\playerUI\spr_WilberCloseup.xnb" />
+    <None Include="Content\SFX\sfx_diceHit.xnb" />
+    <None Include="Content\SFX\sfx_dicePre.xnb" />
+    <None Include="Content\SFX\sfx_diceRolling.xnb" />
     <None Include="Content\SFX\sfx_pressStart.xnb" />
     <None Include="Content\SFX\sfx_space.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
