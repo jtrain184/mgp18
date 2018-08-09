@@ -68,8 +68,6 @@ namespace Monogame_Party_2018 {
     // Key was just pressed
     public bool ActionPressed(action a, playerIndex p) {
 
-
-
     // ------- PLAYER ONE PRESSED --------
     if ((p == playerIndex.one) || (p == playerIndex.all)) {
 

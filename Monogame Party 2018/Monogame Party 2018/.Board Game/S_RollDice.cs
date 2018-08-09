@@ -23,6 +23,9 @@ namespace Monogame_Party_2018
         public bool bounceUp;
         public bool bounceDown;
         public int waitTime;
+        int rollingSoundCounter; // for sfx while rolling
+        const int ROLL_SOUND_LEN = 24;
+        const int PRE_ROLL_SOUND_LEN = 6;
 
         // Constructor
         public S_RollDice(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
@@ -39,7 +42,8 @@ namespace Monogame_Party_2018
             compRollEnd = creator.random.Next(ROLL_SPEED, ROLL_SPEED * 2); // have computer 'hit the dice' after 1 - 2 secs
             waitTime = 0;
 
-           
+            creator.audioEngine.playSound(MGP_Constants.soundEffects.dicePre, 1.0f);
+            rollingSoundCounter = PRE_ROLL_SOUND_LEN;
         }
 
         // Update:
@@ -79,6 +83,9 @@ namespace Monogame_Party_2018
                     if(Vector2.Distance(currPlayer.meeple.pos, dice.pos) <= 50.0f)
                     {
                         bounceUp = true;    // stop moving up
+
+                        // play hit sound effect just once:
+                        parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, 0.8f);
                     }
                     else
                     {
@@ -100,9 +107,12 @@ namespace Monogame_Party_2018
                 // transistions are finished
                 else if(bounceUp && bounceDown){
 
+
                     // wait 1/4 of a sec before the meeple starts moving spaces
                     if (waitTime >= 15)
                     {
+
+
                         // Start moving the player based on the roll
                         S_MovePlayer movePlayer = new S_MovePlayer(parentManager, 0, 0, parentManager.boardGame.testDice.diceRoll);
                         parentManager.AddStateQueue(movePlayer);
@@ -112,11 +122,21 @@ namespace Monogame_Party_2018
                 }
 
 
-               
+
             }
 
             // Listen for and allow a pause
             ListenPause();
+
+
+            // Rolling Sound Effect:
+            if (isRolling) {
+              rollingSoundCounter--;
+              if (rollingSoundCounter <= 0) {
+                rollingSoundCounter = ROLL_SOUND_LEN;
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceRolling, 0.4f);
+              }
+            }
 
         } // end update
 

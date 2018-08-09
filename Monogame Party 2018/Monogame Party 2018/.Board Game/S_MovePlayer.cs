@@ -12,6 +12,10 @@ namespace Monogame_Party_2018
     {
         public int moveNum;
         public Player currPlayer;
+
+        bool soundPlayed;
+
+
         // Constructor
         public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos)
         {
@@ -20,6 +24,8 @@ namespace Monogame_Party_2018
                 this.currPlayer = new Player(creator, Player.Type.FRANK, true);
             else
                 this.currPlayer = parentManager.round.currPlayer;
+
+            this.soundPlayed = false;
 
         }
 
@@ -42,12 +48,24 @@ namespace Monogame_Party_2018
                     float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.15F);
                     currPlayer.meeple.setPos(new Vector2(newX, newY));
                     MGP_Tools.Follow_Player(parentManager, currPlayer);
+
+                    // Play space sound effect:
+                    if (!soundPlayed) {
+                      parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
+                      soundPlayed = true;
+                    }
+
+
+
                 }
                 // Meeple has arrived at new space
                 else
                 {
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
+
+                    // allow sound to play next time:
+                    soundPlayed = false;
 
                     // If player passes a star
                     if (currPlayer.currSpace.type == Entity.typeSpace.star)

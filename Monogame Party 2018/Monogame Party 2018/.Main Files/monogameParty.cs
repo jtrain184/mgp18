@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
+using System.Collections.Generic;
 
 using MonoGame.Extended;
 
@@ -68,6 +71,8 @@ namespace Monogame_Party_2018 {
         public Texture2D minigame_one_currPlayer;
         public Texture2D minigame_one_plungerDown;
         public Texture2D minigame_one_plungerUp;
+        public Texture2D minigame_two_background;
+        public Texture2D minigame_two_racetrack;
 
         // Result Stars
         public Texture2D spr_star1;
@@ -94,6 +99,9 @@ namespace Monogame_Party_2018 {
         public SpriteFont ft_confirmPlayer_Bold;
         public SpriteFont ft_confirmPlayer_s27;
         public SpriteFont ft_confirmPlayer_sm;
+
+        public Dictionary<MGP_Constants.music, Song> songs = new Dictionary<MGP_Constants.music, Song>();
+        public Dictionary<MGP_Constants.soundEffects, SoundEffect> sfx = new Dictionary<MGP_Constants.soundEffects, SoundEffect>();
 
 
         // CameraProperties:
@@ -204,6 +212,10 @@ namespace Monogame_Party_2018 {
             minigame_one_explosion = Content.Load<Texture2D>("Minigames/Explosion");
             minigame_one_plungerUp = Content.Load<Texture2D>("Minigames/plunger_up");
             minigame_one_plungerDown = Content.Load<Texture2D>("Minigames/plunger_down");
+            minigame_two_background = Content.Load<Texture2D>("Minigames/bg_minigame2");
+            minigame_two_racetrack = Content.Load<Texture2D>("Minigames/spr_racetrack");
+
+
 
             // Game Result Stars
             spr_star1 = Content.Load<Texture2D>("Results/result_Star1");
@@ -212,6 +224,16 @@ namespace Monogame_Party_2018 {
             spr_star4 = Content.Load<Texture2D>("Results/result_Star4");
             spr_star5 = Content.Load<Texture2D>("Results/result_Star5");
 
+
+            // Music:
+            songs.Add(MGP_Constants.music.pirateBay, Content.Load<Song>("Music/mus_pirateBay"));
+
+            // SFX:
+            sfx.Add(MGP_Constants.soundEffects.pressStart, Content.Load<SoundEffect>("SFX/sfx_pressStart"));
+            sfx.Add(MGP_Constants.soundEffects.space, Content.Load<SoundEffect>("SFX/sfx_space"));
+            sfx.Add(MGP_Constants.soundEffects.dicePre, Content.Load<SoundEffect>("SFX/sfx_dicePre"));
+            sfx.Add(MGP_Constants.soundEffects.diceRolling, Content.Load<SoundEffect>("SFX/sfx_diceRolling"));
+            sfx.Add(MGP_Constants.soundEffects.diceHit, Content.Load<SoundEffect>("SFX/sfx_diceHit"));
 
         }
 

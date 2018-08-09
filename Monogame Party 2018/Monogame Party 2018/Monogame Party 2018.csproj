@@ -86,10 +86,12 @@
     <Compile Include=".Board Game\S_Pause.cs" />
     <Compile Include=".Board Game\S_PlayerUI.cs" />
     <Compile Include=".Main Files\MGP_Tools.cs" />
+    <Compile Include=".Main Files\S_AudioEngine.cs" />
     <Compile Include=".Mini Games\E_MinigameOneExplosion.cs" />
     <Compile Include=".Mini Games\E_MinigameOnePlunger.cs" />
     <Compile Include=".Mini Games\E_MinigameResult.cs" />
     <Compile Include=".Menu Classes\E_Glove.cs" />
+    <Compile Include=".Mini Games\S_Minigame2.cs" />
     <Compile Include=".Mini Games\S_MinigameInstructions.cs" />
     <Compile Include=".Board Game\S_MovePlayer.cs" />
     <Compile Include=".Board Game\S_RollDice.cs" />
@@ -203,6 +205,7 @@
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
     <None Include="Content\MainMenu\spr_glove.xnb" />
+    <None Include="Content\Music\mus_pirateBay.xnb" />
     <None Include="Content\noSprite.xnb" />
     <None Include="Content\PirateBay\bg_pirateBay.xnb" />
     <None Include="Content\playerUI\playerUIdata.xnb" />
@@ -219,6 +222,11 @@
     <None Include="Content\playerUI\spr_thirdPlace.xnb" />
     <None Include="Content\playerUI\spr_VelmaCloseup.xnb" />
     <None Include="Content\playerUI\spr_WilberCloseup.xnb" />
+    <None Include="Content\SFX\sfx_diceHit.xnb" />
+    <None Include="Content\SFX\sfx_dicePre.xnb" />
+    <None Include="Content\SFX\sfx_diceRolling.xnb" />
+    <None Include="Content\SFX\sfx_pressStart.xnb" />
+    <None Include="Content\SFX\sfx_space.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
     <None Include="Content\Spaces\piece_green64.xnb" />
     <None Include="Content\Spaces\piece_purple64.xnb" />
