@@ -114,6 +114,9 @@
     <Compile Include=".Menu Classes\S_PlayerCountMenu.cs" />
     <Compile Include=".Mini Games\S_Minigame1.cs" />
     <Compile Include=".Mini Games\S_MinigameResults.cs" />
+    <Compile Include=".Results\E_BonusResult.cs" />
+    <Compile Include=".Results\S_AlmostFinalResults.cs" />
+    <Compile Include=".Results\S_BonusResults.cs" />
     <Compile Include=".Results\S_FinalResults.cs" />
     <Compile Include="CenterString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

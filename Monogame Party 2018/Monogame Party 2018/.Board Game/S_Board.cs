@@ -78,8 +78,8 @@ namespace Monogame_Party_2018
                 if (this.gameOptions.allowBonus)
                 {
                     // Go to game results state to count bonuses
-                    S_GameResults gameResults = new S_GameResults(parentManager, 0, 0);
-                    parentManager.AddStateQueue(gameResults);
+                    S_AlmostFinalResult results = new S_AlmostFinalResult(parentManager, 0, 0);
+                    parentManager.AddStateQueue(results);
                 }
                 else
                 {

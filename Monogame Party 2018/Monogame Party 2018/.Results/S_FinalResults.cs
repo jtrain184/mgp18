@@ -67,8 +67,14 @@ namespace Monogame_Party_2018
             if(timer < maxTime)
             {
                 string text = "AND THE WINNER IS...";
-                Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, gsm.game.ft_mainMenuFont);
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, text, textPos, Color.Black);
+                Vector2 boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer_Bold);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, boldTextPos, Color.White);
+
+                Vector2 textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer, text, textPos, Color.Black);
+
+                Vector2 sm_textPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer_sm);
+                sb.DrawString(this.parentManager.game.ft_confirmPlayer_sm, text, sm_textPos, Color.Gold);
             }
             else
             {
