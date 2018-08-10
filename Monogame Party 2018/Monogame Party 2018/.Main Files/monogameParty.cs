@@ -85,6 +85,9 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_star4;
         public Texture2D spr_star5;
 
+        // Chance Time
+        public Texture2D bg_chanceTime;
+
         // Test graphic
         public Texture2D spr_testDice;
         public Texture2D spr_coin;
@@ -232,6 +235,11 @@ namespace Monogame_Party_2018 {
             spr_star3 = Content.Load<Texture2D>("Results/result_Star3");
             spr_star4 = Content.Load<Texture2D>("Results/result_Star4");
             spr_star5 = Content.Load<Texture2D>("Results/result_Star5");
+
+
+            // Chance Time:
+            bg_chanceTime = Content.Load<Texture2D>("ChanceTime/bg_ChanceTime");
+
 
 
             // Music:

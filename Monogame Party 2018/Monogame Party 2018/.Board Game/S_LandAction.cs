@@ -26,9 +26,11 @@ namespace Monogame_Party_2018
             landAction = new MenuItem(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y, "", 0);
 
             spaceType = creator.round.currPlayer.currSpace.type;
+
+
+
             // Landed on a blue space
-            if(spaceType == Entity.typeSpace.blue)
-            {
+            if(spaceType == Entity.typeSpace.blue) {
                 // Add 3 coins to player
                 creator.round.currPlayer.coins += numCoins;
                 creator.round.currPlayer.totalCoinsGained += numCoins;
@@ -38,9 +40,9 @@ namespace Monogame_Party_2018
                 parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceBlue, 1.0f);
             }
 
+
             // Landed on a red space
-            else if (spaceType == Entity.typeSpace.red)
-            {
+            else if (spaceType == Entity.typeSpace.red) {
                 // Subtract a 3 coins from player
                 creator.round.currPlayer.coins -= numCoins;
                 // Prevent negative values
@@ -50,9 +52,14 @@ namespace Monogame_Party_2018
                 // Play sound effect:
                 parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceRed, 1.0f);
             }
-            else
-            {
+
+
+            // Landed on CHANCE TIME
+            else if (spaceType == Entity.typeSpace.chance) {
                 landAction.text = " This is a chance space";
+
+                S_ChanceTime chanceEvent = new S_ChanceTime(parentManager, 0, 0, this);
+                parentManager.AddStateQueue(chanceEvent);
             }
 
         }
@@ -80,8 +87,10 @@ namespace Monogame_Party_2018
             else if (spaceType == Entity.typeSpace.red)
                 moveYPos++;
             // DEBUG: Skip chance spaces for now
-            else
-                moveYPos = 61;
+            else {
+                moveYPos++;
+                //moveYPos = 61;
+            }
         }
 
 
