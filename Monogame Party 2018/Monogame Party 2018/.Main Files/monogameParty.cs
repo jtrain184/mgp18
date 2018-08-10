@@ -73,6 +73,10 @@ namespace Monogame_Party_2018 {
         public Texture2D minigame_one_plungerUp;
         public Texture2D minigame_two_background;
         public Texture2D minigame_two_racetrack;
+        public Texture2D minigame_two_up_arrow;
+        public Texture2D minigame_two_down_arrow;
+        public Texture2D minigame_two_right_arrow;
+        public Texture2D minigame_two_left_arrow;
 
         // Result Stars
         public Texture2D spr_star1;
@@ -214,6 +218,11 @@ namespace Monogame_Party_2018 {
             minigame_one_plungerDown = Content.Load<Texture2D>("Minigames/plunger_down");
             minigame_two_background = Content.Load<Texture2D>("Minigames/bg_minigame2");
             minigame_two_racetrack = Content.Load<Texture2D>("Minigames/spr_racetrack");
+            minigame_two_up_arrow = Content.Load<Texture2D>("Minigames/spr_up_arrow");
+            minigame_two_down_arrow = Content.Load<Texture2D>("Minigames/spr_down_arrow");
+            minigame_two_right_arrow = Content.Load<Texture2D>("Minigames/spr_right_arrow");
+            minigame_two_left_arrow = Content.Load<Texture2D>("Minigames/spr_left_arrow");
+
 
 
 
