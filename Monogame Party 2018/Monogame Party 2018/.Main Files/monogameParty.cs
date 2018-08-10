@@ -234,6 +234,8 @@ namespace Monogame_Party_2018 {
             sfx.Add(MGP_Constants.soundEffects.dicePre, Content.Load<SoundEffect>("SFX/sfx_dicePre"));
             sfx.Add(MGP_Constants.soundEffects.diceRolling, Content.Load<SoundEffect>("SFX/sfx_diceRolling"));
             sfx.Add(MGP_Constants.soundEffects.diceHit, Content.Load<SoundEffect>("SFX/sfx_diceHit"));
+            sfx.Add(MGP_Constants.soundEffects.spaceBlue, Content.Load<SoundEffect>("SFX/sfx_spaceBlue"));
+            sfx.Add(MGP_Constants.soundEffects.spaceRed, Content.Load<SoundEffect>("SFX/sfx_spaceRed"));
 
         }
 

@@ -32,7 +32,9 @@ namespace Monogame_Party_2018
           space,
           dicePre,
           diceRolling,
-          diceHit
+          diceHit,
+          spaceBlue,
+          spaceRed
         }
 
         public enum music {

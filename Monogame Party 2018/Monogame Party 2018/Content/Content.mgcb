@@ -719,3 +719,15 @@
 /processorParam:Quality=Best
 /build:SFX/sfx_diceRolling.wav
 
+#begin SFX/sfx_spaceBlue.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_spaceBlue.wav
+
+#begin SFX/sfx_spaceRed.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_spaceRed.wav
+

@@ -33,6 +33,9 @@ namespace Monogame_Party_2018
                 creator.round.currPlayer.coins += numCoins;
                 creator.round.currPlayer.totalCoinsGained += numCoins;
                 landAction.text = "+ " + numCoins.ToString();
+
+                // Play sound effect:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceBlue, 1.0f);
             }
 
             // Landed on a red space
@@ -41,11 +44,11 @@ namespace Monogame_Party_2018
                 // Subtract a 3 coins from player
                 creator.round.currPlayer.coins -= numCoins;
                 // Prevent negative values
-                if (creator.round.currPlayer.coins < 0)
-                {
-                    creator.round.currPlayer.coins = 0;
-                }
+                if (creator.round.currPlayer.coins < 0) { creator.round.currPlayer.coins = 0; }
                 landAction.text = "- " + numCoins.ToString();
+
+                // Play sound effect:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceRed, 1.0f);
             }
             else
             {
@@ -61,12 +64,12 @@ namespace Monogame_Party_2018
             //DEBUG:
             if (finishedAnimation)
             {
- 
+
                     parentManager.round.active = true;      //Make S_Round Active
                     parentManager.round.playerIsPlaying = false;   // Allow S_Round to get next player
                     this.flagForDeletion = true;
                     Console.WriteLine("Performed land action code. Going back to S_Round");
-                
+
             }
             if (Math.Abs(moveYPos) > 60)
                 finishedAnimation = true;
@@ -105,8 +108,8 @@ namespace Monogame_Party_2018
                 if (spaceType == Entity.typeSpace.red)
                     sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, coinTextPos, Color.Red);
             }
-            
-            
+
+
             sb.End();
         }
     }
