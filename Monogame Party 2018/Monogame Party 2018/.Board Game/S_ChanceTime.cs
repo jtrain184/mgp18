@@ -52,7 +52,8 @@ namespace Monogame_Party_2018 {
 
 
       // If HUMAN:
-      if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one) && p.isHuman == true) {
+      if ((km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one) && p.isHuman == true) ||
+         (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.all))) {
 
         // debug:
         landActionCreator.active = true;
