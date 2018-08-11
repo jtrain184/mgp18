@@ -29,12 +29,20 @@ namespace Monogame_Party_2018
 
         public enum soundEffects {
           pressStart = 0,
+
           space,
+
           dicePre,
           diceRolling,
           diceHit,
+
           spaceBlue,
-          spaceRed
+          spaceRed,
+
+          chanceTimeDrum,
+          chanceTimeHigh,
+          chanceTimeLow,
+          chanceTimeCymbal
         }
 
         public enum music {

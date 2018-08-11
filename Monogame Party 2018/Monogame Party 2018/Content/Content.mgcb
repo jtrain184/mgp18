@@ -791,3 +791,27 @@
 /processorParam:TextureFormat=Color
 /build:ChanceTime/bg_chanceTime.png
 
+#begin SFX/sfx_chanceTimeCymbal.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_chanceTimeCymbal.wav
+
+#begin SFX/sfx_chanceTimeDrum.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_chanceTimeDrum.wav
+
+#begin SFX/sfx_chanceTimeHigh.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_chanceTimeHigh.wav
+
+#begin SFX/sfx_chanceTimeLow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_chanceTimeLow.wav
+

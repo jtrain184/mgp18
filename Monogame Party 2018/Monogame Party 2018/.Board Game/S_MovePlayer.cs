@@ -30,15 +30,12 @@ namespace Monogame_Party_2018
         }
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
+        public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
 
 
-
             // Move the player
-            if (moveNum > 0)
-            {
+            if (moveNum > 0) {
                 // Find next space
                 E_Space spaceToMoveTo = currPlayer.currSpace.spacesAhead[0];
 
@@ -54,13 +51,10 @@ namespace Monogame_Party_2018
                       parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
                       soundPlayed = true;
                     }
-
-
-
                 }
+
                 // Meeple has arrived at new space
-                else
-                {
+                else {
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
 
@@ -68,8 +62,7 @@ namespace Monogame_Party_2018
                     soundPlayed = false;
 
                     // If player passes a star
-                    if (currPlayer.currSpace.type == Entity.typeSpace.star)
-                    {
+                    if (currPlayer.currSpace.type == Entity.typeSpace.star) {
                         S_BuyStar buyStar = new S_BuyStar(parentManager, 0, 0);
                         parentManager.AddStateQueue(buyStar);
                         this.active = false; //pause moving player
@@ -83,7 +76,6 @@ namespace Monogame_Party_2018
                 parentManager.AddStateQueue(landAction);
                 this.flagForDeletion = true;
             }
-
 
             // Listen for pausing here:
             ListenPause();
