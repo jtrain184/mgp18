@@ -72,12 +72,10 @@ namespace Monogame_Party_2018
         }
 
         // Update
-        public void Update(GameTime gameTime)
-        {
+        public void Update(GameTime gameTime) {
 
             // Update the keyboard for BEGINNING of updates:
             km.KeysUpdateCurrent();
-
             var num = states.Count - 1;
 
             // Loop through all states and update them!:
@@ -90,16 +88,15 @@ namespace Monogame_Party_2018
 
               // ** UPDATE ALL STATES **
               // Only update if State is 'active' and not flagged for deletion:
-              if ((delayTimer <= 0) && s.active && !s.flagForDeletion) {
-                s.Update(gameTime, input);
-              }
+              if ((delayTimer <= 0) && s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
 
-              // If state has been paused
+
+              // a 'delayTimer' allows states to push short delays to essentially mini-pause the state stack
               if (s.sendDelay > 0) {
                 delayTimer += s.sendDelay;
                 s.sendDelay = 0; // reset send delay from object (notification of it was received)
               }
-              
+
               // State is flagged for deletion, remove it now:
               if (s.flagForDeletion) { RemoveState(s); }
 
@@ -118,33 +115,21 @@ namespace Monogame_Party_2018
 
             // Create any new states
             // Loop through states to create, creating and linking them to our states list
-            foreach (State newState in statesToCreate.ToList())
-            {
+            foreach (State newState in statesToCreate.ToList()) {
                 states.Add(newState);
                 statesToCreate.Remove(newState);
             }
 
-
-            // Remove from statesToCreate list
-
-
             // Log changes in state count
-            if(states.Count != stateCount)
-            {
+            if(states.Count != stateCount) {
                 Console.WriteLine("Current State Count: " + states.Count + "\n");
                 stateCount = states.Count;
             }
 
             // Debug mode activation:
             if (km.ActionPressed(KeyboardManager.action.debugMode, KeyboardManager.playerIndex.one)) {
-              if (this.debugMode == false) {
-                this.debugMode = true;
-                Console.WriteLine("turned debugMode on");
-              }
-              else {
-                this.debugMode = false;
-                Console.WriteLine("turned debugMode off");
-              }
+              if (this.debugMode == false) { this.debugMode = true; Console.WriteLine("turned debugMode on"); }
+              else { this.debugMode = false; Console.WriteLine("turned debugMode off"); }
             }
 
             // Update New becomes Old states:

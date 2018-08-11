@@ -28,6 +28,8 @@ namespace Monogame_Party_2018 {
         public Texture2D closeupPicture;
         public Player.Type type;
         public E_Space currSpace;
+        public KeyboardManager.action currMove;
+
 
         public int coins;
         public int stars;

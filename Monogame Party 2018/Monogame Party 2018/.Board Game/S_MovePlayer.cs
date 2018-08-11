@@ -27,13 +27,13 @@ namespace Monogame_Party_2018
         }
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
+        public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
 
+
+
             // Move the player
-            if (moveNum > 0)
-            {
+            if (moveNum > 0) {
                 // Find next space
                 E_Space spaceToMoveTo = currPlayer.currSpace.spacesAhead[0];
 
@@ -49,10 +49,12 @@ namespace Monogame_Party_2018
                       parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
                       soundPlayed = true;
                     }
+
+
+
                 }
                 // Meeple has arrived at new space
-                else
-                {
+                else {
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
 
@@ -60,8 +62,7 @@ namespace Monogame_Party_2018
                     soundPlayed = false;
 
                     // If player passes a star
-                    if (currPlayer.currSpace.type == Entity.typeSpace.star)
-                    {
+                    if (currPlayer.currSpace.type == Entity.typeSpace.star) {
                         S_BuyStar buyStar = new S_BuyStar(parentManager, 0, 0);
                         parentManager.AddStateQueue(buyStar);
                         this.active = false; //pause moving player
@@ -90,7 +91,7 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();
             SpriteFont spacesLeft = this.parentManager.game.ft_playerUIdata;
-            sb.DrawString(spacesLeft, moveNum.ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+            sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
             sb.End();
 
         }

@@ -114,22 +114,21 @@ namespace Monogame_Party_2018
             {
                 // DEBUG: Go straight to the mini game
                 // Create player entitities and add to game options
-                for (int i = 0; i < 4; i++)
-                {
-                    // add as a human player
-                    if (i < 1)
-                        parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
-                    // add a comp player
-                    else
-                        parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false));
+         
+                 // add as a human player
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
+                 // add a comp player
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.MANFORD, true));
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.SUE, false));
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.WILBER, false));
 
-                }
-                parentManager.gameOptions.numPlayers = 1;
+
+                parentManager.gameOptions.numPlayers = 2;
 
                 S_Minigame2 minigame = new S_Minigame2(parentManager, 0, 0, true);
                 parentManager.AddStateQueue(minigame);
 
-                parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
+                parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;
 
                 this.flagForDeletion = true;
 

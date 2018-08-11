@@ -73,6 +73,10 @@ namespace Monogame_Party_2018 {
         public Texture2D minigame_one_plungerUp;
         public Texture2D minigame_two_background;
         public Texture2D minigame_two_racetrack;
+        public Texture2D minigame_two_up_arrow;
+        public Texture2D minigame_two_down_arrow;
+        public Texture2D minigame_two_right_arrow;
+        public Texture2D minigame_two_left_arrow;
 
         // Result Stars
         public Texture2D spr_star1;
@@ -80,6 +84,9 @@ namespace Monogame_Party_2018 {
         public Texture2D spr_star3;
         public Texture2D spr_star4;
         public Texture2D spr_star5;
+
+        // Chance Time
+        public Texture2D bg_chanceTime;
 
         // Test graphic
         public Texture2D spr_testDice;
@@ -214,6 +221,11 @@ namespace Monogame_Party_2018 {
             minigame_one_plungerDown = Content.Load<Texture2D>("Minigames/plunger_down");
             minigame_two_background = Content.Load<Texture2D>("Minigames/bg_minigame2");
             minigame_two_racetrack = Content.Load<Texture2D>("Minigames/spr_racetrack");
+            minigame_two_up_arrow = Content.Load<Texture2D>("Minigames/spr_up_arrow");
+            minigame_two_down_arrow = Content.Load<Texture2D>("Minigames/spr_down_arrow");
+            minigame_two_right_arrow = Content.Load<Texture2D>("Minigames/spr_right_arrow");
+            minigame_two_left_arrow = Content.Load<Texture2D>("Minigames/spr_left_arrow");
+
 
 
 
@@ -225,6 +237,11 @@ namespace Monogame_Party_2018 {
             spr_star5 = Content.Load<Texture2D>("Results/result_Star5");
 
 
+            // Chance Time:
+            bg_chanceTime = Content.Load<Texture2D>("ChanceTime/bg_ChanceTime");
+
+
+
             // Music:
             songs.Add(MGP_Constants.music.pirateBay, Content.Load<Song>("Music/mus_pirateBay"));
 
@@ -234,6 +251,12 @@ namespace Monogame_Party_2018 {
             sfx.Add(MGP_Constants.soundEffects.dicePre, Content.Load<SoundEffect>("SFX/sfx_dicePre"));
             sfx.Add(MGP_Constants.soundEffects.diceRolling, Content.Load<SoundEffect>("SFX/sfx_diceRolling"));
             sfx.Add(MGP_Constants.soundEffects.diceHit, Content.Load<SoundEffect>("SFX/sfx_diceHit"));
+            sfx.Add(MGP_Constants.soundEffects.spaceBlue, Content.Load<SoundEffect>("SFX/sfx_spaceBlue"));
+            sfx.Add(MGP_Constants.soundEffects.spaceRed, Content.Load<SoundEffect>("SFX/sfx_spaceRed"));
+            sfx.Add(MGP_Constants.soundEffects.chanceTimeDrum, Content.Load<SoundEffect>("SFX/sfx_chanceTimeDrum"));
+            sfx.Add(MGP_Constants.soundEffects.chanceTimeHigh, Content.Load<SoundEffect>("SFX/sfx_chanceTimeHigh"));
+            sfx.Add(MGP_Constants.soundEffects.chanceTimeLow, Content.Load<SoundEffect>("SFX/sfx_chanceTimeLow"));
+            sfx.Add(MGP_Constants.soundEffects.chanceTimeCymbal, Content.Load<SoundEffect>("SFX/sfx_chanceTimeCymbal"));
 
         }
 

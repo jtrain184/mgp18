@@ -80,6 +80,7 @@
     <Compile Include=".Board Game\PauseItem.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
     <Compile Include=".Board Game\S_BuyStar.cs" />
+    <Compile Include=".Board Game\S_ChanceTime.cs" />
     <Compile Include=".Board Game\S_ConfirmPlayer.cs" />
     <Compile Include=".Board Game\S_GameResults.cs" />
     <Compile Include=".Board Game\S_LandAction.cs" />
@@ -192,6 +193,7 @@
     <None Include="Content\BoardGameComponents\cameraCrosshair.xnb" />
     <None Include="Content\BoardGameComponents\spr_messageBox.xnb" />
     <None Include="Content\BoardGameComponents\testDiceBox.xnb" />
+    <None Include="Content\ChanceTime\bg_chanceTime.xnb" />
     <None Include="Content\Characters\spr_Frank.xnb" />
     <None Include="Content\Characters\spr_Louie.xnb" />
     <None Include="Content\Characters\spr_Manford.xnb" />
@@ -222,11 +224,17 @@
     <None Include="Content\playerUI\spr_thirdPlace.xnb" />
     <None Include="Content\playerUI\spr_VelmaCloseup.xnb" />
     <None Include="Content\playerUI\spr_WilberCloseup.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeCymbal.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeDrum.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeHigh.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeLow.xnb" />
     <None Include="Content\SFX\sfx_diceHit.xnb" />
     <None Include="Content\SFX\sfx_dicePre.xnb" />
     <None Include="Content\SFX\sfx_diceRolling.xnb" />
     <None Include="Content\SFX\sfx_pressStart.xnb" />
     <None Include="Content\SFX\sfx_space.xnb" />
+    <None Include="Content\SFX\sfx_spaceBlue.xnb" />
+    <None Include="Content\SFX\sfx_spaceRed.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
     <None Include="Content\Spaces\piece_green64.xnb" />
     <None Include="Content\Spaces\piece_purple64.xnb" />

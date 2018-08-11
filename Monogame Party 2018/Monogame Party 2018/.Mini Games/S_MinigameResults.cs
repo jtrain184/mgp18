@@ -47,15 +47,15 @@ namespace Monogame_Party_2018
                 resultPos.Add(new Vector2(350, 500 - (i * 100)));
             }
 
-            // Add coins to players totalCoins gained 
+            // Add coins to players totalCoins gained
             for(int j = 0; j < entities.Count; j++)
             {
                 Console.WriteLine("Player : " + results[j].type.ToString() + " gained " + entities[j].changeValue);
-                
+
                 if (entities[j].changeValue > 0)
                 {
                     results[j].totalCoinsGained += entities[j].changeValue;
-         
+
                 }
                 Console.WriteLine("They now have gained a total of " + results[j].totalCoinsGained);
             }
