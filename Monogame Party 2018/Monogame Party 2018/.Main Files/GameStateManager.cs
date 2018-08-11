@@ -94,14 +94,12 @@ namespace Monogame_Party_2018
                 s.Update(gameTime, input);
               }
 
-
-              //
+              // If state has been paused
               if (s.sendDelay > 0) {
                 delayTimer += s.sendDelay;
                 s.sendDelay = 0; // reset send delay from object (notification of it was received)
               }
-              //if (delayTimer > 0) { Console.WriteLine("timer = " + delayTimer.ToString()); }
-
+              
               // State is flagged for deletion, remove it now:
               if (s.flagForDeletion) { RemoveState(s); }
 
@@ -112,15 +110,13 @@ namespace Monogame_Party_2018
             delayTimer--;
 
 
-
-            // Clear all states flag?
+            // Clear all states flag
             if (clearAllStates) {
               states.Clear();
               clearAllStates = false; // reset flag
             }
 
-
-            // Create any new states?
+            // Create any new states
             // Loop through states to create, creating and linking them to our states list
             foreach (State newState in statesToCreate.ToList())
             {
@@ -150,9 +146,6 @@ namespace Monogame_Party_2018
                 Console.WriteLine("turned debugMode off");
               }
             }
-
-
-
 
             // Update New becomes Old states:
             km.KeysPushOld();

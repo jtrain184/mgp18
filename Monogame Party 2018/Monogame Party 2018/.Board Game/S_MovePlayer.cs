@@ -20,21 +20,16 @@ namespace Monogame_Party_2018
         public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos)
         {
             this.moveNum = moveNum;
-            if (parentManager.round == null)    // DEBUG: Used for creating a board without players
-                this.currPlayer = new Player(creator, Player.Type.FRANK, true);
-            else
-                this.currPlayer = parentManager.round.currPlayer;
+        
+            this.currPlayer = parentManager.round.currPlayer;
 
             this.soundPlayed = false;
-
         }
 
         // Update:
         public override void Update(GameTime gameTime, KeyboardState ks)
         {
             base.Update(gameTime, ks);
-
-
 
             // Move the player
             if (moveNum > 0)
@@ -54,9 +49,6 @@ namespace Monogame_Party_2018
                       parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
                       soundPlayed = true;
                     }
-
-
-
                 }
                 // Meeple has arrived at new space
                 else
@@ -84,11 +76,8 @@ namespace Monogame_Party_2018
                 this.flagForDeletion = true;
             }
 
-
             // Listen for pausing here:
             ListenPause();
-
-
         }
 
 
