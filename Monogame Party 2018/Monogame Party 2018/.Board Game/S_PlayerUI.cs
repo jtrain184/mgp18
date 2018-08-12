@@ -22,6 +22,7 @@ namespace Monogame_Party_2018 {
     Vector2 bottomLeft;
     Vector2 bottomRight;
 
+    // Constructor:
     public S_PlayerUI(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
 
       // Box Positions
@@ -50,16 +51,16 @@ namespace Monogame_Party_2018 {
       sb.Begin();
 
       // Player One:
-      drawPlayer(parentManager.gameOptions.players[0], topLeft, sb, Color.White);
+      drawPlayer(parentManager.gameOptions.players[0], topLeft, sb);
 
       // Player Two:
-      drawPlayer(parentManager.gameOptions.players[1], topRight, sb, Color.Red);
+      drawPlayer(parentManager.gameOptions.players[1], topRight, sb);
 
       // Player Three:
-      drawPlayer(parentManager.gameOptions.players[2], bottomLeft, sb, Color.Blue);
+      drawPlayer(parentManager.gameOptions.players[2], bottomLeft, sb);
 
       // Player Four:
-      drawPlayer(parentManager.gameOptions.players[3], bottomRight, sb, Color.Green);
+      drawPlayer(parentManager.gameOptions.players[3], bottomRight, sb);
 
       sb.End();
     }
@@ -68,7 +69,10 @@ namespace Monogame_Party_2018 {
 
 
 
-    void drawPlayer(Player p, Vector2 pos, SpriteBatch sb, Color c) {
+    void drawPlayer(Player p, Vector2 pos, SpriteBatch sb) {
+
+      Color c = p.uiColor;
+
       // Box:
       sb.Draw(this.parentManager.game.spr_playerBox, pos, c);
       sb.Draw(this.parentManager.game.spr_boxInner, pos, Color.White);

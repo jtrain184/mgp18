@@ -67,7 +67,7 @@ namespace Monogame_Party_2018
                     break;
 
                 case Entity.typeSpace.chance:
-                    this.sprite = parentState.parentManager.game.piece_white64;
+                    this.sprite = parentState.parentManager.game.piece_orange64;
                     break;
 
                 case Entity.typeSpace.bonus:

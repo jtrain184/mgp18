@@ -36,6 +36,9 @@ namespace Monogame_Party_2018
                 creator.round.currPlayer.totalCoinsGained += numCoins;
                 landAction.text = "+ " + numCoins.ToString();
 
+                // Change player ui color:
+                creator.round.currPlayer.uiColor = Color.Blue;
+
                 // Play sound effect:
                 parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceBlue, 1.0f);
             }
@@ -49,6 +52,9 @@ namespace Monogame_Party_2018
                 if (creator.round.currPlayer.coins < 0) { creator.round.currPlayer.coins = 0; }
                 landAction.text = "- " + numCoins.ToString();
 
+                // Change player ui color:
+                creator.round.currPlayer.uiColor = Color.Red;
+
                 // Play sound effect:
                 parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceRed, 0.6f);
             }
@@ -60,6 +66,10 @@ namespace Monogame_Party_2018
 
                 S_ChanceTime chanceEvent = new S_ChanceTime(parentManager, 0, 0, this);
                 parentManager.AddStateQueue(chanceEvent);
+
+                // Change player ui color:
+                creator.round.currPlayer.uiColor = Color.Orange;
+
             }
 
         }

@@ -29,8 +29,9 @@ namespace Monogame_Party_2018 {
         public Player.Type type;
         public E_Space currSpace;
         public KeyboardManager.action currMove;
-
         public KeyboardManager.playerIndex playerControlsIndex;
+
+        public Color uiColor;
 
 
         public int coins;
@@ -69,6 +70,8 @@ namespace Monogame_Party_2018 {
             this.totalCoinsLost = 0;
 
             this.playerControlsIndex = pi;
+
+            this.uiColor = Color.White;
 
             switch (type)
             {

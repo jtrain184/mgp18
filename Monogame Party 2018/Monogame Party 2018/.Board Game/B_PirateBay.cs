@@ -65,64 +65,55 @@ namespace Monogame_Party_2018
 
       // <<---- MOVING LEFT NOW: ----->>
       // 20, 16
-        // DEBUG
-      curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.chance);
+      curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.blue);
       spaces.Add(curSpace); // add to overall list
       curSpace.assignSpaces(prevSpace);
       prevSpace = curSpace;
 
-        // DEBUG
             // 19, 16
-            curSpace = new E_Space(this, GetTilePosCenter(19, 16), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(19, 16), Entity.typeSpace.blue);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 17, 16
-            curSpace = new E_Space(this, GetTilePosCenter(17, 16), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(17, 16), Entity.typeSpace.red);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 16, 15
-            curSpace = new E_Space(this, GetTilePosCenter(16, 15), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(16, 15), Entity.typeSpace.blue);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 15, 15
-            curSpace = new E_Space(this, GetTilePosCenter(15, 15), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(15, 15), Entity.typeSpace.blue);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 14, 15
-            curSpace = new E_Space(this, GetTilePosCenter(14, 15), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(14, 15), Entity.typeSpace.red);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 12, 15
-            curSpace = new E_Space(this, GetTilePosCenter(12, 15), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(12, 15), Entity.typeSpace.blue);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 12, 16
-            curSpace = new E_Space(this, GetTilePosCenter(12, 16), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(12, 16), Entity.typeSpace.blue);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
 
-        // DEBUG
             // 10, 16
-            curSpace = new E_Space(this, GetTilePosCenter(10, 16), Entity.typeSpace.chance);
+            curSpace = new E_Space(this, GetTilePosCenter(10, 16), Entity.typeSpace.red);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
@@ -175,7 +166,7 @@ namespace Monogame_Party_2018
             prevSpace = curSpace;
 
             // 3, 9
-            curSpace = new E_Space(this, GetTilePosCenter(3, 9), Entity.typeSpace.red);
+            curSpace = new E_Space(this, GetTilePosCenter(3, 9), Entity.typeSpace.chance);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
@@ -259,7 +250,7 @@ namespace Monogame_Party_2018
             prevSpace = curSpace;
 
             // 14, 3
-            curSpace = new E_Space(this, GetTilePosCenter(14, 3), Entity.typeSpace.blue);
+            curSpace = new E_Space(this, GetTilePosCenter(14, 3), Entity.typeSpace.chance);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
@@ -338,7 +329,7 @@ namespace Monogame_Party_2018
             prevSpace = curSpace;
 
             // 22, 15 FINAL PIECE
-            curSpace = new E_Space(this, GetTilePosCenter(22, 15), Entity.typeSpace.blue);
+            curSpace = new E_Space(this, GetTilePosCenter(22, 15), Entity.typeSpace.chance);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             this.finalSpace = curSpace; // FINAL SPACE
