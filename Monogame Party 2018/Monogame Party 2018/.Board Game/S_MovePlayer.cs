@@ -20,7 +20,7 @@ namespace Monogame_Party_2018
         public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos)
         {
             this.moveNum = moveNum;
-        
+
             this.currPlayer = parentManager.round.currPlayer;
 
             this.soundPlayed = false;
@@ -91,7 +91,12 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();
             SpriteFont spacesLeft = this.parentManager.game.ft_playerUIdata;
-            sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+
+
+            if ((moveNum - 1) > 0) {
+              sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+            }
+
             sb.End();
 
         }

@@ -114,13 +114,13 @@ namespace Monogame_Party_2018
             {
                 // DEBUG: Go straight to the mini game
                 // Create player entitities and add to game options
-         
+
                  // add as a human player
-                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true, KeyboardManager.playerIndex.one));
                  // add a comp player
-                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.MANFORD, true));
-                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.SUE, false));
-                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.WILBER, false));
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.MANFORD, true, KeyboardManager.playerIndex.two));
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.SUE, false, KeyboardManager.playerIndex.none));
+                 parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.WILBER, false, KeyboardManager.playerIndex.none));
 
 
                 parentManager.gameOptions.numPlayers = 2;
@@ -153,10 +153,10 @@ namespace Monogame_Party_2018
                     {
                         // add as a human player
                         if (i < 1)
-                            parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true));
+                            parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true, KeyboardManager.playerIndex.one));
                         // add a comp player
                         else
-                            parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false));
+                            parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.LOUIE, false, KeyboardManager.playerIndex.none));
 
                     }
                     parentManager.gameOptions.numPlayers = 1;

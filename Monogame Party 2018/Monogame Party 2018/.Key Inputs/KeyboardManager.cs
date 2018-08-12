@@ -14,7 +14,8 @@ namespace Monogame_Party_2018 {
     public enum playerIndex {
       one,
       two,
-      all
+      all,
+      none // used for ai
     }
 
     public enum action {

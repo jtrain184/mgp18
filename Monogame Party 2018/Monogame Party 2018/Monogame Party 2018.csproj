@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include=".Board Game\B_PirateBay.cs" />
     <Compile Include=".Board Game\CameraProperties.cs" />
+    <Compile Include=".Board Game\E_ChanceBlock.cs" />
     <Compile Include=".Board Game\E_Dice.cs" />
     <Compile Include=".Board Game\E_Space.cs" />
     <Compile Include=".Board Game\PauseItem.cs" />
@@ -194,6 +195,25 @@
     <None Include="Content\BoardGameComponents\spr_messageBox.xnb" />
     <None Include="Content\BoardGameComponents\testDiceBox.xnb" />
     <None Include="Content\ChanceTime\bg_chanceTime.xnb" />
+    <None Include="Content\ChanceTime\spr_chance1.xnb" />
+    <None Include="Content\ChanceTime\spr_chance10.xnb" />
+    <None Include="Content\ChanceTime\spr_chance2.xnb" />
+    <None Include="Content\ChanceTime\spr_chance20.xnb" />
+    <None Include="Content\ChanceTime\spr_chance30.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowDown.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowL.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowR.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowSwap.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowUp.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceBlock.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceCoin.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceFrank.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceLouie.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceManford.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceStar.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceSue.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceVelma.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceWilber.xnb" />
     <None Include="Content\Characters\spr_Frank.xnb" />
     <None Include="Content\Characters\spr_Louie.xnb" />
     <None Include="Content\Characters\spr_Manford.xnb" />

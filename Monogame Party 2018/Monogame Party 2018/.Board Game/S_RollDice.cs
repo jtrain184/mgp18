@@ -42,6 +42,7 @@ namespace Monogame_Party_2018
             compRollEnd = creator.random.Next(ROLL_SPEED, ROLL_SPEED * 2); // have computer 'hit the dice' after 1 - 2 secs
             waitTime = 0;
 
+            // Sound Effects:
             creator.audioEngine.playSound(MGP_Constants.soundEffects.dicePre, 1.0f);
             rollingSoundCounter = PRE_ROLL_SOUND_LEN;
         }
