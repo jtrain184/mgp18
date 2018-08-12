@@ -14,7 +14,7 @@ namespace Monogame_Party_2018
         public List<Vector2> resultPos;
         public int currentIndex;
         public int waitTime;
-        public const int maxWaitTime = 120; // # of frames
+        public const int maxWaitTime = 100; // # of frames
         public bool changedLastPlayer;
 
         public Texture2D background;
@@ -85,6 +85,7 @@ namespace Monogame_Party_2018
                         // Begin next round:
                         parentManager.round.currRound++;
                         parentManager.round.playerIsPlaying = false;
+                        parentManager.round.roundStart = true;
                         this.flagForDeletion = true;
                         parentManager.round.active = true;
                     }
@@ -125,7 +126,7 @@ namespace Monogame_Party_2018
             // Continue to ease the current indexed result
             else
             {
-                entities[currentIndex].position.Y = MGP_Tools.Ease(entities[currentIndex].position.Y, resultPos[currentIndex].Y, 0.05f);
+                entities[currentIndex].position.Y = MGP_Tools.Ease(entities[currentIndex].position.Y, resultPos[currentIndex].Y, 0.15f);
             }
 
         }

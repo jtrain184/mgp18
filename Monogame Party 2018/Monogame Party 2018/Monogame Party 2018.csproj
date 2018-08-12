@@ -256,7 +256,9 @@
     <None Include="Content\SFX\sfx_spaceBlue.xnb" />
     <None Include="Content\SFX\sfx_spaceRed.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
+    <None Include="Content\Spaces\piece_crystal64.xnb" />
     <None Include="Content\Spaces\piece_green64.xnb" />
+    <None Include="Content\Spaces\piece_orange64.xnb" />
     <None Include="Content\Spaces\piece_purple64.xnb" />
     <None Include="Content\Spaces\piece_red64.xnb" />
     <None Include="Content\Spaces\piece_white64.xnb" />

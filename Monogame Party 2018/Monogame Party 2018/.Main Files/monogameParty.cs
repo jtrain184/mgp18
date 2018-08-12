@@ -59,6 +59,8 @@ namespace Monogame_Party_2018 {
         public Texture2D piece_red64;
         public Texture2D piece_white64;
         public Texture2D piece_star64;
+        public Texture2D piece_orange64;
+        public Texture2D piece_crystal64;
 
         // Other:
         public Texture2D noSprite; // used as default and errors
@@ -207,6 +209,8 @@ namespace Monogame_Party_2018 {
             piece_red64 = Content.Load<Texture2D>("Spaces/piece_red64");
             piece_white64 = Content.Load<Texture2D>("Spaces/piece_white64");
             piece_star64 = Content.Load<Texture2D>("Spaces/piece_star64");
+            piece_orange64 = Content.Load<Texture2D>("Spaces/piece_orange64");
+            piece_crystal64 = Content.Load<Texture2D>("Spaces/piece_crystal64");
 
             // Other:
             noSprite = Content.Load<Texture2D>("noSprite");

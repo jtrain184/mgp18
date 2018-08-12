@@ -11,12 +11,13 @@ namespace Monogame_Party_2018
     public class S_Round : State
     {
         // Vars
-
         public GameOptions gameOptions;
         public Player currPlayer;
         public bool playerIsPlaying;    //determine whether or not to change current player
         public int playerIndex;     // current player
         public int currRound;   // current round number
+
+        public bool roundStart = true;
 
         // Constructor
         public S_Round(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
@@ -40,7 +41,18 @@ namespace Monogame_Party_2018
         public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
 
+            // do this at the beginning of every round, but only once:
+            if (roundStart) {
+              foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
+              roundStart = false;
+            }
+
+
+
             MGP_Tools.Follow_Player(parentManager, currPlayer);
+
+
+
 
             //DEBUG:
             if (!playerIsPlaying) {
@@ -69,6 +81,8 @@ namespace Monogame_Party_2018
                     playerIsPlaying = true;
                 }
             }
+
+
 
             // Listen for and allow for pauses:
             ListenPause();
