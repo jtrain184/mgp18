@@ -152,11 +152,13 @@ namespace Monogame_Party_2018
                     for (int i = 0; i < players.Count; i++)
                     {
                         // add as a human player
-                        if (i < numOfPlayers)
-                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true));
+                        if(i == 0)
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true, KeyboardManager.playerIndex.one));
+                        else if (i == numOfPlayers - 1)
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true, KeyboardManager.playerIndex.two));
                         // add a comp player
                         else
-                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], false));
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], false, KeyboardManager.playerIndex.none));
                     }
 
                     // Move onto next menu
