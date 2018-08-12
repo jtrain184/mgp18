@@ -45,6 +45,7 @@ namespace Monogame_Party_2018
                         s.flagForDeletion = true;
                     }
 
+                    gsm.gameOptions = new GameOptions();    // Reset game options
                     // Go back to main menu
                     S_MainMenu newMenu = new S_MainMenu(gsm, 0, 0);
                     gsm.AddStateQueue(newMenu);
