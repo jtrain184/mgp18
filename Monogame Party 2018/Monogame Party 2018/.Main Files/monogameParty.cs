@@ -194,7 +194,7 @@ namespace Monogame_Party_2018 {
 
             // MainMenu:
             bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
-            spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon");
+            spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon_Alt");
             spr_glove = Content.Load<Texture2D>("MainMenu/spr_glove");
 
             // PirateBay:

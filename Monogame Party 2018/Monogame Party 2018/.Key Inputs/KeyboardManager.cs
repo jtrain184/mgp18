@@ -8,163 +8,173 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Monogame_Party_2018 {
-  public class KeyboardManager {
+namespace Monogame_Party_2018
+{
+    public class KeyboardManager
+    {
 
-    public enum playerIndex {
-      one,
-      two,
-      all,
-      none // used for ai
-    }
+        public enum playerIndex
+        {
+            one,
+            two,
+            all,
+            none // used for ai
+        }
 
-    public enum action {
-      up,
-      down,
-      left,
-      right,
+        public enum action
+        {
+            up,
+            down,
+            left,
+            right,
 
-      select,
+            select,
 
-      cancel,
-      pause,
+            cancel,
+            pause,
 
-      action_1,
-      action_2,
-      action_3,
+            action_1,
+            action_2,
+            action_3,
 
-      debugMode
-    }
+            debugMode
+        }
 
-    // Member Variables
-    KeyboardState kbCur;
-    KeyboardState kbPrev;
+        // Member Variables
+        KeyboardState kbCur;
+        KeyboardState kbPrev;
 
-    // Constructor
-    public KeyboardManager() {
-      this.kbCur = new KeyboardState();
-      this.kbPrev = new KeyboardState();
-    }
+        // Constructor
+        public KeyboardManager()
+        {
+            this.kbCur = new KeyboardState();
+            this.kbPrev = new KeyboardState();
+        }
 
-    public void KeysUpdateCurrent() { this.kbCur = Keyboard.GetState(); }
-    public void KeysPushOld() { this.kbPrev = this.kbCur; }
+        public void KeysUpdateCurrent() { this.kbCur = Keyboard.GetState(); }
+        public void KeysPushOld() { this.kbPrev = this.kbCur; }
 
-    // Key was just pressed
-    public bool KeyPressed(Keys key) {
-      return (kbCur.IsKeyDown(key) && !kbPrev.IsKeyDown(key));
-    }
+        // Key was just pressed
+        public bool KeyPressed(Keys key)
+        {
+            return (kbCur.IsKeyDown(key) && !kbPrev.IsKeyDown(key));
+        }
 
-    // Key was just released
-    public bool KeyReleased(Keys key) {
-      return (!kbCur.IsKeyDown(key) && kbPrev.IsKeyDown(key));
-    }
+        // Key was just released
+        public bool KeyReleased(Keys key)
+        {
+            return (!kbCur.IsKeyDown(key) && kbPrev.IsKeyDown(key));
+        }
 
-    // Is the key currently being HELD down?
-    public bool KeyDown(Keys key) { return kbCur.IsKeyDown(key); }
+        // Is the key currently being HELD down?
+        public bool KeyDown(Keys key) { return kbCur.IsKeyDown(key); }
 
-    // Is the key currently not being touched?
-    public bool KeyUp(Keys key) { return !kbCur.IsKeyDown(key); }
-
-
-    // Key was just pressed
-    public bool ActionPressed(action a, playerIndex p) {
-
-    // ------- PLAYER ONE PRESSED --------
-    if ((p == playerIndex.one) || (p == playerIndex.all)) {
-
-      switch (a) {
-
-        case action.up:
-          return KeyPressed(Keys.W);
-
-        case action.left:
-          return KeyPressed(Keys.A);
-
-        case action.down:
-          return KeyPressed(Keys.S);
-
-        case action.right:
-          return KeyPressed(Keys.D);
-
-        case action.select:
-          return KeyPressed(Keys.E) ||
-                 KeyPressed(Keys.Enter) ||
-                 KeyPressed(Keys.Space);
-
-        case action.cancel:
-          return KeyPressed(Keys.Q) ||
-                 KeyPressed(Keys.Back);
-
-        case action.pause:
-          return KeyPressed(Keys.LeftShift);
-
-        case action.action_1:
-          return KeyPressed(Keys.B);
-
-        case action.action_2:
-          return KeyPressed(Keys.N);
-
-        case action.action_3:
-          return KeyPressed(Keys.M);
-
-        case action.debugMode:
-          return KeyPressed(Keys.F2);
+        // Is the key currently not being touched?
+        public bool KeyUp(Keys key) { return !kbCur.IsKeyDown(key); }
 
 
-        default:
-          return false;
-      } // end switch
-    } // end player one input check
+        // Key was just pressed
+        public bool ActionPressed(action a, playerIndex p)
+        {
 
-    // ------- PLAYER TWO PRESSED --------
-    else if ((p == playerIndex.two) || (p == playerIndex.all)) {
+            // ------- PLAYER ONE PRESSED --------
+            if (p == playerIndex.one)
+            {
+                switch (a)
+                {
+                    case action.up:
+                        return KeyPressed(Keys.W);
 
-      switch (a) {
+                    case action.left:
+                        return KeyPressed(Keys.A);
 
-        case action.up:
-          return KeyPressed(Keys.Up);
+                    case action.down:
+                        return KeyPressed(Keys.S);
 
-        case action.left:
-          return KeyPressed(Keys.Left);
+                    case action.right:
+                        return KeyPressed(Keys.D);
 
-        case action.down:
-          return KeyPressed(Keys.Down);
+                    case action.select:
+                        return KeyPressed(Keys.E) || KeyPressed(Keys.Enter) || KeyPressed(Keys.Space);
 
-        case action.right:
-          return KeyPressed(Keys.Right);
+                    case action.cancel:
+                        return KeyPressed(Keys.Q) || KeyPressed(Keys.Back);
 
-        case action.select:
-          return KeyPressed(Keys.Enter); // on numPad
+                    case action.pause:
+                        return KeyPressed(Keys.LeftShift);
 
-        case action.cancel:
-          return KeyPressed(Keys.Decimal); // on numPad
+                    case action.action_1:
+                        return KeyPressed(Keys.B);
 
-        case action.pause:
-          return KeyPressed(Keys.NumPad0); // on numPad
+                    case action.action_2:
+                        return KeyPressed(Keys.N);
 
-        case action.action_1:
-          return KeyPressed(Keys.NumPad1); // on numPad
+                    case action.action_3:
+                        return KeyPressed(Keys.M);
 
-        case action.action_2:
-          return KeyPressed(Keys.NumPad2); // on numPad
-
-        case action.action_3:
-          return KeyPressed(Keys.NumPad3); // on numPad
-
-        case action.debugMode:
-          return KeyPressed(Keys.F2);
-
-        default:
-          return false;
-      } // end switch
-    } // end player two input check
+                    case action.debugMode:
+                        return KeyPressed(Keys.F2);
 
 
+                    default:
+                        return false;
+                } // end switch
+            } // end player one input check
 
-    else
-      return false;
-    }
+            // ------- PLAYER TWO PRESSED --------
+            else if (p == playerIndex.two)
+            {
+
+                switch (a)
+                {
+
+                    case action.up:
+                        return KeyPressed(Keys.Up);
+
+                    case action.left:
+                        return KeyPressed(Keys.Left);
+
+                    case action.down:
+                        return KeyPressed(Keys.Down);
+
+                    case action.right:
+                        return KeyPressed(Keys.Right);
+
+                    case action.select:
+                        return KeyPressed(Keys.Enter); // on numPad
+
+                    case action.cancel:
+                        return KeyPressed(Keys.Decimal); // on numPad
+
+                    case action.pause:
+                        return KeyPressed(Keys.NumPad0); // on numPad
+
+                    case action.action_1:
+                        return KeyPressed(Keys.NumPad1); // on numPad
+
+                    case action.action_2:
+                        return KeyPressed(Keys.NumPad2); // on numPad
+
+                    case action.action_3:
+                        return KeyPressed(Keys.NumPad3); // on numPad
+
+                    case action.debugMode:
+                        return KeyPressed(Keys.F2);
+
+                    default:
+                        return false;
+                } // end switch
+            } // end player two input check
+
+            // If player index wall, return if either were true
+            else if(p == playerIndex.all)
+            {
+                return ActionPressed(a, playerIndex.one) || ActionPressed(a, playerIndex.two);
+            }
+            else
+                return false;
+        }
 
 
-  } // end KeyboardManager class
+    } // end KeyboardManager class
 }
