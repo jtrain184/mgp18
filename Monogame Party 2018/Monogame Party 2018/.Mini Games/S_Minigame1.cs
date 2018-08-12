@@ -48,19 +48,23 @@ namespace Monogame_Party_2018
             resultsList = new List<Player>();
 
             // Create the list of positions for players
-            playerPositions = new List<Vector2>();
-            playerPositions.Add(new Vector2(150, 500));
-            playerPositions.Add(new Vector2(450, 500));
-            playerPositions.Add(new Vector2(750, 500));
-            playerPositions.Add(new Vector2(1050, 500));
+            playerPositions = new List<Vector2>()
+            {
+                new Vector2(150, 500),
+                new Vector2(450, 500),
+                new Vector2(750, 500),
+                new Vector2(1050, 500)
+            };
 
             // Create the list of plungers
-            plungers = new List<E_MinigameOnePlunger>();
-            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 300, 275, Color.Green));
-            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 440, 275, Color.Blue));
-            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 590, 275, Color.Yellow));
-            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 740, 275, Color.Red));
-            plungers.Add(new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 875, 275, Color.Purple));
+            plungers = new List<E_MinigameOnePlunger>()
+            {
+                new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 300, 275, Color.Green),
+                new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 440, 275, Color.Blue),
+                new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 590, 275, Color.Yellow),
+                new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 740, 275, Color.Red),
+                new E_MinigameOnePlunger(this, creator.game.minigame_one_plungerUp, 875, 275, Color.Purple)
+            };
 
             // Set one of the plungers to be the bomb
             plungers[creator.random.Next(0, plungers.Count)].isBomb = true;
