@@ -105,6 +105,16 @@ namespace Monogame_Party_2018
 
             }
 
+            // DEBUG: Go to minigame instructions (LAST PARAMETER: 0 == minigame1, 1 == minigame2)
+            if (km.KeyPressed(Keys.D5))
+            {
+                parentManager.gameOptions.numPlayers = 2;
+                S_MinigameInstructions minigame = new S_MinigameInstructions(parentManager, 0, 0, 1);
+                parentManager.AddStateQueue(minigame);
+                this.flagForDeletion = true;
+
+            }
+
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all)) {
 

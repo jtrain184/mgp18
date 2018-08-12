@@ -21,8 +21,8 @@ namespace Monogame_Party_2018
         Random random;
         Player playerOne;
         Player playerTwo;
-        bool twoPlayers = false;
-        int numOfPlayers;
+        public bool twoPlayers = false;
+        public int numOfPlayers;
         KeyboardManager.action[] directionKeys = { KeyboardManager.action.up, KeyboardManager.action.down, KeyboardManager.action.left, KeyboardManager.action.right };
 
         //Debug
@@ -33,7 +33,7 @@ namespace Monogame_Party_2018
         private TimeSpan comLastMove;
         private bool raceOver = false;
 
-        double difficultyMultiplier;
+        public double difficultyMultiplier;
 
         // Constructor for Main Menu:
         public S_Minigame2(GameStateManager creator, float xPos, float yPos, bool playGame) : base(creator, xPos, yPos)
@@ -44,8 +44,7 @@ namespace Monogame_Party_2018
 
             // Get player info
             players = new List<Player>();
-            players = creator.gameOptions.players;
-            int numPlayers = creator.gameOptions.numPlayers;
+            players = creator.gameOptions.players.ToList();
             resultsList = new List<Player>();
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
@@ -155,11 +154,11 @@ namespace Monogame_Party_2018
                 {
                     resultsList.Add(p);
                 }
-
-                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 2);
-                parentManager.AddStateQueue(minigameResults);
                 this.flagForDeletion = true;
                 Console.WriteLine("Finished minigame, going to results");
+                S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 2);
+                parentManager.AddStateQueue(minigameResults);
+               
             }
 
             // Check if race is over

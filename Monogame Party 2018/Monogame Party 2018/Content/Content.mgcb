@@ -524,6 +524,30 @@
 /processorParam:TextureFormat=Color
 /build:KB_Keys/Key_Left.png
 
+#begin KB_Keys/Key_Move.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:KB_Keys/Key_Move.png
+
+#begin KB_Keys/Key_Move2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:KB_Keys/Key_Move2.png
+
 #begin KB_Keys/Key_Right.png
 /importer:TextureImporter
 /processor:TextureProcessor

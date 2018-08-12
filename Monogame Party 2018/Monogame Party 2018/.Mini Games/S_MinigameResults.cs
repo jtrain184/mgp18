@@ -37,7 +37,8 @@ namespace Monogame_Party_2018
             }
 
             // Results are in reverse order ie. index 0 = last, index 3 = first
-            this.results = results;
+            this.results = new List<Player>();
+            this.results = results.ToList();
             entities = new List<E_MinigameResult>();
             resultPos = new List<Vector2>();
 
@@ -50,14 +51,8 @@ namespace Monogame_Party_2018
             // Add coins to players totalCoins gained
             for(int j = 0; j < entities.Count; j++)
             {
-                Console.WriteLine("Player : " + results[j].type.ToString() + " gained " + entities[j].changeValue);
-
                 if (entities[j].changeValue > 0)
-                {
                     results[j].totalCoinsGained += entities[j].changeValue;
-
-                }
-                Console.WriteLine("They now have gained a total of " + results[j].totalCoinsGained);
             }
 
             // Add minigame win to 1st place player
@@ -109,26 +104,17 @@ namespace Monogame_Party_2018
                     // update players coins
                     results[currentIndex].coins += entities[currentIndex].changeValue;
 
-
-
-
                     // Prevent negative coin values
                     if (results[currentIndex].coins < 0)
-                    {
                         results[currentIndex].coins = 0;
-                    }
 
                     // ease next result
                     currentIndex++;
-
                 }
             }
             // Continue to ease the current indexed result
             else
-            {
                 entities[currentIndex].position.Y = MGP_Tools.Ease(entities[currentIndex].position.Y, resultPos[currentIndex].Y, 0.1f);
-            }
-
         }
 
 

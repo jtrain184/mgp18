@@ -38,6 +38,9 @@ namespace Monogame_Party_2018
 
         // Input Keys:
         public Texture2D key_inputs;
+        public Texture2D keys_move;
+        public Texture2D keys_move2;
+        public Texture2D keys_enter;
 
         // PirateBay:
         public Texture2D bg_pirateBay;
@@ -211,6 +214,9 @@ namespace Monogame_Party_2018
 
             // Input Keys:
             key_inputs = Content.Load<Texture2D>("KB_Keys/Key_Input");
+            keys_move = Content.Load<Texture2D>("KB_Keys/Key_Move");
+            keys_move2 = Content.Load<Texture2D>("KB_Keys/Key_Move2");
+            keys_enter = Content.Load<Texture2D>("KB_Keys/Key_Enter");
 
             // PirateBay:
             bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
