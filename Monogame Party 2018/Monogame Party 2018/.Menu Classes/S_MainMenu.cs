@@ -21,6 +21,9 @@ namespace Monogame_Party_2018
         public const int cloudHeight = 80;
 
         public Vector2 glovePos;
+        public bool moveGlove = false;
+
+        public bool showControls = false;
 
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
@@ -43,7 +46,7 @@ namespace Monogame_Party_2018
                 try { items[i].below = items[i + 1]; } catch (Exception) { items[i].below = items[i]; }
             }
 
-            glovePos = new Vector2(items[0].xPos - (cloudWidth / 2 + 60), items[0].yPos - 40);
+            glovePos = new Vector2(items[0].xPos - (cloudWidth / 2 + 60), items[0].yPos - 35);
         }
 
 
@@ -54,14 +57,28 @@ namespace Monogame_Party_2018
             // Move Menu Selection Up:
             if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all)) {
                 currentMenuItem = items[currentMenuItem].above.activeValue;
+                moveGlove = true;
 
             }
 
             // Move Menu Selection Down:
             if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all)) {
                 currentMenuItem = items[currentMenuItem].below.activeValue;
+                moveGlove = true;
             }
 
+            // Move glove
+            if (moveGlove)
+            {
+                if (Vector2.Distance(glovePos, new Vector2(items[currentMenuItem].xPos - 60, items[currentMenuItem].yPos - 35)) < 1.0f)
+                {
+                    moveGlove = false;
+                }
+                else
+                {
+                    glovePos.Y = MGP_Tools.Ease(glovePos.Y, items[currentMenuItem].yPos - 35, 0.5f);
+                }
+            }
 
             //DEBUG:  GO TO MINIGAME2
             if (km.KeyPressed(Keys.D9))
@@ -101,10 +118,9 @@ namespace Monogame_Party_2018
 
                 // Option: Controls
                 if (currentMenuItem == (int)MenuItem.MainMenu.MOUNTAIN) {
-                    
-                   
-
-
+                    S_Controls controls = new S_Controls(parentManager, 0, 0);
+                    parentManager.AddStateQueue(controls);
+                    this.active = false;
                 } 
 
 
@@ -158,6 +174,11 @@ namespace Monogame_Party_2018
 
                     i++;
             }
+
+            // Draw current selection hand
+            sb.Draw(parentManager.game.spr_glove, glovePos, Color.White);
+
+            
 
             // End drawing:
             sb.End();

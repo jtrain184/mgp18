@@ -46,7 +46,7 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // Move Menu Selection Up:
-            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all))
             {
                 if (currentMenuItem == 1)
                 {
@@ -57,7 +57,7 @@ namespace Monogame_Party_2018
             }
 
             // Move Menu Selection Down:
-            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all))
             {
                 if (currentMenuItem == 0)
                 {
@@ -67,7 +67,7 @@ namespace Monogame_Party_2018
             }
 
             // Press ENTER while some menu item is highlighted:
-            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {
                 // One Player
                 if (currentMenuItem == 0)
