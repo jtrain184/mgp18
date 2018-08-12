@@ -39,7 +39,6 @@ namespace Monogame_Party_2018
         {
             // Get index of next star based on where current star was
             int starIndex = board.spaces.FindIndex(x => x.type == Entity.typeSpace.star);
-            
 
             // When creating game;
             if (starIndex < 0)
@@ -47,14 +46,13 @@ namespace Monogame_Party_2018
                 starIndex = 0;
                 board.spaces[starIndex].prevType = Entity.typeSpace.blue;
             }
-            
+
             // Randomly select a new postion for the star
             int nextStarIndex =  board.parentManager.random.Next(15, 30);
 
             // Change current star and new star
             board.spaces[starIndex].changeSpace(board.spaces[starIndex].prevType);
             board.spaces[(starIndex + nextStarIndex) % 40].changeSpace(Entity.typeSpace.star);
-            
 
         }
 
@@ -88,6 +86,16 @@ namespace Monogame_Party_2018
 
 
         }
+
+
+        public static int NonNegSub(int curAmount, int subAmount) {
+          curAmount -= subAmount;
+          if (curAmount < 0)
+            curAmount = 0;
+          return curAmount;
+        }
+
+
 
     }
 }

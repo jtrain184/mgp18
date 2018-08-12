@@ -50,7 +50,7 @@ namespace Monogame_Party_2018
                 landAction.text = "- " + numCoins.ToString();
 
                 // Play sound effect:
-                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceRed, 1.0f);
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.spaceRed, 0.6f);
             }
 
 
@@ -120,6 +120,14 @@ namespace Monogame_Party_2018
 
 
             sb.End();
-        }
+        } // end draw
+
+
+
+
+
+
+
+
     }
 }

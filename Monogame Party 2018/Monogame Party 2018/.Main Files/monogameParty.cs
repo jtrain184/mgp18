@@ -87,6 +87,25 @@ namespace Monogame_Party_2018 {
 
         // Chance Time
         public Texture2D bg_chanceTime;
+        public Texture2D spr_chanceBlock;
+        public Texture2D spr_chanceArrowL;
+        public Texture2D spr_chanceArrowR;
+        public Texture2D spr_chanceArrowUp;
+        public Texture2D spr_chanceArrowDown;
+        public Texture2D spr_chanceArrowSwap;
+        public Texture2D spr_chance1;
+        public Texture2D spr_chance2;
+        public Texture2D spr_chance10;
+        public Texture2D spr_chance20;
+        public Texture2D spr_chance30;
+        public Texture2D spr_chanceCoin;
+        public Texture2D spr_chanceStar;
+        public Texture2D spr_chanceManford;
+        public Texture2D spr_chanceLouie;
+        public Texture2D spr_chanceFrank;
+        public Texture2D spr_chanceWilber;
+        public Texture2D spr_chanceSue;
+        public Texture2D spr_chanceVelma;
 
         // Test graphic
         public Texture2D spr_testDice;
@@ -239,6 +258,25 @@ namespace Monogame_Party_2018 {
 
             // Chance Time:
             bg_chanceTime = Content.Load<Texture2D>("ChanceTime/bg_ChanceTime");
+            spr_chanceBlock = Content.Load<Texture2D>("ChanceTime/spr_chanceBlock");
+            spr_chanceArrowL = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowL");
+            spr_chanceArrowR = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowR");
+            spr_chanceArrowUp = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowUp");
+            spr_chanceArrowDown = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowDown");
+            spr_chanceArrowSwap = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowSwap");
+            spr_chance1 = Content.Load<Texture2D>("ChanceTime/spr_chance1");
+            spr_chance2 = Content.Load<Texture2D>("ChanceTime/spr_chance2");
+            spr_chance10 = Content.Load<Texture2D>("ChanceTime/spr_chance10");
+            spr_chance20 = Content.Load<Texture2D>("ChanceTime/spr_chance20");
+            spr_chance30 = Content.Load<Texture2D>("ChanceTime/spr_chance30");
+            spr_chanceCoin = Content.Load<Texture2D>("ChanceTime/spr_chanceCoin");
+            spr_chanceStar = Content.Load<Texture2D>("ChanceTime/spr_chanceStar");
+            spr_chanceManford = Content.Load<Texture2D>("ChanceTime/spr_chanceManford");
+            spr_chanceLouie = Content.Load<Texture2D>("ChanceTime/spr_chanceLouie");
+            spr_chanceFrank = Content.Load<Texture2D>("ChanceTime/spr_chanceFrank");
+            spr_chanceWilber = Content.Load<Texture2D>("ChanceTime/spr_chanceWilber");
+            spr_chanceSue = Content.Load<Texture2D>("ChanceTime/spr_chanceSue");
+            spr_chanceVelma = Content.Load<Texture2D>("ChanceTime/spr_chanceVelma");
 
 
 

@@ -210,10 +210,10 @@ namespace Monogame_Party_2018
                     {
                         // add as a human player
                         if(i < numOfPlayers)
-                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true));
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true, ((KeyboardManager.playerIndex)i)) );
                         // add a comp player
                         else
-                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], false));
+                            parentManager.gameOptions.players.Add(new Player(this.creator, players[i], false, KeyboardManager.playerIndex.none));
 
                     }
 
