@@ -13,70 +13,38 @@ namespace Monogame_Party_2018
     {
 
         public List<MenuItem> items;
+        public const int cloudHeight = 80;
+        public const int cloudWidth = 200;
+        public const string description = "What will the difficulty of\nthe computer players be?";
 
-        int currentMenuItem;
-        int numItems;
+        public int currentMenuItem;
+        public int numItems;
+        public Vector2 glovePos;
+        public bool moveGlove = false;
 
         // Constructor for Main Menu:
         public S_DifficultyMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             currentMenuItem = (int)MenuItem.Difficulty.EASY;
 
-            items = new List<MenuItem>();
+            items = new List<MenuItem>() {
+            new MenuItem(MGP_Constants.SCREEN_MID_X, 200, "EASY", (int)MenuItem.Difficulty.EASY),
+            new MenuItem(MGP_Constants.SCREEN_MID_X, 300, "Medium", (int)MenuItem.Difficulty.MEDIUM),
+            new MenuItem(MGP_Constants.SCREEN_MID_X, 400, "Hard", (int)MenuItem.Difficulty.HARD)
+            };
 
-            // Difficulty: Easy
-            items.Add(new MenuItem(this.xPos + 300, this.yPos + 200, "EASY", (int)MenuItem.Difficulty.EASY));
-            numItems++;
+            numItems = items.Count;
 
-            // Difficulty: Medium
-            items.Add(new MenuItem(this.xPos + 1000, this.yPos + 200, "Medium", (int)MenuItem.Difficulty.MEDIUM));
-            numItems++;
-
-            // Difficulty: Hard
-            items.Add(new MenuItem(this.xPos + 650, this.yPos + 500, "Hard", (int)MenuItem.Difficulty.HARD));
-            numItems++;
-
-            // Map buttons
-            foreach(MenuItem item in items)
+            // Map buttons to each other
+            for (int i = 0; i < numItems; i++)
             {
-                // Set above and below values
-                if(item.activeValue < 2)
-                {
-                    item.above = item;  // Item is already at the top
-                    item.below = items[2];  // Set below value to the only button below
-
-                    // Set left and right values
-                    if (item.activeValue == 0)
-                    {
-                        item.left = item;   // Item is already on the left
-                        item.right = items[1];  // Set right value to button on the right
-                    }
-                    else
-                    {
-                        item.left = items[0];   // Set left value to button on the left
-                        item.right = item;  // Item is already on the right
-                    }
-                }
-                else
-                {
-                    item.above = items[0];  // Set above value to first button at the top
-                    item.below = item;  // Item is already at the bottom
-                    item.left = item;   // Item has no left buttons
-                    item.right = item;  // Item has no right buttons
-                }
-
-
-
-
+                try { items[i].above = items[i - 1]; } catch (Exception) { items[i].above = items[i]; }
+                try { items[i].below = items[i + 1]; } catch (Exception) { items[i].below = items[i]; }
             }
 
+            glovePos = new Vector2(items[0].xPos - (cloudWidth / 2 + 60), items[0].yPos - 35);
 
 
-            // Menu Description
-            items.Add(new MenuItem(this.xPos + 650, this.yPos + 650,
-                "Use [W-A-S-D Keys] to select the difficulty of the game" + System.Environment.NewLine +
-                "Press [Enter] to confirm selection" + System.Environment.NewLine +
-                "Press [Backspace] to return to the previous menu", -1));
 
 
         }
@@ -88,65 +56,57 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // Move Menu Selection Up:
-            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one)) {
-                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).above.activeValue;
+            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all))
+            {
+                currentMenuItem = items[currentMenuItem].above.activeValue;
+                moveGlove = true;
 
             }
 
             // Move Menu Selection Down:
-            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one)) {
-                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).below.activeValue;
+            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all))
+            {
+                currentMenuItem = items[currentMenuItem].below.activeValue;
+                moveGlove = true;
             }
 
-            // Move Menu Selection Left:
-            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one)) {
-                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).left.activeValue;
+            // Move glove
+            if (moveGlove)
+            {
+                if (Vector2.Distance(glovePos, new Vector2(items[currentMenuItem].xPos - 60, items[currentMenuItem].yPos - 35)) < 1.0f)
+                {
+                    moveGlove = false;
+                }
+                else
+                {
+                    glovePos.Y = MGP_Tools.Ease(glovePos.Y, items[currentMenuItem].yPos - 35, 0.5f);
+                }
             }
-
-            // Move Menu Selection Right:
-            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one)) {
-                currentMenuItem = items.Find(x => x.activeValue == currentMenuItem).right.activeValue;
-            }
-
 
             // Press ENTER while some menu item is highlighted:
-            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one)) {
-
+            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
+            {
                 // Difficulty: Easy
-                if(currentMenuItem == (int)MenuItem.Difficulty.EASY)
-                {
+                if (currentMenuItem == (int)MenuItem.Difficulty.EASY)
                     parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
-                    S_NumRoundsMenu numRoundsMenu= new S_NumRoundsMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(numRoundsMenu);
-                    this.flagForDeletion = true;
-                }
 
                 // Difficulty: Medium
                 if (currentMenuItem == (int)MenuItem.Difficulty.MEDIUM)
-                {
                     parentManager.gameOptions.difficulty = MenuItem.Difficulty.MEDIUM;
-                    S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(numRoundsMenu);
-                    this.flagForDeletion = true;
-                }
-
+ 
                 // Difficulty: Medium
                 if (currentMenuItem == (int)MenuItem.Difficulty.HARD)
-                {
                     parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;
-                    S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
-                    parentManager.AddStateQueue(numRoundsMenu);
-                    this.flagForDeletion = true;
-                }
 
-
-
-
-
+                // Go to next menu
+                S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
+                parentManager.AddStateQueue(numRoundsMenu);
+                this.flagForDeletion = true;
             }
 
             // Press Cancel Key: Goes back to Player Count menu:
-            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one)) {
+            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.all))
+            {
                 S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                 parentManager.AddStateQueue(playerCountMenu);
                 this.flagForDeletion = true;
@@ -159,28 +119,20 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
 
-            // Draw Background:
             SpriteBatch sb = this.parentManager.game.spriteBatch;
-
             sb.Begin();
 
+            // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            // Draw Buttons -----------------------
-
-            // Hate hard coding...but just do it...
-            int SPRITE_WIDTH = 320;
-            int SPRITE_HEIGHT = 160;
-
+            // Draw Buttons 
             Color tColor;
-
-            for (int i = 0; i < numItems; i++)
+            int i = 0;
+            foreach (MenuItem item in items)
             {
-
-
-                Vector2 pos = new Vector2(items[i].xPos, items[i].yPos);
-                Vector2 cloudPos = new Vector2(items[i].xPos - SPRITE_WIDTH / 2, items[i].yPos - SPRITE_HEIGHT / 2);
-                Vector2 textPos = CenterString.getCenterStringVector(pos, items[i].text, this.parentManager.game.ft_mainMenuFont);
+                Vector2 pos = new Vector2(item.xPos, item.yPos);
+                Rectangle cloudPos = new Rectangle((int)item.xPos - cloudWidth / 2, (int)item.yPos - cloudHeight / 2, cloudWidth, cloudHeight);
+                Vector2 textPos = CenterString.getCenterStringVector(pos, item.text, this.parentManager.game.ft_mainMenuFont);
 
                 // Cloud Background:
                 sb.Draw(this.parentManager.game.spr_cloudIcon, cloudPos, Color.White);
@@ -190,16 +142,21 @@ namespace Monogame_Party_2018
                     tColor = Color.Blue;
                 else
                     tColor = Color.Red;
-                sb.DrawString(this.parentManager.game.ft_mainMenuFont, items[i].text, textPos, tColor);
+                sb.DrawString(this.parentManager.game.ft_mainMenuFont, item.text, textPos, tColor);
 
-                //i++;
+                i++;
             }
 
-            // Draw the Menu description cloud wider
-            Vector2 menuItemPos = new Vector2(items[numItems].xPos, items[numItems].yPos);
-            Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, items[numItems].text, this.parentManager.game.ft_menuDescriptionFont);
-            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)items[numItems].xPos - 600 / 2, (int)items[numItems].yPos - 140 / 2, 600, 140), Color.White);
-            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, items[numItems].text, menuTextPos, Color.Black);
+            // Background Box
+            Vector2 backgroundBox = new Vector2(MGP_Constants.SCREEN_MID_X - 450, MGP_Constants.SCREEN_MID_Y + 150);
+            sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)backgroundBox.X, (int)backgroundBox.Y, 900, 150), new Color(0, 0, 128, 200));
+
+            // Text
+            Vector2 textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + 450, backgroundBox.Y + 75), description, this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, description, textDesPos, Color.White);
+
+            // Draw current selection hand
+            sb.Draw(parentManager.game.spr_glove, glovePos, Color.White);
 
             // End drawing:
             sb.End();

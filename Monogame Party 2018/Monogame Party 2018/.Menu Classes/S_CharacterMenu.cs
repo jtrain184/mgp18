@@ -22,6 +22,7 @@ namespace Monogame_Party_2018
         public int currentMenuItem;
         public int numItems;
         public int numOfPlayers;
+        public KeyboardManager.playerIndex currPlayer;
 
         public const string description = "Choose the character(s)\nthe Player(s) will use";
         public Vector2 glovePos;
@@ -76,8 +77,15 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
+            // Only the current player can press buttons
+            if (players.Count == 1)
+                currPlayer = KeyboardManager.playerIndex.two;
+            else
+                currPlayer = KeyboardManager.playerIndex.one;
+
+
             // Move Menu Selection Up:
-            if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.up, currPlayer))
             {
                 if (items[currentMenuItem].above != null && (players.Count == 0 || items[currentMenuItem].above.activeValue != (int)players[0]))
                 {
@@ -87,7 +95,7 @@ namespace Monogame_Party_2018
             }
 
             // Move Menu Selection Down:
-            if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.down, currPlayer))
             {
                 if (items[currentMenuItem].below != null && (players.Count == 0 || items[currentMenuItem].below.activeValue != (int)players[0]))
                 {
@@ -97,7 +105,7 @@ namespace Monogame_Party_2018
             }
 
             // Move Menu Selection Left:
-            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.left, currPlayer))
             {
                 if (items[currentMenuItem].left != null && (players.Count == 0 || items[currentMenuItem].left.activeValue != (int)players[0]))
                 {
@@ -107,7 +115,7 @@ namespace Monogame_Party_2018
             }
 
             // Move Menu Selection Right:
-            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.right, currPlayer))
             {
                 if (items[currentMenuItem].right != null && (players.Count == 0 || items[currentMenuItem].right.activeValue != (int)players[0]))
                 {
@@ -132,7 +140,7 @@ namespace Monogame_Party_2018
 
 
             // Press ENTER while some menu item is highlighted:
-            if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.select, currPlayer))
             {
                 // Add character to List
                 players.Add((Player.Type)items[currentMenuItem].activeValue);
@@ -179,7 +187,7 @@ namespace Monogame_Party_2018
             } // end of enter action key press
 
             // Option: Cancel Key
-            if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
+            if (km.ActionPressed(KeyboardManager.action.cancel, currPlayer))
             {
                 // If first player has made a choice
                 if (players.Count == 1)
