@@ -94,7 +94,12 @@ namespace Monogame_Party_2018
 
 
             if ((moveNum - 1) > 0) {
-              sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+              sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 22, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+                sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 18, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+                sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 128), Color.Black);
+                sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 132), Color.Black);
+
+                sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 130), Color.White);
             }
 
             sb.End();

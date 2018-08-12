@@ -89,6 +89,7 @@
     <Compile Include=".Board Game\S_PlayerUI.cs" />
     <Compile Include=".Main Files\MGP_Tools.cs" />
     <Compile Include=".Main Files\S_AudioEngine.cs" />
+    <Compile Include=".Menu Classes\S_Controls.cs" />
     <Compile Include=".Mini Games\E_MinigameOneExplosion.cs" />
     <Compile Include=".Mini Games\E_MinigameOnePlunger.cs" />
     <Compile Include=".Mini Games\E_MinigameResult.cs" />

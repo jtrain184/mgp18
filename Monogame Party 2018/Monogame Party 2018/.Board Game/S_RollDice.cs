@@ -150,8 +150,25 @@ namespace Monogame_Party_2018
 
             // Draw numbers on dice
             SpriteBatch sb = this.parentManager.game.spriteBatch;
-
+            
             parentManager.boardGame.testDice.Draw(gameTime);
+            sb.Begin();
+            if (currPlayer.isHuman)
+            {
+                string text = "Select...Hit Dice Block\nShift...Pause Game";
+            
+
+                Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, 600), text, parentManager.game.ft_rollDice_lg);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y - 2), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y + 2), Color.Black);
+
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
+
+                
+            }
+            sb.End();
 
         }
 
