@@ -178,7 +178,20 @@ namespace Monogame_Party_2018
             // Draw current selection hand
             sb.Draw(parentManager.game.spr_glove, glovePos, Color.White);
 
-            
+            if (this.active)
+            {
+                string text = "Directional Buttons...Move selection\nSelect...Confirm selection";
+
+                Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, 675), text, parentManager.game.ft_rollDice_lg);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y - 2), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y + 2), Color.Black);
+
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
+            }
+
+
 
             // End drawing:
             sb.End();

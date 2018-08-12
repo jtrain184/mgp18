@@ -8,8 +8,10 @@ using System.Collections.Generic;
 using MonoGame.Extended;
 
 
-namespace Monogame_Party_2018 {
-    public class MonogameParty : Game {
+namespace Monogame_Party_2018
+{
+    public class MonogameParty : Game
+    {
 
         // Member variables:
         GraphicsDeviceManager graphics;
@@ -33,6 +35,9 @@ namespace Monogame_Party_2018 {
         public Texture2D bg_titleScreen;
         public Texture2D spr_cloudIcon;
         public Texture2D spr_glove;
+
+        // Input Keys:
+        public Texture2D key_inputs;
 
         // PirateBay:
         public Texture2D bg_pirateBay;
@@ -138,7 +143,8 @@ namespace Monogame_Party_2018 {
         public Camera2D cameraObject;
 
         // CONSTRUCTOR:
-        public MonogameParty() {
+        public MonogameParty()
+        {
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -156,7 +162,8 @@ namespace Monogame_Party_2018 {
         /// This is where it can query for any required services and load any non-graphic
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
-        protected override void Initialize() {
+        protected override void Initialize()
+        {
             cameraObject = new Camera2D(GraphicsDevice);
 
             base.Initialize();
@@ -164,7 +171,8 @@ namespace Monogame_Party_2018 {
 
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
-        protected override void LoadContent() {
+        protected override void LoadContent()
+        {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -201,6 +209,9 @@ namespace Monogame_Party_2018 {
             spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon_Alt");
             spr_glove = Content.Load<Texture2D>("MainMenu/spr_glove");
 
+            // Input Keys:
+            key_inputs = Content.Load<Texture2D>("KB_Keys/Key_Input");
+
             // PirateBay:
             bg_pirateBay = Content.Load<Texture2D>("PirateBay/bg_pirateBay");
 
@@ -231,8 +242,8 @@ namespace Monogame_Party_2018 {
             ft_rollDice_sm = Content.Load<SpriteFont>("transitions/confirmPlayerFont_size16");
             ft_rollDice_lg = Content.Load<SpriteFont>("transitions/confirmPlayerFont_size18");
 
-        // Temp dice object
-        spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
+            // Temp dice object
+            spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
             spr_diceBox = Content.Load<Texture2D>("BoardGameComponents/spr_diceBox");
 
             // Game objects
@@ -308,16 +319,18 @@ namespace Monogame_Party_2018 {
 
         /// UnloadContent will be called once per game and is the place to unload
         /// game-specific content.
-        protected override void UnloadContent() {
+        protected override void UnloadContent()
+        {
             // !- TODO: Unload any non ContentManager content here
         }
 
         /// Allows the game to run logic such as updating the world
-        protected override void Update(GameTime gameTime) {
+        protected override void Update(GameTime gameTime)
+        {
 
             // Exit Game:
-           // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-             //   Exit();
+            // if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //   Exit();
 
             manager.Update(gameTime);
             base.Update(gameTime);
@@ -327,7 +340,8 @@ namespace Monogame_Party_2018 {
 
 
         /// This is called when the game should draw itself.
-        protected override void Draw(GameTime gameTime) {
+        protected override void Draw(GameTime gameTime)
+        {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             manager.Draw(gameTime);

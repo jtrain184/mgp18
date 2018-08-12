@@ -12,13 +12,6 @@ namespace Monogame_Party_2018
 {
     public class S_Controls : State
     {
-        public const int boxHeight = 750;
-        public const int boxWidth = 600;
-        public  const string description = "Game Controls\n" + 
-            "Player 1 Player 2\n" +
-            "Select...Enter/E/SpaceBar Select...Enter\n";
-
-
         public S_Controls(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             
@@ -40,13 +33,18 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();
 
-            // Background Box
-            Vector2 backgroundBox = new Vector2(MGP_Constants.SCREEN_MID_X - boxWidth / 2, MGP_Constants.SCREEN_MID_Y - boxHeight / 2);
-            sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)backgroundBox.X, (int)backgroundBox.Y, boxWidth, boxHeight), new Color(0, 0, 128, 230));
-            // Text
-            Vector2 textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + boxWidth / 2, backgroundBox.Y + boxHeight / 2), description, this.parentManager.game.ft_menuDescriptionFont);
-            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, description, new Vector2(backgroundBox.X + 10, backgroundBox.Y + 50), Color.White);
+            // Key Input Sprite
+            sb.Draw(this.parentManager.game.key_inputs, new Vector2(0, 0), Color.White);
 
+            string text = "Cancel...Go back";
+
+            Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, 675), text, parentManager.game.ft_rollDice_lg);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y - 2), Color.Black);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y + 2), Color.Black);
+
+            sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
 
             sb.End();
         }
