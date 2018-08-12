@@ -1,22 +1,30 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monogame_Party_2018 {
-  public class MenuItem {
+namespace Monogame_Party_2018
+{
+    public class MenuItem
+    {
 
         public int activeValue;
         public String text;
         public float xPos;
         public float yPos;
+        public Vector2 pos;
 
 
         public MenuItem above;
         public MenuItem right;
         public MenuItem below;
         public MenuItem left;
+
+        public Texture2D sprite;
 
         public enum MainMenu
         {
@@ -43,13 +51,24 @@ namespace Monogame_Party_2018 {
         }
 
 
-        public MenuItem(float x, float y, String text, int activeValue) {
-        this.xPos = x;
-        this.yPos = y;
-        this.text = text;
-        this.activeValue = activeValue;
+        public MenuItem(float x, float y, String text, int activeValue)
+        {
+            this.xPos = x;
+            this.yPos = y;
+            this.text = text;
+            this.activeValue = activeValue;
+
+
+        }
+
+        public MenuItem(float x, float y, Texture2D sprite)
+        {
+            this.xPos = x;
+            this.yPos = y;
+            this.pos = new Vector2(x, y);
+            this.sprite = sprite;
+        }
+
+
     }
-
-
-  }
 }
