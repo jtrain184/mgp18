@@ -56,7 +56,7 @@ namespace Monogame_Party_2018
             this.km = new KeyboardManager();
             this.gameOptions = new GameOptions();
             this.random = new Random();
-            this.debugMode = true; // before game release turn off! TODO TODO TODO
+            this.debugMode = false;
             this.clearAllStates = false;
 
 
