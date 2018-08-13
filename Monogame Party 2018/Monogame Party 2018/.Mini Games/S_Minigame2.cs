@@ -10,10 +10,8 @@ namespace Monogame_Party_2018
 {
     public class S_Minigame2 : State
     {
-        public List<MenuItem> items;
-        public List<int> itemsSelected;
         public List<Player> players;
-        public List<Player> comPlayers;
+        public List<int> comPlayers; // Stores index of computer players
         public List<Player> resultsList;
 
         public Texture2D arrowSprite;
@@ -24,6 +22,7 @@ namespace Monogame_Party_2018
         public bool twoPlayers = false;
         public int numOfPlayers;
         KeyboardManager.action[] directionKeys = { KeyboardManager.action.up, KeyboardManager.action.down, KeyboardManager.action.left, KeyboardManager.action.right };
+        public List<Vector2> currentMeeplePositions = new List<Vector2>(4);
 
         //Debug
         public bool playGame;
@@ -32,15 +31,12 @@ namespace Monogame_Party_2018
         private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(1000);
         private TimeSpan comLastMove;
         private bool raceOver = false;
-
         public double difficultyMultiplier;
 
         // Constructor for Main Menu:
         public S_Minigame2(GameStateManager creator, float xPos, float yPos, bool playGame) : base(creator, xPos, yPos)
         {
             random = new Random();
-            items = new List<MenuItem>();
-            itemsSelected = new List<int>();
 
             // Get player info
             players = new List<Player>();
@@ -49,7 +45,7 @@ namespace Monogame_Party_2018
             numOfPlayers = parentManager.gameOptions.numPlayers;
 
             // Set up computer players
-            comPlayers = new List<Player>();
+            comPlayers = new List<int>();
             playerOne = players[0];
             if (numOfPlayers == 2)
             {
@@ -60,11 +56,11 @@ namespace Monogame_Party_2018
             else
             {
                 // Add second player to list of computer players
-                comPlayers.Add(players[1]);
+                comPlayers.Add(1);
             }
 
-            comPlayers.Add(players[2]);
-            comPlayers.Add(players[3]);
+            comPlayers.Add(2);
+            comPlayers.Add(3);
 
             if (parentManager.gameOptions.difficulty == MenuItem.Difficulty.EASY)
             {
@@ -82,15 +78,12 @@ namespace Monogame_Party_2018
             // Create Players and start positions for game
             int playerXPos = MGP_Constants.SCREEN_WIDTH / 5;
 
-            foreach (Player p in players)
+            for (int i = 0; i < players.Count; i++)
             {
-                Console.WriteLine("Current multiplier = " + difficultyMultiplier);
-
-                Console.WriteLine("Changing position of " + p.type + "at " + playerXPos + ", ");
-
-                p.meeple.setX(playerXPos);
-                p.meeple.setY(550);
+                currentMeeplePositions.Add(new Vector2(playerXPos, 550));
                 playerXPos += MGP_Constants.SCREEN_WIDTH / 5;
+                // DEBUG
+                Console.WriteLine("Start position " + i + " = " + currentMeeplePositions[i]);
             }
 
             // Select first move at random
@@ -109,12 +102,13 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             float move = 50;
-            Vector2 playerOnePosition = players[0].meeple.getPos();
+            Vector2 playerOnePosition = currentMeeplePositions[0];
             // Check for correct key press, and move up
             if (km.ActionPressed(players[0].currMove, KeyboardManager.playerIndex.one))
             {
-                playerOne.meeple.setY(playerOnePosition.Y - move);
+                currentMeeplePositions[0] = new Vector2(playerOnePosition.X, playerOnePosition.Y - move);
                 playerOne.currMove = directionKeys[random.Next(directionKeys.Length)];
+                // DEBUG
                 Console.WriteLine("Current move 1 = " + players[0].currMove);
                 if (playerOnePosition.Y - move <= 20) { raceOver = true; }
             }
@@ -122,8 +116,8 @@ namespace Monogame_Party_2018
             {
                 if (km.ActionPressed(playerTwo.currMove, KeyboardManager.playerIndex.two))
                 {
-                    Vector2 playerTwoPosition = playerTwo.meeple.getPos();
-                    playerTwo.meeple.setY(playerTwoPosition.Y - move);
+                    Vector2 playerTwoPosition = currentMeeplePositions[1];
+                    currentMeeplePositions[1] = new Vector2(playerTwoPosition.X, playerTwoPosition.Y - move);
                     playerTwo.currMove = directionKeys[random.Next(directionKeys.Length)];
                     Console.WriteLine("Current move 1 = " + players[0].currMove);
                     if (playerTwoPosition.Y - move <= 20) { raceOver = true; }
@@ -135,14 +129,13 @@ namespace Monogame_Party_2018
             {
                 comLastMove = gameTime.TotalGameTime;
 
-                foreach (Player com in comPlayers)
+                foreach (int com in comPlayers)
                 {
                     if (comChanceToMove())
                     {
-                        Vector2 comPosition = com.meeple.getPos();
-                        com.meeple.setY(comPosition.Y - move);
-                        com.currMove = directionKeys[random.Next(directionKeys.Length)];
-                        if (comPosition.Y - move <= 20) { raceOver = true; }
+                        currentMeeplePositions[com] = new Vector2(currentMeeplePositions[com].X, currentMeeplePositions[com].Y - move);
+                        players[com].currMove = directionKeys[random.Next(directionKeys.Length)];
+                        if (currentMeeplePositions[com].Y - move <= 20) { raceOver = true; }
                     }
                 }
             }
@@ -200,16 +193,14 @@ namespace Monogame_Party_2018
 
             for (int i = 3; i >= 0; i--)
             {
-                sb.Draw(players[i].meeple.sprite, players[i].meeple.getPos(), Color.White);
+                sb.Draw(players[i].meeple.sprite, currentMeeplePositions[i], Color.White);
             }
 
             // Draw player instructions
-            foreach (Player p in players)
+            for (int i = 0; i < players.Count; i++)
             {
-                Vector2 playerInstructionPosition = p.meeple.getPos();
-                playerInstructionPosition.Y = 600;
-                playerInstructionPosition.X = playerInstructionPosition.X - 21;
-                arrowSprite = getMoveSprite(p.currMove);
+                Vector2 playerInstructionPosition = new Vector2(currentMeeplePositions[i].X - 21, 600);
+                arrowSprite = getMoveSprite(players[i].currMove);
                 sb.Draw(arrowSprite, playerInstructionPosition, Color.White);
             }
 
