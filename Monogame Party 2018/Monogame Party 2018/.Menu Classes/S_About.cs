@@ -11,18 +11,65 @@ namespace Monogame_Party_2018
 {
     public class S_About : State
     {
-        MenuItem menuDescription;
-        MenuItem aboutText;
+        public List<string> aboutText;
+        public List<string> aboutHeader;
+        public List<Vector2> boxDim;
+        public int index = 0;
 
         public S_About(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            // Menu Description
-            menuDescription = new MenuItem(this.xPos + 650, this.yPos + 650, "Press [Backspace] to return to the main menu", -1);
+            aboutHeader = new List<string>()
+            {
+                "The Story",
+                "The Features",
+                "The Credits"
+            };
 
-            aboutText = new MenuItem(this.xPos + 650, this.yPos + 350, "Monogame Party is a party game where up to four " + System.Environment.NewLine +
-               "players compete in a boardgame containing minigames.  " + System.Environment.NewLine
-               + "Up to two of the players are human controlled, while " + System.Environment.NewLine
-               + "the rest are controlled by the computer.", -1);
+            aboutText = new List<string>()
+            {
+                //The Story
+                "A Mario Party inspired video board game experience\n" +
+                "for up to two human and two to three scripted AI players.\n" +
+                "Traverse the dangerous waters and beaches of Pirate Bay!\n" +
+                "Collect coins, purchase stars and battle your foes to become\n" +
+                "the richest meeple that ever dared set anchor in this menacing harbor!",
+
+                // The Features
+                "- Choose from six different characters\n" +
+                "- Three different A.I. difficulties\n" +
+                "- Three different options for game length\n" +
+                "- Choose whether or not to award bonuses at the end of the game\n" +
+                "- Alternating selection of mini games to play",
+
+                // The Credits
+                "This game was created by Team Caelum, OSU Class of '18\n" +
+                "for their capstone project\n\n" +
+                "James 'Cam' Abreu\n" +
+                "     - Game Engine,\n" +
+                "     - Pirate Bay board graphics,\n" +
+                "     - All music and SFX custom made,\n" +
+                "     - Chance time game\n\n" +
+                "Christopher Bugsch\n" +
+                "     - Menu System,\n" +
+                "     - Moving players/Buying stars,\n" +
+                "     - Bomb mini game,\n" +
+                "     - End of game results\n\n" +
+                "Phillip Jarrett\n" +
+                "     - Repository Lead,\n" +
+                "     - Rolling dice,\n" +
+                "     - Racing mini game,\n" +
+                "     - Testing/Debugging\n\n" +
+                "A Special Thanks to  Janice Dixon\n" +
+                "for creating the games amazing title screen artwork"
+            };
+
+            // Box dimensions 
+            boxDim = new List<Vector2>()
+            {
+                new Vector2(700, 350),
+                new Vector2(700, 350),
+                new Vector2(900, 750)
+            };
         }
 
         public override void Update(GameTime gameTime, KeyboardState ks)
@@ -30,9 +77,19 @@ namespace Monogame_Party_2018
             // Press Cancel Key: Goes back to main menu:
             if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
             {
-                S_MainMenu playerCountMenu = new S_MainMenu(parentManager, 0, 0);
-                parentManager.AddStateQueue(playerCountMenu);
+                S_MainMenu menu = new S_MainMenu(parentManager, 0, 0);
+                parentManager.AddStateQueue(menu);
                 this.flagForDeletion = true;
+            }
+
+            if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.all))
+            {
+                index = (index > 0) ? index - 1 : 0;
+            }
+
+            if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.all))
+            {
+                index = (index < 2) ? index + 1 : 2;
             }
         }
 
@@ -46,22 +103,72 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
 
             sb.Begin();
+            sb.Draw(parentManager.game.bg_titleScreen, new Vector2(0, 0), Color.White);
 
-            sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
+            // Background Box
+            Vector2 backgroundBox = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y);
+            sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)backgroundBox.X - (int)boxDim[index].X / 2, (int)backgroundBox.Y - (int)boxDim[index].Y / 2, (int)boxDim[index].X, (int)boxDim[index].Y), new Color(0, 0, 128, 150));
 
-            Vector2 aboutCloudPos = new Vector2(aboutText.xPos, aboutText.yPos);
-           // Vector2 aboutCloudPos = new Vector2(aboutText.xPos - 340 / 2, aboutText.yPos - 220 / 2);
-            Vector2 textPos = CenterString.getCenterStringVector(aboutCloudPos, aboutText.text, this.parentManager.game.ft_menuDescriptionFont);
+            // Description Header
+            Vector2 textHeaderPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X - 1, backgroundBox.Y - ((int)boxDim[index].Y / 2 - 60)), aboutHeader[index], this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, aboutHeader[index], textHeaderPos, Color.Black);
 
-            // Draw About Text in a cloud
-            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)aboutCloudPos.X - 650 / 2, (int)aboutCloudPos.Y - 250 / 2, 650, 250), Color.White);
-            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText.text, textPos, Color.Black);
+            textHeaderPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y - ((int)boxDim[index].Y / 2 - 61)), aboutHeader[index], this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, aboutHeader[index], textHeaderPos, Color.Black);
 
-            // Draw the Menu description cloud wider
-            Vector2 menuItemPos = new Vector2(menuDescription.xPos, menuDescription.yPos);
-            Vector2 menuTextPos = CenterString.getCenterStringVector(menuItemPos, menuDescription.text, this.parentManager.game.ft_menuDescriptionFont);
-            sb.Draw(this.parentManager.game.spr_cloudIcon, new Rectangle((int)menuDescription.xPos - 600 / 2, (int)menuDescription.yPos - 140 / 2, 600, 140), Color.White);
-            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, menuDescription.text, menuTextPos, Color.Black);
+            textHeaderPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y - ((int)boxDim[index].Y / 2 - 59)), aboutHeader[index], this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, aboutHeader[index], textHeaderPos, Color.Black);
+
+            textHeaderPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + 1, backgroundBox.Y - ((int)boxDim[index].Y / 2 - 60)), aboutHeader[index], this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, aboutHeader[index], textHeaderPos, Color.Black);
+
+            textHeaderPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y - ((int)boxDim[index].Y / 2 - 60)), aboutHeader[index], this.parentManager.game.ft_mainMenuFont);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, aboutHeader[index], textHeaderPos, Color.White);
+
+
+
+
+            // Description Text
+            Vector2 textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X - 1, backgroundBox.Y), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.Black);
+
+            textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y - 1), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.Black);
+
+            textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + 1, backgroundBox.Y), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.Black);
+
+            textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y + 1), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.Black);
+
+            textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
+            sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.White);
+
+            if(index < 2)
+            {
+                string text = ">>";
+
+                Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + (boxDim[index].X / 2 - 40), backgroundBox.Y + (boxDim[index].Y / 2 - 35)), text, parentManager.game.ft_rollDice_lg);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y - 2), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y + 2), Color.Black);
+
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
+            }
+
+            if (index > 0)
+            {
+                string text = "<<";
+
+                Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X - (boxDim[index].X / 2 - 40), backgroundBox.Y + (boxDim[index].Y / 2 - 35)), text, parentManager.game.ft_rollDice_lg);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y - 2), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y + 2), Color.Black);
+
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
+            }
 
             sb.End();
         }
