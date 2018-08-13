@@ -16,7 +16,7 @@ namespace Monogame_Party_2018
         public bool playerIsPlaying;    //determine whether or not to change current player
         public int playerIndex;     // current player
         public int currRound;   // current round number
-        public int minigame = 1;
+        public int minigame = 0;
 
         public bool roundStart = true;
 
