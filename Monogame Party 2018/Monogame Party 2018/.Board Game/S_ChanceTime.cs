@@ -546,6 +546,7 @@ namespace Monogame_Party_2018 {
     void closeChanceTime() {
       landActionCreator.active = true;
       this.flagForDeletion = true;
+      parentManager.audioEngine.playNextSong(5);
     }
 
 

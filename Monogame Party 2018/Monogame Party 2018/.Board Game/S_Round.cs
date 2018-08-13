@@ -42,18 +42,21 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // do this at the beginning of every round, but only once:
-            if (roundStart)
-            {
-                foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
-                roundStart = false;
-                minigame = (minigame == 0) ? 1 : 0; // switch minigames
             if (roundStart) {
-              foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
 
-              parentManager.audioEngine.addSongQueue(MGP_Constants.music.pirateBay);
-              Console.WriteLine("Added pirateBay to music queue");
+                // Set the player ui's to white at the beginning of each round:
+                foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
 
-              roundStart = false;
+                // switch minigames:
+                minigame = (minigame == 0) ? 1 : 0;
+
+                // Queue pirate bay music again:
+                parentManager.audioEngine.setNextSong(MGP_Constants.music.pirateBay);
+                parentManager.audioEngine.playNextSong(20);
+                Console.WriteLine("Added pirateBay to music queue");
+
+                // only run once each round:
+                roundStart = false;
             }
 
 

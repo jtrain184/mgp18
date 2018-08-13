@@ -17,11 +17,13 @@ namespace Monogame_Party_2018 {
     public Dictionary<MGP_Constants.music, Song> songs;
     public Dictionary<MGP_Constants.soundEffects, SoundEffect> sfx;
 
-    List<Song> playlist;
-    float curVolume;
+    //bool doOnce;
+    //int songIndex;
 
-    bool doOnce;
-    int songIndex;
+    Song nextSong;
+    int fadeTimer;
+    bool playNext;
+    bool silence;
 
 
     // Constructor:
@@ -32,19 +34,23 @@ namespace Monogame_Party_2018 {
       this.sfx = creator.game.sfx;
 
       // Music starts at 100% volume:
-      curVolume = 1.0f;
-      MediaPlayer.Volume = curVolume;
+      //curVolume = 1.0f;
+      //MediaPlayer.Volume = curVolume;
 
-      playlist = new List<Song>();
-      doOnce = true;
-      songIndex = 0;
+      //playlist = new List<Song>();
+      //doOnce = true;
+      //songIndex = 0;
 
+      fadeTimer = 0;
+      silence = false;
+      playNext = false;
     }
 
 
     public override void Update(GameTime gameTime, KeyboardState ks) {
       base.Update(gameTime, ks);
 
+      /*
       // If end of song queue for next song:
       if ((playlist.Count > 0) && (MediaPlayer.State != MediaState.Playing)) {
         if (doOnce) {
@@ -60,6 +66,34 @@ namespace Monogame_Party_2018 {
 
       if (MediaPlayer.State == MediaState.Playing) {
         doOnce = true;
+      }
+
+  */
+
+      // adjust volume based on the fade time:
+      if (fadeTimer > -1) {
+        if (fadeTimer > 0) {
+          float newVolume = (1 - (1 / fadeTimer));
+          newVolume = MathHelper.Clamp(newVolume, 0.0001f, 1.0f);
+          MediaPlayer.Volume = newVolume;
+        } // somewhere between 100% and 0%
+        fadeTimer--;
+      }
+
+
+      // Stop the current song
+      if (fadeTimer == 0) {
+        MediaPlayer.Stop();
+
+        if (!silence)
+          playNext = true;
+      }
+
+      // Play the next song:
+      if (playNext) {
+        MediaPlayer.Volume = 1.0f;
+        MediaPlayer.Play(nextSong); // remains the same until someone changes it
+        playNext = false;
       }
 
     }
@@ -90,19 +124,22 @@ namespace Monogame_Party_2018 {
     }
 
 
-    // Queue to next song possibly using fading:
-    public void next(bool fade) {
-
-      // After fade, stop song (which will trigger next song):
-      MediaPlayer.Stop();
+    public void setNextSong(MGP_Constants.music song) {
+      nextSong = songs[song];
     }
 
-
-    public void addSongQueue(MGP_Constants.music song) {
-      playlist.Add(songs[song]);
+    public void playNextSong(int fadeTime) {
+      if (fadeTime < 0) { fadeTime = 1; }
+      fadeTimer = fadeTime;
+      silence = false;
     }
 
-    public void clearSongList() { playlist.Clear(); }
+    public void stopMusic(int fadeTime) {
+      if (fadeTime < 0) { fadeTime = 1; }
+      fadeTimer = fadeTime;
+      silence = true;
+    }
+
 
   }
 }
