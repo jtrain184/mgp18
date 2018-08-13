@@ -13,13 +13,11 @@ namespace Monogame_Party_2018
     public class B_PirateBay : S_Board
     {
 
-       static public int BOARD_WIDTH = 2400;
-       static public int BOARD_HEIGHT = 1800;
+        static public int BOARD_WIDTH = 2400;
+        static public int BOARD_HEIGHT = 1800;
 
-       int TILE_WIDTH = 100;
-       int TILE_HEIGHT = 100;
-       int NUM_COLUMNS = 24;
-       int NUM_ROWS = 18;
+        const int TILE_WIDTH = 100;
+        const int TILE_HEIGHT = 100;
 
         // Get a Vector 2 based on a tile (top left corner or center):
         public Vector2 GetTilePosOrigin(int column, int row) { return new Vector2((float)TILE_WIDTH * column, (float)TILE_HEIGHT * row); }
@@ -42,7 +40,8 @@ namespace Monogame_Party_2018
         //public List<E_Space> spaces;
 
         // Constructor:
-        public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos) {
+        public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
+        {
 
 
 
@@ -54,12 +53,12 @@ namespace Monogame_Party_2018
             E_Space curSpace;
             E_Space prevSpace;
 
-      // STARTING WITH BOTTOM RIGHT
-      // Bottom right space:
-      curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
-      spaces.Add(curSpace);
-      this.startingSpace = curSpace; // STARTING SPACE
-      prevSpace = curSpace;
+            // STARTING WITH BOTTOM RIGHT
+            // Bottom right space:
+            curSpace = new E_Space(this, GetTilePosCenter(21, 16), Entity.typeSpace.blue);
+            spaces.Add(curSpace);
+            this.startingSpace = curSpace; // STARTING SPACE
+            prevSpace = curSpace;
 
 
 
@@ -142,12 +141,12 @@ namespace Monogame_Party_2018
 
 
 
-      // <<---- MOVING UP NOW: ----->>
-      // 6, 15
-      curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
-      spaces.Add(curSpace); // add to overall list
-      curSpace.assignSpaces(prevSpace);
-      prevSpace = curSpace;
+            // <<---- MOVING UP NOW: ----->>
+            // 6, 15
+            curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
+            spaces.Add(curSpace); // add to overall list
+            curSpace.assignSpaces(prevSpace);
+            prevSpace = curSpace;
 
             // 6, 13
             curSpace = new E_Space(this, GetTilePosCenter(6, 13), Entity.typeSpace.red);
@@ -208,12 +207,12 @@ namespace Monogame_Party_2018
 
 
 
-      // <<---- MOVING RIGHT NOW: ----->>
-      // 4, 1
-      curSpace = new E_Space(this, GetTilePosCenter(4, 1), Entity.typeSpace.blue);
-      spaces.Add(curSpace); // add to overall list
-      curSpace.assignSpaces(prevSpace);
-      prevSpace = curSpace;
+            // <<---- MOVING RIGHT NOW: ----->>
+            // 4, 1
+            curSpace = new E_Space(this, GetTilePosCenter(4, 1), Entity.typeSpace.blue);
+            spaces.Add(curSpace); // add to overall list
+            curSpace.assignSpaces(prevSpace);
+            prevSpace = curSpace;
 
             // 5, 1
             curSpace = new E_Space(this, GetTilePosCenter(5, 1), Entity.typeSpace.blue);
@@ -287,12 +286,12 @@ namespace Monogame_Party_2018
 
 
 
-      // <<---- MOVING DOWN NOW: ----->>
-      // 19, 5
-      curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
-      spaces.Add(curSpace); // add to overall list
-      curSpace.assignSpaces(prevSpace);
-      prevSpace = curSpace;
+            // <<---- MOVING DOWN NOW: ----->>
+            // 19, 5
+            curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
+            spaces.Add(curSpace); // add to overall list
+            curSpace.assignSpaces(prevSpace);
+            prevSpace = curSpace;
 
             // 19, 7
             curSpace = new E_Space(this, GetTilePosCenter(19, 7), Entity.typeSpace.blue);
@@ -349,7 +348,7 @@ namespace Monogame_Party_2018
             MGP_Tools.Assign_Star(this);
 
             // position camera starting at star location:
-            cameraProperties.setPos(spaces.Find(x=> x.type == Entity.typeSpace.star).getPosCenter());
+            cameraProperties.setPos(spaces.Find(x => x.type == Entity.typeSpace.star).getPosCenter());
             MGP_Tools.KeepCameraOnBoard(parentManager);
 
 
@@ -372,40 +371,10 @@ namespace Monogame_Party_2018
 
 
 
-    // ** UPDATE **
-    public override void Update(GameTime gameTime, KeyboardState ks) {
-      base.Update(gameTime, ks);
-
-
-            // DEBUG move the camera around!
-            float speed = 10;
-            // Move Right
-            if (km.KeyDown(Keys.D))
-            {
-                if (cameraProperties.getX() < MGP_Constants.BOARD_MAX_WIDTH)
-                    cameraProperties.incX(speed);
-            }
-            // Move Left
-            if (km.KeyDown(Keys.A))
-            {
-                if (cameraProperties.getX() > MGP_Constants.BOARD_MIN_WIDTH)
-                    cameraProperties.incX(-speed);
-            }
-            // Move Up
-            if (km.KeyDown(Keys.W))
-            {
-                if (cameraProperties.getY() > MGP_Constants.BOARD_MIN_HEIGHT)
-                    cameraProperties.incY(-speed);
-            }
-            // Move Down
-            if (km.KeyDown(Keys.S))
-            {
-                if (cameraProperties.getY() < MGP_Constants.BOARD_MAX_HEIGHT)
-                    cameraProperties.incY(speed);
-            }
-            // END DEBUG
-
-
+        // ** UPDATE **
+        public override void Update(GameTime gameTime, KeyboardState ks)
+        {
+            base.Update(gameTime, ks);
 
             // DEBUG: pressing Y will print the Space list to the console:
             if (km.KeyPressed(Keys.Y))
@@ -422,9 +391,6 @@ namespace Monogame_Party_2018
             }
 
 
-
-
-
             // Camera is fixated on CameraProperties object:
             this.parentManager.game.cameraObject.LookAt(cameraProperties.getPos());
 
@@ -433,7 +399,8 @@ namespace Monogame_Party_2018
 
 
         // ** DRAW **
-        public override void Draw(GameTime gameTime) {
+        public override void Draw(GameTime gameTime)
+        {
             base.Draw(gameTime);
 
             // Draw Background:
@@ -453,7 +420,8 @@ namespace Monogame_Party_2018
 
             // Draw the meeples
 
-            for(int i = 3; i >=0; i--) {
+            for (int i = 3; i >= 0; i--)
+            {
                 sb.Draw(this.gameOptions.players[i].meeple.sprite, this.gameOptions.players[i].meeple.getPosCenter(), Color.White);
             }
 
@@ -463,18 +431,19 @@ namespace Monogame_Party_2018
 
 
             // DRAW UI ON WHOLE SCREEN:
-            if (parentManager.debugMode) {
-              sb.Begin();
-              // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
-              sb.Draw(this.parentManager.game.spr_cameraCrosshair, DEBUG_POS, Color.White);
+            if (parentManager.debugMode)
+            {
+                sb.Begin();
+                // ** DEBUG CENTER PIECE WITH X AND Y DRAWN TO SCREEN: **
+                sb.Draw(this.parentManager.game.spr_cameraCrosshair, DEBUG_POS, Color.White);
 
-              string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
-              string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
-              sb.DrawString(this.parentManager.game.ft_debugMedium, "Camera Position", DEBUG_TEXT_LINE1, Color.Black);
-              sb.DrawString(this.parentManager.game.ft_debugSmall, textDebugX, DEBUG_TEXT_LINE2, Color.White);
-              sb.DrawString(this.parentManager.game.ft_debugSmall, textDebugY, DEBUG_TEXT_LINE3, Color.White);
+                string textDebugX = "X: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).X.ToString();
+                string textDebugY = "Y: " + parentManager.game.cameraObject.ScreenToWorld(SCREEN_MID).Y.ToString();
+                sb.DrawString(this.parentManager.game.ft_debugMedium, "Camera Position", DEBUG_TEXT_LINE1, Color.Black);
+                sb.DrawString(this.parentManager.game.ft_debugSmall, textDebugX, DEBUG_TEXT_LINE2, Color.White);
+                sb.DrawString(this.parentManager.game.ft_debugSmall, textDebugY, DEBUG_TEXT_LINE3, Color.White);
 
-              sb.End();
+                sb.End();
             }
 
         }

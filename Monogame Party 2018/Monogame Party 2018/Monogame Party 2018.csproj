@@ -81,6 +81,7 @@
     <Compile Include=".Board Game\PauseItem.cs" />
     <Compile Include=".Board Game\S_Board.cs" />
     <Compile Include=".Board Game\S_BuyStar.cs" />
+    <Compile Include=".Board Game\S_CameraMode.cs" />
     <Compile Include=".Board Game\S_ChanceTime.cs" />
     <Compile Include=".Board Game\S_ConfirmPlayer.cs" />
     <Compile Include=".Board Game\S_GameResults.cs" />
