@@ -95,6 +95,7 @@ namespace Monogame_Party_2018
         // Chance Time
         public Texture2D bg_chanceTime;
         public Texture2D spr_chanceBlock;
+        public Texture2D spr_chanceBlockLight;
         public Texture2D spr_chanceArrowL;
         public Texture2D spr_chanceArrowR;
         public Texture2D spr_chanceArrowUp;
@@ -137,7 +138,6 @@ namespace Monogame_Party_2018
 
         public Dictionary<MGP_Constants.music, Song> songs = new Dictionary<MGP_Constants.music, Song>();
         public Dictionary<MGP_Constants.soundEffects, SoundEffect> sfx = new Dictionary<MGP_Constants.soundEffects, SoundEffect>();
-
 
         // CameraProperties:
         public Camera2D cameraObject;
@@ -278,6 +278,7 @@ namespace Monogame_Party_2018
             // Chance Time:
             bg_chanceTime = Content.Load<Texture2D>("ChanceTime/bg_ChanceTime");
             spr_chanceBlock = Content.Load<Texture2D>("ChanceTime/spr_chanceBlock");
+            spr_chanceBlockLight = Content.Load<Texture2D>("ChanceTime/spr_chanceBlockLight");
             spr_chanceArrowL = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowL");
             spr_chanceArrowR = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowR");
             spr_chanceArrowUp = Content.Load<Texture2D>("ChanceTime/spr_chanceArrowUp");
@@ -301,6 +302,7 @@ namespace Monogame_Party_2018
 
             // Music:
             songs.Add(MGP_Constants.music.pirateBay, Content.Load<Song>("Music/mus_pirateBay"));
+            songs.Add(MGP_Constants.music.mainMenu, Content.Load<Song>("Music/mus_mainTheme"));
 
             // SFX:
             sfx.Add(MGP_Constants.soundEffects.pressStart, Content.Load<SoundEffect>("SFX/sfx_pressStart"));

@@ -33,8 +33,6 @@ namespace Monogame_Party_2018
             playerIsPlaying = false;
             currRound = 1;
 
-            creator.audioEngine.addSongQueue(MGP_Constants.music.pirateBay);
-            Console.WriteLine("Added pirateBay to music queue");
         }
 
         // Update:
@@ -44,6 +42,10 @@ namespace Monogame_Party_2018
             // do this at the beginning of every round, but only once:
             if (roundStart) {
               foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
+
+              parentManager.audioEngine.addSongQueue(MGP_Constants.music.pirateBay);
+              Console.WriteLine("Added pirateBay to music queue");
+
               roundStart = false;
             }
 

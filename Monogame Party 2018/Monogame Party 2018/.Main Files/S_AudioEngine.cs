@@ -18,6 +18,7 @@ namespace Monogame_Party_2018 {
     public Dictionary<MGP_Constants.soundEffects, SoundEffect> sfx;
 
     List<Song> playlist;
+    float curVolume;
 
     bool doOnce;
     int songIndex;
@@ -30,12 +31,14 @@ namespace Monogame_Party_2018 {
       this.songs = creator.game.songs;
       this.sfx = creator.game.sfx;
 
+      // Music starts at 100% volume:
+      curVolume = 1.0f;
+      MediaPlayer.Volume = curVolume;
+
       playlist = new List<Song>();
       doOnce = true;
       songIndex = 0;
 
-      // Music starts at 100% volume:
-      MediaPlayer.Volume = 1.0f;
     }
 
 
@@ -60,6 +63,9 @@ namespace Monogame_Party_2018 {
       }
 
     }
+
+
+
 
     // DRAW
     public override void Draw(GameTime gameTime) {
@@ -86,8 +92,6 @@ namespace Monogame_Party_2018 {
 
     // Queue to next song possibly using fading:
     public void next(bool fade) {
-
-      // ADD FADE <<----------------------TODO TODO
 
       // After fade, stop song (which will trigger next song):
       MediaPlayer.Stop();
