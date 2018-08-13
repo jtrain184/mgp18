@@ -30,7 +30,7 @@ namespace Monogame_Party_2018
             }
             else
             {
-                // TODO --------------------------------------- Make it so there are options ---------------------------- // 
+                
                 buystar = true;
                 // award star and deduct coins
                 parentManager.round.currPlayer.coins -= 20;
@@ -46,7 +46,7 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // Buy the star Or acknowledging they suck and cant buy the star, either way move on
-            if (parentManager.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all) || AI_Timer > 60)
+            if (parentManager.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all) || AI_Timer > 60 || moveYPos > 90)
             {
                 // start the animation for getting a star
                 if(buystar)
@@ -55,7 +55,7 @@ namespace Monogame_Party_2018
                 // Finished star animation or couldnt buy star
                 if (moveYPos > 90 || !buystar)
                 {
-                    // Move the star
+                    // Move the star to new space
                     if(buystar)
                     {
                         MGP_Tools.Assign_Star(parentManager.boardGame);
@@ -114,6 +114,19 @@ namespace Monogame_Party_2018
                 sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)messageScreen.X, (int)messageScreen.Y, 600, 150), new Color(0, 0, 128, 200));
                 sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, buyStarPrompt.text, textPos, Color.White);
     
+            }
+
+            if (parentManager.round.currPlayer.isHuman && !startAnimation)
+            {
+                string text = "Select ... Continue";
+
+                Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, 675), text, parentManager.game.ft_rollDice_lg);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y - 2), Color.Black);
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, new Vector2(smTextPos.X, smTextPos.Y + 2), Color.Black);
+
+                sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
             }
           
             
