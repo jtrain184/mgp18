@@ -157,12 +157,27 @@ namespace Monogame_Party_2018
             // Check if race is over
             if (raceOver)
             {
-                players.Sort((x, y) => y.meeple.pos.Y.CompareTo(x.meeple.pos.Y));
-                // Add player to results list
-                foreach (Player player in players)
-                {
-                    resultsList.Add(player);
+                // Old way of sorting
+                // players.Sort((x, y) => y.meeple.pos.Y.CompareTo(x.meeple.pos.Y));
+                float max = float.MinValue;
+                List<int> previousMax = new List<int>();
+                int maxIndex = -1000;
+                for (int i = 0; i < currentMeeplePositions.Count; i++) { 
+                    for (int j = 0; j < currentMeeplePositions.Count; j++)
+                    {
+                        if(currentMeeplePositions[j].Y > max && previousMax.Contains(j) == false)
+                        {
+                            max = currentMeeplePositions[j].Y;
+                            maxIndex = j;
+                        }
+                    }
+                    // Set old max, reset max
+                    previousMax.Add(maxIndex);
+                    max = float.MinValue;
+                    // Add to results list
+                    resultsList.Add(players[maxIndex]);
                 }
+
                 S_MinigameResults minigameResults = new S_MinigameResults(parentManager, 0, 0, resultsList, 2);
                 parentManager.AddStateQueue(minigameResults);
                 this.flagForDeletion = true;

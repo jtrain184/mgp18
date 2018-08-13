@@ -34,7 +34,6 @@ namespace Monogame_Party_2018
                 default:
                     background = parentManager.game.bg_pirateBay;
                     break;
-
             }
 
             // Results are in reverse order ie. index 0 = last, index 3 = first
