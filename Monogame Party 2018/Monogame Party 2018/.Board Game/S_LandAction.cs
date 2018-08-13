@@ -70,6 +70,8 @@ namespace Monogame_Party_2018
                 // Change player ui color:
                 creator.round.currPlayer.uiColor = Color.Orange;
 
+              // Silence music:
+              creator.audioEngine.stopMusic(40);
             }
 
 
