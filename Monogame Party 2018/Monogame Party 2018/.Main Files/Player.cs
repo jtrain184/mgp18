@@ -32,6 +32,7 @@ namespace Monogame_Party_2018 {
         public KeyboardManager.playerIndex playerControlsIndex;
 
         public Color uiColor;
+        public Color characterColor;
 
 
         public int coins;
@@ -80,6 +81,7 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.closeupPicture = gameStateManager.game.spr_FrankCloseup;
                     this.chancePicture = gameStateManager.game.spr_chanceFrank;
+                    this.characterColor = Color.SaddleBrown;
                     this.type = type;
                     break;
 
@@ -87,6 +89,7 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.closeupPicture = gameStateManager.game.spr_LouieCloseup;
                     this.chancePicture = gameStateManager.game.spr_chanceLouie;
+                    this.characterColor = Color.Lime;
                     this.type = type;
                     break;
 
@@ -94,6 +97,7 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.closeupPicture = gameStateManager.game.spr_ManfordCloseup;
                     this.chancePicture = gameStateManager.game.spr_chanceManford;
+                    this.characterColor = Color.Red;
                     this.type = type;
                     break;
 
@@ -101,6 +105,7 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.closeupPicture = gameStateManager.game.spr_SueCloseup;
                     this.chancePicture = gameStateManager.game.spr_chanceSue;
+                    this.characterColor = Color.Magenta;
                     this.type = type;
                     break;
 
@@ -108,6 +113,7 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.closeupPicture = gameStateManager.game.spr_VelmaCloseup;
                     this.chancePicture = gameStateManager.game.spr_chanceVelma;
+                    this.characterColor = Color.Yellow;
                     this.type = type;
                     break;
 
@@ -115,6 +121,7 @@ namespace Monogame_Party_2018 {
                     this.meeple = new E_Meeple(gameStateManager, new Vector2(0, 0), type);
                     this.closeupPicture = gameStateManager.game.spr_WilberCloseup;
                     this.chancePicture = gameStateManager.game.spr_chanceWilber;
+                    this.characterColor = Color.DarkOrchid;
                     this.type = type;
                     break;
             } // end switch

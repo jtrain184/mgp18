@@ -21,6 +21,10 @@ namespace Monogame_Party_2018 {
     const int FACE_CHANGE_SPEED_START = 24;
     bool hit;
 
+    // Color the block after hitting it:
+    Color blockColor;
+    Color highlightColor;
+
     // Constructor
     public E_ChanceBlock(State parentState, Texture2D sprite, int x, int y, S_ChanceTime.BlockType bType, List<Player> pList) : base(parentState, sprite, x, y) {
       this.bType = bType;
@@ -36,6 +40,9 @@ namespace Monogame_Party_2018 {
       foreach (Player p in pList) { players.Add(p); }
 
       hit = false;
+
+      blockColor = Color.White;
+      highlightColor = Color.White;
     } // end constructor
 
 
@@ -67,13 +74,16 @@ namespace Monogame_Party_2018 {
       sb.Begin();
 
       // Block:
-      sb.Draw(this.parentState.parentManager.game.spr_chanceBlock, this.getPos(), Color.White);
+      if (!hit)
+        sb.Draw(this.parentState.parentManager.game.spr_chanceBlockLight, this.getPos(), Color.SaddleBrown);
+      else
+        sb.Draw(this.parentState.parentManager.game.spr_chanceBlockLight, this.getPos(), blockColor);
 
       // CHARACTER BLOCK:
       if (bType == S_ChanceTime.BlockType.character) {
         if (faceIndex > players.Count() - 1)
           faceIndex = 0;
-        sb.Draw(players[faceIndex].chancePicture, this.getPos(), Color.White);
+        sb.Draw(players[faceIndex].chancePicture, this.getPos(), highlightColor);
       }
 
 
@@ -86,116 +96,116 @@ namespace Monogame_Party_2018 {
 
           // ---------- COINS ------------------------------------------
           case S_ChanceTime.condition.leftCoin10:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance10, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance10, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.rightCoin10:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance10, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance10, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.leftCoin20:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.rightCoin20:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.leftCoin30:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance30, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance30, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.rightCoin30:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance30, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance30, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.swapCoins:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowSwap, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowSwap, this.getPos(), highlightColor);
             // star slightly drawn right
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, new Vector2(this.getPos().X + 45, this.getPos().Y), Color.White);
             break;
 
           case S_ChanceTime.condition.swapStars:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowSwap, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowSwap, this.getPos(), highlightColor);
             // star slightly drawn right
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, new Vector2(this.getPos().X + 45, this.getPos().Y), Color.White);
             break;
 
           // ---------- STARS ------------------------------------------
           case S_ChanceTime.condition.rightStar1:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.rightStar2:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowR, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance2, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance2, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.leftStar1:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.leftStar2:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowL, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance2, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance2, this.getPos(), highlightColor);
             break;
 
 
           // ---------- BOTH LOSE --------------------------------------
           case S_ChanceTime.condition.bothLoseCoin10:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance10, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance10, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.bothLoseCoin20:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.bothLoseCoin30:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance30, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance30, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.bothLoseStar:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowDown, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), highlightColor);
             break;
 
 
           // ---------- BOTH WIN ---------------------------------------
           case S_ChanceTime.condition.bothGainCoin20:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowUp, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowUp, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceCoin, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance20, this.getPos(), highlightColor);
             break;
 
           case S_ChanceTime.condition.bothGainStar:
-            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowUp, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chanceArrowUp, this.getPos(), highlightColor);
             sb.Draw(this.parentState.parentManager.game.spr_chanceStar, this.getPos(), Color.White);
-            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), Color.White);
+            sb.Draw(this.parentState.parentManager.game.spr_chance1, this.getPos(), highlightColor);
             break;
 
           default:
@@ -236,6 +246,15 @@ namespace Monogame_Party_2018 {
     public Player getCurrentPlayer() {
       return players[faceIndex];
     }
+
+    public void newBlockColor(Color c) {
+      this.blockColor = c;
+    }
+
+    public void newHighlightColor(Color c) {
+      this.highlightColor = c;
+    }
+
 
 
   }

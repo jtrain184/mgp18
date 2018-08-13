@@ -25,6 +25,8 @@ namespace Monogame_Party_2018
 
         public bool showControls = false;
 
+        bool loadedSong = false;
+
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
@@ -47,12 +49,19 @@ namespace Monogame_Party_2018
             }
 
             glovePos = new Vector2(items[0].xPos - (cloudWidth / 2 + 60), items[0].yPos - 35);
-        }
 
+        }
 
         // Update:
         public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
+
+            if (!loadedSong) {
+              parentManager.audioEngine.addSongQueue(MGP_Constants.music.mainMenu);
+              Console.WriteLine("Added mainMenu to music queue");
+              loadedSong = true;
+            }
+
 
             // Move Menu Selection Up:
             if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all)) {
@@ -131,7 +140,7 @@ namespace Monogame_Party_2018
                     S_Controls controls = new S_Controls(parentManager, 0, 0);
                     parentManager.AddStateQueue(controls);
                     this.active = false;
-                } 
+                }
 
 
 
@@ -163,7 +172,7 @@ namespace Monogame_Party_2018
             // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            // Draw Buttons 
+            // Draw Buttons
             Color tColor;
             int i = 0;
             foreach (MenuItem item in items)

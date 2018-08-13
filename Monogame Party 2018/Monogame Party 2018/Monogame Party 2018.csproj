@@ -208,6 +208,7 @@
     <None Include="Content\ChanceTime\spr_chanceArrowSwap.xnb" />
     <None Include="Content\ChanceTime\spr_chanceArrowUp.xnb" />
     <None Include="Content\ChanceTime\spr_chanceBlock.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceBlockLight.xnb" />
     <None Include="Content\ChanceTime\spr_chanceCoin.xnb" />
     <None Include="Content\ChanceTime\spr_chanceFrank.xnb" />
     <None Include="Content\ChanceTime\spr_chanceLouie.xnb" />
@@ -229,6 +230,7 @@
     <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
     <None Include="Content\MainMenu\spr_glove.xnb" />
+    <None Include="Content\Music\mus_mainTheme.xnb" />
     <None Include="Content\Music\mus_pirateBay.xnb" />
     <None Include="Content\noSprite.xnb" />
     <None Include="Content\PirateBay\bg_pirateBay.xnb" />

@@ -72,6 +72,15 @@ namespace Monogame_Party_2018
 
             }
 
+
+            // Landed on STAR SPACE
+            else if (spaceType == Entity.typeSpace.star) {
+
+                // Change player ui color:
+                creator.round.currPlayer.uiColor = Color.Yellow;
+            }
+
+
         }
 
         // Update:

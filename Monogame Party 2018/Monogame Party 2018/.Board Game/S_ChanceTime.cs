@@ -80,7 +80,7 @@ namespace Monogame_Party_2018 {
     int BLOCK_LEFT_X = ((int)(MGP_Constants.SCREEN_WIDTH * 0.25)) - BLOCK_SIZE / 2;
     int BLOCK_MIDDLE_X = ((int)(MGP_Constants.SCREEN_WIDTH * 0.5)) - BLOCK_SIZE / 2;
     int BLOCK_RIGHT_X = ((int)(MGP_Constants.SCREEN_WIDTH * 0.75)) - BLOCK_SIZE / 2;
-    int BLOCK_Y = 190;
+    int BLOCK_Y = 240;
 
 
 
@@ -91,7 +91,7 @@ namespace Monogame_Party_2018 {
 
     // String drawing:
     Vector2 TITLE_POS = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y / 5);
-    Vector2 FINISH_POS = new Vector2(MGP_Constants.SCREEN_MID_X, ((int)(MGP_Constants.SCREEN_MID_Y*0.42f)));
+    Vector2 FINISH_POS = new Vector2(MGP_Constants.SCREEN_MID_X, ((int)(MGP_Constants.SCREEN_MID_Y*0.45f)));
 
     // Make music with SFX variables:
     const int DELAY_DRUM_START = 32;
@@ -188,14 +188,17 @@ namespace Monogame_Party_2018 {
 
       if (hit) {
 
-        // LEFT die (player)
+        // LEFT die (player) --------------------------------------------
         if (diceNum == 1) {
           suspenseLevel += 0.2f;
           delayDrum = (int)(delayDrum*0.75);
           delayString = (int)(delayString*0.75);
+
           // left block chosen, other blocks faster now:
           leftBlock.hitBlock();
+          leftBlock.newBlockColor(Color.Tan);
           leftPlayer = leftBlock.getCurrentPlayer(); // get the left chosen player
+          leftBlock.newHighlightColor(leftPlayer.characterColor);
           middleBlock.increaseFaceChangeSpeed(0.6f);
           rightBlock.increaseFaceChangeSpeed(0.6f);
           rightBlock.removePlayerFace(leftPlayer); // REMOVE THIS PLAYER FROM RIGHT BLOCK
@@ -206,14 +209,16 @@ namespace Monogame_Party_2018 {
           leftMeepleMove = true;
         }
 
-        // RIGHT die (player)
+        // RIGHT die (player) --------------------------------------------
         else if (diceNum == 2) {
           suspenseLevel += 0.2f;
           delayDrum = (int)(delayDrum*0.75);
           delayString = (int)(delayString*0.75);
 
           rightBlock.hitBlock();
+          rightBlock.newBlockColor(Color.Tan);
           rightPlayer = rightBlock.getCurrentPlayer(); // get the right chosen player
+          rightBlock.newHighlightColor(rightPlayer.characterColor);
           middleBlock.increaseFaceChangeSpeed(0.6f);
 
           // Create player meeple:
@@ -222,8 +227,10 @@ namespace Monogame_Party_2018 {
           rightMeepleMove = true;
         }
 
-        // MIDDLE die (condition)
+        // MIDDLE die (condition) ----------------------------------------
         else {
+          middleBlock.newBlockColor(Color.Tan);
+          middleBlock.newHighlightColor(Color.Yellow);
           finishTransition = true;
           middleBlock.hitBlock();
           chanceEvent = middleBlock.getCurrentCondition(); // get the right chosen player
@@ -500,12 +507,18 @@ namespace Monogame_Party_2018 {
 
       string t = "CHANCE TIME!";
       Vector2 boldTextPos = CenterString.getCenterStringVector(TITLE_POS, t, this.parentManager.game.ft_confirmPlayer_Bold);
+      Vector2 boldTextPosB = new Vector2(boldTextPos.X + 4, boldTextPos.Y + 4);
+      sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, t, boldTextPosB, Color.Black);
       sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, t, boldTextPos, Color.White);
 
       if (finishTransition) {
         string text = "FINISHED!";
         Vector2 finishPos = CenterString.getCenterStringVector(FINISH_POS, text, this.parentManager.game.ft_confirmPlayer_Bold);
-        sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, finishPos, Color.White);
+        Vector2 finishPosB = new Vector2(finishPos.X + 4, finishPos.Y + 4);
+        Vector2 finishPosBB = new Vector2(finishPos.X + 8, finishPos.Y + 8);
+        sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, finishPosBB, Color.Black);
+        sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, finishPosB, Color.SaddleBrown);
+        sb.DrawString(this.parentManager.game.ft_confirmPlayer_Bold, text, finishPos, Color.Yellow);
       }
 
       sb.End();
