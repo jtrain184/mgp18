@@ -28,6 +28,7 @@ namespace Monogame_Party_2018
         // Constructor
         public S_MinigameInstructions(GameStateManager creator, float xPos, float yPos, int minigame) : base(creator, xPos, yPos)
         {
+            Console.WriteLine(parentManager.gameOptions.players[0].meeple.pos);
             screenInstructions = "Select ... Continue";
             minigameType = minigame;
             switch (minigameType)

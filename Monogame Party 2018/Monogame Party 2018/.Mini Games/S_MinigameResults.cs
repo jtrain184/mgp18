@@ -24,6 +24,7 @@ namespace Monogame_Party_2018
         // Constructor
         public S_MinigameResults(GameStateManager creator, float xPos, float yPos, List<Player> results, int minigame) : base(creator, xPos, yPos)
         {
+            Console.WriteLine(parentManager.gameOptions.players[0].meeple.pos);
             // assign background based on which minigame was just played
             switch (minigame)
             {
