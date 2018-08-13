@@ -16,6 +16,7 @@ namespace Monogame_Party_2018
         public bool playerIsPlaying;    //determine whether or not to change current player
         public int playerIndex;     // current player
         public int currRound;   // current round number
+        public int minigame = 0;
 
         public bool roundStart = true;
 
@@ -36,10 +37,16 @@ namespace Monogame_Party_2018
         }
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks) {
+        public override void Update(GameTime gameTime, KeyboardState ks)
+        {
             base.Update(gameTime, ks);
 
             // do this at the beginning of every round, but only once:
+            if (roundStart)
+            {
+                foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
+                roundStart = false;
+                minigame = (minigame == 0) ? 1 : 0; // switch minigames
             if (roundStart) {
               foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
 
@@ -57,11 +64,12 @@ namespace Monogame_Party_2018
 
 
             //DEBUG:
-            if (!playerIsPlaying) {
+            if (!playerIsPlaying)
+            {
                 // Last player went. Go to minigame
                 if (playerIndex == 4)
                 {
-                    S_MinigameInstructions minigameInstructions = new S_MinigameInstructions(parentManager, 0, 0);
+                    S_MinigameInstructions minigameInstructions = new S_MinigameInstructions(parentManager, 0, 0, minigame);
                     parentManager.AddStateQueue(minigameInstructions);
                     playerIndex = 0;    // start with player one when round resumes
                     this.active = false;
@@ -104,39 +112,45 @@ namespace Monogame_Party_2018
         }
 
 
-        public void updatePlayerPlaces() {
-          // start with all players:
-          List<Player> playersLeft = new List<Player>();
-          List<Player> playersToRemove = new List<Player>();
-          foreach (Player p in parentManager.gameOptions.players) {
-            playersLeft.Add(p);
-          }
-
-          // now based on that score, place the players:
-          int place = 1; // start with first place
-          while (playersLeft.Count > 0) {
-            int largestScore = 0;
-            int curScore;
-            foreach (Player p in playersLeft) { // determine largest score
-              curScore = p.GetCombinedScore();
-              if (curScore > largestScore)
-                largestScore = curScore;
+        public void updatePlayerPlaces()
+        {
+            // start with all players:
+            List<Player> playersLeft = new List<Player>();
+            List<Player> playersToRemove = new List<Player>();
+            foreach (Player p in parentManager.gameOptions.players)
+            {
+                playersLeft.Add(p);
             }
 
-            foreach (Player p in playersLeft) { // assign place of current largest score (can be ties)
-              curScore = p.GetCombinedScore();
-              if (curScore == largestScore) {
-                p.place = place;
-                playersToRemove.Add(p);
-              }
-            }
+            // now based on that score, place the players:
+            int place = 1; // start with first place
+            while (playersLeft.Count > 0)
+            {
+                int largestScore = 0;
+                int curScore;
+                foreach (Player p in playersLeft)
+                { // determine largest score
+                    curScore = p.GetCombinedScore();
+                    if (curScore > largestScore)
+                        largestScore = curScore;
+                }
 
-            // Clean up playersLeft (cannot remove directly in above loop)
-            foreach (Player p in playersToRemove) { playersLeft.Remove(p); }
-            playersToRemove.Clear();
+                foreach (Player p in playersLeft)
+                { // assign place of current largest score (can be ties)
+                    curScore = p.GetCombinedScore();
+                    if (curScore == largestScore)
+                    {
+                        p.place = place;
+                        playersToRemove.Add(p);
+                    }
+                }
 
-            place++; // since there are only 4 players, the maximum place will have is 4
-          } // end while
+                // Clean up playersLeft (cannot remove directly in above loop)
+                foreach (Player p in playersToRemove) { playersLeft.Remove(p); }
+                playersToRemove.Clear();
+
+                place++; // since there are only 4 players, the maximum place will have is 4
+            } // end while
 
         } // end update places
 

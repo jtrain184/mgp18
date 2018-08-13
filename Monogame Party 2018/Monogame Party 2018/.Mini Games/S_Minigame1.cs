@@ -44,7 +44,7 @@ namespace Monogame_Party_2018
         {
             // Create the list of players and empty list for results
             players = new List<Player>();
-            players = creator.gameOptions.players;
+            players = creator.gameOptions.players.ToList();
             resultsList = new List<Player>();
 
             // Create the list of positions for players
@@ -69,8 +69,6 @@ namespace Monogame_Party_2018
             // Set one of the plungers to be the bomb
             plungers[creator.random.Next(0, plungers.Count)].isBomb = true;
 
-            // DEBUG: 
-            Console.WriteLine("Bomb is color: " + plungers.Find(x => x.isBomb == true).color);
 
             // Start with 0 selected plungers
             selectedPlungers = 0;
