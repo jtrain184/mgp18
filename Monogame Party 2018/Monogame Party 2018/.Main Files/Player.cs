@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-namespace Monogame_Party_2018 {
-    public class Player {
+namespace Monogame_Party_2018
+{
+    public class Player
+    {
 
         public enum Type
         {
@@ -130,10 +126,11 @@ namespace Monogame_Party_2018 {
         } // end constructor
 
 
-        public int GetCombinedScore() {
-          int starScore = 1000;
-          int coinScore = 1;
-          return this.stars * starScore + this.coins * coinScore;
+        public int GetCombinedScore()
+        {
+            int starScore = 1000;
+            int coinScore = 1;
+            return this.stars * starScore + this.coins * coinScore;
         }
 
 

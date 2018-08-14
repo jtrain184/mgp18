@@ -1,10 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -42,7 +40,8 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // do this at the beginning of every round, but only once:
-            if (roundStart) {
+            if (roundStart)
+            {
 
                 // Set the player ui's to white at the beginning of each round:
                 foreach (Player p in parentManager.gameOptions.players) { p.uiColor = Color.White; }
@@ -59,14 +58,10 @@ namespace Monogame_Party_2018
                 roundStart = false;
             }
 
-
-
+            // Move camera to player
             MGP_Tools.Follow_Player(parentManager, currPlayer);
 
-
-
-
-            //DEBUG:
+            // Start next player's turn
             if (!playerIsPlaying)
             {
                 // Last player went. Go to minigame
@@ -95,14 +90,11 @@ namespace Monogame_Party_2018
                 }
             }
 
-
-
             // Listen for and allow for pauses:
             ListenPause();
 
             // Update player places:
             updatePlayerPlaces();
-
 
         } // end Update method
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Monogame_Party_2018
 {
@@ -16,7 +12,9 @@ namespace Monogame_Party_2018
         public bool allowBonus;
 
         //Contructor
-        public GameOptions() {
-            this.players = new List<Player>(); }
+        public GameOptions()
+        {
+            this.players = new List<Player>();
+        }
     }
 }

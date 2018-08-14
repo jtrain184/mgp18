@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 
 namespace Monogame_Party_2018
@@ -84,17 +83,17 @@ namespace Monogame_Party_2018
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {
                 // Seven Rounds Selected
-                if(currentMenuItem == 0)
+                if (currentMenuItem == 0)
                     parentManager.gameOptions.numRounds = 7;
 
                 // Twelve Rounds Selected
-                else if( currentMenuItem == 1)
+                else if (currentMenuItem == 1)
                     parentManager.gameOptions.numRounds = 12;
 
                 // Twenty Rounds Selected
                 else
-                    parentManager.gameOptions.numRounds = 1;        /////////////////////////// DEBUG ALLOW ONLY ONE ROUND FOR TESTING
-       
+                    parentManager.gameOptions.numRounds = 20;        
+
                 // Go to next menu
                 S_BonusMenu bonusMenu = new S_BonusMenu(parentManager, 0, 0);
                 parentManager.AddStateQueue(bonusMenu);

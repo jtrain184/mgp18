@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -35,12 +30,13 @@ namespace Monogame_Party_2018
         public override void Update(GameTime gameTime, KeyboardState ks)
         {
             base.Update(gameTime, ks);
-            if(timer > 60)
+            if (timer > 60)
             {
-                if(gsm.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all)){
+                if (gsm.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
+                {
 
                     // Remove all states
-                    foreach(State s in gsm.states)
+                    foreach (State s in gsm.states)
                     {
                         s.flagForDeletion = true;
                     }
@@ -65,7 +61,7 @@ namespace Monogame_Party_2018
 
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            if(timer < maxTime)
+            if (timer < maxTime)
             {
                 string text = "AND THE WINNER IS...";
                 Vector2 boldTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 75), text, this.parentManager.game.ft_confirmPlayer_Bold);
@@ -82,9 +78,9 @@ namespace Monogame_Party_2018
                 // Draw Star
                 Vector2 starPos = new Vector2(MGP_Constants.SCREEN_MID_X - 150, MGP_Constants.SCREEN_MID_Y - 300);
                 Texture2D star;
-                if(timer % 30 < 6)
+                if (timer % 30 < 6)
                     star = gsm.game.spr_star1;
-                else if(timer % 30 >= 6 && timer % 30 < 12)
+                else if (timer % 30 >= 6 && timer % 30 < 12)
                     star = gsm.game.spr_star2;
                 else if (timer % 30 >= 12 && timer % 30 < 18)
                     star = gsm.game.spr_star3;
@@ -122,7 +118,7 @@ namespace Monogame_Party_2018
 
 
             }
-            
+
 
             sb.End();
         }

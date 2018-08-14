@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018
 {
 
-    public class S_Board : State {
+    public class S_Board : State
+    {
 
 
         // Member variables:
@@ -25,15 +22,9 @@ namespace Monogame_Party_2018
 
         // Game Vars
         public int numRounds;
-
         public S_Round round;
         public List<Player> players;
-
         public E_Dice testDice;
-
-
-
-
 
 
         // Constructor:
@@ -73,7 +64,8 @@ namespace Monogame_Party_2018
 
             //DEBUG:
             // Game is finished:
-            if (round.currRound > numRounds) {
+            if (round.currRound > numRounds)
+            {
                 if (this.gameOptions.allowBonus)
                 {
                     // Go to game results state to count bonuses
@@ -95,12 +87,9 @@ namespace Monogame_Party_2018
                 }
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
-
-
-
+            
             // Listen for pausing here:
             ListenPause();
-
         }
 
         // DRAW

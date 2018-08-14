@@ -3,18 +3,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-
 namespace Monogame_Party_2018
 {
     public class S_Controls : State
     {
         public S_Controls(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-            
+
         }
 
         public override void Update(GameTime gameTime, KeyboardState ks)
@@ -36,6 +31,7 @@ namespace Monogame_Party_2018
             // Key Input Sprite
             sb.Draw(this.parentManager.game.key_inputs, new Vector2(0, 0), Color.White);
 
+            //  screen instructions
             string text = "Cancel...Go back";
 
             Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, 675), text, parentManager.game.ft_rollDice_lg);

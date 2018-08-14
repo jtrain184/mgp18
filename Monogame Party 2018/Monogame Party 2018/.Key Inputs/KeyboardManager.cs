@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018
 {
@@ -167,7 +159,7 @@ namespace Monogame_Party_2018
             } // end player two input check
 
             // If player index wall, return if either were true
-            else if(p == playerIndex.all)
+            else if (p == playerIndex.all)
             {
                 return ActionPressed(a, playerIndex.one) || ActionPressed(a, playerIndex.two);
             }

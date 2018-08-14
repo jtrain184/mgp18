@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -51,12 +46,12 @@ namespace Monogame_Party_2018
 
             SpriteBatch sb = this.parentState.parentManager.game.spriteBatch;
             sb.Begin();
-            SpriteFont pipFont = this.parentState.parentManager.game.ft_playerUIdata;
-            //Vector2 dicePosition = this.getPos();
 
-            // TODO:  FIX POSITION ---------------------------------------------------------------------------------------
+            // Set font and position
+            SpriteFont pipFont = this.parentState.parentManager.game.ft_playerUIdata;
             Vector2 dicePos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - 150);
 
+            // Draw dice block and number
             sb.Draw(this.parentState.parentManager.game.spr_diceBox, dicePos, Color.White);
             sb.DrawString(pipFont, diceRoll.ToString(), new Vector2(dicePos.X + 20, dicePos .Y + 20), Color.DarkBlue);
             

@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -144,7 +140,7 @@ namespace Monogame_Party_2018
             textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
             sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.White);
 
-            if(index < 2)
+            if (index < 2)
             {
                 string text = ">>";
 

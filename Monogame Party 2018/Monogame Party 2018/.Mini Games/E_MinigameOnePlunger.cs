@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018
 {
@@ -32,14 +26,14 @@ namespace Monogame_Party_2018
 
         public void Update_Sprite()
         {
-            
+
             // If pressed change sprite to plunger down
             if (this.pressed)
             {
                 this.sprite = parentState.parentManager.game.minigame_one_plungerDown;
             }
             // otherwise sprite should be plunger up
-            if(!this.pressed)
+            if (!this.pressed)
             {
                 this.sprite = parentState.parentManager.game.minigame_one_plungerUp;
             }

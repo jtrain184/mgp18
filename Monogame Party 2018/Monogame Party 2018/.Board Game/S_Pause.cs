@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -54,7 +51,7 @@ namespace Monogame_Party_2018
 
             // pause items:
             pauseItems = new List<PauseItem>();
-            piPos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - piHeight*2); // init position
+            piPos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - piHeight * 2); // init position
             SpriteFont sf = parentManager.game.ft_confirmPlayer_s32;
             int numItems = 0;
             Vector2 startPos = new Vector2(piPos.X, piPos.Y + (numItems * piHeight));
@@ -89,7 +86,8 @@ namespace Monogame_Party_2018
 
 
             // Pause those selected states:
-            foreach (State s in statesToPause) {
+            foreach (State s in statesToPause)
+            {
                 // don't pause itself, but pause all other active states:
                 if (s != this) { s.active = false; }
             }
@@ -108,7 +106,8 @@ namespace Monogame_Party_2018
 
 
         // ** UPDATE **
-        public override void Update(GameTime gameTime, KeyboardState ks) {
+        public override void Update(GameTime gameTime, KeyboardState ks)
+        {
             base.Update(gameTime, ks);
 
             // Update selection / glove position:
@@ -173,7 +172,8 @@ namespace Monogame_Party_2018
             // UNPAUSE:
             if ((km.ActionPressed(KeyboardManager.action.pause, this.playerWhoPaused)) ||
                 (km.ActionPressed(KeyboardManager.action.cancel, this.playerWhoPaused)) ||
-                (pressedResume)) {
+                (pressedResume))
+            {
                 Console.WriteLine("Player " + ((int)this.playerWhoPaused + 1).ToString() + " resumed the game");
 
                 // Unpause other states now:
@@ -190,7 +190,8 @@ namespace Monogame_Party_2018
 
 
         // DRAW
-        public override void Draw(GameTime gameTime) {
+        public override void Draw(GameTime gameTime)
+        {
             base.Draw(gameTime);
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             // Draw relative to the screen, regardless of camera position
@@ -205,7 +206,8 @@ namespace Monogame_Party_2018
             // Draw pause menu items:
             int i = 0;
             Color c = Color.White;
-            foreach (PauseItem pi in pauseItems) {
+            foreach (PauseItem pi in pauseItems)
+            {
                 if (i == currentSelection)
                     c = Color.CornflowerBlue;
                 else

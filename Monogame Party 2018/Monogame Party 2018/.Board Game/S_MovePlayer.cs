@@ -2,17 +2,12 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace Monogame_Party_2018
 {
     public class S_MovePlayer : State
     {
         public int moveNum;
         public Player currPlayer;
-
         bool soundPlayed;
 
 
@@ -27,34 +22,34 @@ namespace Monogame_Party_2018
         }
 
         // Update:
-        public override void Update(GameTime gameTime, KeyboardState ks) {
+        public override void Update(GameTime gameTime, KeyboardState ks)
+        {
             base.Update(gameTime, ks);
 
-
-
             // Move the player
-            if (moveNum > 0) {
+            if (moveNum > 0)
+            {
                 // Find next space
                 E_Space spaceToMoveTo = currPlayer.currSpace.spacesAhead[0];
 
                 // Move the meeple untill it's close enough to space
-                if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F) {
+                if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F)
+                {
                     float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getPosCenter().X, 0.15F);
                     float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.15F);
                     currPlayer.meeple.setPos(new Vector2(newX, newY));
                     MGP_Tools.Follow_Player(parentManager, currPlayer);
 
                     // Play space sound effect:
-                    if (!soundPlayed) {
-                      parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
-                      soundPlayed = true;
+                    if (!soundPlayed)
+                    {
+                        parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
+                        soundPlayed = true;
                     }
-
-
-
                 }
                 // Meeple has arrived at new space
-                else {
+                else
+                {
                     moveNum--;
                     currPlayer.currSpace = spaceToMoveTo;
 
@@ -62,7 +57,8 @@ namespace Monogame_Party_2018
                     soundPlayed = false;
 
                     // If player passes a star
-                    if (currPlayer.currSpace.type == Entity.typeSpace.star) {
+                    if (currPlayer.currSpace.type == Entity.typeSpace.star)
+                    {
                         S_BuyStar buyStar = new S_BuyStar(parentManager, 0, 0);
                         parentManager.AddStateQueue(buyStar);
                         this.active = false; //pause moving player
@@ -92,9 +88,10 @@ namespace Monogame_Party_2018
             sb.Begin();
             SpriteFont spacesLeft = this.parentManager.game.ft_playerUIdata;
 
-
-            if ((moveNum - 1) > 0) {
-              sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 22, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
+            // Draw the move count
+            if ((moveNum - 1) > 0)
+            {
+                sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 22, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
                 sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 18, MGP_Constants.SCREEN_MID_Y - 130), Color.Black);
                 sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 128), Color.Black);
                 sb.DrawString(spacesLeft, (moveNum - 1).ToString(), new Vector2(MGP_Constants.SCREEN_MID_X + 20, MGP_Constants.SCREEN_MID_Y - 132), Color.Black);
@@ -103,12 +100,6 @@ namespace Monogame_Party_2018
             }
 
             sb.End();
-
-        }
-
-        public void MovePlayer()
-        {
-            // Add code that moves the player to next spaces
 
         }
     }

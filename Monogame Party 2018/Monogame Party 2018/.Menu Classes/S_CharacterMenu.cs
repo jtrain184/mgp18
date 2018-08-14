@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -160,7 +159,7 @@ namespace Monogame_Party_2018
                     for (int i = 0; i < players.Count; i++)
                     {
                         // add as a human player
-                        if(i == 0)
+                        if (i == 0)
                             parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true, KeyboardManager.playerIndex.one));
                         else if (i == numOfPlayers - 1)
                             parentManager.gameOptions.players.Add(new Player(this.creator, players[i], true, KeyboardManager.playerIndex.two));
@@ -182,6 +181,7 @@ namespace Monogame_Party_2018
                         currentMenuItem = 1;
                     else
                         currentMenuItem = 0;
+                    moveGlove = true;
                 }
 
             } // end of enter action key press

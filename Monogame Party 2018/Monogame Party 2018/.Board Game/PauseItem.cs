@@ -1,36 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-namespace Monogame_Party_2018 {
-  public class PauseItem {
+namespace Monogame_Party_2018
+{
+    public class PauseItem
+    {
 
-    public S_Pause.pauseOptions activeValue;
-    public Vector2 screenPos;
-    public Vector2 screenPosCentered;
-    public string text;
-    public SpriteFont font;
+        public S_Pause.pauseOptions activeValue;
+        public Vector2 screenPos;
+        public Vector2 screenPosCentered;
+        public string text;
+        public SpriteFont font;
 
-    public PauseItem(Vector2 initPos, string initText, SpriteFont sf, S_Pause.pauseOptions activeValue) {
+        public PauseItem(Vector2 initPos, string initText, SpriteFont sf, S_Pause.pauseOptions activeValue)
+        {
 
-      this.text = initText;
+            this.text = initText;
 
-      // Recenter based on text:
-      this.screenPos = initPos;
-      this.screenPosCentered = CenterString.getCenterStringVector(initPos, this.text, sf);
+            // Recenter based on text:
+            this.screenPos = initPos;
+            this.screenPosCentered = CenterString.getCenterStringVector(initPos, this.text, sf);
 
-      this.activeValue = activeValue;
-      this.font = sf;
+            this.activeValue = activeValue;
+            this.font = sf;
+        }
     }
-
-
-
-
-  }
 }
