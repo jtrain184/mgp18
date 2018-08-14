@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -111,7 +108,7 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            if(timer >= maxTime && !animation)
+            if (timer >= maxTime && !animation)
             {
                 // Move onto final results
                 if (textIndex == text.Count - 1)
@@ -129,15 +126,17 @@ namespace Monogame_Party_2018
 
             }
             // Start animation
-            else if (textIndex == 2 || textIndex == 4) {
+            else if (textIndex == 2 || textIndex == 4)
+            {
                 if (textIndex == 2)
                     winnerIndex = minigameWinnerIndex;
                 else
                     winnerIndex = mostCoinsWinnerIndex;
                 animation = true;
 
-                // move the player
-                if (!movedPlayer) {
+                // move the player towards center
+                if (!movedPlayer)
+                {
                     if (Vector2.Distance(currMeeplePos[winnerIndex], awardPos) < 5.0f)
                     {
                         movedPlayer = true;
@@ -151,10 +150,11 @@ namespace Monogame_Party_2018
                         currMeeplePos[winnerIndex] = new Vector2(temp.X, temp.Y);
 
                     }
-                    
+
                 }
                 // move the star
-                else if (!movedStar) {
+                else if (!movedStar)
+                {
                     if (Math.Abs(curStarPos.Y - starAwardPos.Y) < 10 && timer > maxTime)
                         movedStar = true;
                     else
@@ -166,17 +166,17 @@ namespace Monogame_Party_2018
                 // move player back
                 else
                 {
-                    // move star back
+                    // move star back up
                     curStarPos = origStarPos;
 
-
+                    // Finished all animations
                     if (Vector2.Distance(currMeeplePos[winnerIndex], origMeeplePos[winnerIndex]) < 5.0f)
                     {
                         animation = false;
                         movedStar = false;
                         movedPlayer = false;
                     }
-
+                    // ease player back to orig spot
                     else
                     {
                         Vector2 temp = currMeeplePos[winnerIndex];
@@ -186,7 +186,7 @@ namespace Monogame_Party_2018
                     }
                 } // End of moving player back
             }  // End of animation
-        
+
             // Spin the star!
             if (timer % 30 < 6)
                 starIndex = 0;
@@ -213,9 +213,6 @@ namespace Monogame_Party_2018
 
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-           
-
-
             // Background Box
             Vector2 backgroundBox = new Vector2(50, 50);
             sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)backgroundBox.X, (int)backgroundBox.Y, 500, 150), new Color(0, 0, 128, 200));
@@ -233,36 +230,8 @@ namespace Monogame_Party_2018
             // Star
             sb.Draw(stars[starIndex], curStarPos, Color.White);
 
-
-
-
-
             sb.End();
 
         }
-
-        public bool moveSprite(Vector2 startPos, Vector2 endPos)
-        {
-            if (Vector2.Distance(startPos, endPos) < 1.0f)
-                return true;
-            else
-            {
-                startPos.X = MGP_Tools.Ease(startPos.X, endPos.X, 0.1f);
-                startPos.Y = MGP_Tools.Ease(startPos.Y, endPos.Y, 0.1f);
-                return false;
-            }
-        }
-
-        public bool moveSprite(Rectangle startPos, Rectangle endPos)
-        {
-            if (Vector2.Distance(new Vector2(startPos.X, startPos.Y), new Vector2(endPos.X, endPos.Y)) < 1.0f)
-                return true;
-            else
-            {
-                return false;
-            }
-        }
-
-
     }
 }

@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -43,10 +42,6 @@ namespace Monogame_Party_2018
             }
 
             glovePos = new Vector2(items[0].xPos - (cloudWidth / 2 + 60), items[0].yPos - 35);
-
-
-
-
         }
 
 
@@ -60,7 +55,6 @@ namespace Monogame_Party_2018
             {
                 currentMenuItem = items[currentMenuItem].above.activeValue;
                 moveGlove = true;
-
             }
 
             // Move Menu Selection Down:
@@ -93,7 +87,7 @@ namespace Monogame_Party_2018
                 // Difficulty: Medium
                 if (currentMenuItem == (int)MenuItem.Difficulty.MEDIUM)
                     parentManager.gameOptions.difficulty = MenuItem.Difficulty.MEDIUM;
- 
+
                 // Difficulty: Medium
                 if (currentMenuItem == (int)MenuItem.Difficulty.HARD)
                     parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;

@@ -35,7 +35,7 @@ namespace Monogame_Party_2018
         public List<State> statesToCreate = new List<State>();
 
         // Shared by all:
-        KeyboardState input;
+        static KeyboardState input;
 
         // References for easy access:
         public MonogameParty game;
@@ -72,7 +72,8 @@ namespace Monogame_Party_2018
         }
 
         // Update
-        public void Update(GameTime gameTime) {
+        public void Update(GameTime gameTime)
+        {
 
             // Update the keyboard for BEGINNING of updates:
             km.KeysUpdateCurrent();
@@ -81,26 +82,28 @@ namespace Monogame_Party_2018
             // Loop through all states and update them!:
             State s;
             int delayTimer = 0;
-            while (num > -1) {
+            while (num > -1)
+            {
 
-              // Start with topmost state:
-              s = states[num];
+                // Start with topmost state:
+                s = states[num];
 
-              // ** UPDATE ALL STATES **
-              // Only update if State is 'active' and not flagged for deletion:
-              if ((delayTimer <= 0) && s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
+                // ** UPDATE ALL STATES **
+                // Only update if State is 'active' and not flagged for deletion:
+                if ((delayTimer <= 0) && s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
 
 
-              // a 'delayTimer' allows states to push short delays to essentially mini-pause the state stack
-              if (s.sendDelay > 0) {
-                delayTimer += s.sendDelay;
-                s.sendDelay = 0; // reset send delay from object (notification of it was received)
-              }
+                // a 'delayTimer' allows states to push short delays to essentially mini-pause the state stack
+                if (s.sendDelay > 0)
+                {
+                    delayTimer += s.sendDelay;
+                    s.sendDelay = 0; // reset send delay from object (notification of it was received)
+                }
 
-              // State is flagged for deletion, remove it now:
-              if (s.flagForDeletion) { RemoveState(s); }
+                // State is flagged for deletion, remove it now:
+                if (s.flagForDeletion) { RemoveState(s); }
 
-              --num;
+                --num;
             } // end while
 
             // decrement timer
@@ -108,28 +111,32 @@ namespace Monogame_Party_2018
 
 
             // Clear all states flag
-            if (clearAllStates) {
-              states.Clear();
-              clearAllStates = false; // reset flag
+            if (clearAllStates)
+            {
+                states.Clear();
+                clearAllStates = false; // reset flag
             }
 
             // Create any new states
             // Loop through states to create, creating and linking them to our states list
-            foreach (State newState in statesToCreate.ToList()) {
+            foreach (State newState in statesToCreate.ToList())
+            {
                 states.Add(newState);
                 statesToCreate.Remove(newState);
             }
 
             // Log changes in state count
-            if(states.Count != stateCount) {
+            if (states.Count != stateCount)
+            {
                 Console.WriteLine("Current State Count: " + states.Count + "\n");
                 stateCount = states.Count;
             }
 
             // Debug mode activation:
-            if (km.ActionPressed(KeyboardManager.action.debugMode, KeyboardManager.playerIndex.one)) {
-              if (this.debugMode == false) { this.debugMode = true; Console.WriteLine("turned debugMode on"); }
-              else { this.debugMode = false; Console.WriteLine("turned debugMode off"); }
+            if (km.ActionPressed(KeyboardManager.action.debugMode, KeyboardManager.playerIndex.one))
+            {
+                if (this.debugMode == false) { this.debugMode = true; Console.WriteLine("turned debugMode on"); }
+                else { this.debugMode = false; Console.WriteLine("turned debugMode off"); }
             }
 
             // Update New becomes Old states:
@@ -144,41 +151,34 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.game.spriteBatch;
             foreach (State s in states)
             {
-
                 // If visible, draw:
                 if (s.visible) { s.Draw(gameTime); }
-
-                // DEBUG (draw each state title): // TODO START HERE << -------------------------- TODO START HERE << -----
-
-
-
             } // end foreach
 
 
             // Debug Mode (draw in seperate foreach loop, on top of other states):
-            if (debugMode) {
-              sb.Begin();
+            if (debugMode)
+            {
+                sb.Begin();
 
-              int line = 0;
-              int lineHeight = 16;
-              string str = "STATES";
-              Vector2 debugTextPos = new Vector2(400, line * lineHeight);
-              sb.DrawString(this.game.ft_debugMedium, str, debugTextPos, Color.Black);
-              line++;
-
-
-              foreach (State s in states) {
-                str = s.GetType().ToString();
-                debugTextPos.Y = line * lineHeight;
-                sb.DrawString(this.game.ft_debugSmall, str, debugTextPos, Color.White);
+                int line = 0;
+                int lineHeight = 16;
+                string str = "STATES";
+                Vector2 debugTextPos = new Vector2(400, line * lineHeight);
+                sb.DrawString(this.game.ft_debugMedium, str, debugTextPos, Color.Black);
                 line++;
 
-              }
-              sb.End();
+
+                foreach (State s in states)
+                {
+                    str = s.GetType().ToString();
+                    debugTextPos.Y = line * lineHeight;
+                    sb.DrawString(this.game.ft_debugSmall, str, debugTextPos, Color.White);
+                    line++;
+
+                }
+                sb.End();
             }
-
-
-
 
         } // end DRAW
 
@@ -203,8 +203,9 @@ namespace Monogame_Party_2018
             statesToCreate.Add(s);
         }
 
-        public void clearStates() {
-          clearAllStates = true;
+        public void clearStates()
+        {
+            clearAllStates = true;
         }
 
 

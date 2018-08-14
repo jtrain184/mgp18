@@ -1,10 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -17,13 +11,11 @@ namespace Monogame_Party_2018
             return current + (moveDir * speed);
         }
 
-        public static float Ease(float currentVal, float targetVal, float speed) {
-          // Speed suggested at 0.1
-          return (currentVal + ((targetVal - currentVal) * speed));
+        public static float Ease(float currentVal, float targetVal, float speed)
+        {
+            // Speed suggested at 0.1
+            return (currentVal + ((targetVal - currentVal) * speed));
         }
-
-
-
 
         public static void Follow_Player(GameStateManager parentManager, Player currPlayer)
         {
@@ -48,7 +40,7 @@ namespace Monogame_Party_2018
             }
 
             // Randomly select a new postion for the star
-            int nextStarIndex =  board.parentManager.random.Next(15, 30);
+            int nextStarIndex = board.parentManager.random.Next(15, 30);
 
             // Change current star and new star
             board.spaces[starIndex].changeSpace(board.spaces[starIndex].prevType);
@@ -76,26 +68,12 @@ namespace Monogame_Party_2018
             parentManager.game.cameraObject.LookAt(parentManager.boardGame.cameraProperties.getPos());
         }
 
-        public static void PanCameraFromStar(GameStateManager parentManager, E_Space currSpace, Player currPlayer){
-           // TO DO
-
-
-
-
-
-
-
+        public static int NonNegSub(int curAmount, int subAmount)
+        {
+            curAmount -= subAmount;
+            if (curAmount < 0)
+                curAmount = 0;
+            return curAmount;
         }
-
-
-        public static int NonNegSub(int curAmount, int subAmount) {
-          curAmount -= subAmount;
-          if (curAmount < 0)
-            curAmount = 0;
-          return curAmount;
-        }
-
-
-
     }
 }

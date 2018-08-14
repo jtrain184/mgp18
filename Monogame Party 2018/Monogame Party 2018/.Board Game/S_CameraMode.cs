@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 
 namespace Monogame_Party_2018
@@ -18,7 +16,7 @@ namespace Monogame_Party_2018
         Vector2 oldCameraPos;
 
 
-        public S_CameraMode(GameStateManager creator, float xPos, float yPos, S_Pause s_Pause) : base (creator, xPos, yPos)
+        public S_CameraMode(GameStateManager creator, float xPos, float yPos, S_Pause s_Pause) : base(creator, xPos, yPos)
         {
             cameraProperties = parentManager.boardGame.cameraProperties;
             // Pause the pause menu (lol)
@@ -27,7 +25,7 @@ namespace Monogame_Party_2018
             s_Pause.visible = false;
 
             // Hide other states so we see just the gameboard
-            foreach(State s in parentManager.states)
+            foreach (State s in parentManager.states)
             {
                 if (!s.GetType().Equals(typeof(B_PirateBay)) && s != this) { s.visible = false; }
             }

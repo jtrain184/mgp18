@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -22,6 +17,7 @@ namespace Monogame_Party_2018
         public S_BuyStar(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             buyStarPrompt = new MenuItem(MGP_Constants.SCREEN_MID_X - 300, MGP_Constants.SCREEN_MID_Y - 75, "", 0);
+
             // Player does not have enough coins to buy star
             if (parentManager.round.currPlayer.coins < 20)
             {
@@ -30,12 +26,12 @@ namespace Monogame_Party_2018
             }
             else
             {
-                
+
                 buystar = true;
                 // award star and deduct coins
                 parentManager.round.currPlayer.coins -= 20;
                 parentManager.round.currPlayer.stars++;
- 
+
                 buyStarPrompt.text = "You finally made it!\nYou get a star!";
                 this.broke = false;
             }
@@ -49,14 +45,14 @@ namespace Monogame_Party_2018
             if (parentManager.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all) || AI_Timer > 60 || moveYPos > 90)
             {
                 // start the animation for getting a star
-                if(buystar)
+                if (buystar)
                     startAnimation = true;
 
                 // Finished star animation or couldnt buy star
                 if (moveYPos > 90 || !buystar)
                 {
                     // Move the star to new space
-                    if(buystar)
+                    if (buystar)
                     {
                         MGP_Tools.Assign_Star(parentManager.boardGame);
                         parentManager.round.currPlayer.currSpace.type = Entity.typeSpace.chance;
@@ -73,10 +69,10 @@ namespace Monogame_Party_2018
                 moveYPos++;
 
             // If current play is com, increase AI_Timer
-            if(!parentManager.round.currPlayer.isHuman)
+            if (!parentManager.round.currPlayer.isHuman)
                 AI_Timer++;
-         
-           
+
+
         }
 
         public override void Draw(GameTime gameTime)
@@ -88,7 +84,7 @@ namespace Monogame_Party_2018
 
             sb.Begin();
 
-            
+
             // buying star
             if (startAnimation)
             {
@@ -110,12 +106,13 @@ namespace Monogame_Party_2018
                 Vector2 messageScreen = new Vector2(buyStarPrompt.xPos, buyStarPrompt.yPos);
                 Vector2 textPos = CenterString.getCenterStringVector(new Vector2(messageScreen.X + 300, messageScreen.Y + 75), buyStarPrompt.text, this.parentManager.game.ft_menuDescriptionFont);
 
-           
+
                 sb.Draw(this.parentManager.game.spr_messageBox, new Rectangle((int)messageScreen.X, (int)messageScreen.Y, 600, 150), new Color(0, 0, 128, 200));
                 sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, buyStarPrompt.text, textPos, Color.White);
-    
+
             }
 
+            // Draw instruction to press select
             if (parentManager.round.currPlayer.isHuman && !startAnimation)
             {
                 string text = "Select ... Continue";
@@ -128,9 +125,9 @@ namespace Monogame_Party_2018
 
                 sb.DrawString(parentManager.game.ft_rollDice_lg, text, smTextPos, Color.White);
             }
-          
-            
-            
+
+
+
             sb.End();
         }
     }

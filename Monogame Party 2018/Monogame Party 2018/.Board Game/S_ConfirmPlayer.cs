@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 namespace Monogame_Party_2018
 {
     public class S_ConfirmPlayer : State
@@ -33,13 +29,14 @@ namespace Monogame_Party_2018
         {
             base.Update(gameTime, ks);
 
-            if(transitionTimerOne < 60)
+            if (transitionTimerOne < 60)
                 transitionTimerOne++;
             else
             {
 
                 // Play press start sound effect:
-                if (!soundPlayed) {
+                if (!soundPlayed)
+                {
                     parentManager.audioEngine.playSound(MGP_Constants.soundEffects.pressStart, 1.0f);
                     soundPlayed = true;
                 }
@@ -49,7 +46,7 @@ namespace Monogame_Party_2018
                     transitionTimerTwo++;
                 else
                 {
-
+                    // Transition is done, start dice roll
                     S_RollDice rollDice = new S_RollDice(parentManager, 0, 0);
                     parentManager.AddStateQueue(rollDice);
                     this.flagForDeletion = true;
@@ -68,7 +65,7 @@ namespace Monogame_Party_2018
             SpriteBatch sb = this.parentManager.game.spriteBatch;
 
             sb.Begin();
-            if(transitionTimerOne < 60)
+            if (transitionTimerOne < 60)
             {
                 // Box 1 covering top half
                 Vector2 boxOne = new Vector2(0, 0 - (transitionTimerOne * 12));
@@ -88,7 +85,7 @@ namespace Monogame_Party_2018
                 {
                     text = "LAST TURN";
                 }
-                else if(roundsLeft <= 3)
+                else if (roundsLeft <= 3)
                 {
                     text = "LAST" + roundsLeft.ToString() + " TURNS";
                 }

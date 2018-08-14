@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018
@@ -94,8 +89,6 @@ namespace Monogame_Party_2018
         {
             // assign current type to old type before changing
             this.prevType = this.type;
-
-
             this.type = type;
             assignSprite(this);
 

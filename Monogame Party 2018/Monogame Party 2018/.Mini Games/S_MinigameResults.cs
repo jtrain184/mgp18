@@ -42,14 +42,14 @@ namespace Monogame_Party_2018
             entities = new List<E_MinigameResult>();
             resultPos = new List<Vector2>();
 
-            for(int i = 0; i <= 3; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 entities.Add(new E_MinigameResult(creator, Math.Abs(i - 4), results[i], new Vector2(350, -100)));
                 resultPos.Add(new Vector2(350, 500 - (i * 100)));
             }
 
             // Add coins to players totalCoins gained
-            for(int j = 0; j < entities.Count; j++)
+            for (int j = 0; j < entities.Count; j++)
             {
                 if (entities[j].changeValue > 0)
                     results[j].totalCoinsGained += entities[j].changeValue;
@@ -69,10 +69,10 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
 
             // If result has finished easing
-            if(Vector2.Distance(entities[currentIndex].position, resultPos[currentIndex]) < 1.0f )
+            if (Vector2.Distance(entities[currentIndex].position, resultPos[currentIndex]) < 1.0f)
             {
                 // Last result has been eased
-                if(currentIndex == 3)
+                if (currentIndex == 3)
                 {
                     // Wait  time after displaying last result
                     if (waitTime >= maxWaitTime)
@@ -135,13 +135,13 @@ namespace Monogame_Party_2018
 
             // Title
             String title = "Minigame Results";
-            Vector2 titlePos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + 300 , backgroundBox.Y + 50), title, this.parentManager.game.ft_mainMenuFont);
+            Vector2 titlePos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X + 300, backgroundBox.Y + 50), title, this.parentManager.game.ft_mainMenuFont);
             sb.DrawString(this.parentManager.game.ft_mainMenuFont, title, titlePos, Color.White);
 
             sb.End();
 
             // Player Result Entities
-            for(int i = 0; i <=3; i++)
+            for (int i = 0; i <= 3; i++)
             {
                 entities[i].Draw(gameTime);
             }

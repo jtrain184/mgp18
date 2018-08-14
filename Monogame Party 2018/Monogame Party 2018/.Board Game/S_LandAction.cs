@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -30,7 +28,8 @@ namespace Monogame_Party_2018
 
 
             // Landed on a blue space
-            if(spaceType == Entity.typeSpace.blue) {
+            if (spaceType == Entity.typeSpace.blue)
+            {
                 // Add 3 coins to player
                 creator.round.currPlayer.coins += numCoins;
                 creator.round.currPlayer.totalCoinsGained += numCoins;
@@ -45,7 +44,8 @@ namespace Monogame_Party_2018
 
 
             // Landed on a red space
-            else if (spaceType == Entity.typeSpace.red) {
+            else if (spaceType == Entity.typeSpace.red)
+            {
                 // Subtract a 3 coins from player
                 creator.round.currPlayer.coins -= numCoins;
                 // Prevent negative values
@@ -61,7 +61,8 @@ namespace Monogame_Party_2018
 
 
             // Landed on CHANCE TIME
-            else if (spaceType == Entity.typeSpace.chance) {
+            else if (spaceType == Entity.typeSpace.chance)
+            {
                 landAction.text = " This is a chance space";
 
                 S_ChanceTime chanceEvent = new S_ChanceTime(parentManager, 0, 0, this);
@@ -70,19 +71,18 @@ namespace Monogame_Party_2018
                 // Change player ui color:
                 creator.round.currPlayer.uiColor = Color.Orange;
 
-              // Silence music:
-              creator.audioEngine.stopMusic(40);
+                // Silence music:
+                creator.audioEngine.stopMusic(40);
             }
 
 
             // Landed on STAR SPACE
-            else if (spaceType == Entity.typeSpace.star) {
+            else if (spaceType == Entity.typeSpace.star)
+            {
 
                 // Change player ui color:
                 creator.round.currPlayer.uiColor = Color.Yellow;
             }
-
-
         }
 
         // Update:
@@ -93,10 +93,10 @@ namespace Monogame_Party_2018
             if (finishedAnimation)
             {
 
-                    parentManager.round.active = true;      //Make S_Round Active
-                    parentManager.round.playerIsPlaying = false;   // Allow S_Round to get next player
-                    this.flagForDeletion = true;
-                    Console.WriteLine("Performed land action code. Going back to S_Round");
+                parentManager.round.active = true;      //Make S_Round Active
+                parentManager.round.playerIsPlaying = false;   // Allow S_Round to get next player
+                this.flagForDeletion = true;
+                Console.WriteLine("Performed land action code. Going back to S_Round");
 
             }
             if (Math.Abs(moveYPos) > 60)
@@ -108,7 +108,8 @@ namespace Monogame_Party_2018
             else if (spaceType == Entity.typeSpace.red)
                 moveYPos++;
             // DEBUG: Skip chance spaces for now
-            else {
+            else
+            {
                 moveYPos++;
                 //moveYPos = 61;
             }
@@ -138,17 +139,7 @@ namespace Monogame_Party_2018
                 if (spaceType == Entity.typeSpace.red)
                     sb.DrawString(this.parentManager.game.ft_mainMenuFont, landAction.text, coinTextPos, Color.Red);
             }
-
-
             sb.End();
         } // end draw
-
-
-
-
-
-
-
-
     }
 }

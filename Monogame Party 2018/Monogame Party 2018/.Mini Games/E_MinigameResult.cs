@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Monogame_Party_2018
 {
@@ -33,8 +27,8 @@ namespace Monogame_Party_2018
             this.coinValueString = getCoinValueString(place);
             this.position = pos;
 
-            
-            
+
+
         }
 
         public override void Draw(GameTime gameTime)

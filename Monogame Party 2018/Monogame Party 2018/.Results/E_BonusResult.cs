@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 
 namespace Monogame_Party_2018
@@ -54,7 +48,7 @@ namespace Monogame_Party_2018
             // Coin String
             Vector2 coinStringPos = new Vector2(coinPos.X + coinSprite.Width + 10, coinPos.Y);
             sb.DrawString(this.parentManager.game.ft_mainMenuFont, coinValueString, coinStringPos, Color.White);
-            
+
 
             sb.End();
         }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,11 +39,6 @@ namespace Monogame_Party_2018
         // Constructor:
         public B_PirateBay(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
-
-
-
-
-
             // --------------------------- Create Spaces: ----------------------------------
             // initialize list of spaces:
             spaces = new List<E_Space>();
@@ -62,13 +54,13 @@ namespace Monogame_Party_2018
 
 
 
-      // <<---- MOVING LEFT NOW: ----->>
-      // 20, 16
-      // Blue
-      curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.blue);
-      spaces.Add(curSpace); // add to overall list
-      curSpace.assignSpaces(prevSpace);
-      prevSpace = curSpace;
+            // <<---- MOVING LEFT NOW: ----->>
+            // 20, 16
+            // Blue
+            curSpace = new E_Space(this, GetTilePosCenter(20, 16), Entity.typeSpace.blue);
+            spaces.Add(curSpace); // add to overall list
+            curSpace.assignSpaces(prevSpace);
+            prevSpace = curSpace;
 
             // 19, 16
             // Blue
@@ -138,9 +130,6 @@ namespace Monogame_Party_2018
             prevSpace = curSpace;
 
 
-
-
-
             // <<---- MOVING UP NOW: ----->>
             // 6, 15
             curSpace = new E_Space(this, GetTilePosCenter(6, 15), Entity.typeSpace.blue);
@@ -201,9 +190,6 @@ namespace Monogame_Party_2018
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;
-
-
-
 
 
 
@@ -282,10 +268,6 @@ namespace Monogame_Party_2018
 
 
 
-
-
-
-
             // <<---- MOVING DOWN NOW: ----->>
             // 19, 5
             curSpace = new E_Space(this, GetTilePosCenter(19, 5), Entity.typeSpace.blue);
@@ -347,13 +329,6 @@ namespace Monogame_Party_2018
             // Assign the star space to a random space
             MGP_Tools.Assign_Star(this);
 
-            // position camera starting at star location:
-            cameraProperties.setPos(spaces.Find(x => x.type == Entity.typeSpace.star).getPosCenter());
-            MGP_Tools.KeepCameraOnBoard(parentManager);
-
-
-
-
 
             // Assign starting space to all players
             foreach (Player p in this.gameOptions.players)
@@ -362,12 +337,6 @@ namespace Monogame_Party_2018
                 p.meeple.setPos(p.currSpace.getPosCenter());
             }
         } // end constructor
-
-
-
-
-
-
 
 
 

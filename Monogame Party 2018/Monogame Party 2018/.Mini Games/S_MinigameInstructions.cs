@@ -3,8 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 namespace Monogame_Party_2018
 {
     public class S_MinigameInstructions : State
@@ -42,7 +40,7 @@ namespace Monogame_Party_2018
                     background = parentManager.game.minigame_one_background;
                     boxHeight = 300;
                     boxWidth = 750;
-                    moveControlPos = new Vector2(MGP_Constants.SCREEN_MID_X - (boxWidth / 2 ), MGP_Constants.SCREEN_MID_Y - 125);
+                    moveControlPos = new Vector2(MGP_Constants.SCREEN_MID_X - (boxWidth / 2), MGP_Constants.SCREEN_MID_Y - 125);
                     confirmSelectionPos = new Rectangle(MGP_Constants.SCREEN_MID_X - (boxWidth / 2 - 50), MGP_Constants.SCREEN_MID_Y + 25, 125, 125);
                     break;
 
@@ -66,10 +64,10 @@ namespace Monogame_Party_2018
                         moveControl = parentManager.game.keys_move;
                         confirmSelection = parentManager.game.noSprite;
                         moveControlPos = new Vector2(MGP_Constants.SCREEN_MID_X - (boxWidth / 2 - 40), MGP_Constants.SCREEN_MID_Y - 75);
-                        confirmSelectionPos = new Rectangle(-100,-100, 1, 1);
+                        confirmSelectionPos = new Rectangle(-100, -100, 1, 1);
                     }
-                   
-                    
+
+
                     break;
 
             }
@@ -131,7 +129,7 @@ namespace Monogame_Party_2018
             }
             else
                 text = gameInstructions;
-
+            // Text
             Vector2 textDesPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y), text, this.parentManager.game.ft_mainMenuFont);
             sb.DrawString(this.parentManager.game.ft_mainMenuFont, text, new Vector2(textDesPos.X - 2, textDesPos.Y), Color.Black);
             sb.DrawString(this.parentManager.game.ft_mainMenuFont, text, new Vector2(textDesPos.X + 2, textDesPos.Y), Color.Black);
@@ -139,7 +137,7 @@ namespace Monogame_Party_2018
             sb.DrawString(this.parentManager.game.ft_mainMenuFont, text, new Vector2(textDesPos.X, textDesPos.Y + 2), Color.Black);
             sb.DrawString(this.parentManager.game.ft_mainMenuFont, text, textDesPos, Color.White);
 
-
+            // Screen Instructions
             Vector2 smTextPos = CenterString.getCenterStringVector(new Vector2(MGP_Constants.SCREEN_MID_X, 675), screenInstructions, parentManager.game.ft_rollDice_lg);
             sb.DrawString(parentManager.game.ft_rollDice_lg, screenInstructions, new Vector2(smTextPos.X - 2, smTextPos.Y), Color.Black);
             sb.DrawString(parentManager.game.ft_rollDice_lg, screenInstructions, new Vector2(smTextPos.X + 2, smTextPos.Y), Color.Black);

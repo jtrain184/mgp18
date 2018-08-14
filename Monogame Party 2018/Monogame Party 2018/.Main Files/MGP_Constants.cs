@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Monogame_Party_2018
+﻿namespace Monogame_Party_2018
 {
     public static class MGP_Constants
     {
-
-
         public static int SCREEN_HEIGHT = 720;
         public static int SCREEN_WIDTH = 1280;
 
@@ -25,38 +17,29 @@ namespace Monogame_Party_2018
         public static double MEDIUM_MULTIPLIER = 0.65;
         public static double HARD_MULTIPLIER = 0.30;
 
+        public enum soundEffects
+        {
+            pressStart = 0,
 
+            space,
 
-        public enum soundEffects {
-          pressStart = 0,
+            dicePre,
+            diceRolling,
+            diceHit,
 
-          space,
+            spaceBlue,
+            spaceRed,
 
-          dicePre,
-          diceRolling,
-          diceHit,
-
-          spaceBlue,
-          spaceRed,
-
-          chanceTimeDrum,
-          chanceTimeHigh,
-          chanceTimeLow,
-          chanceTimeCymbal
+            chanceTimeDrum,
+            chanceTimeHigh,
+            chanceTimeLow,
+            chanceTimeCymbal
         }
 
-        public enum music {
-          pirateBay = 0,
-          mainMenu
+        public enum music
+        {
+            pirateBay = 0,
+            mainMenu
         }
-
-
-
-
-
     }
-
-
-
-
 }

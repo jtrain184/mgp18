@@ -43,8 +43,7 @@ namespace Monogame_Party_2018
         public S_Minigame1(GameStateManager creator, float xPos, float yPos, bool playGame) : base(creator, xPos, yPos)
         {
             // Create the list of players and empty list for results
-            players = new List<Player>();
-            players = creator.gameOptions.players.ToList();
+            players = new List<Player>(creator.gameOptions.players);
             resultsList = new List<Player>();
 
             // Create the list of positions for players
@@ -191,7 +190,7 @@ namespace Monogame_Party_2018
                                     getNextSelection();
                                 }
                             }
-                            
+
 
                         }
                     }   // End of Computer Logic
@@ -365,20 +364,14 @@ namespace Monogame_Party_2018
                 //next player is first player
                 currentPlayer = players[0];
             }
-            // if removed player was second to last player
-            else if (playerIndex == players.Count - 1)
+            // next player has moved into the current index
+            else 
             {
                 currentPlayer = players[playerIndex];
-            }
-            else
-            {
-                currentPlayer = players[playerIndex + 1];
             }
 
             isExploding = true;
             explosionSprite.active = true;
-
-
         }
 
         // Selection is not bomb
@@ -426,7 +419,7 @@ namespace Monogame_Party_2018
             // and choose that plunger
             if (chanceRoll <= difficultyLevel)
                 comMove = 0;
-            
+
 
         }
     }

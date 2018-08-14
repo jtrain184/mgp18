@@ -5,7 +5,6 @@ using Microsoft.Xna.Framework.Input;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Monogame_Party_2018
 {
@@ -100,7 +99,7 @@ namespace Monogame_Party_2018
 
 
                 // Start game based on game options from here.
-                S_Board board = new B_PirateBay(parentManager, 0, 0);       
+                S_Board board = new B_PirateBay(parentManager, 0, 0);
                 parentManager.AddStateQueue(board);
 
                 // Add UI to game:
