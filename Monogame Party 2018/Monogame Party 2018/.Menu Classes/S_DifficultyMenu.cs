@@ -53,6 +53,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Up:
             if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 currentMenuItem = items[currentMenuItem].above.activeValue;
                 moveGlove = true;
             }
@@ -60,6 +64,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Down:
             if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 currentMenuItem = items[currentMenuItem].below.activeValue;
                 moveGlove = true;
             }
@@ -80,6 +88,10 @@ namespace Monogame_Party_2018
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {
+
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, MGP_Constants.MENU_SFX_VOLUME + 0.15f);
+
                 // Difficulty: Easy
                 if (currentMenuItem == (int)MenuItem.Difficulty.EASY)
                     parentManager.gameOptions.difficulty = MenuItem.Difficulty.EASY;
@@ -101,6 +113,10 @@ namespace Monogame_Party_2018
             // Press Cancel Key: Goes back to Player Count menu:
             if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuCancel, MGP_Constants.MENU_SFX_VOLUME);
+
                 S_PlayerCountMenu playerCountMenu = new S_PlayerCountMenu(parentManager, 0, 0);
                 parentManager.AddStateQueue(playerCountMenu);
                 this.flagForDeletion = true;
@@ -119,7 +135,7 @@ namespace Monogame_Party_2018
             // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            // Draw Buttons 
+            // Draw Buttons
             Color tColor;
             int i = 0;
             foreach (MenuItem item in items)

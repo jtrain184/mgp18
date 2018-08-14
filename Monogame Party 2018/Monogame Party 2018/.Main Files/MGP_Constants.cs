@@ -26,6 +26,7 @@ namespace Monogame_Party_2018
         public static double HARD_MULTIPLIER = 0.30;
 
         public static float MENU_SFX_VOLUME = 0.3f;
+        public static float PAUSE_MUSIC_VOLUME = 0.25f;
 
 
 

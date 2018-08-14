@@ -86,6 +86,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Up:
             if (km.ActionPressed(KeyboardManager.action.up, currPlayer))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (items[currentMenuItem].above != null && (players.Count == 0 || items[currentMenuItem].above.activeValue != (int)players[0]))
                 {
                     currentMenuItem = items[currentMenuItem].above.activeValue;
@@ -96,6 +100,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Down:
             if (km.ActionPressed(KeyboardManager.action.down, currPlayer))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (items[currentMenuItem].below != null && (players.Count == 0 || items[currentMenuItem].below.activeValue != (int)players[0]))
                 {
                     currentMenuItem = items[currentMenuItem].below.activeValue;
@@ -106,6 +114,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Left:
             if (km.ActionPressed(KeyboardManager.action.left, currPlayer))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (items[currentMenuItem].left != null && (players.Count == 0 || items[currentMenuItem].left.activeValue != (int)players[0]))
                 {
                     currentMenuItem = items[currentMenuItem].left.activeValue;
@@ -116,6 +128,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Right:
             if (km.ActionPressed(KeyboardManager.action.right, currPlayer))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (items[currentMenuItem].right != null && (players.Count == 0 || items[currentMenuItem].right.activeValue != (int)players[0]))
                 {
                     currentMenuItem = items[currentMenuItem].right.activeValue;
@@ -141,6 +157,10 @@ namespace Monogame_Party_2018
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, currPlayer))
             {
+
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, MGP_Constants.MENU_SFX_VOLUME + 0.15f);
+
                 // Add character to List
                 players.Add((Player.Type)items[currentMenuItem].activeValue);
 
@@ -189,6 +209,9 @@ namespace Monogame_Party_2018
             // Option: Cancel Key
             if (km.ActionPressed(KeyboardManager.action.cancel, currPlayer))
             {
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuCancel, MGP_Constants.MENU_SFX_VOLUME);
+
                 // If first player has made a choice
                 if (players.Count == 1)
                 {
@@ -218,7 +241,7 @@ namespace Monogame_Party_2018
             // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            // Draw Buttons 
+            // Draw Buttons
             Color tColor;
             for (int i = 0; i < numItems; i++)
             {

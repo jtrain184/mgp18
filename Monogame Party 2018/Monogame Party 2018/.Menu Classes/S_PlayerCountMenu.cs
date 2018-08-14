@@ -46,6 +46,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Up:
             if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (currentMenuItem == 1)
                 {
                     currentMenuItem = 0;
@@ -57,6 +61,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Down:
             if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (currentMenuItem == 0)
                 {
                     currentMenuItem = 1;
@@ -68,6 +76,7 @@ namespace Monogame_Party_2018
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {
 
+                // SFX:
                 parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, MGP_Constants.MENU_SFX_VOLUME + 0.15f);
 
                 // One Player
@@ -92,6 +101,10 @@ namespace Monogame_Party_2018
             // Press Cancel Key: Goes back to main menu:
             if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuCancel, MGP_Constants.MENU_SFX_VOLUME);
+
                 S_MainMenu mainMenu = new S_MainMenu(parentManager, 0, 0);
                 parentManager.AddStateQueue(mainMenu);
                 this.flagForDeletion = true;

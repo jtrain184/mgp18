@@ -8,64 +8,59 @@ using System;
 
 namespace Monogame_Party_2018
 {
-    public class S_CameraMode : State
-    {
-        public CameraProperties cameraProperties;
-        const float speed = 14;
-        S_Pause s_Pause;
-        Vector2 oldCameraPos;
+  public class S_CameraMode : State {
+    public CameraProperties cameraProperties;
+    const float speed = 14;
+    S_Pause s_Pause;
+    Vector2 oldCameraPos;
 
 
-        public S_CameraMode(GameStateManager creator, float xPos, float yPos, S_Pause s_Pause) : base(creator, xPos, yPos)
-        {
-            cameraProperties = parentManager.boardGame.cameraProperties;
-            // Pause the pause menu (lol)
-            this.s_Pause = s_Pause;
-            s_Pause.active = false;
-            s_Pause.visible = false;
+    public S_CameraMode(GameStateManager creator, float xPos, float yPos, S_Pause s_Pause) : base(creator, xPos, yPos) {
+      cameraProperties = parentManager.boardGame.cameraProperties;
+      // Pause the pause menu (lol)
+      this.s_Pause = s_Pause;
+      s_Pause.active = false;
+      s_Pause.visible = false;
 
-            // Hide other states so we see just the gameboard
-            foreach (State s in parentManager.states)
-            {
-                if (!s.GetType().Equals(typeof(B_PirateBay)) && s != this) { s.visible = false; }
-            }
+      // Hide other states so we see just the gameboard
+      foreach (State s in parentManager.states) {
+        if (!s.GetType().Equals(typeof(B_PirateBay)) && s != this) { s.visible = false; }
+      }
 
-            // Save where the camera was
-            oldCameraPos = cameraProperties.getPos();
-        }
+      // Save where the camera was
+      oldCameraPos = cameraProperties.getPos();
+    }
 
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
-            base.Update(gameTime, ks);
+    public override void Update(GameTime gameTime, KeyboardState ks) {
+      base.Update(gameTime, ks);
 
 
-            // Move Right
-            if (parentManager.km.KeyDown(Keys.D))
-            {
-                if (cameraProperties.getX() < MGP_Constants.BOARD_MAX_WIDTH)
-                    cameraProperties.incX(speed);
-            }
-            // Move Left
-            if (parentManager.km.KeyDown(Keys.A))
-            {
-                if (cameraProperties.getX() > MGP_Constants.BOARD_MIN_WIDTH)
-                    cameraProperties.incX(-speed);
-            }
-            // Move Up
-            if (parentManager.km.KeyDown(Keys.W))
-            {
-                if (cameraProperties.getY() > MGP_Constants.BOARD_MIN_HEIGHT)
-                    cameraProperties.incY(-speed);
-            }
-            // Move Down
-            if (parentManager.km.KeyDown(Keys.S))
-            {
-                if (cameraProperties.getY() < MGP_Constants.BOARD_MAX_HEIGHT)
-                    cameraProperties.incY(speed);
-            }
+      // Move Right
+      if (parentManager.km.KeyDown(Keys.D)) {
+        if (cameraProperties.getX() < MGP_Constants.BOARD_MAX_WIDTH)
+          cameraProperties.incX(speed);
+      }
+      // Move Left
+      if (parentManager.km.KeyDown(Keys.A)) {
+        if (cameraProperties.getX() > MGP_Constants.BOARD_MIN_WIDTH)
+          cameraProperties.incX(-speed);
+      }
+      // Move Up
+      if (parentManager.km.KeyDown(Keys.W)) {
+        if (cameraProperties.getY() > MGP_Constants.BOARD_MIN_HEIGHT)
+          cameraProperties.incY(-speed);
+      }
+      // Move Down
+      if (parentManager.km.KeyDown(Keys.S)) {
+        if (cameraProperties.getY() < MGP_Constants.BOARD_MAX_HEIGHT)
+          cameraProperties.incY(speed);
+      }
 
-            // Exit
-            if (parentManager.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
+      // Exit
+      if ((parentManager.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all)) ||
+          (parentManager.km.ActionPressed(KeyboardManager.action.pause, KeyboardManager.playerIndex.all)) ||
+          (parentManager.km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.all)))
+
             {
                 //Show all states again
                 foreach (State s in parentManager.states)
