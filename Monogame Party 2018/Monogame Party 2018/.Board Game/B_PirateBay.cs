@@ -306,7 +306,7 @@ namespace Monogame_Party_2018
             prevSpace = curSpace;
 
             // 19, 10
-            curSpace = new E_Space(this, GetTilePosCenter(19, 10), Entity.typeSpace.blue);
+            curSpace = new E_Space(this, GetTilePosCenter(19, 10), Entity.typeSpace.chance);
             spaces.Add(curSpace); // add to overall list
             curSpace.assignSpaces(prevSpace);
             prevSpace = curSpace;

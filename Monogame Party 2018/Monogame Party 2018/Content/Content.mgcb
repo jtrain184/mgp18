@@ -600,12 +600,6 @@
 /processorParam:TextureFormat=Color
 /build:Minigames/spr_up_arrow.png
 
-#begin Music/mus_pirateBay.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/mus_pirateBay.mp3
-
 #begin noSprite.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -1326,4 +1320,17 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/mus_mainTheme.mp3
+
+#begin Music/mus_pirateBay.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/mus_pirateBay.mp3
+
+#begin Transitions/confirmPlayerFont_size32.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Transitions/confirmPlayerFont_size32.spritefont
 

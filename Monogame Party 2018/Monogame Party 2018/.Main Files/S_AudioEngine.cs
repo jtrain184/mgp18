@@ -22,6 +22,7 @@ namespace Monogame_Party_2018 {
 
     Song nextSong;
     int fadeTimer;
+    int fadeStart;
     bool playNext;
     bool silence;
 
@@ -42,6 +43,7 @@ namespace Monogame_Party_2018 {
       //songIndex = 0;
 
       fadeTimer = 0;
+      fadeStart = 0;
       silence = false;
       playNext = false;
     }
@@ -73,8 +75,8 @@ namespace Monogame_Party_2018 {
       // adjust volume based on the fade time:
       if (fadeTimer > -1) {
         if (fadeTimer > 0) {
-          float newVolume = (1 - (1 / fadeTimer));
-          newVolume = MathHelper.Clamp(newVolume, 0.0001f, 1.0f);
+          float newVolume = ((float)fadeTimer / (float)fadeStart);
+          //newVolume = MathHelper.Clamp(newVolume, 0.0001f, 1.0f);
           MediaPlayer.Volume = newVolume;
         } // somewhere between 100% and 0%
         fadeTimer--;
@@ -128,15 +130,18 @@ namespace Monogame_Party_2018 {
       nextSong = songs[song];
     }
 
-    public void playNextSong(int fadeTime) {
+    public void playNextSong(int fadeTime, bool repeat) {
       if (fadeTime < 0) { fadeTime = 1; }
       fadeTimer = fadeTime;
+      fadeStart = fadeTime;
       silence = false;
+      MediaPlayer.IsRepeating = repeat;
     }
 
     public void stopMusic(int fadeTime) {
       if (fadeTime < 0) { fadeTime = 1; }
       fadeTimer = fadeTime;
+      fadeStart = fadeTime;
       silence = true;
     }
 

@@ -57,7 +57,7 @@ namespace Monogame_Party_2018 {
 
     bool finishTransition;
     int finishTimer;
-    const int FINISH_TIMER_COMPLETE = 160;
+    const int FINISH_TIMER_COMPLETE = 200;
 
     List<Player> playersToPick;
 
@@ -207,6 +207,9 @@ namespace Monogame_Party_2018 {
           leftMeeple = new E_Meeple(parentManager, leftMeepleStartPos, leftPlayer.type);
           leftMeeple.setPos(leftMeepleStartPos);
           leftMeepleMove = true;
+
+          // Play SFX for finished!
+          parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceRolling, 0.35f);
         }
 
         // RIGHT die (player) --------------------------------------------
@@ -225,6 +228,9 @@ namespace Monogame_Party_2018 {
           rightMeeple = new E_Meeple(parentManager, rightMeepleStartPos, rightPlayer.type);
           rightMeeple.setPos(rightMeepleStartPos);
           rightMeepleMove = true;
+
+          // Play SFX for finished!
+          parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceRolling, 0.35f);
         }
 
         // MIDDLE die (condition) ----------------------------------------
@@ -234,6 +240,10 @@ namespace Monogame_Party_2018 {
           finishTransition = true;
           middleBlock.hitBlock();
           chanceEvent = middleBlock.getCurrentCondition(); // get the right chosen player
+
+          // Play SFX for finished!
+          parentManager.audioEngine.playSound(MGP_Constants.soundEffects.chanceTimeCymbal, 1.0f);
+
         }
         hit = false;
       } // end if hit
@@ -546,7 +556,8 @@ namespace Monogame_Party_2018 {
     void closeChanceTime() {
       landActionCreator.active = true;
       this.flagForDeletion = true;
-      parentManager.audioEngine.playNextSong(5);
+      // play the song that was already in the queue before chance time
+      parentManager.audioEngine.playNextSong(5, true);
     }
 
 

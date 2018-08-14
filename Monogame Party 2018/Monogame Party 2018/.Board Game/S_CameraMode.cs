@@ -10,10 +10,10 @@ using System.Linq;
 
 namespace Monogame_Party_2018
 {
-    public class S_CameraMode : State 
+    public class S_CameraMode : State
     {
         public CameraProperties cameraProperties;
-        const float speed = 10;
+        const float speed = 14;
         S_Pause s_Pause;
         Vector2 oldCameraPos;
 
@@ -21,7 +21,6 @@ namespace Monogame_Party_2018
         public S_CameraMode(GameStateManager creator, float xPos, float yPos, S_Pause s_Pause) : base (creator, xPos, yPos)
         {
             cameraProperties = parentManager.boardGame.cameraProperties;
-           
             // Pause the pause menu (lol)
             this.s_Pause = s_Pause;
             s_Pause.active = false;
@@ -40,8 +39,8 @@ namespace Monogame_Party_2018
         public override void Update(GameTime gameTime, KeyboardState ks)
         {
             base.Update(gameTime, ks);
-            
-            
+
+
             // Move Right
             if (parentManager.km.KeyDown(Keys.D))
             {
@@ -78,7 +77,7 @@ namespace Monogame_Party_2018
 
                 // move camera back to where it was
                 cameraProperties.setPos(oldCameraPos);
-                
+
                 s_Pause.active = true;
                 s_Pause.visible = true;
                 this.flagForDeletion = true;
@@ -92,7 +91,7 @@ namespace Monogame_Party_2018
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            
+
 
             SpriteBatch sb = this.parentManager.game.spriteBatch;
             sb.Begin();

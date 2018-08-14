@@ -58,7 +58,7 @@ namespace Monogame_Party_2018
 
             if (!loadedSong) {
               parentManager.audioEngine.setNextSong(MGP_Constants.music.mainMenu);
-              parentManager.audioEngine.playNextSong(2);
+              parentManager.audioEngine.playNextSong(2, true);
               Console.WriteLine("Added mainMenu to music queue");
               loadedSong = true;
             }

@@ -52,7 +52,7 @@ namespace Monogame_Party_2018
 
                 // Queue pirate bay music again:
                 parentManager.audioEngine.setNextSong(MGP_Constants.music.pirateBay);
-                parentManager.audioEngine.playNextSong(20);
+                parentManager.audioEngine.playNextSong(20, true);
                 Console.WriteLine("Added pirateBay to music queue");
 
                 // only run once each round:

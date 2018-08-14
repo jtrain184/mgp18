@@ -32,14 +32,12 @@ namespace Monogame_Party_2018
 
         // Selection glove:
         public E_Glove glove;
-        public int gloveAdjustX = 64 + 8;
+        public int gloveAdjustX = 64 + 16;
+        public int gloveAdjustY = 16;
 
         // transparent black overlay:
         Rectangle overlay;
         Texture2D overlayTexture;
-
-        Rectangle menuBox;
-        Texture2D menuBoxTexture;
 
         Vector2 pauseTitlePos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - MGP_Constants.SCREEN_HEIGHT / 3);
         Vector2 piPos;
@@ -52,19 +50,19 @@ namespace Monogame_Party_2018
             this.playerWhoPaused = playerWhoPaused;
 
             // Center title:
-            pauseTitlePos = CenterString.getCenterStringVector(pauseTitlePos, "Paused", this.parentManager.game.ft_mainMenuFont);
+            pauseTitlePos = CenterString.getCenterStringVector(pauseTitlePos, "Paused", this.parentManager.game.ft_confirmPlayer_Bold);
 
             // pause items:
             pauseItems = new List<PauseItem>();
-            piPos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - MGP_Constants.SCREEN_HEIGHT / 4); // init position
-            SpriteFont sf = parentManager.game.ft_mainMenuFont;
+            piPos = new Vector2(MGP_Constants.SCREEN_MID_X, MGP_Constants.SCREEN_MID_Y - piHeight*2); // init position
+            SpriteFont sf = parentManager.game.ft_confirmPlayer_s32;
             int numItems = 0;
             Vector2 startPos = new Vector2(piPos.X, piPos.Y + (numItems * piHeight));
             PauseItem curItem = new PauseItem(startPos, "Resume", sf, S_Pause.pauseOptions.resume);
             pauseItems.Add(curItem);
             currentSelection = numItems; // first selection here
             numItems++;
-            this.glove = new E_Glove(creator, new Vector2(curItem.screenPosCentered.X - gloveAdjustX, curItem.screenPosCentered.Y));
+            this.glove = new E_Glove(creator, new Vector2(curItem.screenPosCentered.X - gloveAdjustX, curItem.screenPosCentered.Y - gloveAdjustY));
 
             curItem = new PauseItem(new Vector2(piPos.X, piPos.Y + (numItems * piHeight)), "View Board", sf, S_Pause.pauseOptions.viewBoard);
             pauseItems.Add(curItem);
@@ -91,45 +89,27 @@ namespace Monogame_Party_2018
 
 
             // Pause those selected states:
-            foreach (State s in statesToPause)
-            {
-                if (s != this) // don't pause itself
-                {
-                    s.active = false;
-                }
+            foreach (State s in statesToPause) {
+                // don't pause itself, but pause all other active states:
+                if (s != this) { s.active = false; }
             }
 
 
             // Create the transparent black background:
             overlayTexture = new Texture2D(parentManager.game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Color[] c = new Color[1];
-            int transparencyAmount = (int)(255f * 0.6f);
+            int transparencyAmount = (int)(255f * 0.9f);
             c[0] = Color.FromNonPremultiplied(255, 255, 255, transparencyAmount);
             overlayTexture.SetData<Color>(c);
-
-            // Create the menu background box:
-            menuBoxTexture = new Texture2D(parentManager.game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            transparencyAmount = (int)(255f * 0.8f);
-            c[0] = Color.FromNonPremultiplied(255, 255, 255, transparencyAmount);
-            menuBoxTexture.SetData<Color>(c);
-
-            // Create the shapes:
             overlay = new Rectangle(0, 0, MGP_Constants.SCREEN_WIDTH, MGP_Constants.SCREEN_HEIGHT);
-            int BoxHeight = (int)(MGP_Constants.SCREEN_HEIGHT * 0.75f);
-            int BoxWidth = (int)(MGP_Constants.SCREEN_WIDTH * 0.4f);
-            Vector2 BoxPos = new Vector2(MGP_Constants.SCREEN_MID_X - BoxWidth / 2, MGP_Constants.SCREEN_MID_Y - BoxHeight / 2);
-            menuBox = new Rectangle((int)BoxPos.X, (int)BoxPos.Y, BoxWidth, BoxHeight);
         }
 
 
 
 
         // ** UPDATE **
-        public override void Update(GameTime gameTime, KeyboardState ks)
-        {
+        public override void Update(GameTime gameTime, KeyboardState ks) {
             base.Update(gameTime, ks);
-
-
 
             // Update selection / glove position:
             // PRESS DOWN
@@ -139,7 +119,7 @@ namespace Monogame_Party_2018
                 else { currentSelection = 0; }
 
                 // Update Glove pos:
-                glove.pos = new Vector2(pauseItems[currentSelection].screenPosCentered.X - gloveAdjustX, pauseItems[currentSelection].screenPosCentered.Y);
+                glove.pos = new Vector2(pauseItems[currentSelection].screenPosCentered.X - gloveAdjustX, pauseItems[currentSelection].screenPosCentered.Y - gloveAdjustY);
             }
 
             // PRESS UP
@@ -149,7 +129,7 @@ namespace Monogame_Party_2018
                 else { currentSelection = pauseItems.Count - 1; }
 
                 // Update Glove pos:
-                glove.pos = new Vector2(pauseItems[currentSelection].screenPosCentered.X - gloveAdjustX, pauseItems[currentSelection].screenPosCentered.Y);
+                glove.pos = new Vector2(pauseItems[currentSelection].screenPosCentered.X - gloveAdjustX, pauseItems[currentSelection].screenPosCentered.Y - gloveAdjustY);
             }
 
             // PRESS ENTER
@@ -171,7 +151,7 @@ namespace Monogame_Party_2018
                         break;
 
                     case S_Pause.pauseOptions.quit:
-                        parentManager.gameOptions = new GameOptions();          
+                        parentManager.gameOptions = new GameOptions();
                         parentManager.clearStates();
                         State newMenu = new S_MainMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(newMenu);
@@ -193,17 +173,11 @@ namespace Monogame_Party_2018
             // UNPAUSE:
             if ((km.ActionPressed(KeyboardManager.action.pause, this.playerWhoPaused)) ||
                 (km.ActionPressed(KeyboardManager.action.cancel, this.playerWhoPaused)) ||
-                (pressedResume))
-            {
+                (pressedResume)) {
                 Console.WriteLine("Player " + ((int)this.playerWhoPaused + 1).ToString() + " resumed the game");
 
                 // Unpause other states now:
-                foreach (State s in statesToPause)
-                {
-                    // Unpause those states:
-                    s.active = true;
-                }
-
+                foreach (State s in statesToPause) { s.active = true; }
 
                 // Destroy pause menu state
                 flagForDeletion = true;
@@ -216,30 +190,22 @@ namespace Monogame_Party_2018
 
 
         // DRAW
-        public override void Draw(GameTime gameTime)
-        {
+        public override void Draw(GameTime gameTime) {
             base.Draw(gameTime);
-
             SpriteBatch sb = this.parentManager.game.spriteBatch;
-
-
             // Draw relative to the screen, regardless of camera position
             sb.Begin();
 
             // Draw transparent Black Background box:
             sb.Draw(overlayTexture, overlay, Color.Black);
 
-            // Draw the Menu Box:
-            sb.Draw(menuBoxTexture, menuBox, Color.Black);
-
             // Draw the "Paused" text
-            sb.DrawString(parentManager.game.ft_mainMenuFont, "Paused", pauseTitlePos, Color.Blue);
+            sb.DrawString(parentManager.game.ft_confirmPlayer_Bold, "Paused", pauseTitlePos, Color.Blue);
 
             // Draw pause menu items:
             int i = 0;
             Color c = Color.White;
-            foreach (PauseItem pi in pauseItems)
-            {
+            foreach (PauseItem pi in pauseItems) {
                 if (i == currentSelection)
                     c = Color.CornflowerBlue;
                 else
@@ -251,8 +217,6 @@ namespace Monogame_Party_2018
 
             // Draw the glove:
             sb.Draw(glove.sprite, glove.pos, Color.White);
-
-
 
             sb.End();
         }

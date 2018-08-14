@@ -138,6 +138,7 @@ namespace Monogame_Party_2018
         public SpriteFont ft_confirmPlayer_sm;
         public SpriteFont ft_rollDice_sm;
         public SpriteFont ft_rollDice_lg;
+        public SpriteFont ft_confirmPlayer_s32;
 
         public Dictionary<MGP_Constants.music, Song> songs = new Dictionary<MGP_Constants.music, Song>();
         public Dictionary<MGP_Constants.soundEffects, SoundEffect> sfx = new Dictionary<MGP_Constants.soundEffects, SoundEffect>();
@@ -247,6 +248,7 @@ namespace Monogame_Party_2018
             ft_confirmPlayer_sm = Content.Load<SpriteFont>("transitions/confirmPlayerFont_sm");
             ft_rollDice_sm = Content.Load<SpriteFont>("transitions/confirmPlayerFont_size16");
             ft_rollDice_lg = Content.Load<SpriteFont>("transitions/confirmPlayerFont_size18");
+            ft_confirmPlayer_s32 = Content.Load<SpriteFont>("transitions/confirmPlayerFont_size32");
 
             // Temp dice object
             spr_testDice = Content.Load<Texture2D>("BoardGameComponents/testDiceBox");
