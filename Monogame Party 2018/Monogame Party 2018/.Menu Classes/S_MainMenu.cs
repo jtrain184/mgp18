@@ -69,12 +69,17 @@ namespace Monogame_Party_2018
                 currentMenuItem = items[currentMenuItem].above.activeValue;
                 moveGlove = true;
 
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
             }
 
             // Move Menu Selection Down:
             if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all)) {
                 currentMenuItem = items[currentMenuItem].below.activeValue;
                 moveGlove = true;
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
             }
 
             // Move glove
@@ -127,6 +132,8 @@ namespace Monogame_Party_2018
 
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all)) {
+
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, MGP_Constants.MENU_SFX_VOLUME + 0.15f);
 
                 // Map: Pirate Bay
                 if (currentMenuItem == (int)MenuItem.MainMenu.PIRATE) {

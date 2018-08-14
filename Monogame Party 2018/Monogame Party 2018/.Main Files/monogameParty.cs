@@ -324,6 +324,8 @@ namespace Monogame_Party_2018
             sfx.Add(MGP_Constants.soundEffects.chanceTimeHigh, Content.Load<SoundEffect>("SFX/sfx_chanceTimeHigh"));
             sfx.Add(MGP_Constants.soundEffects.chanceTimeLow, Content.Load<SoundEffect>("SFX/sfx_chanceTimeLow"));
             sfx.Add(MGP_Constants.soundEffects.chanceTimeCymbal, Content.Load<SoundEffect>("SFX/sfx_chanceTimeCymbal"));
+            sfx.Add(MGP_Constants.soundEffects.menuSelect, Content.Load<SoundEffect>("SFX/sfx_menuSelect"));
+            sfx.Add(MGP_Constants.soundEffects.menuCancel, Content.Load<SoundEffect>("SFX/sfx_menuCancel"));
 
         }
 

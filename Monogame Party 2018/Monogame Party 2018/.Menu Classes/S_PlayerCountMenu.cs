@@ -70,6 +70,9 @@ namespace Monogame_Party_2018
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {
+
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, MGP_Constants.MENU_SFX_VOLUME + 0.15f);
+
                 // One Player
                 if (currentMenuItem == 0)
                 {
@@ -124,7 +127,7 @@ namespace Monogame_Party_2018
             // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            // Draw Buttons 
+            // Draw Buttons
             Color tColor;
             int i = 0;
             foreach (MenuItem item in items)

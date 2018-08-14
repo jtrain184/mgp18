@@ -25,6 +25,8 @@ namespace Monogame_Party_2018
         public static double MEDIUM_MULTIPLIER = 0.65;
         public static double HARD_MULTIPLIER = 0.30;
 
+        public static float MENU_SFX_VOLUME = 0.3f;
+
 
 
         public enum soundEffects {
@@ -42,7 +44,10 @@ namespace Monogame_Party_2018
           chanceTimeDrum,
           chanceTimeHigh,
           chanceTimeLow,
-          chanceTimeCymbal
+          chanceTimeCymbal,
+
+          menuSelect,
+          menuCancel
         }
 
         public enum music {

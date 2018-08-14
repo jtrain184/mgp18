@@ -255,6 +255,8 @@
     <None Include="Content\SFX\sfx_diceHit.xnb" />
     <None Include="Content\SFX\sfx_dicePre.xnb" />
     <None Include="Content\SFX\sfx_diceRolling.xnb" />
+    <None Include="Content\SFX\sfx_menuCancel.xnb" />
+    <None Include="Content\SFX\sfx_menuSelect.xnb" />
     <None Include="Content\SFX\sfx_pressStart.xnb" />
     <None Include="Content\SFX\sfx_space.xnb" />
     <None Include="Content\SFX\sfx_spaceBlue.xnb" />
