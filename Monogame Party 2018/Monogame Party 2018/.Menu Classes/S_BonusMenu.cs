@@ -45,6 +45,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Up:
             if (km.ActionPressed(KeyboardManager.action.up, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (currentMenuItem == 1) { currentMenuItem = 0; }
                 moveGlove = true;
             }
@@ -52,6 +56,10 @@ namespace Monogame_Party_2018
             // Move Menu Selection Down:
             if (km.ActionPressed(KeyboardManager.action.down, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (currentMenuItem == 0) { currentMenuItem = 1; }
                 moveGlove = true;
             }
@@ -72,6 +80,10 @@ namespace Monogame_Party_2018
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {
+
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.diceHit, MGP_Constants.MENU_SFX_VOLUME + 0.15f);
+
                 // Allow Bonuses
                 if (currentMenuItem == 0)
                     parentManager.gameOptions.allowBonus = true;
@@ -81,7 +93,7 @@ namespace Monogame_Party_2018
                     parentManager.gameOptions.allowBonus = false;
 
 
-                // DEBUG: PRINT GAME OPTIONS	
+                // DEBUG: PRINT GAME OPTIONS
                 Console.WriteLine("Map: " + parentManager.gameOptions.mapName +
                     "\nPlayer Count: " + parentManager.gameOptions.numPlayers);
                 int x = 1;
@@ -112,6 +124,10 @@ namespace Monogame_Party_2018
             // Press Cancel Key: Goes back one menu:
             if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.all))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuCancel, MGP_Constants.MENU_SFX_VOLUME);
+
                 S_NumRoundsMenu numRoundsMenu = new S_NumRoundsMenu(parentManager, 0, 0);
                 parentManager.AddStateQueue(numRoundsMenu);
                 this.flagForDeletion = true;
@@ -130,7 +146,7 @@ namespace Monogame_Party_2018
             // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
 
-            // Draw Buttons 
+            // Draw Buttons
             Color tColor;
             int i = 0;
             foreach (MenuItem item in items)

@@ -100,6 +100,11 @@ namespace Monogame_Party_2018
             c[0] = Color.FromNonPremultiplied(255, 255, 255, transparencyAmount);
             overlayTexture.SetData<Color>(c);
             overlay = new Rectangle(0, 0, MGP_Constants.SCREEN_WIDTH, MGP_Constants.SCREEN_HEIGHT);
+
+
+            // Turn down the music a little:
+            parentManager.audioEngine.setMusicVolume(MGP_Constants.PAUSE_MUSIC_VOLUME);
+
         }
 
 
@@ -114,6 +119,10 @@ namespace Monogame_Party_2018
             // PRESS DOWN
             if (km.ActionPressed(KeyboardManager.action.down, this.playerWhoPaused))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (currentSelection < pauseItems.Count - 1) { currentSelection++; }
                 else { currentSelection = 0; }
 
@@ -124,6 +133,10 @@ namespace Monogame_Party_2018
             // PRESS UP
             if (km.ActionPressed(KeyboardManager.action.up, this.playerWhoPaused))
             {
+
+              // SFX:
+              parentManager.audioEngine.playSound(MGP_Constants.soundEffects.menuSelect, MGP_Constants.MENU_SFX_VOLUME);
+
                 if (currentSelection > 0) { currentSelection--; }
                 else { currentSelection = pauseItems.Count - 1; }
 
@@ -178,6 +191,10 @@ namespace Monogame_Party_2018
 
                 // Unpause other states now:
                 foreach (State s in statesToPause) { s.active = true; }
+
+                // Turn music back up:
+                parentManager.audioEngine.setMusicVolume(1.0f);
+
 
                 // Destroy pause menu state
                 flagForDeletion = true;

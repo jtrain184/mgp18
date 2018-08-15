@@ -1346,3 +1346,15 @@
 /processorParam:TextureFormat=Compressed
 /build:Transitions/confirmPlayerFont_sm.spritefont
 
+#begin SFX/sfx_menuCancel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_menuCancel.wav
+
+#begin SFX/sfx_menuSelect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_menuSelect.wav
+
