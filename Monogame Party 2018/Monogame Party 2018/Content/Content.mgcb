@@ -1358,3 +1358,15 @@
 /processorParam:Quality=Best
 /build:SFX/sfx_menuSelect.wav
 
+#begin Spaces/piece_chance64.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Spaces/piece_chance64.png
+
