@@ -28,7 +28,7 @@ namespace Monogame_Party_2018
         public bool playGame;
 
         //Set move time for com
-        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(1000);
+        private static readonly TimeSpan comMoveSpeed = TimeSpan.FromMilliseconds(500);
         private TimeSpan comLastMove;
         private bool raceOver = false;
         public double difficultyMultiplier;
@@ -205,7 +205,9 @@ namespace Monogame_Party_2018
             sb.Draw(this.parentManager.game.minigame_two_racetrack, new Vector2(720, yPos), Color.White);
             sb.Draw(this.parentManager.game.minigame_two_racetrack, new Vector2(975, yPos), Color.White);
 
-
+            //Alt background
+            sb.Draw(parentManager.game.mg2Alt, new Vector2(0, 0), Color.White);
+            
             for (int i = 3; i >= 0; i--)
             {
                 sb.Draw(players[i].meeple.sprite, currentMeeplePositions[i], Color.White);

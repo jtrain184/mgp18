@@ -86,6 +86,7 @@ namespace Monogame_Party_2018
         public Texture2D minigame_two_down_arrow;
         public Texture2D minigame_two_right_arrow;
         public Texture2D minigame_two_left_arrow;
+        public Texture2D mg2Alt;
 
         // Result Stars
         public Texture2D spr_star1;
@@ -270,6 +271,7 @@ namespace Monogame_Party_2018
             minigame_two_down_arrow = Content.Load<Texture2D>("Minigames/spr_down_arrow");
             minigame_two_right_arrow = Content.Load<Texture2D>("Minigames/spr_right_arrow");
             minigame_two_left_arrow = Content.Load<Texture2D>("Minigames/spr_left_arrow");
+            mg2Alt = Content.Load<Texture2D>("Minigames/mg2bg");
 
 
 
