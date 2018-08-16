@@ -10,12 +10,26 @@ namespace Monogame_Party_2018
     public class E_Space : Entity
     {
 
+        // To make meeples not land on each other:
+        public const int OVERLAP_SHIFT = 32;
+        List<Player> playersOnSpace;
+        public enum direction {
+          up = 0,
+          right,
+          down,
+          left
+        }
+
+
         // Member variables
         public Entity.typeSpace type;
         public Entity.typeSpace prevType;
         public List<E_Space> spacesAhead;
         public List<E_Space> spacesBehind;
 
+        Vector2 locSecondPlayer;
+        Vector2 locThirdPlayer;
+        Vector2 locFourthPlayer;
 
         // Constructor:
         public E_Space(State parentState, Vector2 pos, Entity.typeSpace type) : base(parentState, pos)
@@ -31,6 +45,11 @@ namespace Monogame_Party_2018
             this.spriteWidth = sprite.Width;
             this.spriteHeight = sprite.Height;
 
+            // updated later:
+            playersOnSpace = new List<Player>();
+            locSecondPlayer = pos;
+            locThirdPlayer = pos;
+            locFourthPlayer = pos;
         }
 
 
@@ -102,5 +121,61 @@ namespace Monogame_Party_2018
         public override void Draw(GameTime gameTime) { }
 
 
+        // Update Location of overlapping meeples:
+        public void setOverlapPositions(direction dir) {
+
+            Vector2 pos = getPosCenter();
+
+            switch (dir) {
+              case direction.up:
+                locSecondPlayer = new Vector2(pos.X + OVERLAP_SHIFT, pos.Y);
+                locThirdPlayer = new Vector2(pos.X - OVERLAP_SHIFT, pos.Y);
+                locFourthPlayer = new Vector2(pos.X + OVERLAP_SHIFT*2, pos.Y);
+                break;
+
+              case direction.right:
+                locSecondPlayer = new Vector2(pos.X, pos.Y - OVERLAP_SHIFT);
+                locThirdPlayer = new Vector2(pos.X, pos.Y + OVERLAP_SHIFT);
+                locFourthPlayer = new Vector2(pos.X, pos.Y - OVERLAP_SHIFT*2);
+                break;
+
+              case direction.down:
+                locSecondPlayer = new Vector2(pos.X - OVERLAP_SHIFT, pos.Y);
+                locThirdPlayer = new Vector2(pos.X + OVERLAP_SHIFT, pos.Y);
+                locFourthPlayer = new Vector2(pos.X - OVERLAP_SHIFT*2, pos.Y);
+                break;
+
+              case direction.left:
+                locSecondPlayer = new Vector2(pos.X, pos.Y + OVERLAP_SHIFT);
+                locThirdPlayer = new Vector2(pos.X, pos.Y - OVERLAP_SHIFT);
+                locFourthPlayer = new Vector2(pos.X, pos.Y + OVERLAP_SHIFT*2);
+                break;
+
+              default:
+                break;
+            } // end switch
+        } // end setOverlapPositions
+
+
+        // Depending on who is currently 'occupying the space' get the correct position:
+        public Vector2 getMeepleLocation() {
+          if (playersOnSpace.Count == 0) { return getPosCenter(); }
+          else if (playersOnSpace.Count == 1) { return locSecondPlayer; }
+          else if (playersOnSpace.Count == 2) { return locThirdPlayer; }
+          else { return locFourthPlayer; }
+        } // end getMeepleLocation
+
+
+        // Add and remove meeples from a space to make sure they don't overlap
+        public void occupySpace(Player p) { playersOnSpace.Add(p); }
+
+        // Leave space and update other players if there are any:
+        public void leaveSpace(Player p) {
+          int num = playersOnSpace.Count - 1;
+          if (num >= 3) { playersOnSpace[3].meeple.setPos(locThirdPlayer); } // set forth to third pos
+          if (num >= 2) { playersOnSpace[2].meeple.setPos(locSecondPlayer); } // set third to second pos
+          if (num >= 1) { playersOnSpace[1].meeple.setPos(getPosCenter()); } // set second to first pos
+          playersOnSpace.Remove(p);
+        }
     }
 }

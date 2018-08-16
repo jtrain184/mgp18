@@ -66,7 +66,7 @@ namespace Monogame_Party_2018
             audioEngine = new S_AudioEngine(this, 0, 0);
             this.AddState(audioEngine, 0);
 
-            State mainMenu = new S_MainMenu(this, 0, 0);    // TODO, make eCounter static, NOT PASSED IN
+            State mainMenu = new S_MainMenu(this, 0, 0);
             this.AddState(mainMenu, 0);
             this.stateCount = 2;
         }
@@ -86,22 +86,24 @@ namespace Monogame_Party_2018
             {
 
                 // Start with topmost state:
-                s = states[num];
+                if (delayTimer <= 0) {
+                  s = states[num];
 
-                // ** UPDATE ALL STATES **
-                // Only update if State is 'active' and not flagged for deletion:
-                if ((delayTimer <= 0) && s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
+                  // ** UPDATE ALL STATES **
+                  // Only update if State is 'active' and not flagged for deletion:
+                  if (s.active && !s.flagForDeletion) { s.Update(gameTime, input); }
 
 
-                // a 'delayTimer' allows states to push short delays to essentially mini-pause the state stack
-                if (s.sendDelay > 0)
-                {
-                    delayTimer += s.sendDelay;
-                    s.sendDelay = 0; // reset send delay from object (notification of it was received)
+                  // a 'delayTimer' allows states to push short delays to essentially mini-pause the state stack
+                  if (s.sendDelay > 0) {
+                      delayTimer += s.sendDelay;
+                      s.sendDelay = 0; // reset send delay from object (notification of it was received)
+                  }
+
+                  // State is flagged for deletion, remove it now:
+                  if (s.flagForDeletion) { RemoveState(s); }
+
                 }
-
-                // State is flagged for deletion, remove it now:
-                if (s.flagForDeletion) { RemoveState(s); }
 
                 --num;
             } // end while

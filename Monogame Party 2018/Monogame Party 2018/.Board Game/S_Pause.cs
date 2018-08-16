@@ -80,7 +80,7 @@ namespace Monogame_Party_2018
             {
 
                 // only change states that are already active (don't tamper with other states)
-                if (s.active == true)
+                if (s.active == true && s != parentManager.audioEngine)
                     statesToPause.Add(s);
             }
 
@@ -163,10 +163,27 @@ namespace Monogame_Party_2018
                         break;
 
                     case S_Pause.pauseOptions.quit:
+
+                        // update music:
+                        parentManager.audioEngine.setNextSong(MGP_Constants.music.mainMenu);
+                        parentManager.audioEngine.playNextSong(20, true);
+
+                        // Clear all states except audio engine and this state:
+                        List<State> statesToRemove = new List<State>();
+                        foreach (State s in parentManager.states) {
+                          if (s != parentManager.audioEngine && s != this) { statesToRemove.Add(s); }
+                        }
+
+                        // Remove them:
+                        foreach (State s in statesToRemove) { parentManager.RemoveState(s); }
+
+                        // Delay the update of the gameStateManager:
+                        sendDelay = 2;
+
                         parentManager.gameOptions = new GameOptions();
-                        parentManager.clearStates();
                         State newMenu = new S_MainMenu(parentManager, 0, 0);
                         parentManager.AddStateQueue(newMenu);
+                        this.flagForDeletion = true;
                         break;
 
                     case S_Pause.pauseOptions.exitProgram:

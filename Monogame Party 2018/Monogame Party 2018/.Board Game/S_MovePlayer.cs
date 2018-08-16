@@ -10,15 +10,14 @@ namespace Monogame_Party_2018
         public Player currPlayer;
         bool soundPlayed;
 
-
         // Constructor
-        public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos)
-        {
+        public S_MovePlayer(GameStateManager creator, float xPos, float yPos, int moveNum) : base(creator, xPos, yPos) {
             this.moveNum = moveNum;
-
             this.currPlayer = parentManager.round.currPlayer;
-
             this.soundPlayed = false;
+
+            // Leave the last space you were occupying:
+            this.currPlayer.currSpace.leaveSpace(this.currPlayer);
         }
 
         // Update:
@@ -33,16 +32,15 @@ namespace Monogame_Party_2018
                 E_Space spaceToMoveTo = currPlayer.currSpace.spacesAhead[0];
 
                 // Move the meeple untill it's close enough to space
-                if (Vector2.Distance(spaceToMoveTo.getPosCenter(), currPlayer.meeple.getPosCenter()) > 1.0F)
+                if (Vector2.Distance(spaceToMoveTo.getMeepleLocation(), currPlayer.meeple.getPosCenter()) > 1.0F)
                 {
-                    float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getPosCenter().X, 0.15F);
-                    float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getPosCenter().Y, 0.15F);
+                    float newX = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().X, spaceToMoveTo.getMeepleLocation().X, 0.15F);
+                    float newY = MGP_Tools.Ease(currPlayer.meeple.getPosCenter().Y, spaceToMoveTo.getMeepleLocation().Y, 0.15F);
                     currPlayer.meeple.setPos(new Vector2(newX, newY));
                     MGP_Tools.Follow_Player(parentManager, currPlayer);
 
                     // Play space sound effect:
-                    if (!soundPlayed)
-                    {
+                    if (!soundPlayed) {
                         parentManager.audioEngine.playSound(MGP_Constants.soundEffects.space, 0.7f);
                         soundPlayed = true;
                     }
@@ -57,8 +55,7 @@ namespace Monogame_Party_2018
                     soundPlayed = false;
 
                     // If player passes a star
-                    if (currPlayer.currSpace.type == Entity.typeSpace.star)
-                    {
+                    if (currPlayer.currSpace.type == Entity.typeSpace.star) {
                         S_BuyStar buyStar = new S_BuyStar(parentManager, 0, 0);
                         parentManager.AddStateQueue(buyStar);
                         this.active = false; //pause moving player
@@ -68,6 +65,9 @@ namespace Monogame_Party_2018
             // finished moving meeple
             else
             {
+                // Occupy that space so another meeple doesn't run him/her over:
+                currPlayer.currSpace.occupySpace(currPlayer);
+
                 S_LandAction landAction = new S_LandAction(parentManager, 0, 0);
                 parentManager.AddStateQueue(landAction);
                 this.flagForDeletion = true;

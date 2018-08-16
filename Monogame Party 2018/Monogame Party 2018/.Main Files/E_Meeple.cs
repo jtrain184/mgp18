@@ -52,9 +52,10 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
             SpriteBatch sb = gsm.game.spriteBatch;
-            sb.Begin();
+            sb.Begin(transformMatrix: gsm.game.cameraObject.GetViewMatrix());
 
-            sb.Draw(this.sprite, this.pos, Color.White);
+            // draw sprite by half its size:
+            sb.Draw(this.sprite, new Vector2(this.getPosCenter().X + 8, this.getPosCenter().Y + 2), Color.White);
             sb.End();
         }
     }
