@@ -32,7 +32,7 @@ namespace Monogame_Party_2018
                     background = parentManager.game.minigame_one_background;
                     break;
                 default:
-                    background = parentManager.game.bg_pirateBay;
+                    background = parentManager.game.mg2Alt;
                     break;
             }
 
@@ -46,13 +46,6 @@ namespace Monogame_Party_2018
             {
                 entities.Add(new E_MinigameResult(creator, Math.Abs(i - 4), results[i], new Vector2(350, -100)));
                 resultPos.Add(new Vector2(350, 500 - (i * 100)));
-            }
-
-            // Add coins to players totalCoins gained
-            for (int j = 0; j < entities.Count; j++)
-            {
-                if (entities[j].changeValue > 0)
-                    results[j].totalCoinsGained += entities[j].changeValue;
             }
 
             // Add minigame win to 1st place player

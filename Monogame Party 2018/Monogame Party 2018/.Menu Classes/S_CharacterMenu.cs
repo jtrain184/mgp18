@@ -32,6 +32,7 @@ namespace Monogame_Party_2018
         public S_CharacterMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             this.creator = creator;
+            parentManager.gameOptions.players = new List<Player>(); // reset players when menu is created
             currentMenuItem = 0;
 
             players = new List<Player.Type>();

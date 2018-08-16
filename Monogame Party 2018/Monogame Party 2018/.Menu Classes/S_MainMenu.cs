@@ -97,31 +97,6 @@ namespace Monogame_Party_2018
                 }
             }
 
-            //DEBUG:  GO TO MINIGAME2
-            if (km.KeyPressed(Keys.D9))
-            {
-                // DEBUG: Go straight to the mini game
-                // Create player entitities and add to game options
-
-                // add as a human player
-                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.FRANK, true, KeyboardManager.playerIndex.one));
-                // add a comp player
-                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.MANFORD, true, KeyboardManager.playerIndex.two));
-                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.SUE, false, KeyboardManager.playerIndex.none));
-                parentManager.gameOptions.players.Add(new Player(parentManager, Player.Type.WILBER, false, KeyboardManager.playerIndex.none));
-
-
-                parentManager.gameOptions.numPlayers = 2;
-
-                S_Minigame2 minigame = new S_Minigame2(parentManager, 0, 0, true);
-                parentManager.AddStateQueue(minigame);
-
-                parentManager.gameOptions.difficulty = MenuItem.Difficulty.HARD;
-
-                this.flagForDeletion = true;
-
-            }
-
             // Press ENTER while some menu item is highlighted:
             if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
             {

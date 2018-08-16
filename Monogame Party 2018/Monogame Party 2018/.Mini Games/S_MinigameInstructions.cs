@@ -47,7 +47,7 @@ namespace Monogame_Party_2018
                 // Minigame 2
                 case 1:
                     gameInstructions = "Game Rules:\nQuickly press the buttons\non your track and race\nto the finish line!";
-                    background = parentManager.game.minigame_two_background;
+                    background = parentManager.game.mg2Alt;
                     boxHeight = 300;
                     boxWidth = 750;
                     if (parentManager.gameOptions.numPlayers == 2)
