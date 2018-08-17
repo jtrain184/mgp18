@@ -143,6 +143,18 @@ namespace Monogame_Party_2018
             textDesPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y), aboutText[index], this.parentManager.game.ft_menuDescriptionFont);
             sb.DrawString(this.parentManager.game.ft_menuDescriptionFont, aboutText[index], textDesPos, Color.White);
 
+
+
+            // Buttons text
+            string backText = "Cancel ... Back";
+
+            Vector2 backTextPos = CenterString.getCenterStringVector(new Vector2(backgroundBox.X, backgroundBox.Y + (boxDim[index].Y / 2 - 40)), backText, parentManager.game.ft_rollDice_lg);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, backText, new Vector2(backTextPos.X - 2, backTextPos.Y), Color.Black);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, backText, new Vector2(backTextPos.X + 2, backTextPos.Y), Color.Black);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, backText, new Vector2(backTextPos.X, backTextPos.Y - 2), Color.Black);
+            sb.DrawString(parentManager.game.ft_rollDice_lg, backText, new Vector2(backTextPos.X, backTextPos.Y + 2), Color.Black);
+
+            sb.DrawString(parentManager.game.ft_rollDice_lg, backText, backTextPos, Color.White);
             if (index < 2)
             {
                 string text = ">>";
