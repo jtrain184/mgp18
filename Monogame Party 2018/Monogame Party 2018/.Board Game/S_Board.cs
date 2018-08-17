@@ -64,8 +64,25 @@ namespace Monogame_Party_2018
 
             //DEBUG:
             // Game is finished:
-            if (round.currRound > numRounds)
-            {
+            if (round.currRound > numRounds) {
+
+                // update music:
+                parentManager.audioEngine.setNextSong(MGP_Constants.music.mainMenu);
+                parentManager.audioEngine.playNextSong(40, true);
+
+                // Clear all states except audio engine and this state:
+                List<State> statesToRemove = new List<State>();
+                foreach (State s in parentManager.states) {
+                  if (s != parentManager.audioEngine && s != this) { statesToRemove.Add(s); }
+                }
+
+                // Remove them:
+                foreach (State s in statesToRemove) { parentManager.RemoveState(s); }
+
+                // Delay the update of the gameStateManager:
+                sendDelay = 2;
+
+
                 if (this.gameOptions.allowBonus)
                 {
                     // Go to game results state to count bonuses
@@ -80,14 +97,10 @@ namespace Monogame_Party_2018
 
                 }
 
-                // Remove all states
-                foreach (State s in parentManager.states)
-                {
-                    s.flagForDeletion = true;
-                }
+                this.flagForDeletion = true;
                 Console.WriteLine("Finished the game. Going to show the results state");
             }
-            
+
             // Listen for pausing here:
             ListenPause();
         }

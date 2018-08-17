@@ -372,7 +372,6 @@ namespace Monogame_Party_2018
             // Assign the star space to a random space
             MGP_Tools.Assign_Star(this);
 
-
             // Assign starting space to all players
             foreach (Player p in this.gameOptions.players)
             {

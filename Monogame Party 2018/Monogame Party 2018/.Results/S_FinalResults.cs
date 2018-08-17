@@ -1,7 +1,9 @@
-﻿
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+
+using System;
+using System.Collections.Generic;
 
 namespace Monogame_Party_2018
 {
@@ -32,19 +34,28 @@ namespace Monogame_Party_2018
             base.Update(gameTime, ks);
             if (timer > 60)
             {
-                if (gsm.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all))
-                {
+                if (gsm.km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.all)) {
+                    // Go back to main menu
+                    // update music:
+                    gsm.audioEngine.setNextSong(MGP_Constants.music.mainMenu);
+                    gsm.audioEngine.playNextSong(20, true);
 
-                    // Remove all states
-                    foreach (State s in gsm.states)
-                    {
-                        s.flagForDeletion = true;
+                    // Clear all states except audio engine and this state:
+                    List<State> statesToRemove = new List<State>();
+                    foreach (State s in gsm.states) {
+                      if (s != gsm.audioEngine && s != this) { statesToRemove.Add(s); }
                     }
 
-                    gsm.gameOptions = new GameOptions();    // Reset game options
-                    // Go back to main menu
-                    S_MainMenu newMenu = new S_MainMenu(gsm, 0, 0);
+                    // Remove them:
+                    foreach (State s in statesToRemove) { gsm.RemoveState(s); }
+
+                    // Delay the update of the gameStateManager:
+                    sendDelay = 2;
+
+                    gsm.gameOptions = new GameOptions();
+                    State newMenu = new S_MainMenu(gsm, 0, 0);
                     gsm.AddStateQueue(newMenu);
+                    this.flagForDeletion = true;
                 }
             }
             timer++;

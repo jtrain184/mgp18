@@ -51,7 +51,7 @@ namespace Monogame_Party_2018
 
                 // Queue pirate bay music again:
                 parentManager.audioEngine.setNextSong(MGP_Constants.music.pirateBay);
-                parentManager.audioEngine.playNextSong(20, true);
+                parentManager.audioEngine.playNextSong(85, true);
                 Console.WriteLine("Added pirateBay to music queue");
 
                 // only run once each round:
@@ -67,6 +67,11 @@ namespace Monogame_Party_2018
                 // Last player went. Go to minigame
                 if (playerIndex == 4)
                 {
+
+                    // Queue minigame music:
+                    parentManager.audioEngine.setNextSong(MGP_Constants.music.minigame);
+                    parentManager.audioEngine.playNextSong(50, true);
+
                     S_MinigameInstructions minigameInstructions = new S_MinigameInstructions(parentManager, 0, 0, minigame);
                     parentManager.AddStateQueue(minigameInstructions);
                     playerIndex = 0;    // start with player one when round resumes

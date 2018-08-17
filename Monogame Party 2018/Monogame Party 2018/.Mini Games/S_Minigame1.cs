@@ -173,7 +173,7 @@ namespace Monogame_Party_2018
                                     // move selection by (skipping over already pressed plungers)
                                     getNextSelection();
 
-                                    // If currently selecting the bomb, roll a dice based on difficulty 
+                                    // If currently selecting the bomb, roll a dice based on difficulty
                                     if (currSelection.isBomb)
                                         rollChance(parentManager.gameOptions.difficulty);
 
@@ -199,21 +199,20 @@ namespace Monogame_Party_2018
                     {
 
                         // Move Menu Selection Left:
-                        if (km.ActionPressed(KeyboardManager.action.left, KeyboardManager.playerIndex.one))
-                        {
+                        if (km.ActionPressed(KeyboardManager.action.left, currentPlayer.playerControlsIndex)) {
                             getNextSelection();
 
                         }
 
                         // Move Menu Selection Right:
-                        if (km.ActionPressed(KeyboardManager.action.right, KeyboardManager.playerIndex.one))
+                        if (km.ActionPressed(KeyboardManager.action.right, currentPlayer.playerControlsIndex))
                         {
                             getNextSelectionRight();
                         }
 
 
                         // Human Player selectes a plunger
-                        if (km.ActionPressed(KeyboardManager.action.select, KeyboardManager.playerIndex.one))
+                        if (km.ActionPressed(KeyboardManager.action.select, currentPlayer.playerControlsIndex))
                         {
                             handleSelection();
 
@@ -334,7 +333,7 @@ namespace Monogame_Party_2018
                 bombNotChosen();
             }
 
-            // Update player index 
+            // Update player index
             playerIndex = players.FindIndex(x => x == currentPlayer);
             waitTime = 0;
 
@@ -365,7 +364,7 @@ namespace Monogame_Party_2018
                 currentPlayer = players[0];
             }
             // next player has moved into the current index
-            else 
+            else
             {
                 currentPlayer = players[playerIndex];
             }
@@ -415,7 +414,7 @@ namespace Monogame_Party_2018
                     difficultyLevel = 0;
                     break;
             }
-            // If the chance lower than the difficulty number, the computer will stop moving 
+            // If the chance lower than the difficulty number, the computer will stop moving
             // and choose that plunger
             if (chanceRoll <= difficultyLevel)
                 comMove = 0;

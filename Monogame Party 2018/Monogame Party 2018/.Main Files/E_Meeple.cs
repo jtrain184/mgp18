@@ -10,6 +10,7 @@ namespace Monogame_Party_2018
         // Member variables:
         public Player.Type type;
         GameStateManager gsm;
+        public bool drawToScreen;     // As in, DON'T draw relitive to the board
 
         // Constructor
         public E_Meeple(GameStateManager gameStateManager, Vector2 pos, Player.Type type) : base()
@@ -45,6 +46,8 @@ namespace Monogame_Party_2018
 
             }
 
+         drawToScreen = false; // By default, draw to board
+
 
         } // end constructor
 
@@ -52,7 +55,11 @@ namespace Monogame_Party_2018
         {
             base.Draw(gameTime);
             SpriteBatch sb = gsm.game.spriteBatch;
-            sb.Begin(transformMatrix: gsm.game.cameraObject.GetViewMatrix());
+
+            if (drawToScreen)
+              sb.Begin();
+            else
+              sb.Begin(transformMatrix: gsm.game.cameraObject.GetViewMatrix());
 
             // draw sprite by half its size:
             sb.Draw(this.sprite, new Vector2(this.getPosCenter().X + 8, this.getPosCenter().Y + 2), Color.White);

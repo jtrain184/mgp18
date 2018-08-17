@@ -8,12 +8,14 @@ namespace Monogame_Party_2018
     {
         public Texture2D starSprite;
         public int starCount;
+        bool isHuman;
 
         public E_BonusResult(GameStateManager parentManager, int place, Player player, Vector2 pos) : base(parentManager, place, player, pos)
         {
             this.starSprite = parentManager.game.spr_star;
             this.starCount = player.stars;
             this.coinValueString = player.coins.ToString();
+            this.isHuman = player.isHuman;
         }
 
         public override void Draw(GameTime gameTime)
@@ -29,9 +31,12 @@ namespace Monogame_Party_2018
             Vector2 meeplePos = new Vector2(position.X + 80, position.Y + 20);
             sb.Draw(this.playerMeeple, meeplePos, Color.White);
 
-            // Player Name 
+            // Player Name
+            Color c = Color.White;
+            if (isHuman)
+              c = Color.MediumSpringGreen;
             Vector2 playerNamePos = new Vector2(meeplePos.X + playerMeeple.Width + 10, meeplePos.Y);
-            sb.DrawString(this.parentManager.game.ft_mainMenuFont, playerName, playerNamePos, Color.White);
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, playerName, playerNamePos, c);
 
             // Star Sprite
             Vector2 starPos = new Vector2(position.X + 400, playerNamePos.Y);

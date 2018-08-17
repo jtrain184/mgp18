@@ -53,7 +53,8 @@ namespace Monogame_Party_2018
 
         public enum music {
           pirateBay = 0,
-          mainMenu
+          mainMenu,
+          minigame
         }
 
 

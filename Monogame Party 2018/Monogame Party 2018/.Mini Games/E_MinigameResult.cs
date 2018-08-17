@@ -16,6 +16,8 @@ namespace Monogame_Party_2018
         public int changeValue;
 
         public Texture2D background;
+        bool isHuman;
+
 
         public E_MinigameResult(GameStateManager parentManager, int place, Player player, Vector2 pos)
         {
@@ -27,6 +29,11 @@ namespace Monogame_Party_2018
             this.coinValueString = getCoinValueString(place);
             this.position = pos;
 
+            // player text is blue:
+            if (player.isHuman)
+              this.isHuman = true;
+            else
+              this.isHuman = false;
 
 
         }
@@ -45,9 +52,12 @@ namespace Monogame_Party_2018
             Vector2 meeplePos = new Vector2(position.X + 80, position.Y + 20);
             sb.Draw(this.playerMeeple, meeplePos, Color.White);
 
-            // Player Name 
+            // Player Name
             Vector2 playerNamePos = new Vector2(meeplePos.X + playerMeeple.Width + 10, meeplePos.Y);
-            sb.DrawString(this.parentManager.game.ft_mainMenuFont, playerName, playerNamePos, Color.White);
+            Color c = Color.White;
+            if (isHuman)
+              c = Color.MediumSpringGreen;
+            sb.DrawString(this.parentManager.game.ft_mainMenuFont, playerName, playerNamePos, c);
 
             // Coin Sprite
             Vector2 coinPos = new Vector2(position.X + 400, playerNamePos.Y);

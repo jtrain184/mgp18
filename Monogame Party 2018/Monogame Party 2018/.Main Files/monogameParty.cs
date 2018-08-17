@@ -68,6 +68,7 @@ namespace Monogame_Party_2018
         public Texture2D piece_star64;
         public Texture2D piece_orange64;
         public Texture2D piece_crystal64;
+        public Texture2D piece_chance64;
 
         // Other:
         public Texture2D noSprite; // used as default and errors
@@ -231,6 +232,7 @@ namespace Monogame_Party_2018
             piece_star64 = Content.Load<Texture2D>("Spaces/piece_star64");
             piece_orange64 = Content.Load<Texture2D>("Spaces/piece_orange64");
             piece_crystal64 = Content.Load<Texture2D>("Spaces/piece_crystal64");
+            piece_chance64 = Content.Load<Texture2D>("Spaces/piece_chance64");
 
             // Other:
             noSprite = Content.Load<Texture2D>("noSprite");
@@ -312,6 +314,7 @@ namespace Monogame_Party_2018
             // Music:
             songs.Add(MGP_Constants.music.pirateBay, Content.Load<Song>("Music/mus_pirateBay"));
             songs.Add(MGP_Constants.music.mainMenu, Content.Load<Song>("Music/mus_mainTheme"));
+            songs.Add(MGP_Constants.music.minigame, Content.Load<Song>("Music/mus_minigame"));
 
             // SFX:
             sfx.Add(MGP_Constants.soundEffects.pressStart, Content.Load<SoundEffect>("SFX/sfx_pressStart"));

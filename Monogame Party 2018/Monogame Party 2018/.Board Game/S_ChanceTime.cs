@@ -216,6 +216,7 @@ namespace Monogame_Party_2018
                     // Create player meeple:
                     leftMeeple = new E_Meeple(parentManager, leftMeepleStartPos, leftPlayer.type);
                     leftMeeple.setPos(leftMeepleStartPos);
+                    leftMeeple.drawToScreen = true; // draw coordinates directly on screen
                     leftMeepleMove = true;
 
                     // Play SFX for finished!
@@ -238,6 +239,7 @@ namespace Monogame_Party_2018
                     // Create player meeple:
                     rightMeeple = new E_Meeple(parentManager, rightMeepleStartPos, rightPlayer.type);
                     rightMeeple.setPos(rightMeepleStartPos);
+                    rightMeeple.drawToScreen = true; // draw coordinates directly on screen
                     rightMeepleMove = true;
 
                     // Play SFX for finished!

@@ -229,6 +229,7 @@
     <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
     <None Include="Content\MainMenu\spr_glove.xnb" />
     <None Include="Content\Music\mus_mainTheme.xnb" />
+    <None Include="Content\Music\mus_minigame.xnb" />
     <None Include="Content\Music\mus_pirateBay.xnb" />
     <None Include="Content\noSprite.xnb" />
     <None Include="Content\PirateBay\bg_pirateBay.xnb" />
@@ -260,6 +261,7 @@
     <None Include="Content\SFX\sfx_spaceBlue.xnb" />
     <None Include="Content\SFX\sfx_spaceRed.xnb" />
     <None Include="Content\Spaces\piece_blue64.xnb" />
+    <None Include="Content\Spaces\piece_chance64.xnb" />
     <None Include="Content\Spaces\piece_crystal64.xnb" />
     <None Include="Content\Spaces\piece_green64.xnb" />
     <None Include="Content\Spaces\piece_orange64.xnb" />
