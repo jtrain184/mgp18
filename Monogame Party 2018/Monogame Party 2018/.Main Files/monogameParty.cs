@@ -34,6 +34,7 @@ namespace Monogame_Party_2018
         public Texture2D bg_titleScreen;
         public Texture2D spr_cloudIcon;
         public Texture2D spr_glove;
+        public Texture2D logo;
 
         // Input Keys:
         public Texture2D key_inputs;
@@ -213,6 +214,7 @@ namespace Monogame_Party_2018
             bg_titleScreen = Content.Load<Texture2D>("MainMenu/bg_titleScreen");
             spr_cloudIcon = Content.Load<Texture2D>("MainMenu/spr_cloudIcon_Alt");
             spr_glove = Content.Load<Texture2D>("MainMenu/spr_glove");
+            logo = Content.Load<Texture2D>("MainMenu/mgpLogo");
 
             // Input Keys:
             key_inputs = Content.Load<Texture2D>("KB_Keys/Key_Input");

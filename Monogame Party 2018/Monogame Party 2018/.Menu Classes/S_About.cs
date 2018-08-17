@@ -11,8 +11,9 @@ namespace Monogame_Party_2018
         public List<string> aboutHeader;
         public List<Vector2> boxDim;
         public int index = 0;
+        State parentState;
 
-        public S_About(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
+        public S_About(GameStateManager creator, float xPos, float yPos, State parentState) : base(creator, xPos, yPos)
         {
             aboutHeader = new List<string>()
             {
@@ -66,6 +67,8 @@ namespace Monogame_Party_2018
                 new Vector2(700, 350),
                 new Vector2(900, 750)
             };
+
+            this.parentState = parentState;
         }
 
         public override void Update(GameTime gameTime, KeyboardState ks)
@@ -73,8 +76,8 @@ namespace Monogame_Party_2018
             // Press Cancel Key: Goes back to main menu:
             if (km.ActionPressed(KeyboardManager.action.cancel, KeyboardManager.playerIndex.one))
             {
-                S_MainMenu menu = new S_MainMenu(parentManager, 0, 0);
-                parentManager.AddStateQueue(menu);
+                parentState.active = true;
+                parentState.visible = true;
                 this.flagForDeletion = true;
             }
 

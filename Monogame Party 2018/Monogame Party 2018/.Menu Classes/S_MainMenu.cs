@@ -25,10 +25,13 @@ namespace Monogame_Party_2018
 
         bool loadedSong = false;
 
+        public Texture2D logo;
+
         // Constructor for Main Menu:
         public S_MainMenu(GameStateManager creator, float xPos, float yPos) : base(creator, xPos, yPos)
         {
             this.currentMenuItem = (int)MenuItem.MainMenu.PIRATE;
+            //logo = parentManager.game.logo;
 
             items = new List<MenuItem>
             {
@@ -123,9 +126,10 @@ namespace Monogame_Party_2018
                 // Option: About
                 if (currentMenuItem == (int)MenuItem.MainMenu.ABOUT)
                 {
-                    S_About about = new S_About(parentManager, 0, 0);
+                    S_About about = new S_About(parentManager, 0, 0, this);
                     parentManager.AddStateQueue(about);
-                    this.flagForDeletion = true;
+                    this.active = false;
+                    this.visible = false;
                 }
 
                 // Option: Exit
@@ -146,6 +150,9 @@ namespace Monogame_Party_2018
 
             // Draw Background:
             sb.Draw(this.parentManager.game.bg_titleScreen, new Vector2(xPos, yPos), Color.White);
+
+            // Draw logo
+            sb.Draw(this.parentManager.game.logo, new Rectangle(MGP_Constants.SCREEN_MID_X - 150, -50, 300, 200), Color.White);
 
             // Draw Buttons
             Color tColor;

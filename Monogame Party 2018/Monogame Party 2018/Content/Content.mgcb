@@ -672,6 +672,18 @@
 /processorParam:TextureFormat=Compressed
 /build:MainMenu/ft_menuDescriptionFont.spritefont
 
+#begin MainMenu/mgpLogo.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:MainMenu/mgpLogo.png
+
 #begin MainMenu/spr_cloudIcon.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -869,6 +881,12 @@
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Music/mus_mainTheme.mp3
+
+#begin Music/mus_minigame.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/mus_minigame.mp3
 
 #begin Music/mus_pirateBay.mp3
 /importer:Mp3Importer
@@ -1165,6 +1183,18 @@
 /processorParam:Quality=Best
 /build:SFX/sfx_diceRolling.wav
 
+#begin SFX/sfx_menuCancel.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_menuCancel.wav
+
+#begin SFX/sfx_menuSelect.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_menuSelect.wav
+
 #begin SFX/sfx_pressStart.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
@@ -1200,6 +1230,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Spaces/piece_blue64.png
+
+#begin Spaces/piece_chance64.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Spaces/piece_chance64.png
 
 #begin Spaces/piece_crystal64.png
 /importer:TextureImporter
@@ -1345,34 +1387,4 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Transitions/confirmPlayerFont_sm.spritefont
-
-#begin SFX/sfx_menuCancel.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SFX/sfx_menuCancel.wav
-
-#begin SFX/sfx_menuSelect.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:SFX/sfx_menuSelect.wav
-
-#begin Spaces/piece_chance64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Spaces/piece_chance64.png
-
-#begin Music/mus_minigame.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/mus_minigame.mp3
 
