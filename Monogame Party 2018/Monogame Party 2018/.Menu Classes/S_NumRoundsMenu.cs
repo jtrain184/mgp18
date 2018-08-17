@@ -96,8 +96,8 @@ namespace Monogame_Party_2018
 
                 // Seven Rounds Selected
                 if (currentMenuItem == 0)
-                    //parentManager.gameOptions.numRounds = 7;
-                    parentManager.gameOptions.numRounds = 1; // DEBUG DEBUG DEBUG DEBUG DEBUG
+                    parentManager.gameOptions.numRounds = 7;
+                    //parentManager.gameOptions.numRounds = 1; // DEBUG DEBUG DEBUG DEBUG DEBUG
 
                 // Twelve Rounds Selected
                 else if (currentMenuItem == 1)

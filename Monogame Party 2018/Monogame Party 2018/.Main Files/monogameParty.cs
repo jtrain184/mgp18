@@ -314,6 +314,7 @@ namespace Monogame_Party_2018
             // Music:
             songs.Add(MGP_Constants.music.pirateBay, Content.Load<Song>("Music/mus_pirateBay"));
             songs.Add(MGP_Constants.music.mainMenu, Content.Load<Song>("Music/mus_mainTheme"));
+            songs.Add(MGP_Constants.music.minigame, Content.Load<Song>("Music/mus_minigame"));
 
             // SFX:
             sfx.Add(MGP_Constants.soundEffects.pressStart, Content.Load<SoundEffect>("SFX/sfx_pressStart"));

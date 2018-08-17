@@ -1370,3 +1370,9 @@
 /processorParam:TextureFormat=Color
 /build:Spaces/piece_chance64.png
 
+#begin Music/mus_minigame.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/mus_minigame.mp3
+

@@ -68,7 +68,7 @@ namespace Monogame_Party_2018
 
                 // update music:
                 parentManager.audioEngine.setNextSong(MGP_Constants.music.mainMenu);
-                parentManager.audioEngine.playNextSong(20, true);
+                parentManager.audioEngine.playNextSong(40, true);
 
                 // Clear all states except audio engine and this state:
                 List<State> statesToRemove = new List<State>();
