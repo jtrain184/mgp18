@@ -247,6 +247,9 @@
     <None Include="Content\playerUI\spr_thirdPlace.xnb" />
     <None Include="Content\playerUI\spr_VelmaCloseup.xnb" />
     <None Include="Content\playerUI\spr_WilberCloseup.xnb" />
+    <None Include="Content\SFX\sfx_bombExplode.xnb" />
+    <None Include="Content\SFX\sfx_bombMove.xnb" />
+    <None Include="Content\SFX\sfx_bombPushPlunger.xnb" />
     <None Include="Content\SFX\sfx_chanceTimeCymbal.xnb" />
     <None Include="Content\SFX\sfx_chanceTimeDrum.xnb" />
     <None Include="Content\SFX\sfx_chanceTimeHigh.xnb" />
@@ -254,8 +257,10 @@
     <None Include="Content\SFX\sfx_diceHit.xnb" />
     <None Include="Content\SFX\sfx_dicePre.xnb" />
     <None Include="Content\SFX\sfx_diceRolling.xnb" />
+    <None Include="Content\SFX\sfx_getStar.xnb" />
     <None Include="Content\SFX\sfx_menuCancel.xnb" />
     <None Include="Content\SFX\sfx_menuSelect.xnb" />
+    <None Include="Content\SFX\sfx_missStar.xnb" />
     <None Include="Content\SFX\sfx_pressStart.xnb" />
     <None Include="Content\SFX\sfx_space.xnb" />
     <None Include="Content\SFX\sfx_spaceBlue.xnb" />

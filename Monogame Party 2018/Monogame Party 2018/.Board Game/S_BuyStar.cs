@@ -21,11 +21,17 @@ namespace Monogame_Party_2018
             // Player does not have enough coins to buy star
             if (parentManager.round.currPlayer.coins < 20)
             {
+
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.missStar, 1.0f);
+
                 this.broke = true;
                 buyStarPrompt.text = "Boo Hoo!\nYou don't have enough Coins.\nCome back when you have at least 20 coins.";
             }
             else
             {
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.getStar, 1.0f);
 
                 buystar = true;
                 // award star and deduct coins
@@ -64,7 +70,7 @@ namespace Monogame_Party_2018
                 }
 
             }
-            // If player is buying star, start animation for buying star 
+            // If player is buying star, start animation for buying star
             if (startAnimation)
                 moveYPos++;
 

@@ -48,7 +48,14 @@ namespace Monogame_Party_2018
           chanceTimeCymbal,
 
           menuSelect,
-          menuCancel
+          menuCancel,
+
+          bombExplode,
+          bombMove,
+          bombPushPlunger,
+
+          getStar,
+          missStar
         }
 
         public enum music {

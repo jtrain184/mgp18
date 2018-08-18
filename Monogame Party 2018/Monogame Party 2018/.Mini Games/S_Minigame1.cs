@@ -173,6 +173,9 @@ namespace Monogame_Party_2018
                                     // move selection by (skipping over already pressed plungers)
                                     getNextSelection();
 
+                                    // SFX:
+                                    parentManager.audioEngine.playSound(MGP_Constants.soundEffects.bombMove, 1.0f);
+
                                     // If currently selecting the bomb, roll a dice based on difficulty
                                     if (currSelection.isBomb)
                                         rollChance(parentManager.gameOptions.difficulty);
@@ -202,12 +205,17 @@ namespace Monogame_Party_2018
                         if (km.ActionPressed(KeyboardManager.action.left, currentPlayer.playerControlsIndex)) {
                             getNextSelection();
 
+                            // SFX:
+                            parentManager.audioEngine.playSound(MGP_Constants.soundEffects.bombMove, 1.0f);
                         }
 
                         // Move Menu Selection Right:
                         if (km.ActionPressed(KeyboardManager.action.right, currentPlayer.playerControlsIndex))
                         {
                             getNextSelectionRight();
+
+                            // SFX:
+                            parentManager.audioEngine.playSound(MGP_Constants.soundEffects.bombMove, 1.0f);
                         }
 
 
@@ -326,11 +334,17 @@ namespace Monogame_Party_2018
             if (currSelection.isBomb)
             {
                 bombChosen();
+
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.bombExplode, 1.0f);
             }
             // Player did not select the bomb
             else
             {
                 bombNotChosen();
+
+                // SFX:
+                parentManager.audioEngine.playSound(MGP_Constants.soundEffects.bombPushPlunger, 1.0f);
             }
 
             // Update player index

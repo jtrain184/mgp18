@@ -882,12 +882,6 @@
 /processorParam:Quality=Best
 /build:Music/mus_mainTheme.mp3
 
-#begin Music/mus_minigame.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
-/processorParam:Quality=Best
-/build:Music/mus_minigame.mp3
-
 #begin Music/mus_pirateBay.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
@@ -1387,4 +1381,40 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Transitions/confirmPlayerFont_sm.spritefont
+
+#begin SFX/sfx_bombExplode.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_bombExplode.wav
+
+#begin SFX/sfx_bombMove.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_bombMove.wav
+
+#begin SFX/sfx_bombPushPlunger.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_bombPushPlunger.wav
+
+#begin SFX/sfx_getStar.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_getStar.wav
+
+#begin SFX/sfx_missStar.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SFX/sfx_missStar.wav
+
+#begin Music/mus_minigame.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/mus_minigame.mp3
 
