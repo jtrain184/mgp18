@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{27FA5094-E0F4-41B8-8532-DBE0EF5A355D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Monogame_Party_2018</RootNamespace>
     <AssemblyName>Monogame Party 2018</AssemblyName>
