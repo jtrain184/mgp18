@@ -1,0 +1,6 @@
+Manford	- Red
+Louie	- Green
+Frank	- Brown
+Wilber	- Purple
+Sue	- Pink
+Velma	- Yellow

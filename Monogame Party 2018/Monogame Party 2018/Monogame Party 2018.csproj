@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{27FA5094-E0F4-41B8-8532-DBE0EF5A355D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Monogame_Party_2018</RootNamespace>
+    <AssemblyName>Monogame Party 2018</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MonoGamePlatform>DesktopGL</MonoGamePlatform>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\Christopher\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LINUX</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\$(MonoGamePlatform)\$(Platform)\$(Configuration)\</OutputPath>
+    <DefineConstants>TRACE;LINUX</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>false</Prefer32Bit>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>.Other\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>.Other\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>F7C6A04CFF23DF1C19D515498CD93CD235B5F219</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Monogame Party 2018_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include=".Board Game\B_PirateBay.cs" />
+    <Compile Include=".Board Game\CameraProperties.cs" />
+    <Compile Include=".Board Game\E_ChanceBlock.cs" />
+    <Compile Include=".Board Game\E_Dice.cs" />
+    <Compile Include=".Board Game\E_Space.cs" />
+    <Compile Include=".Board Game\PauseItem.cs" />
+    <Compile Include=".Board Game\S_Board.cs" />
+    <Compile Include=".Board Game\S_BuyStar.cs" />
+    <Compile Include=".Board Game\S_CameraMode.cs" />
+    <Compile Include=".Board Game\S_ChanceTime.cs" />
+    <Compile Include=".Board Game\S_ConfirmPlayer.cs" />
+    <Compile Include=".Board Game\S_LandAction.cs" />
+    <Compile Include=".Board Game\S_Pause.cs" />
+    <Compile Include=".Board Game\S_PlayerUI.cs" />
+    <Compile Include=".Main Files\MGP_Tools.cs" />
+    <Compile Include=".Main Files\S_AudioEngine.cs" />
+    <Compile Include=".Menu Classes\S_Controls.cs" />
+    <Compile Include=".Mini Games\E_MinigameOneExplosion.cs" />
+    <Compile Include=".Mini Games\E_MinigameOnePlunger.cs" />
+    <Compile Include=".Mini Games\E_MinigameResult.cs" />
+    <Compile Include=".Menu Classes\E_Glove.cs" />
+    <Compile Include=".Mini Games\S_Minigame2.cs" />
+    <Compile Include=".Mini Games\S_MinigameInstructions.cs" />
+    <Compile Include=".Board Game\S_MovePlayer.cs" />
+    <Compile Include=".Board Game\S_RollDice.cs" />
+    <Compile Include=".Board Game\S_Round.cs" />
+    <Compile Include=".Main Files\Entity.cs" />
+    <Compile Include=".Main Files\EntityCounter.cs" />
+    <Compile Include=".Main Files\GameStateManager.cs" />
+    <Compile Include=".Key Inputs\KeyboardManager.cs" />
+    <Compile Include=".Main Files\E_Meeple.cs" />
+    <Compile Include=".Main Files\MGP_Constants.cs" />
+    <Compile Include=".Main Files\Player.cs" />
+    <Compile Include=".Menu Classes\GameOptions.cs" />
+    <Compile Include=".Menu Classes\MenuItem.cs" />
+    <Compile Include=".Main Files\MonogameParty.cs" />
+    <Compile Include=".Main Files\Program.cs" />
+    <Compile Include=".Menu Classes\S_About.cs" />
+    <Compile Include=".Menu Classes\S_BonusMenu.cs" />
+    <Compile Include=".Menu Classes\S_CharacterMenu.cs" />
+    <Compile Include=".Menu Classes\S_DifficultyMenu.cs" />
+    <Compile Include=".Menu Classes\S_NumRoundsMenu.cs" />
+    <Compile Include=".Menu Classes\S_PlayerCountMenu.cs" />
+    <Compile Include=".Mini Games\S_Minigame1.cs" />
+    <Compile Include=".Mini Games\S_MinigameResults.cs" />
+    <Compile Include=".Results\E_BonusResult.cs" />
+    <Compile Include=".Results\S_AlmostFinalResults.cs" />
+    <Compile Include=".Results\S_BonusResults.cs" />
+    <Compile Include=".Results\S_FinalResults.cs" />
+    <Compile Include="CenterString.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include=".Main Files\State.cs" />
+    <Compile Include=".Menu Classes\S_MainMenu.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include=".Other\Icon.ico" />
+    <EmbeddedResource Include=".Other\Icon.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\SDL2.dll">
+      <Link>x86\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\SDL2.dll">
+      <Link>x64\SDL2.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\soft_oal.dll">
+      <Link>x86\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\soft_oal.dll">
+      <Link>x64\soft_oal.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libSDL2-2.0.so.0">
+      <Link>x86\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libSDL2-2.0.so.0">
+      <Link>x64\libSDL2-2.0.so.0</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x86\libopenal.so.1">
+      <Link>x86\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\x64\libopenal.so.1">
+      <Link>x64\libopenal.so.1</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libSDL2-2.0.0.dylib">
+      <Link>libSDL2-2.0.0.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\libopenal.1.dylib">
+      <Link>libopenal.1.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="C:\Program Files (x86)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll.config">
+      <Link>MonoGame.Framework.dll.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include=".Other\app.manifest" />
+    <None Include="Content\BoardGameComponents\cameraCrosshair.xnb" />
+    <None Include="Content\BoardGameComponents\spr_messageBox.xnb" />
+    <None Include="Content\BoardGameComponents\testDiceBox.xnb" />
+    <None Include="Content\ChanceTime\bg_chanceTime.xnb" />
+    <None Include="Content\ChanceTime\spr_chance1.xnb" />
+    <None Include="Content\ChanceTime\spr_chance10.xnb" />
+    <None Include="Content\ChanceTime\spr_chance2.xnb" />
+    <None Include="Content\ChanceTime\spr_chance20.xnb" />
+    <None Include="Content\ChanceTime\spr_chance30.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowDown.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowL.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowR.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowSwap.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceArrowUp.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceBlock.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceBlockLight.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceCoin.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceFrank.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceLouie.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceManford.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceStar.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceSue.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceVelma.xnb" />
+    <None Include="Content\ChanceTime\spr_chanceWilber.xnb" />
+    <None Include="Content\Characters\spr_Frank.xnb" />
+    <None Include="Content\Characters\spr_Louie.xnb" />
+    <None Include="Content\Characters\spr_Manford.xnb" />
+    <None Include="Content\Characters\spr_Sue.xnb" />
+    <None Include="Content\Characters\spr_Velma.xnb" />
+    <None Include="Content\Characters\spr_Wilber.xnb" />
+    <None Include="Content\MainMenu\bg_titleScreen.xnb" />
+    <None Include="Content\MainMenu\ft_debugMedium.xnb" />
+    <None Include="Content\MainMenu\ft_debugSmall.xnb" />
+    <None Include="Content\MainMenu\ft_mainMenuFont.xnb" />
+    <None Include="Content\MainMenu\ft_menuDescriptionFont.xnb" />
+    <None Include="Content\MainMenu\spr_cloudIcon.xnb" />
+    <None Include="Content\MainMenu\spr_glove.xnb" />
+    <None Include="Content\Music\mus_mainTheme.xnb" />
+    <None Include="Content\Music\mus_minigame.xnb" />
+    <None Include="Content\Music\mus_pirateBay.xnb" />
+    <None Include="Content\noSprite.xnb" />
+    <None Include="Content\PirateBay\bg_pirateBay.xnb" />
+    <None Include="Content\playerUI\playerUIdata.xnb" />
+    <None Include="Content\playerUI\spr_boxInner.xnb" />
+    <None Include="Content\playerUI\spr_firstPlace.xnb" />
+    <None Include="Content\playerUI\spr_fourthPlace.xnb" />
+    <None Include="Content\playerUI\spr_FrankCloseup.xnb" />
+    <None Include="Content\playerUI\spr_LouieCloseup.xnb" />
+    <None Include="Content\playerUI\spr_ManfordCloseup.xnb" />
+    <None Include="Content\playerUI\spr_playerBox.xnb" />
+    <None Include="Content\playerUI\spr_playerBoxFrame.xnb" />
+    <None Include="Content\playerUI\spr_secondPlace.xnb" />
+    <None Include="Content\playerUI\spr_SueCloseup.xnb" />
+    <None Include="Content\playerUI\spr_thirdPlace.xnb" />
+    <None Include="Content\playerUI\spr_VelmaCloseup.xnb" />
+    <None Include="Content\playerUI\spr_WilberCloseup.xnb" />
+    <None Include="Content\SFX\sfx_bombExplode.xnb" />
+    <None Include="Content\SFX\sfx_bombMove.xnb" />
+    <None Include="Content\SFX\sfx_bombPushPlunger.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeCymbal.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeDrum.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeHigh.xnb" />
+    <None Include="Content\SFX\sfx_chanceTimeLow.xnb" />
+    <None Include="Content\SFX\sfx_diceHit.xnb" />
+    <None Include="Content\SFX\sfx_dicePre.xnb" />
+    <None Include="Content\SFX\sfx_diceRolling.xnb" />
+    <None Include="Content\SFX\sfx_getStar.xnb" />
+    <None Include="Content\SFX\sfx_menuCancel.xnb" />
+    <None Include="Content\SFX\sfx_menuSelect.xnb" />
+    <None Include="Content\SFX\sfx_missStar.xnb" />
+    <None Include="Content\SFX\sfx_pressStart.xnb" />
+    <None Include="Content\SFX\sfx_space.xnb" />
+    <None Include="Content\SFX\sfx_spaceBlue.xnb" />
+    <None Include="Content\SFX\sfx_spaceRed.xnb" />
+    <None Include="Content\Spaces\piece_blue64.xnb" />
+    <None Include="Content\Spaces\piece_chance64.xnb" />
+    <None Include="Content\Spaces\piece_crystal64.xnb" />
+    <None Include="Content\Spaces\piece_green64.xnb" />
+    <None Include="Content\Spaces\piece_orange64.xnb" />
+    <None Include="Content\Spaces\piece_purple64.xnb" />
+    <None Include="Content\Spaces\piece_red64.xnb" />
+    <None Include="Content\Spaces\piece_white64.xnb" />
+    <None Include="Monogame Party 2018_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

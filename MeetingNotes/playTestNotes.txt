@@ -1,0 +1,3 @@
+Controls for bomb game doesn't work for player 2
+
+

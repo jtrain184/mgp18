@@ -1,0 +1,49 @@
+
+July 17th, 2018
+1:00 PM
+
+
+"What should we do with the rightmost-state getting the input?"
+	- Let's consider having instead a boolean in the 'state' that says to
+	  listen for input or not, which can be disabled in which it does not 
+
+
+Talked about creating a new S_Board from after the bonus menu from the main
+menu. 
+
+
+"Good job on the minigame Chris!"
+
+
+
+
+- "We need to implement rounds under the S_Board class"
+
+- Rounds should contain a sequence of other states, such as 
+		- "Confirm current player - (press select Player one!), 
+		- "Options such as roll dice, or look around the map", 
+			- "roll dice", 
+			- "look around the map",
+  		- "move character (no input, just move the character to the correct spot)", 
+  		- "random game selection" (optional? we can make later), 
+		- "Minigame instructions", 
+		- AND THEN, start the minigame. 
+
+
+	+ "postGameResults" state
+
+	+ back to the board game
+
+	- START HERE:
+		- We should map this process out in a simple diagram
+
+
+- Talked about unit tests / designing unit tests
+
+- "Is everyone good for the week 4 progress report video?" Yes.
+
+- Talked about midpoint check assignment, looked through it
+
+- Updated trello goals/assignments for this upcoming week
+
+
